@@ -6,6 +6,7 @@
 package cmf;
 
 import java.util.Map;
+
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
@@ -33,13 +34,13 @@ public class perl_ioTest {
      */
     @Test
     public void testRemove_gap() {
-        System.out.println("remove_gap");
-        String s = "";
-        String expResult = "";
-        String result = perl_io.remove_gap(s);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        assertEquals("ACGT", perl_io.remove_gap("ACGT"));
+        assertEquals("AGT", perl_io.remove_gap("A.GT"));
+        assertEquals("CGT", perl_io.remove_gap("-CGT"));
+        assertEquals("CG", perl_io.remove_gap("-CG."));
+        assertEquals("", perl_io.remove_gap("----"));
+        assertEquals("", perl_io.remove_gap("...."));
+        assertEquals("", perl_io.remove_gap(".-.-"));
     }
 
     /**
@@ -47,14 +48,11 @@ public class perl_ioTest {
      */
     @Test
     public void testMake_string() {
-        System.out.println("make_string");
-        int n = 0;
-        String ch = "";
-        String expResult = "";
-        String result = perl_io.make_string(n, ch);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        assertEquals("", perl_io.make_string(0, "a"));
+        assertEquals("", perl_io.make_string(1, ""));
+        assertEquals("a", perl_io.make_string(1, "a"));
+        assertEquals("ab", perl_io.make_string(1, "ab"));
+        assertEquals("ab ab ab ", perl_io.make_string(3, "ab "));
     }
 
     /**
@@ -62,16 +60,28 @@ public class perl_ioTest {
      */
     @Test
     public void testPad_string() {
-        System.out.println("pad_string");
-        String seq = "";
-        int n = 0;
-        String ch = "";
-        int dir = 0;
-        String expResult = "";
-        String result = perl_io.pad_string(seq, n, ch, dir);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        assertEquals("", perl_io.pad_string("", 0, "", 0));
+        assertEquals("A", perl_io.pad_string("A", 0, "", 0));
+        assertEquals("A", perl_io.pad_string("A", 1, "", 0));
+        assertEquals("A", perl_io.pad_string("A", 0, "a", 0));
+        assertEquals("A", perl_io.pad_string("A", 1, "a", 0));
+        assertEquals("aaaaA", perl_io.pad_string("A", 5, "a", 0));
+        assertEquals("a", perl_io.pad_string("", 1, "a", 0));
+        assertEquals("aaaaa", perl_io.pad_string("", 5, "a", 0));
+        assertEquals("", perl_io.pad_string("", 0, "", 1));
+        assertEquals("A", perl_io.pad_string("A", 0, "", 1));
+        assertEquals("A", perl_io.pad_string("A", 1, "", 1));
+        assertEquals("A", perl_io.pad_string("A", 0, "a", 1));
+        assertEquals("A", perl_io.pad_string("A", 1, "a", 1));
+        assertEquals("Aaaaa", perl_io.pad_string("A", 5, "a", 1));
+        assertEquals("a", perl_io.pad_string("", 1, "a", 1));
+        assertEquals("aaaaa", perl_io.pad_string("", 5, "a", 1));
+        assertEquals("", perl_io.pad_string("", 0, "", 2));
+        assertEquals("A", perl_io.pad_string("A", 0, "", 2));
+        assertEquals("A", perl_io.pad_string("A", 1, "", 2));
+        assertEquals("A", perl_io.pad_string("A", 0, "a", 2));
+        assertEquals("A", perl_io.pad_string("A", 1, "a", 2));
+        assertEquals("A", perl_io.pad_string("A", 5, "a", 2));
     }
 
     /**
@@ -79,14 +89,9 @@ public class perl_ioTest {
      */
     @Test
     public void testRead_fasta() {
-        perl_io.read_fasta("data/example.fasta");
-        System.out.println("read_fasta");
-        String file_name = "";
-        Map<String, Seq> expResult = null;
-        Map<String, Seq> result = perl_io.read_fasta(file_name);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        Map<String, cmf.Seq> result = perl_io.read_fasta("test/cmf/data/example.fasta");
+        assertEquals(result.size(), 54);
+        // TODO implement the rest of the test
     }
 
 }

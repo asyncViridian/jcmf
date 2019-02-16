@@ -2,7 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3da6e499-81fb-4a08-856f-3dc0c5fe102e" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/test/cmf/data/example.fasta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/cmf/perl_io.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/cmf/perl_io.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/test/cmf/perl_ioTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/cmf/perl_ioTest.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -17,11 +18,11 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/cmf/perl_io.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="421">
-              <caret line="46" column="22" lean-forward="true" selection-start-line="46" selection-start-column="22" selection-end-line="46" selection-end-column="22" />
+            <state relative-caret-position="268">
+              <caret line="46" column="32" lean-forward="true" selection-start-line="46" selection-start-column="32" selection-end-line="47" selection-end-column="27" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#1714#1727#0" expanded="true" />
+                <element signature="e#1822#1835#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -30,8 +31,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/test/cmf/perl_ioTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="438">
-              <caret line="73" column="46" lean-forward="true" selection-start-line="73" selection-start-column="46" selection-end-line="73" selection-end-column="46" />
+            <state relative-caret-position="139">
+              <caret line="63" column="29" selection-start-line="63" selection-start-column="29" selection-end-line="63" selection-end-column="29" />
               <folding>
                 <element signature="e#0#2340#0" expanded="true" />
                 <element signature="imports" expanded="true" />
@@ -42,14 +43,24 @@
       </file>
     </leaf>
   </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>assertEquals\((.*), (&quot;.*&quot;)\);</find>
+    </findStrings>
+    <replaceStrings>
+      <replace>assertEquals\((\2), (\1)\);</replace>
+      <replace>assertEquals\(\2, \2\);</replace>
+      <replace>assertEquals\($2, $1\);</replace>
+    </replaceStrings>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/cmf/perl_io.java" />
         <option value="$PROJECT_DIR$/test/cmf/data/example.fasta" />
+        <option value="$PROJECT_DIR$/src/cmf/perl_io.java" />
         <option value="$PROJECT_DIR$/test/cmf/perl_ioTest.java" />
       </list>
     </option>
@@ -98,6 +109,13 @@
             </path>
             <path>
               <item name="jcmf" type="b2602c69:ProjectViewProjectNode" />
+              <item name="jcmf" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
+              <item name="cmf" type="462c0819:PsiDirectoryNode" />
+              <item name="data" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="jcmf" type="b2602c69:ProjectViewProjectNode" />
               <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
             </path>
           </expand>
@@ -111,7 +129,7 @@
     <property name="Repository.Attach.Annotations" value="false" />
     <property name="Repository.Attach.JavaDocs" value="false" />
     <property name="Repository.Attach.Sources" value="false" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1550298476543" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1550299900175" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/.." />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.0" />
@@ -130,6 +148,80 @@
       </list>
     </option>
   </component>
+  <component name="RunManager" selected="JUnit.perl_ioTest.testPad_string">
+    <configuration name="perl_ioTest.testMake_string" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="jcmf" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="cmf.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="cmf" />
+      <option name="MAIN_CLASS_NAME" value="cmf.perl_ioTest" />
+      <option name="METHOD_NAME" value="testMake_string" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="perl_ioTest.testPad_string" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="jcmf" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="cmf.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="cmf" />
+      <option name="MAIN_CLASS_NAME" value="cmf.perl_ioTest" />
+      <option name="METHOD_NAME" value="testPad_string" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="perl_ioTest.testRead_fasta" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="jcmf" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="cmf.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="cmf" />
+      <option name="MAIN_CLASS_NAME" value="cmf.perl_ioTest" />
+      <option name="METHOD_NAME" value="testRead_fasta" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="perl_ioTest.testRemove_gap" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="jcmf" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="cmf.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="cmf" />
+      <option name="MAIN_CLASS_NAME" value="cmf.perl_ioTest" />
+      <option name="METHOD_NAME" value="testRemove_gap" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JUnit.perl_ioTest.testPad_string" />
+        <item itemvalue="JUnit.perl_ioTest.testMake_string" />
+        <item itemvalue="JUnit.perl_ioTest.testRemove_gap" />
+        <item itemvalue="JUnit.perl_ioTest.testRead_fasta" />
+      </list>
+    </recent_temporary>
+  </component>
   <component name="SvnConfiguration">
     <configuration />
   </component>
@@ -143,6 +235,29 @@
     </task>
     <servers />
   </component>
+  <component name="TestHistory">
+    <history-entry file="perl_ioTest_testRead_fasta - 2019.02.15 at 22h 29m 11s.xml">
+      <configuration name="perl_ioTest.testRead_fasta" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="perl_ioTest_testRead_fasta - 2019.02.15 at 22h 29m 35s.xml">
+      <configuration name="perl_ioTest.testRead_fasta" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="perl_ioTest_testRemove_gap - 2019.02.15 at 22h 38m 51s.xml">
+      <configuration name="perl_ioTest.testRemove_gap" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="perl_ioTest_testMake_string - 2019.02.15 at 22h 39m 52s.xml">
+      <configuration name="perl_ioTest.testMake_string" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="perl_ioTest_testPad_string - 2019.02.15 at 22h 43m 54s.xml">
+      <configuration name="perl_ioTest.testPad_string" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="perl_ioTest_testPad_string - 2019.02.15 at 22h 47m 37s.xml">
+      <configuration name="perl_ioTest.testPad_string" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="perl_ioTest_testPad_string - 2019.02.15 at 22h 51m 36s.xml">
+      <configuration name="perl_ioTest.testPad_string" configurationId="JUnit" />
+    </history-entry>
+  </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1696" height="1026" extended-state="6" />
     <editor active="true" />
@@ -152,14 +267,15 @@
       <window_info id="UI Designer" />
       <window_info id="Capture Tool" />
       <window_info id="Favorites" side_tool="true" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.25" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.25" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Version Control" />
       <window_info anchor="bottom" id="Terminal" />
       <window_info anchor="bottom" id="Event Log" side_tool="true" />
+      <window_info anchor="bottom" id="Messages" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.32997763" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -175,28 +291,28 @@
     </layout>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/cmf/perl_io.java">
+    <entry file="file://$PROJECT_DIR$/test/cmf/data/example.fasta">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="421">
-          <caret line="46" column="22" lean-forward="true" selection-start-line="46" selection-start-column="22" selection-end-line="46" selection-end-column="22" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1714#1727#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="115">
+          <caret line="87" column="40" selection-start-line="87" selection-start-column="40" selection-end-line="87" selection-end-column="40" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/test/cmf/data/example.fasta">
+    <entry file="file://$PROJECT_DIR$/src/cmf/perl_io.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="784">
-          <caret line="108" lean-forward="true" selection-start-line="108" selection-end-line="108" />
+        <state relative-caret-position="268">
+          <caret line="46" column="32" lean-forward="true" selection-start-line="46" selection-start-column="32" selection-end-line="47" selection-end-column="27" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1822#1835#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/test/cmf/perl_ioTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="438">
-          <caret line="73" column="46" lean-forward="true" selection-start-line="73" selection-start-column="46" selection-end-line="73" selection-end-column="46" />
+        <state relative-caret-position="139">
+          <caret line="63" column="29" selection-start-line="63" selection-start-column="29" selection-end-line="63" selection-end-column="29" />
           <folding>
             <element signature="e#0#2340#0" expanded="true" />
             <element signature="imports" expanded="true" />

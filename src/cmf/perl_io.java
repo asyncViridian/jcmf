@@ -33,15 +33,23 @@ public class perl_io {
         return strNew;
     }
 
+    /**
+     * Adds up to (n - seq.length) copies of ch to either the left or the right side of seq, such that the resulting sequence is n units long
+     * @param seq sequence to pad onto
+     * @param n length to make the result sequence reach
+     * @param ch sequence to pad with
+     * @param dir direction to pad in: if 0, left; if 1, right
+     * @return padded sequence
+     */
     public static String pad_string(String seq, int n, String ch, int dir) {
         String strNew = seq;
         int l = n - seq.length();
         if (l > 0) { //pad right
             if (dir == 1) {
-                strNew = seq + make_string(n, ch);
+                strNew = seq + make_string(l, ch);
             } // pad left
             else if (dir == 0) {
-                strNew = make_string(n, ch) + seq;
+                strNew = make_string(l, ch) + seq;
             }
         }
         return strNew;
