@@ -1,7 +1,6 @@
 package cmf;
 
 /**
- *
  * struct 'Seq'
  */
 public class Seq {

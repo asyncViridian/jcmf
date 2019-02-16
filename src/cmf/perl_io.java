@@ -6,13 +6,13 @@ import java.util.Collections;
 import java.util.*;
 
 /**
- *
  * replace bin/io.pl
  */
 public class perl_io {
 
     /**
      * Remove gap characters '.' and '-' from sequence string
+     *
      * @param s sequence
      * @return de-gapped sequence
      */
@@ -23,7 +23,8 @@ public class perl_io {
 
     /**
      * Create n copies of ch
-     * @param n number of times to repeat ch
+     *
+     * @param n  number of times to repeat ch
      * @param ch string to repeat
      * @return ch repeated n times
      */
@@ -35,9 +36,10 @@ public class perl_io {
 
     /**
      * Adds up to (n - seq.length) copies of ch to either the left or the right side of seq, such that the resulting sequence is n units long
+     *
      * @param seq sequence to pad onto
-     * @param n length to make the result sequence reach
-     * @param ch sequence to pad with
+     * @param n   length to make the result sequence reach
+     * @param ch  sequence to pad with
      * @param dir direction to pad in: if 0, left; if 1, right
      * @return padded sequence
      */
@@ -55,7 +57,12 @@ public class perl_io {
         return strNew;
     }
 
-    //FASTA FORMAT
+    /**
+     * Reads the contents of the given file(name) into a mapping from sequence name to sequence struct
+     *
+     * @param file_name filename to read
+     * @return map from sequence nickname to struct representing sequence
+     */
     public static Map<String, Seq> read_fasta(String file_name) {
         Path fasta = Paths.get(file_name);
         try {
