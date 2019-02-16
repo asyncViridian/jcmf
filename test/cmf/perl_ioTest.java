@@ -5,6 +5,7 @@
  */
 package cmf;
 
+import java.util.Map;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
@@ -74,13 +75,15 @@ public class perl_ioTest {
     }
 
     /**
-     * Test of main method, of class perl_io.
+     * Test of read_fasta method, of class perl_io.
      */
     @Test
-    public void testMain() {
-        System.out.println("main");
-        String[] args = null;
-        perl_io.main(args);
+    public void testRead_fasta() {
+        System.out.println("read_fasta");
+        String file_name = "";
+        Map<String, Seq> expResult = null;
+        Map<String, Seq> result = perl_io.read_fasta(file_name);
+        assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
