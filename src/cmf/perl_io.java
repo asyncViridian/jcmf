@@ -114,7 +114,7 @@ public class perl_io {
         Map<String, cmf.Seq> result = perl_io.read_fasta("test/cmf/data/example.fasta");
         //using stream print out Map
         result.entrySet().stream().
-                forEach(e -> System.out.println(e.getValue().getSeq()));
+                forEach(e -> System.out.println(e.getValue().getSeqString()));
     }
 
 }
