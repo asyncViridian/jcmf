@@ -18,19 +18,4 @@ public class Seq {
         seq = v_seq;
     }
 
-    public String getAcc() {
-        return acc;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public String getDesc() {
-        return desc;
-    }
-
-    public String getSeq() {
-        return seq;
-    }
 }
