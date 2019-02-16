@@ -79,6 +79,7 @@ public class perl_ioTest {
      */
     @Test
     public void testRead_fasta() {
+        perl_io.read_fasta("data/example.fasta");
         System.out.println("read_fasta");
         String file_name = "";
         Map<String, Seq> expResult = null;
