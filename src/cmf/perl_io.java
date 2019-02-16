@@ -83,7 +83,7 @@ public class perl_io {
             for (String line : lines) {
                 if (line.length() > 0 && line.charAt(0) == '>') {
                     // begin next entry
-                    seqs.put(acc, new Seq(acc, i, line, seq.toString()));
+                    seqs.put(acc, new Seq(acc, i, acc, seq.toString()));
                     acc = line.split(">")[1];
                     i++;
                     seq = new StringBuilder();
@@ -110,12 +110,15 @@ public class perl_io {
 //
 //                }
             }
-         seqs.put(acc, new Seq(acc, i, desc, seq.toString()));
+         seqs.put(acc, new Seq(acc, i, acc, seq.toString()));
         } catch (IOException e) {
             System.out.println(e);
         }
 
         return seqs;
+    }
+    public static void main(String[] args) {
+        Map<String, cmf.Seq> result = perl_io.read_fasta("test/cmf/data/example.fasta");
     }
 
 }
