@@ -2,7 +2,6 @@ package cmf;
 
 import java.io.IOException;
 import java.nio.file.*;
-import java.util.Collections;
 import java.util.*;
 import java.util.regex.*;
 
@@ -71,18 +70,30 @@ public class perl_io {
         Map<String, Seq> seqs = new HashMap<String, Seq>();
         int i = 0;
         //pattern for > line
-        //Pattern p = Pattern.compile("^>(\\S+)\\s*(\\S+.*)");
-        String acc;
-        //String desc;
+        Pattern p = Pattern.compile("^>(\\S+)\\s+(\\S+.*)");
+        Matcher m;
+        String acc = null;
+        String desc = null;
         StringBuilder seq = new StringBuilder();
         try {
             List<String> lines = Files.readAllLines(fasta);
-            acc = lines.get(0).substring(1);
+            //acc = lines.get(0).substring(1);
+            //desc = lines.get(0).substring(1);
             for (String line : lines) {
                 if (line.length() > 0 && line.charAt(0) == '>') {
                     // begin next entry
-                    seqs.put(acc, new Seq(acc, i, acc, seq.toString()));
-                    acc = line.substring(1);
+                    if (i > 0) {
+                        seqs.put(acc, new Seq(acc, i, desc, seq.toString()));
+                    }
+                    //try to find > line match the pattern with space, then break acc and desc
+                    if ((m = p.matcher(line)).find()) {
+                        acc = m.group(1);
+                        desc = m.group(2);
+                        System.out.println("id= " + (i + 1) + " break acc=" + acc + " desc=" + desc);
+                    } else {
+                        acc = line.substring(1);
+                        desc = line.substring(1);
+                    }
                     i++;
                     seq = new StringBuilder();
                 } else {
@@ -90,7 +101,8 @@ public class perl_io {
                     seq.append(line);
                 }
             }
-            seqs.put(acc, new Seq(acc, i, acc, seq.toString()));
+            //update map value
+            seqs.put(acc, new Seq(acc, i, desc, seq.toString()));
         } catch (IOException e) {
             System.out.println(e);
         }
@@ -100,6 +112,9 @@ public class perl_io {
 
     public static void main(String[] args) {
         Map<String, cmf.Seq> result = perl_io.read_fasta("test/cmf/data/example.fasta");
+        //using stream print out Map
+        result.entrySet().stream().
+                forEach(e -> System.out.println(e.getValue().getSeq()));
     }
 
 }
