@@ -5,10 +5,10 @@ package cmf;
  */
 public class Seq {
 
-    public static String acc;
-    public static int id;
-    public static String desc;
-    public static String seq;
+    public String acc;
+    public int id;
+    public String desc;
+    public String seq;
 
     public Seq(String v_acc, int v_id, String v_desc, String v_seq) {
         acc = v_acc;
