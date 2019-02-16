@@ -8,11 +8,22 @@ import java.util.Collections;
  */
 public class perl_io {
 
+    /**
+     * Remove gap characters '.' and '-' from sequence string
+     * @param s sequence
+     * @return de-gapped sequence
+     */
     public static String remove_gap(String s) {
         String strNew = s.replace(".", "").replace("-", "");
         return strNew;
     }
 
+    /**
+     * Create n copies of ch
+     * @param n number of times to repeat ch
+     * @param ch string to repeat
+     * @return ch repeated n times
+     */
     public static String make_string(int n, String ch) {
         //String strNew = new String(new char[n]).replace("\0", s); // before java 8
         String strNew = String.join("", Collections.nCopies(n, ch));  // Java 8, Java 11 repeat()

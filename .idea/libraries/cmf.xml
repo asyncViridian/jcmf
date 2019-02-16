@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="cmf">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/dist/cmf.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
