@@ -1,6 +1,9 @@
 package cmf;
 
+import java.io.IOException;
+import java.nio.file.*;
 import java.util.Collections;
+import java.util.*;
 
 /**
  *
@@ -34,11 +37,18 @@ public class perl_io {
     }
 
     //FASTA FORMAT
-    // some comment
-    
-    
-    public static void main(String[] args) {
-        System.out.println(pad_string("this is a good test", 35, "hello", 0));
+    public static Map<String, Seq> read_fasta(String file_name) {
+        Path fasta = Paths.get(file_name);
+        try {
+            List<String> lines = Files.readAllLines(fasta);
+            for (String line : lines) {
+                System.out.println(line);
+            }
+        } catch (IOException e) {
+            System.out.println(e);
+        }
+        Map<String, Seq> seqs = new HashMap<String, Seq>();
+        return seqs;
     }
 
 }
