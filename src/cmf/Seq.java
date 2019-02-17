@@ -2,6 +2,7 @@ package cmf;
 
 /**
  * struct 'Seq'
+ * 
  * FASTA format
  */
 public class Seq {
