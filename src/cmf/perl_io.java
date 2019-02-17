@@ -24,7 +24,7 @@ public class perl_io {
     /**
      * Create n copies of ch
      *
-     * @param n number of times to repeat ch
+     * @param n  number of times to repeat ch
      * @param ch string to repeat
      * @return ch repeated n times
      */
@@ -39,8 +39,8 @@ public class perl_io {
      * side of seq, such that the resulting sequence is n units long
      *
      * @param seq sequence to pad onto
-     * @param n length to make the result sequence reach
-     * @param ch sequence to pad with
+     * @param n   length to make the result sequence reach
+     * @param ch  sequence to pad with
      * @param dir direction to pad in: if 0, left; if 1, right
      * @return padded sequence
      */
@@ -114,7 +114,7 @@ public class perl_io {
      * Output fasta to a file or screen based on fasta data input order
      *
      * @param file_name filename to read
-     * @param segs is a Map<String, Seq>
+     * @param segs      is a Map<String, Seq>
      */
     public static void write_fasta(String file_name, Map<String, Seq> seqs) {
         //sort using treemap
@@ -130,8 +130,8 @@ public class perl_io {
                 Files.write(fasta_out,
                         (Iterable<String>) tree_seqs.entrySet().stream()
                                 .map(e -> ">" + e.getValue().getAcc() + "\t"
-                                + ((e.getValue().getDesc().equals(e.getValue().getAcc())) ? "" : e.getValue().getDesc()) + "\n"
-                                + e.getValue().getSeq()
+                                        + ((e.getValue().getDesc().equals(e.getValue().getAcc())) ? "" : e.getValue().getDesc()) + "\n"
+                                        + e.getValue().getSeq()
                                 )::iterator);
             } catch (IOException e) {
                 System.out.println(e);
@@ -140,10 +140,10 @@ public class perl_io {
             //print to screen treemap
             tree_seqs.entrySet().stream().forEach(e -> System.out.println(
                     ">" + e.getValue().getAcc() + "\t"
-                    + ((e.getValue().getDesc().equals(e.getValue().getAcc())) ? "" : e.getValue().getDesc()) + "\n"
-                    + e.getValue().getSeq()
-            //e.getValue().getSeqString()
-            )
+                            + ((e.getValue().getDesc().equals(e.getValue().getAcc())) ? "" : e.getValue().getDesc()) + "\n"
+                            + e.getValue().getSeq()
+                    //e.getValue().getSeqString()
+                    )
             );
 
         }
