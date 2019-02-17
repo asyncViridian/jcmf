@@ -89,7 +89,7 @@ public class perl_io {
                     if ((m = p.matcher(line)).find()) {
                         acc = m.group(1);
                         desc = m.group(2);
-                        System.out.println("id= " + (i + 1) + " break acc=" + acc + " desc=" + desc);
+                        //System.out.println("id= " + (i + 1) + " break acc=" + acc + " desc=" + desc);
                     } else {
                         acc = line.substring(1);
                         desc = line.substring(1);
@@ -110,11 +110,53 @@ public class perl_io {
         return seqs;
     }
 
+    /**
+     * Output fasta to a file or screen based on fasta data input order
+     *
+     * @param file_name filename to read
+     * @param segs is a Map<String, Seq>
+     */
+    public static void write_fasta(String file_name, Map<String, Seq> seqs) {
+        //sort using treemap
+        TreeMap<Integer, Seq> tree_seqs = new TreeMap<Integer, Seq>();
+        //move into TreeMap
+        seqs.entrySet().stream()
+                .forEach(e -> tree_seqs.put(new Integer(e.getValue().getId()), e.getValue())
+                );
+        // now try to write file or print to screen
+        if (file_name != null && !file_name.isEmpty()) {
+            Path fasta_out = Paths.get(file_name);
+            try {
+                Files.write(fasta_out,
+                        (Iterable<String>) tree_seqs.entrySet().stream()
+                                .map(e -> ">" + e.getValue().getAcc() + "\t"
+                                + ((e.getValue().getDesc().equals(e.getValue().getAcc())) ? "" : e.getValue().getDesc()) + "\n"
+                                + e.getValue().getSeq()
+                                )::iterator);
+            } catch (IOException e) {
+                System.out.println(e);
+            }
+        } else {
+            //print to screen treemap
+            tree_seqs.entrySet().stream().forEach(e -> System.out.println(
+                    ">" + e.getValue().getAcc() + "\t"
+                    + ((e.getValue().getDesc().equals(e.getValue().getAcc())) ? "" : e.getValue().getDesc()) + "\n"
+                    + e.getValue().getSeq()
+            //e.getValue().getSeqString()
+            )
+            );
+
+        }
+
+    }
+
     public static void main(String[] args) {
-        Map<String, cmf.Seq> result = perl_io.read_fasta("test/cmf/data/example.fasta");
+        Map<String, Seq> result = perl_io.read_fasta("test/cmf/data/example.fasta");
         //using stream print out Map
-        result.entrySet().stream().
-                forEach(e -> System.out.println(e.getValue().getSeqString()));
+        //        result.entrySet().stream().
+        //                forEach(e -> System.out.println(e.getValue().getSeqString()));
+        write_fasta("", result);
+        write_fasta("test/cmf/data/test.fasta", result);
     }
 
 }
