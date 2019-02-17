@@ -90,7 +90,7 @@ public class perl_ioTest {
     @Test
     public void testRead_fasta() {
         Map<String, cmf.Seq> result = perl_io.read_fasta("test/cmf/data/example.fasta");
-        assertEquals(result.size(), 54);
+        assertEquals(result.size(), 55);
         // TODO implement the rest of the test
     }
 

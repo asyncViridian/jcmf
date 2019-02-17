@@ -106,3 +106,6 @@ cc-aagATGGC---------GCC--------G-----------G-CCGG
 TC-AAGATGGC---------GAC--------G-----------G-CGGG
 >pelSin1.JH212597(+):572922-572934|block_index=0|species=pelSin1|sequence_index=0|pelSin1_0_0
 GC-GGGA------------------------G-----------C-CAAG
+>FakeSequence|blahblahblah
+GC-GGGA------------------------G-----------C-CAAG
+GC-GGGA------------------------G-----------C-CAAG
