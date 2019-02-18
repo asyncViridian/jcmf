@@ -150,6 +150,28 @@ public class perl_io {
 
     }
 
+    //STOCKHOLM methods
+    public static AlignSeq align_seq_map(AlignSeq a) {
+        String seq = a.getAlignSeq();
+        Integer j = a.getStart();
+        Boolean dir = a.getStart() < a.getEnd();
+        String[] letters = seq.split("");
+        //System.out.println(Arrays.toString(letters));
+        Pattern p = Pattern.compile("\\.|-");
+        for (int i = 0; i < seq.length(); i++) {
+            if (!p.matcher(letters[i]).find()) {
+                a.getAlignMap().put(i, j);
+                a.getRevMap().put(j, i);
+                if (dir) {
+                    j++;
+                } else {
+                    j--;
+                }
+            }
+        }
+        return a;
+    }
+
     public static void main(String[] args) {
         Map<String, Seq> result = perl_io.read_fasta("test/cmf/data/example.fasta");
         //using stream print out Map
@@ -157,6 +179,7 @@ public class perl_io {
         //                forEach(e -> System.out.println(e.getValue().getSeqString()));
         write_fasta("", result);
         write_fasta("test/cmf/data/test.fasta", result);
+
     }
 
 }
