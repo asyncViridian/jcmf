@@ -151,6 +151,12 @@ public class perl_io {
     }
 
     //STOCKHOLM methods
+    /**
+     * Output AlignSeq object
+     *
+     * @param AlignSeq obj
+     *
+     */
     public static AlignSeq align_seq_map(AlignSeq a) {
         String seq = a.getAlignSeq();
         Integer j = a.getStart();
@@ -172,6 +178,42 @@ public class perl_io {
         return a;
     }
 
+    /**
+     * Output HashMap
+     *
+     * @param String from AlignSeq align_ss value
+     *
+     */
+    public static HashMap<Integer, Integer> pair_table(String ss_str) {
+        HashMap<Integer, Integer> pt = new HashMap<Integer, Integer>();
+        Integer i = 0;
+        Integer j = 0;
+        if (ss_str != null && !ss_str.isEmpty()) {
+            int len = ss_str.length();
+            String[] ss = ss_str.split("");
+            ArrayList<Integer> stack = new ArrayList<>();
+            while (i < len) { //int compare Integer is fine
+                while (ss[i].equals("<")) {
+                    stack.set(j, i);
+                    j++;
+                    i++;
+                }
+                while (i < len && ss[i].equals(">")) {
+                    j--;
+                    pt.put(i, stack.get(j));
+                    pt.put(stack.get(j), i);
+                    i++;
+                }
+                if (i < len && !ss[i].equals("<") && !ss[i].equals(">")) {
+                    i++;
+                }
+            }
+        } else {
+            throw new RuntimeException("!defined(ss_str), which is odd");
+        }
+        return pt;
+    }
+
     public static void main(String[] args) {
         Map<String, Seq> result = perl_io.read_fasta("test/cmf/data/example.fasta");
         //using stream print out Map
@@ -180,6 +222,10 @@ public class perl_io {
         write_fasta("", result);
         write_fasta("test/cmf/data/test.fasta", result);
 
+        int i1 = 1;
+        Integer i2 = 2;
+        String v = (i1 < i2) ? "true" : "false";
+        System.out.println(v);
     }
 
 }
