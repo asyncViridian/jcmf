@@ -26,31 +26,29 @@ public class AlignSeq {
 
     public AlignSeq(
             String v_acc,
-            int v_id,
-            String v_desc,
             String v_weight,
-            String v_seq,
-            String v_align_seq,
-            String v_ss,
-            String v_align_ss,
-            HashMap<Integer, Integer> v_align_map,
-            HashMap<Integer, Integer> v_rev_map,
-            Integer v_start,
-            Integer v_end,
-            float v_score) {
+            int v_id
+    ) {
         acc = v_acc;
         id = v_id;
-        desc = v_desc;
         weight = v_weight;
-        seq = v_seq;
-        align_seq = v_align_seq;
-        ss = v_ss;
-        align_ss = v_align_ss;
-        align_map = v_align_map;
-        rev_map = v_rev_map;
-        start = v_start;
-        end = v_end;
-        score = v_score;
+    }
+
+    public AlignSeq(
+            String v_acc,
+            String v_weight,
+            int v_id,
+            String v_misc,
+            String type
+    ) {
+        this(v_acc, v_weight, v_id);
+        if (type.equals("desc")) {
+            this.desc = v_misc;
+        } else if (type.equals("align_ss")) {
+            this.align_ss = v_misc;
+        } else if (type.equals("align_seq")) {
+            this.align_seq = v_misc;
+        }
     }
 
     public String getAcc() {
@@ -65,7 +63,7 @@ public class AlignSeq {
         return id;
     }
 
-    public void getId(int v_id) {
+    public void setId(int v_id) {
         id = v_id;
     }
 
@@ -139,7 +137,7 @@ public class AlignSeq {
         return start;
     }
 
-    public void getStart(Integer v_start) {
+    public void setStart(Integer v_start) {
         start = v_start;
     }
 

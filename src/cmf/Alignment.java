@@ -10,21 +10,21 @@ import java.util.Map;
  */
 public class Alignment {
 
-    Map<String, Seq> seqs;
+    Map<String, AlignSeq> seqs;
     Map<String, Integer> flags;
     String ss_cons;
     String rf;
     float score;
-    String weight;
+    int weight;
     int len;
 
     public Alignment(
-            Map<String, Seq> v_seqs,
+            Map<String,AlignSeq> v_seqs,
             Map<String, Integer> v_flags,
             String v_ss_cons,
             String v_rf,
             float v_score,
-            String v_weight,
+            int v_weight,
             int v_len) {
         seqs = v_seqs;
         flags = v_flags;
@@ -35,7 +35,7 @@ public class Alignment {
         len = v_len;
     }
 
-    public Map<String, Seq> getSeqs() {
+    public Map<String, AlignSeq> getSeqs() {
         return seqs;
     }
 
@@ -55,7 +55,7 @@ public class Alignment {
         return score;
     }
 
-    public String getWeight() {
+    public int getWeight() {
         return weight;
     }
 
