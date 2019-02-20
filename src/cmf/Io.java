@@ -8,7 +8,7 @@ import java.util.regex.*;
 /**
  * replace bin/io.pl
  */
-public class perl_io {
+public class Io {
 
     /**
      * Remove gap characters '.' and '-' from sequence string
@@ -411,11 +411,12 @@ public class perl_io {
             sum_weight = seqs.size();
         }
 
-        return new Alignment(seqs, flags, ss_cons, rf, sum_score / sum_weight, sum_weight, sum_len / sum_weight);
+        return new Alignment(
+                seqs, flags, ss_cons, rf, sum_score / sum_weight, sum_weight, sum_len / sum_weight);
     }
 
     public static void main(String[] args) {
-        Map<String, Seq> result = perl_io.read_fasta("test/cmf/data/example.fasta");
+        Map<String, Seq> result = Io.read_fasta("test/cmf/data/example.fasta");
         //using stream print out Map
         //        result.entrySet().stream().
         //                forEach(e -> System.out.println(e.getValue().getSeqString()));

@@ -16,7 +16,7 @@ public class Alignment {
     String rf;
     float score;
     int weight;
-    int len;
+    float len;
 
     public Alignment(
             Map<String,AlignSeq> v_seqs,
@@ -59,7 +59,7 @@ public class Alignment {
         return weight;
     }
 
-    public int getint() {
+    public float getint() {
         return len;
     }
 }
