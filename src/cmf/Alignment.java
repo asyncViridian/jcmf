@@ -25,7 +25,7 @@ public class Alignment {
             String v_rf,
             float v_score,
             int v_weight,
-            int v_len) {
+            float v_len) {
         seqs = v_seqs;
         flags = v_flags;
         ss_cons = v_ss_cons;
