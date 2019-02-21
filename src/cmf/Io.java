@@ -225,7 +225,7 @@ public class Io {
 
         String id = "";
         String acc;
-        String weight;
+        int weight;
         float score;
         String desc;
         Integer start;
@@ -262,7 +262,7 @@ public class Io {
                         .matcher(line))
                         .find()) {
                     acc = m.group(1);
-                    weight = m.group(2);
+                    weight = Integer.parseInt(m.group(2)); //parseInt takes String
                     if (!last_acc.equals(acc)) {
                         last_acc = acc;
                         last_count = 0;
@@ -294,7 +294,7 @@ public class Io {
                         id = acc + last_count;
                     }
                     if (!seqs.containsKey(id)) {
-                        new_seq = new AlignSeq(acc, "1", new_id, desc, "desc");
+                        new_seq = new AlignSeq(acc, 1, new_id, desc, "desc");  //weight int?
                         new_id++;
                         seqs.put(id, new_seq);
                     } else {
@@ -332,7 +332,7 @@ public class Io {
                     String ss = m.group(2);
                     flags.put("SS", 1);
                     if (!seqs.containsKey(id)) {
-                        new_seq = new AlignSeq(acc, "1", new_id, ss, "align_ss");
+                        new_seq = new AlignSeq(acc, 1, new_id, ss, "align_ss");
                         new_id++;
                         seqs.put(id, new_seq);
                     } else {
@@ -361,7 +361,7 @@ public class Io {
                         id = acc + last_count;
                     }
                     if (!seqs.containsKey(id)) {
-                        new_seq = new AlignSeq(acc, "1", new_id, seq, "align_seq");
+                        new_seq = new AlignSeq(acc, 1, new_id, seq, "align_seq");
                         new_id++;
                         seqs.put(id, new_seq);
                     } else {
@@ -400,11 +400,11 @@ public class Io {
             }
             if (flags.containsKey("SC")) {
                 sum_score += (entry.getValue().getScore())
-                        * Integer.parseInt(entry.getValue().getWeight());
+                        * entry.getValue().getWeight();
             }
-            sum_weight += Integer.parseInt(entry.getValue().getWeight());
+            sum_weight += entry.getValue().getWeight();  //weight is int?
             sum_len += (entry.getValue().getSeq().length())
-                    * Integer.parseInt(entry.getValue().getWeight());
+                    * entry.getValue().getWeight();
         }
 
         if (sum_weight == 0) {
