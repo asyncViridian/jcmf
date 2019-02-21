@@ -1,5 +1,6 @@
 package cmf;
 
+import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -10,8 +11,8 @@ import java.util.Map;
  */
 public class Alignment {
 
-    Map<String, AlignSeq> seqs;
-    Map<String, Integer> flags;
+    HashMap<String, AlignSeq> seqs;
+    HashMap<String, Integer> flags;
     String ss_cons;
     String rf;
     float score;
@@ -19,8 +20,8 @@ public class Alignment {
     float len;
 
     public Alignment(
-            Map<String,AlignSeq> v_seqs,
-            Map<String, Integer> v_flags,
+            HashMap<String, AlignSeq> v_seqs,
+            HashMap<String, Integer> v_flags,
             String v_ss_cons,
             String v_rf,
             float v_score,
@@ -35,11 +36,15 @@ public class Alignment {
         len = v_len;
     }
 
-    public Map<String, AlignSeq> getSeqs() {
+    public HashMap<String, AlignSeq> getSeqs() {
         return seqs;
     }
 
-    public Map<String, Integer> getFlags() {
+    public void setSeqs(HashMap<String, AlignSeq> v_seqs) {
+        this.seqs = new HashMap<>(v_seqs);
+    }
+
+    public HashMap<String, Integer> getFlags() {
         return flags;
     }
 

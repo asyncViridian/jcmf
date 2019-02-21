@@ -65,9 +65,9 @@ public class Io {
      * @param file_name filename to read
      * @return map from sequence nickname to struct representing sequence
      */
-    public static Map<String, Seq> read_fasta(String file_name) {
+    public static HashMap<String, Seq> read_fasta(String file_name) {
         Path fasta = Paths.get(file_name);
-        Map<String, Seq> seqs = new HashMap<>();
+        HashMap<String, Seq> seqs = new HashMap<>();
         int i = 0;
         //pattern for > line
         Pattern p = Pattern.compile("^>(\\S+)\\s+(\\S+.*)");
@@ -116,7 +116,7 @@ public class Io {
      * @param file_name filename to read
      * @param seqs is a Map<String, Seq>
      */
-    public static void write_fasta(String file_name, Map<String, Seq> seqs) {
+    public static void write_fasta(String file_name, HashMap<String, Seq> seqs) {
         //sort using treemap
         TreeMap<Integer, Seq> tree_seqs = new TreeMap<>();
         //move into TreeMap
@@ -145,9 +145,7 @@ public class Io {
             //e.getValue().getSeqString()
             )
             );
-
         }
-
     }
 
     //STOCKHOLM methods
@@ -220,6 +218,7 @@ public class Io {
      * read Stockholm file output Alignment obj
      *
      * @param file_name filename to read
+     * @return alignment
      */
     public static Alignment read_stockholm(String file_name) {
 
@@ -233,8 +232,8 @@ public class Io {
 
         String ss_cons = "";
         String rf = "";
-        Map<String, AlignSeq> seqs = new HashMap<>();
-        Map<String, Integer> flags = new HashMap<>();
+        HashMap<String, AlignSeq> seqs = new HashMap<>();
+        HashMap<String, Integer> flags = new HashMap<>();
         AlignSeq new_seq;
 
         Path RFAM = Paths.get(file_name);
@@ -415,8 +414,30 @@ public class Io {
                 seqs, flags, ss_cons, rf, sum_score / sum_weight, sum_weight, sum_len / sum_weight);
     }
 
+    /*
+    **
+    * @Param file_name
+    * @return Alignment
+     */
+    public static Alignment read_rfam(String rfam_file) {
+        Alignment alignment = read_stockholm(rfam_file);
+        HashMap<String, AlignSeq> seqs = alignment.getSeqs();
+        Matcher m;
+        for (Map.Entry<String, AlignSeq> entry : seqs.entrySet()) {
+            if ((m = Pattern.compile("(\\S+)\\/(\\d+)-(\\d+)")
+                    .matcher(entry.getKey())).find()) {
+                entry.getValue().setStart(Integer.parseInt(m.group(2)));
+                entry.getValue().setEnd(Integer.parseInt(m.group(3)));
+                seqs.put(m.group(1), entry.getValue());
+                seqs.remove(entry.getKey());
+            }
+        }
+        alignment.setSeqs(seqs);
+        return alignment;
+    }
+
     public static void main(String[] args) {
-        Map<String, Seq> result = Io.read_fasta("test/cmf/data/example.fasta");
+        HashMap<String, Seq> result = Io.read_fasta("test/cmf/data/example.fasta");
         //using stream print out Map
         //        result.entrySet().stream().
         //                forEach(e -> System.out.println(e.getValue().getSeqString()));
