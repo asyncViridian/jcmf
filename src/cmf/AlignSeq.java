@@ -13,7 +13,7 @@ public class AlignSeq {
     String acc;
     int id;
     String desc;
-    String weight;
+    int weight;
     String seq;
     String align_seq;
     String ss;
@@ -26,7 +26,7 @@ public class AlignSeq {
 
     public AlignSeq(
             String v_acc,
-            String v_weight,
+            int v_weight,
             int v_id
     ) {
         acc = v_acc;
@@ -36,7 +36,7 @@ public class AlignSeq {
 
     public AlignSeq(
             String v_acc,
-            String v_weight,
+            int v_weight,
             int v_id,
             String v_misc,
             String type
@@ -75,11 +75,11 @@ public class AlignSeq {
         desc = v_desc;
     }
 
-    public String getWeight() {
+    public int getWeight() {
         return weight;
     }
 
-    public void setWeight(String v_weight) {
+    public void setWeight(int v_weight) {
         weight = v_weight;
     }
 
