@@ -1,5 +1,6 @@
 package cmf;
 
+import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -10,22 +11,22 @@ import java.util.Map;
  */
 public class Alignment {
 
-    Map<String, Seq> seqs;
-    Map<String, Integer> flags;
+    HashMap<String, AlignSeq> seqs;
+    HashMap<String, Integer> flags;
     String ss_cons;
     String rf;
     float score;
-    String weight;
-    int len;
+    int weight;
+    float len;
 
     public Alignment(
-            Map<String, Seq> v_seqs,
-            Map<String, Integer> v_flags,
+            HashMap<String, AlignSeq> v_seqs,
+            HashMap<String, Integer> v_flags,
             String v_ss_cons,
             String v_rf,
             float v_score,
-            String v_weight,
-            int v_len) {
+            int v_weight,
+            float v_len) {
         seqs = v_seqs;
         flags = v_flags;
         ss_cons = v_ss_cons;
@@ -35,11 +36,15 @@ public class Alignment {
         len = v_len;
     }
 
-    public Map<String, Seq> getSeqs() {
+    public HashMap<String, AlignSeq> getSeqs() {
         return seqs;
     }
 
-    public Map<String, Integer> getFlags() {
+    public void setSeqs(HashMap<String, AlignSeq> v_seqs) {
+        this.seqs = new HashMap<>(v_seqs);
+    }
+
+    public HashMap<String, Integer> getFlags() {
         return flags;
     }
 
@@ -55,11 +60,11 @@ public class Alignment {
         return score;
     }
 
-    public String getWeight() {
+    public int getWeight() {
         return weight;
     }
 
-    public int getint() {
+    public float getint() {
         return len;
     }
 }
