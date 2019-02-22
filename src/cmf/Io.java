@@ -524,6 +524,8 @@ public class Io {
                 for (int len = 0; len < seq_len; len += line_len) {
                     int l = line_len;
                     l = (ss_len - len < l) ? ss_len - len : l;
+                    final int final_len = len;
+                    final int final_l = l;
                     try {
                         Files.write(out,
                                 //print base on AlignSeq.id value
@@ -533,7 +535,7 @@ public class Io {
                                         .sorted(Comparator.comparing(e -> e.getValue().getId()))
                                         .map(e -> String.format(name_format, e.getValue().getAcc()) //right space padding
                                         + gap1
-                                        + e.getValue().getAlignSeq()
+                                        + e.getValue().getAlignSeq().substring(final_len,final_l)
                                         + System.lineSeparator()
                                         ).iterator(),
                                 StandardOpenOption.APPEND);
