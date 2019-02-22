@@ -3,6 +3,8 @@ package cmf;
 import java.io.IOException;
 import java.nio.file.*;
 import java.util.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.util.regex.*;
 
 /**
@@ -134,7 +136,7 @@ public class Io {
                                 + e.getValue().getSeq()
                                 )::iterator);
             } catch (IOException e) {
-                System.out.println(e);
+                System.out.println("Can't open file for writing " + e);
             }
         } else {
             //print to screen treemap
@@ -209,7 +211,11 @@ public class Io {
                 }
             }
         } else {
-            throw new RuntimeException("!defined(ss_str), which is odd");
+            try { // better not using easy runtime exception
+                throw new MyException("!defined(ss_str), which is odd");
+            } catch (MyException ex) {
+                System.out.println(ex.getMessage());
+            }
         }
         return pt;
     }
@@ -345,7 +351,7 @@ public class Io {
                 } else if ((Pattern.compile("^\\#")
                         .matcher(line))
                         .matches()) {
-                    System.err.println("Unrecognized : " + line + "\n");
+                    System.out.println("Unrecognized : " + line + "\n");
                 } else if ((m = Pattern.compile("^(\\S+)\\s+(\\S+)")
                         .matcher(line))
                         .find()) {
@@ -377,7 +383,7 @@ public class Io {
                 }
             }
         } catch (IOException e) {
-            System.err.println("Can't open file: " + e);
+            System.out.println("Can't open file: " + e);
         }
 
         float sum_score = 0;
@@ -436,6 +442,116 @@ public class Io {
         return alignment;
     }
 
+    /*
+    **
+    * @Param file_name
+    * 
+     */
+    public static void write_stockholm(Alignment alignment, String file_name) {
+        if (file_name != null && !file_name.isEmpty()) {
+            Path out = Paths.get(file_name);
+            try {
+                Files.write(out, "# STOCKHOLM 1.0\n\n".getBytes());
+                //different variables
+                int line_len = 80;
+                HashMap<String, AlignSeq> seqs = alignment.getSeqs();
+                if (seqs.isEmpty()) {
+                    throw new MyException("Empty alignments seqs");
+                }
+                HashMap<String, Integer> flags = alignment.getFlags();
+                String ss_cons = alignment.getSsCons();
+                String rf = alignment.getRf();
+                //get max_name_length
+                int max_name_length = seqs.entrySet().stream()
+                        .map(entry -> entry.getValue().getAcc().length())
+                        .max(Comparator.comparing(Integer::valueOf))
+                        .get();
+                max_name_length++;
+                // printf("'%-20s'\n", "Hello"); 'Hello   
+                String name_format = "%-" + max_name_length + "s";  // indeed a right padding
+                if (flags.containsKey("WGT")) {
+                    try {
+                        Files.write(out,
+                                //print base on AlignSeq.id value
+                                (Iterable<String>) () -> seqs.entrySet().stream()
+                                        //.sorted((e1, e2)->
+                                        //{return Integer.compare(e1.getValue().getId(), e2.getValue().getId());})
+                                        .sorted(Comparator.comparing(e -> e.getValue().getId()))
+                                        .map(e -> "#=GS "
+                                        + String.format(name_format, e.getValue().getAcc()) //right space padding
+                                        + "WT\t"
+                                        + e.getValue().getWeight()
+                                        + System.lineSeparator()
+                                        ).iterator(),
+                                StandardOpenOption.APPEND
+                        );
+                        //"\n\n"
+                        Files.write(out, System.lineSeparator().getBytes(), StandardOpenOption.APPEND);
+                        Files.write(out, System.lineSeparator().getBytes(), StandardOpenOption.APPEND);
+                    } catch (IOException e) {
+                        System.out.println("Writing WGT error: " + e);
+                    }
+                }
+                if (flags.containsKey("DE")) {
+                    try {
+                        Files.write(out,
+                                //print base on AlignSeq.id value
+                                (Iterable<String>) () -> seqs.entrySet().stream()
+                                        //.sorted((e1, e2)->
+                                        //{return Integer.compare(e1.getValue().getId(), e2.getValue().getId());})
+                                        .sorted(Comparator.comparing(e -> e.getValue().getId()))
+                                        .map(e -> "#=GS "
+                                        + String.format(name_format, e.getValue().getAcc()) //right space padding
+                                        + "DE\t"
+                                        + e.getValue().getWeight()
+                                        + System.lineSeparator()
+                                        ).iterator(),
+                                StandardOpenOption.APPEND
+                        );
+                        //"\n\n"
+                        Files.write(out, System.lineSeparator().getBytes(), StandardOpenOption.APPEND);
+                        Files.write(out, System.lineSeparator().getBytes(), StandardOpenOption.APPEND);
+                    } catch (IOException e) {
+                        System.out.println("Writing DE error: " + e);
+                    }
+                }
+
+                int ss_len = seqs.entrySet().iterator().next().getValue().getAlignSs().length();
+                int seq_len = ss_len;
+                String $gap1 = "            ";
+                String $gap2 = "     ";
+
+                for (int len = 0; len < seq_len; len += line_len) {
+                    int l = line_len;
+                    l = (ss_len - len < l) ? ss_len - len : l;
+                    try {
+                        Files.write(out,
+                                "".getBytes(),
+                                StandardOpenOption.APPEND);
+                    } catch (IOException e) {
+                        System.out.println("Writing align_ss, align_ss error: " + e);
+                    }
+
+                }
+
+            } catch (IOException e) {
+                System.out.println("Can't open file for writing " + e);
+            } catch (MyException ex) {
+                System.out.println(ex.getMessage());
+            }
+
+        }
+    }
+
+    // we add nice extra method, name can explain
+    public static String rpad(String s, int n) {
+        return String.format("%-" + n + "s", s);
+    }
+
+    public static String lpad(String s, int n) {
+        return String.format("%" + n + "s", s);
+    }
+
     public static void main(String[] args) {
         HashMap<String, Seq> result = Io.read_fasta("test/cmf/data/example.fasta");
         //using stream print out Map
@@ -444,6 +560,19 @@ public class Io {
         write_fasta("", result);
         write_fasta("test/cmf/data/test.fasta", result);
 
+        //test Files.write()
+        /*
+        Path path = Paths.get("test/try.txt");
+        try {
+            Files.write(path, "some test content...\n".getBytes());
+            Iterable<String> iterable = Arrays.asList("line1", "line2");
+            Files.write(path, iterable, StandardOpenOption.APPEND);
+            byte[] bytes = Files.readAllBytes(path);
+            System.out.println(new String(bytes));
+        } catch (IOException ex) {
+            Logger.getLogger(Io.class.getName()).log(Level.SEVERE, null, ex);
+        }
+         */
     }
 
 }
