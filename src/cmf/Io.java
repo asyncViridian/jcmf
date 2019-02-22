@@ -518,15 +518,24 @@ public class Io {
 
                 int ss_len = seqs.entrySet().iterator().next().getValue().getAlignSs().length();
                 int seq_len = ss_len;
-                String $gap1 = "            ";
-                String $gap2 = "     ";
+                String gap1 = "            ";
+                String gap2 = "     ";
 
                 for (int len = 0; len < seq_len; len += line_len) {
                     int l = line_len;
                     l = (ss_len - len < l) ? ss_len - len : l;
                     try {
                         Files.write(out,
-                                "".getBytes(),
+                                //print base on AlignSeq.id value
+                                (Iterable<String>) () -> seqs.entrySet().stream()
+                                        //.sorted((e1, e2)->
+                                        //{return Integer.compare(e1.getValue().getId(), e2.getValue().getId());})
+                                        .sorted(Comparator.comparing(e -> e.getValue().getId()))
+                                        .map(e -> String.format(name_format, e.getValue().getAcc()) //right space padding
+                                        + gap1
+                                        + e.getValue().getAlignSeq()
+                                        + System.lineSeparator()
+                                        ).iterator(),
                                 StandardOpenOption.APPEND);
                     } catch (IOException e) {
                         System.out.println("Writing align_ss, align_ss error: " + e);
