@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3da6e499-81fb-4a08-856f-3dc0c5fe102e" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/cmf/Io.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/cmf/Io.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -14,21 +14,13 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/cmf/perl_io.java">
+        <entry file="file://$PROJECT_DIR$/src/cmf/Io.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="211">
-              <caret line="130" column="45" selection-start-line="130" selection-start-column="45" selection-end-line="130" selection-end-column="45" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/test/cmf/perl_ioTest.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1512">
-              <caret line="94" column="5" selection-start-line="94" selection-start-column="5" selection-end-line="94" selection-end-column="5" />
+            <state relative-caret-position="300">
+              <caret line="518" column="73" selection-start-line="518" selection-start-column="73" selection-end-line="518" selection-end-column="73" />
               <folding>
-                <element signature="imports" expanded="true" />
+                <element signature="e#22373#22374#0" expanded="true" />
+                <element signature="e#22428#22429#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -39,6 +31,7 @@
   <component name="FindInProjectRecents">
     <findStrings>
       <find>assertEquals\((.*), (&quot;.*&quot;)\);</find>
+      <find>write</find>
     </findStrings>
     <replaceStrings>
       <replace>assertEquals\((\2), (\1)\);</replace>
@@ -56,6 +49,7 @@
         <option value="$PROJECT_DIR$/test/cmf/data/example.fasta" />
         <option value="$PROJECT_DIR$/test/cmf/perl_ioTest.java" />
         <option value="$PROJECT_DIR$/src/cmf/perl_io.java" />
+        <option value="$PROJECT_DIR$/src/cmf/Io.java" />
       </list>
     </option>
   </component>
@@ -70,7 +64,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -115,7 +109,7 @@
           <select />
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -273,7 +267,7 @@
     <frame x="-9" y="-9" width="1698" height="1020" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.14180928" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.14364304" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -318,8 +312,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/cmf/perl_io.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="211">
-          <caret line="130" column="45" selection-start-line="130" selection-start-column="45" selection-end-line="130" selection-end-column="45" />
+        <state relative-caret-position="355">
+          <caret line="138" column="16" lean-forward="true" selection-start-line="138" selection-start-column="16" selection-end-line="138" selection-end-column="16" />
         </state>
       </provider>
     </entry>
@@ -329,6 +323,17 @@
           <caret line="94" column="5" selection-start-line="94" selection-start-column="5" selection-end-line="94" selection-end-column="5" />
           <folding>
             <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/cmf/Io.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="300">
+          <caret line="518" column="73" selection-start-line="518" selection-start-column="73" selection-end-line="518" selection-end-column="73" />
+          <folding>
+            <element signature="e#22373#22374#0" expanded="true" />
+            <element signature="e#22428#22429#0" expanded="true" />
           </folding>
         </state>
       </provider>

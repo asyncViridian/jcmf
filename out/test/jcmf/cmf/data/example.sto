@@ -1,0 +1,128 @@
+# STOCKHOLM 1.0
+#=GF AU CMfinder (infernal 1.1)
+
+#=GS nomLeu3.chr11(-):50060270-50060446|block_index=909|species=nomLeu3|sequence_index=0|nomLeu3_909_0         WT 1.00
+#=GS chlSab2.chr11(+):58510163-58510333|block_index=909|species=chlSab2|sequence_index=0|chlSab2_909_0         WT 1.00
+#=GS calJac3.chr9(+):51799583-51799768|block_index=909|species=calJac3|sequence_index=0|calJac3_909_0          WT 1.00
+#=GS saiBol1.JH378123(+):5745456-5745641|block_index=909|species=saiBol1|sequence_index=0|saiBol1_909_0        WT 1.00
+#=GS tupChi1.KB320844(-):2036750-2036933|block_index=909|species=tupChi1|sequence_index=0|tupChi1_909_0        WT 1.00
+#=GS speTri2.JH393355(+):1267964-1268137|block_index=909|species=speTri2|sequence_index=0|speTri2_909_0        WT 1.00
+#=GS hetGla2.JH602115(-):5411300-5411481|block_index=909|species=hetGla2|sequence_index=0|hetGla2_909_0        WT 1.00
+#=GS chiLan1.JH721918(+):9721618-9721801|block_index=909|species=chiLan1|sequence_index=0|chiLan1_909_0        WT 1.00
+#=GS octDeg1.JH651654(+):7144197-7144389|block_index=909|species=octDeg1|sequence_index=0|octDeg1_909_0        WT 1.00
+#=GS oryCun2.chr4(+):41581506-41581675|block_index=909|species=oryCun2|sequence_index=0|oryCun2_909_0          WT 1.00
+#=GS ochPri3.JH802075(+):3813796-3813964|block_index=909|species=ochPri3|sequence_index=0|ochPri3_909_0        WT 1.00
+#=GS susScr3.chr5(+):30041191-30041373|block_index=909|species=susScr3|sequence_index=0|susScr3_909_0          WT 1.00
+#=GS camFer1.KB017870(-):1669850-1670014|block_index=909|species=camFer1|sequence_index=0|camFer1_909_0        WT 1.00
+#=GS orcOrc1.KB316924(+):4893306-4893476|block_index=909|species=orcOrc1|sequence_index=0|orcOrc1_909_0        WT 1.00
+#=GS panHod1.KE114269(+):1788217-1788376|block_index=909|species=panHod1|sequence_index=0|panHod1_909_0        WT 1.00
+#=GS bosTau8.chr5(-):51190490-51190649|block_index=909|species=bosTau8|sequence_index=0|bosTau8_909_0          WT 1.00
+#=GS capHir1.chr5(-):49391997-49392156|block_index=909|species=capHir1|sequence_index=0|capHir1_909_0          WT 1.00
+#=GS cerSim1.JH767750(+):20070710-20070894|block_index=909|species=cerSim1|sequence_index=0|cerSim1_909_0      WT 1.00
+#=GS felCat8.chrB4(+):88373872-88374046|block_index=909|species=felCat8|sequence_index=0|felCat8_909_0         WT 1.00
+#=GS canFam3.chr10(+):5801552-5801733|block_index=909|species=canFam3|sequence_index=0|canFam3_909_0           WT 1.00
+#=GS odoRosDiv1.KB230103(+):319960-320151|block_index=909|species=odoRosDiv1|sequence_index=0|odoRosDiv1_909_0 WT 0.98
+#=GS lepWed1.KB717364(-):329410-329601|block_index=909|species=lepWed1|sequence_index=0|lepWed1_909_0          WT 0.27
+#=GS pteVam1.scaffold_1551(+):37503-37683|block_index=909|species=pteVam1|sequence_index=0|pteVam1_909_0       WT 1.00
+#=GS loxAfr3.scaffold_2(+):52244817-52245005|block_index=909|species=loxAfr3|sequence_index=0|loxAfr3_909_0    WT 1.00
+#=GS eleEdw1.JH947176(+):6043531-6043715|block_index=909|species=eleEdw1|sequence_index=0|eleEdw1_909_0        WT 1.00
+#=GS triMan1.JH594692(-):10266509-10266697|block_index=909|species=triMan1|sequence_index=0|triMan1_909_0      WT 1.00
+#=GS chrAsi1.JH823289(+):11967046-11967239|block_index=909|species=chrAsi1|sequence_index=0|chrAsi1_909_0      WT 1.00
+#=GS echTel2.JH980300(-):70550355-70550543|block_index=909|species=echTel2|sequence_index=0|echTel2_909_0      WT 1.00
+#=GS oryAfe1.JH863815(+):3759741-3759925|block_index=909|species=oryAfe1|sequence_index=0|oryAfe1_909_0        WT 1.00
+#=GS dasNov3.JH570464(-):190190-190373|block_index=909|species=dasNov3|sequence_index=0|dasNov3_909_0          WT 1.00
+
+#=GS nomLeu3.chr11(-):50060270-50060446|block_index=909|species=nomLeu3|sequence_index=0|nomLeu3_909_0         DE 189..217	42.014
+#=GS chlSab2.chr11(+):58510163-58510333|block_index=909|species=chlSab2|sequence_index=0|chlSab2_909_0         DE 189..217	39.6317
+#=GS calJac3.chr9(+):51799583-51799768|block_index=909|species=calJac3|sequence_index=0|calJac3_909_0          DE 189..217	45.5159
+#=GS saiBol1.JH378123(+):5745456-5745641|block_index=909|species=saiBol1|sequence_index=0|saiBol1_909_0        DE 189..217	43.524
+#=GS tupChi1.KB320844(-):2036750-2036933|block_index=909|species=tupChi1|sequence_index=0|tupChi1_909_0        DE 189..217	41.7269
+#=GS speTri2.JH393355(+):1267964-1268137|block_index=909|species=speTri2|sequence_index=0|speTri2_909_0        DE 189..217	46.9359
+#=GS hetGla2.JH602115(-):5411300-5411481|block_index=909|species=hetGla2|sequence_index=0|hetGla2_909_0        DE 189..217	41.855
+#=GS chiLan1.JH721918(+):9721618-9721801|block_index=909|species=chiLan1|sequence_index=0|chiLan1_909_0        DE 189..217	41.038
+#=GS octDeg1.JH651654(+):7144197-7144389|block_index=909|species=octDeg1|sequence_index=0|octDeg1_909_0        DE 189..217	29.1097
+#=GS oryCun2.chr4(+):41581506-41581675|block_index=909|species=oryCun2|sequence_index=0|oryCun2_909_0          DE 189..217	44.0279
+#=GS ochPri3.JH802075(+):3813796-3813964|block_index=909|species=ochPri3|sequence_index=0|ochPri3_909_0        DE 189..217	39.1319
+#=GS susScr3.chr5(+):30041191-30041373|block_index=909|species=susScr3|sequence_index=0|susScr3_909_0          DE 189..217	45.1466
+#=GS camFer1.KB017870(-):1669850-1670014|block_index=909|species=camFer1|sequence_index=0|camFer1_909_0        DE 189..217	37.1429
+#=GS orcOrc1.KB316924(+):4893306-4893476|block_index=909|species=orcOrc1|sequence_index=0|orcOrc1_909_0        DE 189..217	50.5374
+#=GS panHod1.KE114269(+):1788217-1788376|block_index=909|species=panHod1|sequence_index=0|panHod1_909_0        DE 189..217	42.9938
+#=GS bosTau8.chr5(-):51190490-51190649|block_index=909|species=bosTau8|sequence_index=0|bosTau8_909_0          DE 189..217	45.376
+#=GS capHir1.chr5(-):49391997-49392156|block_index=909|species=capHir1|sequence_index=0|capHir1_909_0          DE 189..217	48.1668
+#=GS cerSim1.JH767750(+):20070710-20070894|block_index=909|species=cerSim1|sequence_index=0|cerSim1_909_0      DE 189..214	43.7982
+#=GS felCat8.chrB4(+):88373872-88374046|block_index=909|species=felCat8|sequence_index=0|felCat8_909_0         DE 189..214	34.9372
+#=GS canFam3.chr10(+):5801552-5801733|block_index=909|species=canFam3|sequence_index=0|canFam3_909_0           DE 189..214	35.5912
+#=GS odoRosDiv1.KB230103(+):319960-320151|block_index=909|species=odoRosDiv1|sequence_index=0|odoRosDiv1_909_0 DE 189..214	21.9719
+#=GS lepWed1.KB717364(-):329410-329601|block_index=909|species=lepWed1|sequence_index=0|lepWed1_909_0          DE 189..214	15.174
+#=GS pteVam1.scaffold_1551(+):37503-37683|block_index=909|species=pteVam1|sequence_index=0|pteVam1_909_0       DE 189..214	32.0272
+#=GS loxAfr3.scaffold_2(+):52244817-52245005|block_index=909|species=loxAfr3|sequence_index=0|loxAfr3_909_0    DE 189..217	42.7986
+#=GS eleEdw1.JH947176(+):6043531-6043715|block_index=909|species=eleEdw1|sequence_index=0|eleEdw1_909_0        DE 189..217	31.5234
+#=GS triMan1.JH594692(-):10266509-10266697|block_index=909|species=triMan1|sequence_index=0|triMan1_909_0      DE 189..217	45.1947
+#=GS chrAsi1.JH823289(+):11967046-11967239|block_index=909|species=chrAsi1|sequence_index=0|chrAsi1_909_0      DE 189..217	47.4658
+#=GS echTel2.JH980300(-):70550355-70550543|block_index=909|species=echTel2|sequence_index=0|echTel2_909_0      DE 189..217	44.1298
+#=GS oryAfe1.JH863815(+):3759741-3759925|block_index=909|species=oryAfe1|sequence_index=0|oryAfe1_909_0        DE 189..217	48.305
+#=GS dasNov3.JH570464(-):190190-190373|block_index=909|species=dasNov3|sequence_index=0|dasNov3_909_0          DE 189..217	41.066
+
+nomLeu3.chr11(-):50060270-50060446|block_index=909|species=nomLeu3|sequence_index=0|nomLeu3_909_0                 UAUUGU-GGCAAAUGCCAUUUUAGUCAAAG
+#=GR nomLeu3.chr11(-):50060270-50060446|block_index=909|species=nomLeu3|sequence_index=0|nomLeu3_909_0         SS .......<<<.............>>>....
+chlSab2.chr11(+):58510163-58510333|block_index=909|species=chlSab2|sequence_index=0|chlSab2_909_0                 UAUUGU-GGCAAAUGCCAUUUUAGUUAAAG
+#=GR chlSab2.chr11(+):58510163-58510333|block_index=909|species=chlSab2|sequence_index=0|chlSab2_909_0         SS .......<<<.............>>>....
+calJac3.chr9(+):51799583-51799768|block_index=909|species=calJac3|sequence_index=0|calJac3_909_0                  UAUUGU-GGCAAAUGCCUUUUUAGUCAAAG
+#=GR calJac3.chr9(+):51799583-51799768|block_index=909|species=calJac3|sequence_index=0|calJac3_909_0          SS .......<<<.............>>>....
+saiBol1.JH378123(+):5745456-5745641|block_index=909|species=saiBol1|sequence_index=0|saiBol1_909_0                UGUUGU-GGCAAAUGCCUUUUUAGUCAAAG
+#=GR saiBol1.JH378123(+):5745456-5745641|block_index=909|species=saiBol1|sequence_index=0|saiBol1_909_0        SS .......<<<.............>>>....
+tupChi1.KB320844(-):2036750-2036933|block_index=909|species=tupChi1|sequence_index=0|tupChi1_909_0                UAUUGU-GACAAGUACCUUUUUAGCUGAAA
+#=GR tupChi1.KB320844(-):2036750-2036933|block_index=909|species=tupChi1|sequence_index=0|tupChi1_909_0        SS .......<.<.............>.>....
+speTri2.JH393355(+):1267964-1268137|block_index=909|species=speTri2|sequence_index=0|speTri2_909_0                UGUUAU-GACAAGUGCCUUUUUAGUCAAAA
+#=GR speTri2.JH393355(+):1267964-1268137|block_index=909|species=speTri2|sequence_index=0|speTri2_909_0        SS .......<<<.............>>>....
+hetGla2.JH602115(-):5411300-5411481|block_index=909|species=hetGla2|sequence_index=0|hetGla2_909_0                UACUGU-GACAAGUACCUUUCUAGUCAAAA
+#=GR hetGla2.JH602115(-):5411300-5411481|block_index=909|species=hetGla2|sequence_index=0|hetGla2_909_0        SS .......<<<.............>>>....
+chiLan1.JH721918(+):9721618-9721801|block_index=909|species=chiLan1|sequence_index=0|chiLan1_909_0                UAUUGU-GACAAGUACCUUCUGAGUCAAAA
+#=GR chiLan1.JH721918(+):9721618-9721801|block_index=909|species=chiLan1|sequence_index=0|chiLan1_909_0        SS .......<<<.............>>>....
+octDeg1.JH651654(+):7144197-7144389|block_index=909|species=octDeg1|sequence_index=0|octDeg1_909_0                GAUUG-CAACAAGCACCGUUUUAGUCAAAA
+#=GR octDeg1.JH651654(+):7144197-7144389|block_index=909|species=octDeg1|sequence_index=0|octDeg1_909_0        SS ........<<.............>>.....
+oryCun2.chr4(+):41581506-41581675|block_index=909|species=oryCun2|sequence_index=0|oryCun2_909_0                  UAUUGU-GACAAGUGCAUUUUCAGUCAAAA
+#=GR oryCun2.chr4(+):41581506-41581675|block_index=909|species=oryCun2|sequence_index=0|oryCun2_909_0          SS .......<<<.............>>>....
+ochPri3.JH802075(+):3813796-3813964|block_index=909|species=ochPri3|sequence_index=0|ochPri3_909_0                UAUUGU-GACAACUGUGUUUUCAGUCAAAA
+#=GR ochPri3.JH802075(+):3813796-3813964|block_index=909|species=ochPri3|sequence_index=0|ochPri3_909_0        SS .......<<<.............>>>....
+susScr3.chr5(+):30041191-30041373|block_index=909|species=susScr3|sequence_index=0|susScr3_909_0                  UAUUGU-GACAAAUGUCUCUUUAGUCAAAA
+#=GR susScr3.chr5(+):30041191-30041373|block_index=909|species=susScr3|sequence_index=0|susScr3_909_0          SS .......<<<.............>>>....
+camFer1.KB017870(-):1669850-1670014|block_index=909|species=camFer1|sequence_index=0|camFer1_909_0                UGUUGU-GACAUGUGUCUUUUUAGUUAGAA
+#=GR camFer1.KB017870(-):1669850-1670014|block_index=909|species=camFer1|sequence_index=0|camFer1_909_0        SS .......<<<.............>>>....
+orcOrc1.KB316924(+):4893306-4893476|block_index=909|species=orcOrc1|sequence_index=0|orcOrc1_909_0                UAUUGU-GACAAGUGUCUUUUUAGUCAAAA
+#=GR orcOrc1.KB316924(+):4893306-4893476|block_index=909|species=orcOrc1|sequence_index=0|orcOrc1_909_0        SS .......<<<.............>>>....
+panHod1.KE114269(+):1788217-1788376|block_index=909|species=panHod1|sequence_index=0|panHod1_909_0                UCUUGU-GACAAGCGUCUUUUUAGUUAAAA
+#=GR panHod1.KE114269(+):1788217-1788376|block_index=909|species=panHod1|sequence_index=0|panHod1_909_0        SS .......<<<.............>>>....
+bosTau8.chr5(-):51190490-51190649|block_index=909|species=bosTau8|sequence_index=0|bosTau8_909_0                  UCUUGU-GACAAGCGUCUUUUUAGUCAAAA
+#=GR bosTau8.chr5(-):51190490-51190649|block_index=909|species=bosTau8|sequence_index=0|bosTau8_909_0          SS .......<<<.............>>>....
+capHir1.chr5(-):49391997-49392156|block_index=909|species=capHir1|sequence_index=0|capHir1_909_0                  UCUUGU-GACAAGUGUCUUUUUAGUCAAAA
+#=GR capHir1.chr5(-):49391997-49392156|block_index=909|species=capHir1|sequence_index=0|capHir1_909_0          SS .......<<<.............>>>....
+cerSim1.JH767750(+):20070710-20070894|block_index=909|species=cerSim1|sequence_index=0|cerSim1_909_0              UAUUGU-GACAAGUGCCUUUUUAGUCA---
+#=GR cerSim1.JH767750(+):20070710-20070894|block_index=909|species=cerSim1|sequence_index=0|cerSim1_909_0      SS .......<<<.............>>>....
+felCat8.chrB4(+):88373872-88374046|block_index=909|species=felCat8|sequence_index=0|felCat8_909_0                 UCUUGU-GAAAAGUGCCUUUUUAGUCA---
+#=GR felCat8.chrB4(+):88373872-88374046|block_index=909|species=felCat8|sequence_index=0|felCat8_909_0         SS .......<<...............>>....
+canFam3.chr10(+):5801552-5801733|block_index=909|species=canFam3|sequence_index=0|canFam3_909_0                   UGUUGU-GACAGGUGCCUUUUUAGCCA---
+#=GR canFam3.chr10(+):5801552-5801733|block_index=909|species=canFam3|sequence_index=0|canFam3_909_0           SS .......<.<.............>.>....
+odoRosDiv1.KB230103(+):319960-320151|block_index=909|species=odoRosDiv1|sequence_index=0|odoRosDiv1_909_0         UACUGU-GACAGGCGUCUGUGUAGUCA---
+#=GR odoRosDiv1.KB230103(+):319960-320151|block_index=909|species=odoRosDiv1|sequence_index=0|odoRosDiv1_909_0 SS .......<<<.............>>>....
+lepWed1.KB717364(-):329410-329601|block_index=909|species=lepWed1|sequence_index=0|lepWed1_909_0                  UACUGU-GACAGGCCGCUGUGUAGUCA---
+#=GR lepWed1.KB717364(-):329410-329601|block_index=909|species=lepWed1|sequence_index=0|lepWed1_909_0          SS .......<<<.............>>>....
+pteVam1.scaffold_1551(+):37503-37683|block_index=909|species=pteVam1|sequence_index=0|pteVam1_909_0               UAUUGU-GACAAGUACUGUUUUAGCCA---
+#=GR pteVam1.scaffold_1551(+):37503-37683|block_index=909|species=pteVam1|sequence_index=0|pteVam1_909_0       SS .......<.<.............>.>....
+loxAfr3.scaffold_2(+):52244817-52245005|block_index=909|species=loxAfr3|sequence_index=0|loxAfr3_909_0            UAUUA-CGACAAGUGCCUUUUUAGUCAAAA
+#=GR loxAfr3.scaffold_2(+):52244817-52245005|block_index=909|species=loxAfr3|sequence_index=0|loxAfr3_909_0    SS .......<<<.............>>>....
+eleEdw1.JH947176(+):6043531-6043715|block_index=909|species=eleEdw1|sequence_index=0|eleEdw1_909_0                UAUUUU-GACAAAUCGGUUUUUAGUUAAAA
+#=GR eleEdw1.JH947176(+):6043531-6043715|block_index=909|species=eleEdw1|sequence_index=0|eleEdw1_909_0        SS .......<<<.............>>>....
+triMan1.JH594692(-):10266509-10266697|block_index=909|species=triMan1|sequence_index=0|triMan1_909_0              UAUUAU-AACAAGUGCCUUUUUAGUCAAAA
+#=GR triMan1.JH594692(-):10266509-10266697|block_index=909|species=triMan1|sequence_index=0|triMan1_909_0      SS ........<<.............>>.....
+chrAsi1.JH823289(+):11967046-11967239|block_index=909|species=chrAsi1|sequence_index=0|chrAsi1_909_0              UAUUGU-GACAAGUGCCUUUUUAGUCUAAA
+#=GR chrAsi1.JH823289(+):11967046-11967239|block_index=909|species=chrAsi1|sequence_index=0|chrAsi1_909_0      SS .......<<<.............>>>....
+echTel2.JH980300(-):70550355-70550543|block_index=909|species=echTel2|sequence_index=0|echTel2_909_0              UGUUGU-GACAAGUACCUUUUUAGUCAAAU
+#=GR echTel2.JH980300(-):70550355-70550543|block_index=909|species=echTel2|sequence_index=0|echTel2_909_0      SS .......<<<.............>>>....
+oryAfe1.JH863815(+):3759741-3759925|block_index=909|species=oryAfe1|sequence_index=0|oryAfe1_909_0                UAUUGU-GACAAGUGCCUCUUUAGUCAAAA
+#=GR oryAfe1.JH863815(+):3759741-3759925|block_index=909|species=oryAfe1|sequence_index=0|oryAfe1_909_0        SS .......<<<.............>>>....
+dasNov3.JH570464(-):190190-190373|block_index=909|species=dasNov3|sequence_index=0|dasNov3_909_0                  UAUUGU-GACAAGUGCCUUUUUGGCCGAAA
+#=GR dasNov3.JH570464(-):190190-190373|block_index=909|species=dasNov3|sequence_index=0|dasNov3_909_0          SS .......<.<.............>.>....
+#=GC SS_cons                                                                                                      ::::::.<<<_____________>>>::::
+#=GC RF                                                                                                           xxxxxx.xxxxxxxxxxxxxxxxxxxxxxx
+//
