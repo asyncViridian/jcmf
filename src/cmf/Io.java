@@ -4,9 +4,10 @@ import java.io.IOException;
 import java.nio.file.*;
 import java.util.*;
 import java.util.regex.*;
+import java.util.stream.*;
 
 /**
- * replace bin/io.pl
+ * replace bin/io.pl 2019-02-15
  */
 public class Io {
 
@@ -419,10 +420,10 @@ public class Io {
                 seqs, flags, ss_cons, rf, sum_score / sum_weight, sum_weight, sum_len / sum_weight);
     }
 
-    /*
-    **
-    * @Param file_name
-    * @return Alignment
+    /**
+     *
+     * @Param file_name
+     * @return Alignment
      */
     public static Alignment read_rfam(String rfam_file) {
         Alignment alignment = read_stockholm(rfam_file);
@@ -441,10 +442,11 @@ public class Io {
         return alignment;
     }
 
-    /*
-    **
-    * @Param file_name
-    * 
+    /**
+     *
+     * @Param alignment
+     * @Param file_name
+     *
      */
     public static void write_stockholm(Alignment alignment, String file_name) {
         if (file_name != null && !file_name.isEmpty()) {
@@ -566,6 +568,99 @@ public class Io {
             }
         } else {
             System.out.println("Write Stockholm failed, the file name is null or empty.");
+        }
+    }
+
+    /**
+     *
+     * @Param Alignment
+     * @Param file_name
+     *
+     */
+    public static void write_selex(Alignment alignment, String file_name) {
+        if (file_name != null && !file_name.isEmpty()) {
+            Path out = Paths.get(file_name);
+            int line_len = 80;
+            HashMap<String, AlignSeq> seqs = alignment.getSeqs();
+            HashMap<String, Integer> flags = alignment.getFlags();
+            String ss_cons = alignment.getSsCons();
+            int max_name_length = seqs.entrySet().stream()
+                    .map(entry -> (entry.getValue().getId() + " " + entry.getValue().getAcc()).length())
+                    .max(Comparator.comparing(Integer::valueOf))
+                    .get();
+            max_name_length++;
+            String name_format = "%-" + max_name_length + "s";
+            // start writing
+            try {
+                Files.write(
+                        out,
+                        ("#=AU CM RNA automatic alignment" + System.lineSeparator()).getBytes()
+                );
+                //now loop stream write to file
+                Files.write(
+                        out,
+                        (Iterable<String>) () -> seqs.entrySet().stream()
+                                .sorted(Comparator.comparing(e -> e.getValue().getId()))
+                                .map(e -> "#=SQ "
+                                + String.format(name_format, e.getValue().getId() + " " + e.getValue().getAcc())
+                                + "\t"
+                                + "1.0000 - - "
+                                + e.getValue().getStart()
+                                + ".."
+                                + e.getValue().getEnd()
+                                + "::0 "
+                                + e.getValue().getScore()
+                                + System.lineSeparator()
+                                ).iterator(),
+                        StandardOpenOption.APPEND);
+                //lamdba need final variable, here we need to get sorted by id, but last obj's acc value
+                //we don't do in above, and instead we convert map -> stream -> List
+                //List order is preserved even in parallel(), the lseq can be re-used
+                List<AlignSeq> lseq = seqs.entrySet().stream()
+                        .parallel()
+                        .sorted(Comparator.comparing(e -> e.getValue().getId()))
+                        .map(e -> e.getValue())
+                        .collect(Collectors.toList());
+                //now get the last one's acc and check its length
+                int seq_len = lseq.get(lseq.size() - 1).getAcc().length();
+                // now we can loop for ss_cons
+                for (int len = 0; len < seq_len; len += line_len) {
+                    int ss_len = ss_cons.length();
+                    int l = line_len;
+                    l = (ss_len - len < l) ? ss_len - len : l;
+                    if (ss_cons.length() > 0) {
+                        String ss_c = ss_cons.substring(len, len + l);
+                        Files.write(out,
+                                (String.format(name_format, "#=CS")
+                                        + ss_c
+                                        + System.lineSeparator()).getBytes(),
+                                StandardOpenOption.APPEND);
+                    }
+                    //below loop substring variable is derived in loop, not final variable not lamdba 
+                    //using List instead, o is AlignSeq obj, using Java 5 enhanced for loop
+                    //lseq is already sorted
+                    for (AlignSeq o : lseq) {
+                        seq_len = o.getAlignSeq().length();
+                        //String name = o.getAcc();
+                        l = line_len;
+                        l = (seq_len - len < l) ? seq_len - len : l;
+                        String seq = o.getAlignSeq().substring(len, len + l);
+                        String ss = o.getSs().substring(len, len + l);
+                        Files.write(out, (String.format(name_format, o.getId() + " " + o.getAcc())
+                                + seq
+                                + System.lineSeparator()
+                                + String.format(name_format, "#=SS")
+                                + ss
+                                + System.lineSeparator()).getBytes(),
+                                StandardOpenOption.APPEND);
+                    }
+                    Files.write(out, System.lineSeparator().getBytes(), StandardOpenOption.APPEND);
+                }
+            } catch (IOException e) {
+                System.out.println("Can't open file for writing " + e);
+            }
+        } else {
+            System.out.println("Write selex failed, the file name is null or empty.");
         }
     }
 
