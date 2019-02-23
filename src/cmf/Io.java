@@ -132,7 +132,8 @@ public class Io {
                 Files.write(fasta_out,
                         (Iterable<String>) tree_seqs.entrySet().stream()
                                 .map(e -> ">" + e.getValue().getAcc() + "\t"
-                                + ((e.getValue().getDesc().equals(e.getValue().getAcc())) ? "" : e.getValue().getDesc()) + "\n"
+                                + ((e.getValue().getDesc().equals(e.getValue().getAcc())) ? "" : e.getValue().getDesc())
+                                + System.lineSeparator()
                                 + e.getValue().getSeq()
                                 )::iterator);
             } catch (IOException e) {
@@ -451,7 +452,10 @@ public class Io {
         if (file_name != null && !file_name.isEmpty()) {
             Path out = Paths.get(file_name);
             try {
-                Files.write(out, "# STOCKHOLM 1.0\n\n".getBytes());
+                Files.write(
+                        out,
+                        ("# STOCKHOLM 1.0" + System.lineSeparator() + System.lineSeparator()).getBytes()
+                );
                 //different variables
                 int line_len = 80;
                 HashMap<String, AlignSeq> seqs = alignment.getSeqs();
@@ -469,51 +473,45 @@ public class Io {
                 max_name_length++;
                 // printf("'%-20s'\n", "Hello"); 'Hello   
                 String name_format = "%-" + max_name_length + "s";  // indeed a right padding
+
                 if (flags.containsKey("WGT")) {
-                    try {
-                        Files.write(out,
-                                //print base on AlignSeq.id value
-                                (Iterable<String>) () -> seqs.entrySet().stream()
-                                        //.sorted((e1, e2)->
-                                        //{return Integer.compare(e1.getValue().getId(), e2.getValue().getId());})
-                                        .sorted(Comparator.comparing(e -> e.getValue().getId()))
-                                        .map(e -> "#=GS "
-                                        + String.format(name_format, e.getValue().getAcc()) //right space padding
-                                        + "WT\t"
-                                        + e.getValue().getWeight()
-                                        + System.lineSeparator()
-                                        ).iterator(),
-                                StandardOpenOption.APPEND
-                        );
-                        //"\n\n"
-                        Files.write(out, System.lineSeparator().getBytes(), StandardOpenOption.APPEND);
-                        Files.write(out, System.lineSeparator().getBytes(), StandardOpenOption.APPEND);
-                    } catch (IOException e) {
-                        System.out.println("Writing WGT error: " + e);
-                    }
+                    Files.write(out,
+                            //print base on AlignSeq.id value
+                            (Iterable<String>) () -> seqs.entrySet().stream()
+                                    //.sorted((e1, e2)->
+                                    //{return Integer.compare(e1.getValue().getId(), e2.getValue().getId());})
+                                    .sorted(Comparator.comparing(e -> e.getValue().getId()))
+                                    .map(e -> "#=GS "
+                                    + String.format(name_format, e.getValue().getAcc()) //right space padding
+                                    + "WT\t"
+                                    + e.getValue().getWeight()
+                                    + System.lineSeparator()
+                                    ).iterator(),
+                            StandardOpenOption.APPEND
+                    );
+                    //"\n\n"
+                    Files.write(out, System.lineSeparator().getBytes(), StandardOpenOption.APPEND);
+                    Files.write(out, System.lineSeparator().getBytes(), StandardOpenOption.APPEND);
                 }
+
                 if (flags.containsKey("DE")) {
-                    try {
-                        Files.write(out,
-                                //print base on AlignSeq.id value
-                                (Iterable<String>) () -> seqs.entrySet().stream()
-                                        //.sorted((e1, e2)->
-                                        //{return Integer.compare(e1.getValue().getId(), e2.getValue().getId());})
-                                        .sorted(Comparator.comparing(e -> e.getValue().getId()))
-                                        .map(e -> "#=GS "
-                                        + String.format(name_format, e.getValue().getAcc()) //right space padding
-                                        + "DE\t"
-                                        + e.getValue().getWeight()
-                                        + System.lineSeparator()
-                                        ).iterator(),
-                                StandardOpenOption.APPEND
-                        );
-                        //"\n\n"
-                        Files.write(out, System.lineSeparator().getBytes(), StandardOpenOption.APPEND);
-                        Files.write(out, System.lineSeparator().getBytes(), StandardOpenOption.APPEND);
-                    } catch (IOException e) {
-                        System.out.println("Writing DE error: " + e);
-                    }
+                    Files.write(out,
+                            //print base on AlignSeq.id value
+                            (Iterable<String>) () -> seqs.entrySet().stream()
+                                    //.sorted((e1, e2)->
+                                    //{return Integer.compare(e1.getValue().getId(), e2.getValue().getId());})
+                                    .sorted(Comparator.comparing(e -> e.getValue().getId()))
+                                    .map(e -> "#=GS "
+                                    + String.format(name_format, e.getValue().getAcc()) //right space padding
+                                    + "DE\t"
+                                    + e.getValue().getWeight()
+                                    + System.lineSeparator()
+                                    ).iterator(),
+                            StandardOpenOption.APPEND
+                    );
+                    //"\n\n"
+                    Files.write(out, System.lineSeparator().getBytes(), StandardOpenOption.APPEND);
+                    Files.write(out, System.lineSeparator().getBytes(), StandardOpenOption.APPEND);
                 }
 
                 int ss_len = seqs.entrySet().iterator().next().getValue().getAlignSs().length();
@@ -524,31 +522,52 @@ public class Io {
                 for (int len = 0; len < seq_len; len += line_len) {
                     int l = line_len;
                     l = (ss_len - len < l) ? ss_len - len : l;
-                    try {
+                    final int bindex = len;    //begin index , note perl offset = begin index
+                    final int eindex = len + l; //end index, note perl length+begin index = end index
+
+                    Files.write(out,
+                            //print base on AlignSeq.id value
+                            (Iterable<String>) () -> seqs.entrySet().stream()
+                                    .sorted(Comparator.comparing(e -> e.getValue().getId()))
+                                    .map(e -> String.format(name_format, e.getValue().getAcc()) //right space padding
+                                    + gap1 + e.getValue().getAlignSeq().substring(bindex, eindex) //using substring here
+                                    + System.lineSeparator()
+                                    + ((flags.containsKey("SS")) ? "#=GR "
+                                    + String.format(name_format, e.getValue().getAcc())
+                                    + "SS" + gap2
+                                    + e.getValue().getAlignSs().substring(bindex, eindex)
+                                    + System.lineSeparator()
+                                    : "")
+                                    ).iterator(),
+                            StandardOpenOption.APPEND);
+
+                    if (flags.containsKey("SS_cons")) {
                         Files.write(out,
-                                //print base on AlignSeq.id value
-                                (Iterable<String>) () -> seqs.entrySet().stream()
-                                        //.sorted((e1, e2)->
-                                        //{return Integer.compare(e1.getValue().getId(), e2.getValue().getId());})
-                                        .sorted(Comparator.comparing(e -> e.getValue().getId()))
-                                        .map(e -> String.format(name_format, e.getValue().getAcc()) //right space padding
+                                (String.format(name_format, "#=GC SS_cons")
                                         + gap1
-                                        + e.getValue().getAlignSeq()
-                                        + System.lineSeparator()
-                                        ).iterator(),
+                                        + ss_cons.substring(bindex, eindex)
+                                        + System.lineSeparator()).getBytes(),
                                 StandardOpenOption.APPEND);
-                    } catch (IOException e) {
-                        System.out.println("Writing align_ss, align_ss error: " + e);
                     }
 
+                    if (flags.containsKey("RF")) {
+                        Files.write(out,
+                                (String.format(name_format, "#=GC RF")
+                                        + gap1
+                                        + rf.substring(bindex, eindex)
+                                        + System.lineSeparator()).getBytes(),
+                                StandardOpenOption.APPEND);
+                    }
+                    Files.write(out, System.lineSeparator().getBytes(), StandardOpenOption.APPEND);
                 }
-
+                Files.write(out, ("//" + System.lineSeparator()).getBytes(), StandardOpenOption.APPEND);
             } catch (IOException e) {
                 System.out.println("Can't open file for writing " + e);
             } catch (MyException ex) {
                 System.out.println(ex.getMessage());
             }
-
+        } else {
+            System.out.println("Write Stockholm failed, the file name is null or empty.");
         }
     }
 
