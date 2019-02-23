@@ -24,7 +24,7 @@ public class Io {
     /**
      * Create n copies of ch
      *
-     * @param n number of times to repeat ch
+     * @param n  number of times to repeat ch
      * @param ch string to repeat
      * @return ch repeated n times
      */
@@ -39,8 +39,8 @@ public class Io {
      * side of seq, such that the resulting sequence is n units long
      *
      * @param seq sequence to pad onto
-     * @param n length to make the result sequence reach
-     * @param ch sequence to pad with
+     * @param n   length to make the result sequence reach
+     * @param ch  sequence to pad with
      * @param dir direction to pad in: if 0, left; if 1, right
      * @return padded sequence
      */
@@ -59,10 +59,10 @@ public class Io {
     }
 
     /**
-     * Reads the contents of the given file(name) into a mapping from sequence
+     * Reads the contents of the given FASTA file(name) into a mapping from sequence
      * name to sequence struct
      *
-     * @param file_name filename to read
+     * @param file_name filename to read, FASTA format
      * @return map from sequence nickname to struct representing sequence
      */
     public static HashMap<String, Seq> read_fasta(String file_name) {
@@ -111,10 +111,10 @@ public class Io {
     }
 
     /**
-     * Output fasta to a file or screen based on fasta data input order
+     * Output FASTA format data to a given file or to the console. Maintains read-in order for seqs.
      *
-     * @param file_name filename to read
-     * @param seqs is a Map<String, Seq>
+     * @param file_name filename to read. If null or emptystring, prints to system console instead.
+     * @param seqs      a mapping from name to sequence struct
      */
     public static void write_fasta(String file_name, HashMap<String, Seq> seqs) {
         //sort using treemap
@@ -130,9 +130,9 @@ public class Io {
                 Files.write(fasta_out,
                         (Iterable<String>) tree_seqs.entrySet().stream()
                                 .map(e -> ">" + e.getValue().getAcc() + "\t"
-                                + ((e.getValue().getDesc().equals(e.getValue().getAcc())) ? "" : e.getValue().getDesc())
-                                + System.lineSeparator()
-                                + e.getValue().getSeq()
+                                        + ((e.getValue().getDesc().equals(e.getValue().getAcc())) ? "" : e.getValue().getDesc())
+                                        + System.lineSeparator()
+                                        + e.getValue().getSeq()
                                 )::iterator);
             } catch (IOException e) {
                 System.out.println("Can't open file for writing " + e);
@@ -141,21 +141,23 @@ public class Io {
             //print to screen treemap
             tree_seqs.entrySet().stream().forEach(e -> System.out.println(
                     ">" + e.getValue().getAcc() + "\t"
-                    + ((e.getValue().getDesc().equals(e.getValue().getAcc())) ? "" : e.getValue().getDesc()) + "\n"
-                    + e.getValue().getSeq()
-            //e.getValue().getSeqString()
-            )
+                            + ((e.getValue().getDesc().equals(e.getValue().getAcc())) ? "" : e.getValue().getDesc()) + "\n"
+                            + e.getValue().getSeq()
+                    //e.getValue().getSeqString()
+                    )
             );
         }
     }
 
     //STOCKHOLM methods
+
     /**
      * Output AlignSeq object
+     * <p>
+     * TODO figure out purpose
      *
      * @param a obj
      * @return a
-     *
      */
     public static AlignSeq align_seq_map(AlignSeq a) {
         String seq = a.getAlignSeq();
@@ -180,10 +182,11 @@ public class Io {
 
     /**
      * Output HashMap
+     * <p>
+     * TODO figure out purpose
      *
      * @param ss_str from AlignSeq align_ss value
      * @return pt
-     *
      */
     public static HashMap<Integer, Integer> pair_table(String ss_str) {
         HashMap<Integer, Integer> pt = new HashMap<>();
@@ -221,6 +224,8 @@ public class Io {
 
     /**
      * read Stockholm file output Alignment obj
+     * <p>
+     * TODO figure out purpose
      *
      * @param file_name filename to read
      * @return alignment
@@ -419,10 +424,11 @@ public class Io {
                 seqs, flags, ss_cons, rf, sum_score / sum_weight, sum_weight, sum_len / sum_weight);
     }
 
-    /*
-    **
-    * @Param file_name
-    * @return Alignment
+    /**
+     * TODO figure out purpose
+     *
+     * @param rfam_file
+     * @return Alignment
      */
     public static Alignment read_rfam(String rfam_file) {
         Alignment alignment = read_stockholm(rfam_file);
@@ -441,10 +447,11 @@ public class Io {
         return alignment;
     }
 
-    /*
-    **
-    * @Param file_name
-    * 
+    /**
+     * TODO figure out purpose
+     *
+     * @param alignment
+     * @param file_name
      */
     public static void write_stockholm(Alignment alignment, String file_name) {
         if (file_name != null && !file_name.isEmpty()) {
@@ -480,10 +487,10 @@ public class Io {
                                     //{return Integer.compare(e1.getValue().getId(), e2.getValue().getId());})
                                     .sorted(Comparator.comparing(e -> e.getValue().getId()))
                                     .map(e -> "#=GS "
-                                    + String.format(name_format, e.getValue().getAcc()) //right space padding
-                                    + "WT\t"
-                                    + e.getValue().getWeight()
-                                    + System.lineSeparator()
+                                            + String.format(name_format, e.getValue().getAcc()) //right space padding
+                                            + "WT\t"
+                                            + e.getValue().getWeight()
+                                            + System.lineSeparator()
                                     ).iterator(),
                             StandardOpenOption.APPEND
                     );
@@ -500,10 +507,10 @@ public class Io {
                                     //{return Integer.compare(e1.getValue().getId(), e2.getValue().getId());})
                                     .sorted(Comparator.comparing(e -> e.getValue().getId()))
                                     .map(e -> "#=GS "
-                                    + String.format(name_format, e.getValue().getAcc()) //right space padding
-                                    + "DE\t"
-                                    + e.getValue().getWeight()
-                                    + System.lineSeparator()
+                                            + String.format(name_format, e.getValue().getAcc()) //right space padding
+                                            + "DE\t"
+                                            + e.getValue().getWeight()
+                                            + System.lineSeparator()
                                     ).iterator(),
                             StandardOpenOption.APPEND
                     );
@@ -528,14 +535,14 @@ public class Io {
                             (Iterable<String>) () -> seqs.entrySet().stream()
                                     .sorted(Comparator.comparing(e -> e.getValue().getId()))
                                     .map(e -> String.format(name_format, e.getValue().getAcc()) //right space padding
-                                    + gap1 + e.getValue().getAlignSeq().substring(bindex, eindex) //using substring here
-                                    + System.lineSeparator()
-                                    + ((flags.containsKey("SS")) ? "#=GR "
-                                    + String.format(name_format, e.getValue().getAcc())
-                                    + "SS" + gap2
-                                    + e.getValue().getAlignSs().substring(bindex, eindex)
-                                    + System.lineSeparator()
-                                    : "")
+                                            + gap1 + e.getValue().getAlignSeq().substring(bindex, eindex) //using substring here
+                                            + System.lineSeparator()
+                                            + ((flags.containsKey("SS")) ? "#=GR "
+                                            + String.format(name_format, e.getValue().getAcc())
+                                            + "SS" + gap2
+                                            + e.getValue().getAlignSs().substring(bindex, eindex)
+                                            + System.lineSeparator()
+                                            : "")
                                     ).iterator(),
                             StandardOpenOption.APPEND);
 
@@ -570,14 +577,29 @@ public class Io {
     }
 
     // we add nice extra method, name can explain
+
+    /**
+     * TODO figure out purpose
+     *
+     * @param s
+     * @param n
+     * @return
+     */
     public static String rpad(String s, int n) {
         return String.format("%-" + n + "s", s);
     }
 
+    /**
+     * TODO document
+     *
+     * @param s
+     * @param n
+     * @return
+     */
     public static String lpad(String s, int n) {
         return String.format("%" + n + "s", s);
     }
-
+    
     public static void main(String[] args) {
         HashMap<String, Seq> result = Io.read_fasta("test/cmf/data/example.fasta");
         //using stream print out Map
