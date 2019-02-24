@@ -105,7 +105,7 @@ public class Io {
             //update map value
             seqs.put(acc, new Seq(acc, i, desc, seq.toString()));
         } catch (IOException e) {
-            System.out.println("Can't open file: " + e);
+            System.err.println("Can't open file: " + e);
         }
 
         return seqs;
@@ -136,7 +136,7 @@ public class Io {
                                 + e.getValue().getSeq()
                                 )::iterator);
             } catch (IOException e) {
-                System.out.println("Can't open file for writing " + e);
+                System.err.println("Can't open file for writing " + e);
             }
         } else {
             //print to screen treemap
@@ -214,7 +214,7 @@ public class Io {
             try { // better not using easy runtime exception
                 throw new MyException("!defined(ss_str), which is odd");
             } catch (MyException ex) {
-                System.out.println(ex.getMessage());
+                System.err.println(ex.getMessage());
             }
         }
         return pt;
@@ -562,12 +562,12 @@ public class Io {
                 }
                 Files.write(out, ("//" + System.lineSeparator()).getBytes(), StandardOpenOption.APPEND);
             } catch (IOException e) {
-                System.out.println("Can't open file for writing " + e);
+                System.err.println("Can't open file for writing " + e);
             } catch (MyException ex) {
                 System.out.println(ex.getMessage());
             }
         } else {
-            System.out.println("Write Stockholm failed, the file name is null or empty.");
+            System.err.println("Write Stockholm failed, the file name is null or empty.");
         }
     }
 
@@ -657,10 +657,10 @@ public class Io {
                     Files.write(out, System.lineSeparator().getBytes(), StandardOpenOption.APPEND);
                 }
             } catch (IOException e) {
-                System.out.println("Can't open file for writing " + e);
+                System.err.println("Can't open file for writing " + e);
             }
         } else {
-            System.out.println("Write selex failed, the file name is null or empty.");
+            System.err.println("Write selex failed, the file name is null or empty.");
         }
     }
 
