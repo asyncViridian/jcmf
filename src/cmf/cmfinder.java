@@ -4,6 +4,14 @@ package cmf;
  *
  * cmfinder04.pl
  */
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import org.json.*;
+
 public class cmfinder {
 
     // default parameters
@@ -26,7 +34,26 @@ public class cmfinder {
     // $commaSepSummarizeFlags,$commaSepCandfFlags,$saveTimer,$allCpus,$cpu,$candsParallel,$outFileSuffix,
     // $columnOnlyBasePairProbs);
     int emulate_apparent_bug_in_resolve_overlap = 1;
-    
-    //parameters from comb_motif.pl
 
+    //read json file
+    public static JSONObject read_json_file(String file_name) throws JSONException, IOException {
+        Path p = Paths.get(file_name);
+        byte[] jsonByte = Files.readAllBytes(p);
+        JSONObject jsonObject = new JSONObject(new String(jsonByte));
+        return jsonObject;
+    }
+
+    public static void main(String[] args) {
+        try {
+            JSONObject jo = read_json_file("src/cmf/cmfinder_param.json");
+            System.out.println(jo.toString());
+            System.out.println(jo.get("h"));
+            System.out.println(jo.getJSONObject("commaSepEmFlags").get("prior <f>"));
+        } catch (JSONException ex) {
+            Logger.getLogger(cmfinder.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(cmfinder.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }
 }
