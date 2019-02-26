@@ -82,7 +82,16 @@
         "summarize-gsc": null,
         "summarize-save-msa <f>": null
     },
-    "commaSepCandfFlags=s": "\\$commaSepCandfFlags",
+    "commaSepCandfFlags=s": {
+        "c": null,
+        "o <f>": null,
+        "m": null,
+        "M": null,
+        "s": null,
+        "S": null,
+        "r": null,
+        "t": null
+    },
     "saveTimer": null,
     "allCpus": false,
     "cpu": -1,
