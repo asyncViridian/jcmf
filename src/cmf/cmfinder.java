@@ -4,10 +4,10 @@ package cmf;
  *
  * cmfinder04.pl
  */
+import static cmf.Io.pair_table;
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
+import java.nio.file.*;
+import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.json.*;
@@ -34,7 +34,7 @@ public class cmfinder {
     // $copyCmfinderRunsFromLog,$amaa,$version,$filterNonFrag,$fragmentary,$commaSepEmFlags,
     // $commaSepSummarizeFlags,$commaSepCandfFlags,$saveTimer,$allCpus,$cpu,$candsParallel,$outFileSuffix,
     // $columnOnlyBasePairProbs);
-    int emulate_apparent_bug_in_resolve_overlap = 1;
+    boolean emulate_apparent_bug_in_resolve_overlap = false;
 
     //getOptions parameters from json file
     /*
@@ -111,6 +111,72 @@ public class cmfinder {
         fragmentary = jo.optBoolean("fragmentary");
     }
      */
+    public int resolve_overlap(Alignment alignment1, Alignment alignment2) {
+
+        int cost1 = 0;
+        int cost2 = 0;
+
+        HashMap<String, AlignSeq> align1 = alignment1.getSeqs();
+        HashMap<String, AlignSeq> align2 = alignment2.getSeqs();
+
+        for (HashMap.Entry<String, AlignSeq> entry : align1.entrySet()) {
+            if (align2.containsKey(entry.getKey())) {
+                AlignSeq motif1 = entry.getValue();
+                AlignSeq motif2 = align2.get(entry.getKey());
+                String seq1 = motif1.getAlignSeq();
+                String seq2 = motif2.getAlignSeq();
+                String ss1 = motif1.getSs();
+                String ss2 = motif2.getSs();
+                HashMap<Integer, Integer> map1 = new HashMap<>();
+                HashMap<Integer, Integer> map2 = new HashMap<>();
+                if (emulate_apparent_bug_in_resolve_overlap) {
+                    //do nothing in perl
+                } else {
+                    map1 = motif1.getAlignMap();
+                    map2 = motif2.getAlignMap();
+                }
+                if (motif2.getStart() <= motif1.getEnd()) {
+                    int olap_start = motif2.getStart();
+                    int olap_end = motif1.getEnd();
+                    HashMap<Integer, Integer> pt2 = pair_table(ss2);
+                    int conflict2 = 0;
+                    for (int i = 0; i < seq2.length(); i++) {
+                        if (!map2.containsKey(i)) {
+                            continue;
+                        }
+                        if (map2.get(i) > olap_end) {
+                            break;
+                        }
+                        if (!pt2.containsKey(i)) {
+                            continue;
+                        }
+                        if (pt2.get(i) >= 0) {
+                            conflict2++;
+                        }
+                    }
+                    HashMap<Integer, Integer> pt1 = pair_table(ss1);
+                    int conflict1 = 0;
+                    for (int i = seq1.length() - 1; i >= 0; i--) {
+                        if (!map1.containsKey(i)) {
+                            continue;
+                        }
+                        if (map1.get(i) < olap_start) {
+                            break;
+                        }
+                        if (pt1.get(i) >= 0) {
+                            conflict1++;
+                        }
+                    }
+                    cost1 += conflict1 * motif1.getWeight();
+                    cost2 += conflict2 * motif2.getWeight();
+                }
+            }
+
+        }
+
+        return (cost1 < cost2) ? 1 : 2;
+    }
+
     public void print_version() {
         System.out.println("CMFINDER_PACKAGE_VERSION=" + CMFINDER_PACKAGE_VERSION);
     }
@@ -201,16 +267,6 @@ public class cmfinder {
             Logger.getLogger(cmfinder.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
             Logger.getLogger(cmfinder.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-        int arr_size = 20;
-        int[] list1 = new int[arr_size];
-        int[] list2 = new int[arr_size];
-        for (int i = 0; i < arr_size; i++) {
-            int n = (int) (Math.random() * 99 + 1);
-            list1[i] = n;
-            n = (int) (Math.random() * 99 + 1);
-            list2[i] = n;
         }
 
     }

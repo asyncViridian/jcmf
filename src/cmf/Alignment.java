@@ -1,7 +1,6 @@
 package cmf;
 
 import java.util.HashMap;
-import java.util.Map;
 
 /**
  *
@@ -11,13 +10,13 @@ import java.util.Map;
  */
 public class Alignment {
 
-    HashMap<String, AlignSeq> seqs;
-    HashMap<String, Integer> flags;
-    String ss_cons;
-    String rf;
-    float score;
-    int weight;
-    float len;
+    private HashMap<String, AlignSeq> seqs;
+    private HashMap<String, Integer> flags;
+    private String ss_cons;
+    private String rf;
+    private float score;
+    private int weight;
+    private float len;
 
     public Alignment(
             HashMap<String, AlignSeq> v_seqs,

@@ -10,19 +10,19 @@ import java.util.HashMap;
  */
 public class AlignSeq {
 
-    String acc;
-    int id;
-    String desc;
-    int weight;
-    String seq;
-    String align_seq;
-    String ss;
-    String align_ss;
-    HashMap<Integer, Integer> align_map;
-    HashMap<Integer, Integer> rev_map;
-    Integer start;
-    Integer end;
-    float score;
+    private String acc;
+    private int id;
+    private String desc;
+    private int weight;
+    private String seq;
+    private String align_seq;
+    private String ss;
+    private String align_ss;
+    private HashMap<Integer, Integer> align_map;
+    private HashMap<Integer, Integer> rev_map;
+    private Integer start;
+    private Integer end;
+    private float score;
 
     public AlignSeq(
             String v_acc,
