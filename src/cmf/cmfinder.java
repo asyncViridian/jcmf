@@ -4,12 +4,11 @@ package cmf;
  *
  * cmfinder04.pl
  */
-import static cmf.Io.pair_table;
+import static cmf.Io.*;
 import java.io.IOException;
 import java.nio.file.*;
-import java.util.HashMap;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.util.*;
+import java.util.logging.*;
 import org.json.*;
 
 public class cmfinder {
@@ -35,6 +34,17 @@ public class cmfinder {
     // $commaSepSummarizeFlags,$commaSepCandfFlags,$saveTimer,$allCpus,$cpu,$candsParallel,$outFileSuffix,
     // $columnOnlyBasePairProbs);
     boolean emulate_apparent_bug_in_resolve_overlap = false;
+
+    //parameters from comb_motif.pl
+    int comb_max_gap = 100; // motif instances within this distance of each other can be considered close enough for merging
+    double comb_len_energy_threshold = 0.1;
+    int comb_min_overlap = 2;
+    double comb_min_num = 2.5;
+    int comb_max_len = 200;
+    int output_more_like_old_cmfinder_pl = 0;
+    ArrayList<String> motifList;
+    int minCandScoreInFinal = 0; // be more like old cmfinder for now
+    String emSeq;
 
     //getOptions parameters from json file
     /*
@@ -180,6 +190,7 @@ public class cmfinder {
     public MergeMotif merge_motif(AlignSeq motif1, AlignSeq motif2, String whole_seq, int olap_own) {
         //assume that $motif1 should be before $motif2;
         MergeMotif mm = new MergeMotif(0, 0, "", "", "", "", "", "");
+
         if (motif1 == null) {
             return new MergeMotif(
                     motif2.getStart(),
@@ -202,6 +213,8 @@ public class cmfinder {
             return new MergeMotif(-1, -1, "", "", "", "", "", "");
         }
 
+        String gap_seq = "";
+        String gap_ss = "";
         String seq1 = motif1.getAlignSeq();
         String seq2 = motif2.getAlignSeq();
         String ss1 = motif1.getAlignSs();
@@ -244,12 +257,58 @@ public class cmfinder {
                     }
                 }
             } else {
+                HashMap<Integer, Integer> pt = pair_table(ss1);
+                for (int i = seq1.length() - 1; i >= 0; i--) {
+                    if (!map1.containsKey(i)) {
+                        continue;
+                    }
+                    if (map1.get(i) < olap_start) {
+                        break;
+                    }
+                    seq1 = seq1.substring(0, i - 1) + "." + seq1.substring(i + 1);
+                    ss1 = ss1.substring(0, i - 1) + "." + ss1.substring(i + 1);
+                    if (pt.get(i) >= 0) {
+                        ss1 = ss1.substring(0, pt.get(i) - 1) + "." + ss1.substring(pt.get(i) + 1);
+                    }
+                }
+            }
+            gap_seq = "";
+            gap_ss = "";
+        } //no overlap
+        else {
+            if (motif2.getStart() == motif1.getEnd() + 1) {
+                gap_seq = "";
+                gap_ss = "";
+            } else {
+                //substring (begin_index,end_index)
+                //length end_index-begin_index, so end_index byte is excluded
+                gap_seq = whole_seq.substring(motif1.getEnd(), motif2.getStart());
+
+                if (gap_seq.length() > comb_max_gap) {
+                    if (motif1.getScore() > motif2.getScore()) {
+                        start = motif1.getStart();
+                        end = motif1.getEnd();
+                        gap_seq = "";
+                        gap_ss = "";
+                        seq2 = make_string(seq2.length(), ".");
+                        ss2 = make_string(seq2.length(), "."); // check this is a bug? using ss2 instead?
+                    } else {
+                        start = motif2.getStart();
+                        end = motif2.getEnd();
+                        gap_seq = "";
+                        gap_ss = "";
+                        seq1 = make_string(seq1.length(), ".");
+                        ss1 = make_string(seq1.length(), "."); // check this is a bug? using ss1 instead?
+                    }
+                }
+                gap_ss = make_string(gap_seq.length(), ".");
 
             }
-        }
 
-        // change below
-        return mm;
+        }
+        gap_seq = gap_seq.replaceAll("(?i)t", "U");  // sed ~s /[tT]/U/g;  case-insentive replace
+
+        return new MergeMotif(start, end, seq1, ss1, gap_seq, gap_ss, seq2, ss2);
     }
 
     public void print_version() {
@@ -333,6 +392,8 @@ public class cmfinder {
     }
 
     public static void main(String[] args) {
+
+        // test read jason file
         try {
             cmfinder cm = new cmfinder();
             JSONObject jo = cm.read_json_file("src/cmf/cmfinder_param.json");
@@ -343,6 +404,11 @@ public class cmfinder {
         } catch (IOException ex) {
             Logger.getLogger(cmfinder.class.getName()).log(Level.SEVERE, null, ex);
         }
+
+        //test case insensitive replaceAll
+        String target = "FOOfBar";
+        target = target.replaceAll("(?i)f", "U");
+        System.out.println(target);
 
     }
 }
