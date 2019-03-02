@@ -177,6 +177,81 @@ public class cmfinder {
         return (cost1 < cost2) ? 1 : 2;
     }
 
+    public MergeMotif merge_motif(AlignSeq motif1, AlignSeq motif2, String whole_seq, int olap_own) {
+        //assume that $motif1 should be before $motif2;
+        MergeMotif mm = new MergeMotif(0, 0, "", "", "", "", "", "");
+        if (motif1 == null) {
+            return new MergeMotif(
+                    motif2.getStart(),
+                    motif2.getEnd(),
+                    "", "", "", "",
+                    motif2.getAlignSeq(),
+                    motif2.getAlignSs());
+        }
+        if (motif2 == null) {
+            return new MergeMotif(
+                    motif1.getStart(),
+                    motif1.getEnd(),
+                    "", "", "", "",
+                    motif1.getAlignSeq(),
+                    motif1.getAlignSs());
+        }
+
+        // Two motifs can't be merged.    
+        if (motif1.getStart() > motif2.getStart()) {
+            return new MergeMotif(-1, -1, "", "", "", "", "", "");
+        }
+
+        String seq1 = motif1.getAlignSeq();
+        String seq2 = motif2.getAlignSeq();
+        String ss1 = motif1.getAlignSs();
+        String ss2 = motif2.getAlignSs();
+        int start = motif1.getStart();
+        int end = motif2.getEnd();
+
+        // motif2 is contained in motif1
+        if (motif2.getEnd() < motif1.getEnd()) {
+            //return ($motif1->start, $motif1->end, $seq1, $ss1, "", "", "","");
+            return new MergeMotif(-1, -1, "", "", "", "", "", "");
+        }
+
+        HashMap<Integer, Integer> map1 = motif1.getAlignMap();
+        HashMap<Integer, Integer> map2 = motif2.getAlignMap();
+
+        if (motif2.getStart() <= motif1.getEnd()) {
+            int olap_start = motif2.getStart();
+            int olap_end = motif1.getEnd();
+            //assign the overlap region to motif1, remove it from motif2
+            if (olap_own == 1) {
+                HashMap<Integer, Integer> pt = pair_table(ss2);
+                for (int i = 0; i < seq2.length(); i++) {
+                    if (!map2.containsKey(i)) {
+                        continue;
+                    }
+                    if (map2.get(i) > olap_end) {
+                        break;
+                    }
+                    //replace with string index i to .
+                    //perl using 4th version substr, str, offset, length, replacement
+                    //index same as java starting from 0
+                    seq2 = seq2.substring(0, i - 1) + "." + seq2.substring(i + 1);
+                    ss2 = ss2.substring(0, i - 1) + "." + ss2.substring(i + 1);
+                    if (!pt.containsKey(i)) {
+                        continue;
+                    }
+                    if (pt.get(i) >= 0) {
+                        ss2 = ss2.substring(0, pt.get(i) - 1) + "." + ss2.substring(pt.get(i) + 1);
+                    }
+                }
+            } else {
+
+            }
+        }
+
+        // change below
+        return mm;
+    }
+
     public void print_version() {
         System.out.println("CMFINDER_PACKAGE_VERSION=" + CMFINDER_PACKAGE_VERSION);
     }

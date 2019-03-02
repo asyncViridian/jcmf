@@ -193,10 +193,10 @@ public class Io {
         if (ss_str != null && !ss_str.isEmpty()) {
             int len = ss_str.length();
             String[] ss = ss_str.split("");
-            ArrayList<Integer> stack = new ArrayList<>();
+            HashMap<Integer, Integer> stack = new HashMap<>();
             while (i < len) { //int compare Integer is fine
                 while (ss[i].equals("<")) {
-                    stack.set(j, i);
+                    stack.put(j, i);  // key is j, value is i
                     j++;
                     i++;
                 }
@@ -674,26 +674,21 @@ public class Io {
     }
 
     public static void main(String[] args) {
-        HashMap<String, Seq> result = Io.read_fasta("test/cmf/data/example.fasta");
+
+        //test read_fasta
+        //HashMap<String, Seq> result = Io.read_fasta("test/cmf/data/example.fasta");
         //using stream print out Map
         //        result.entrySet().stream().
         //                forEach(e -> System.out.println(e.getValue().getSeqString()));
-        write_fasta("", result);
-        write_fasta("test/cmf/data/test.fasta", result);
-
-        //test Files.write()
-        /*
-        Path path = Paths.get("test/try.txt");
-        try {
-            Files.write(path, "some test content...\n".getBytes());
-            Iterable<String> iterable = Arrays.asList("line1", "line2");
-            Files.write(path, iterable, StandardOpenOption.APPEND);
-            byte[] bytes = Files.readAllBytes(path);
-            System.out.println(new String(bytes));
-        } catch (IOException ex) {
-            Logger.getLogger(Io.class.getName()).log(Level.SEVERE, null, ex);
-        }
-         */
+        //write_fasta("", result);
+        //write_fasta("test/cmf/data/test.fasta", result);
+        
+        //test pair_table
+        String s = "<<< test my ss >>>";
+        System.out.println(s);
+        pair_table(s).entrySet()
+                //.stream().parallel()
+                .forEach(e -> System.out.println(e));
     }
 
 }

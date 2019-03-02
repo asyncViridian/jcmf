@@ -5,7 +5,9 @@
         <group>
             <file>file:/home/james/NetBeansProjects/cmf/src/cmf/cmfinder_param.json</file>
             <file>file:/home/james/NetBeansProjects/cmf/src/cmf/Io.java</file>
+            <file>file:/home/james/NetBeansProjects/cmf/src/cmf/Alignment.java</file>
             <file>file:/home/james/NetBeansProjects/cmf/src/cmf/cmfinder.java</file>
+            <file>file:/home/james/NetBeansProjects/cmf/src/cmf/AlignSeq.java</file>
         </group>
     </open-files>
 </project-private>
