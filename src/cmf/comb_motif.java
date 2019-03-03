@@ -2,8 +2,7 @@ package cmf;
 
 /**
  *
- * @comb_motif.pl
- * TO DO , only used in cmfinder.pl
+ * @comb_motif.pl TO DO , only used in cmfinder.pl
  */
 public class comb_motif {
 

@@ -2,7 +2,7 @@ package cmf;
 
 /**
  * struct 'Seq'
- * 
+ *
  * FASTA format
  */
 public class Seq {
@@ -22,7 +22,7 @@ public class Seq {
     public String getSeqString() {
         return "id=" + id + " acc=" + acc + " desc=" + desc + " \n  seq=" + seq;
     }
-    
+
     public String getAcc() {
         return acc;
     }

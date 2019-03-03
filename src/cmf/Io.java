@@ -694,7 +694,7 @@ public class Io {
         a.setStart(0);
         a.setEnd(6);
         a.setAlignSeq("ACUTUTGCABR");
-        HashMap<Integer,Integer> h=new HashMap<Integer,Integer>();
+        HashMap<Integer, Integer> h = new HashMap<Integer, Integer>();
         h.put(0, 0);
         a.setAlignMap(h);
         a.setRevMap(h);

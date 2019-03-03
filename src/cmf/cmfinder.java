@@ -448,14 +448,34 @@ public class cmfinder {
         }
 
         //now out file should be using gap file extension
-        String out_file =out;
+        String out_file = out;
         if (out_file == null || out_file.isEmpty() || out_file.equals("")) {
             out_file = "out.gap";
         }
-        Path p = Paths.get(out_file);
+        Path p_out = Paths.get(out_file);
+        int gap_count = 0;
+        try {
+            Files.createFile(p_out);
+            //now loop motif_overlap
+            for (Map.Entry<String, MergeMotif> entry : motif_overlap.entrySet()) {
+                String gap = motif_overlap.get(entry.getKey()).getGapSeq();
+                if (gap.length() > 0) {
+                    Files.write(p_out,
+                            (">" + entry.getKey() + System.lineSeparator()).getBytes(),
+                            StandardOpenOption.APPEND);
+                    Files.write(p_out,
+                            (gap + System.lineSeparator()).getBytes(),
+                            StandardOpenOption.APPEND);
+                    gap_count++;
+                }
+            }
+        } catch (FileAlreadyExistsException ignored) {
+            System.err.println("File already exists, use existing.");
+        } catch (IOException e) {
+            System.err.println("Can't open file " + out_file + ": " + e);
+        }
         
-        
-        
+
         //tmp use below value
         return new Alignment(align1, alignment1.getFlags(), "", "", 0, 0, 0);
     }
