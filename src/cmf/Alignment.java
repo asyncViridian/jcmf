@@ -39,12 +39,16 @@ public class Alignment {
         return seqs;
     }
 
-    public void setSeqs(HashMap<String, AlignSeq> v_seqs) {
-        this.seqs = new HashMap<>(v_seqs);
+    public void setSeqs(HashMap<String, AlignSeq> seqs) {
+        this.seqs = seqs;
     }
 
     public HashMap<String, Integer> getFlags() {
         return flags;
+    }
+
+    public void setFlags(HashMap<String, Integer> flags) {
+        this.flags = flags;
     }
 
     public String getSsCons() {

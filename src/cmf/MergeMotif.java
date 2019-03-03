@@ -21,6 +21,7 @@ public class MergeMotif {
     private String gap_ss;
     private String seq2;
     private String ss2;
+    double weight;
 
     MergeMotif(
             int start,
@@ -103,5 +104,13 @@ public class MergeMotif {
 
     public void setSs2(String ss2) {
         this.ss2 = ss2;
+    }
+
+    public double getWeight() {
+        return weight;
+    }
+
+    public void setWeight(double weight) {
+        this.weight = weight;
     }
 }
