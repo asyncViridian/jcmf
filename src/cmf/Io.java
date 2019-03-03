@@ -167,8 +167,8 @@ public class Io {
         Pattern p = Pattern.compile("\\.|-");
         for (int i = 0; i < seq.length(); i++) {
             if (!p.matcher(letters[i]).find()) {
-                a.getAlignMap().put(i, j);
-                a.getRevMap().put(j, i);
+                a.getAlignMap().put(i, j);  // change map
+                a.getRevMap().put(j, i); // change map
                 if (dir) {
                     j++;
                 } else {
@@ -682,13 +682,28 @@ public class Io {
         //                forEach(e -> System.out.println(e.getValue().getSeqString()));
         //write_fasta("", result);
         //write_fasta("test/cmf/data/test.fasta", result);
-        
         //test pair_table
-        String s = "<<< test my ss >>>";
-        System.out.println(s);
-        pair_table(s).entrySet()
-                //.stream().parallel()
-                .forEach(e -> System.out.println(e));
+        //        String s = "<<< test my ss >>>";
+        //        System.out.println(s);
+        //        pair_table(s).entrySet()
+        //                //.stream().parallel()
+        //                .forEach(e -> System.out.println(e));
+        //debug align_seq_map
+        AlignSeq a = new AlignSeq("test", 10, 1);
+        a.setSeq("RNA test");
+        a.setStart(0);
+        a.setEnd(6);
+        a.setAlignSeq("ACUTUTGCABR");
+        HashMap<Integer,Integer> h=new HashMap<Integer,Integer>();
+        h.put(0, 0);
+        a.setAlignMap(h);
+        a.setRevMap(h);
+        System.out.println(a.getAlignMap().toString());
+        System.out.println(a.getRevMap().toString());
+        align_seq_map(a);
+        System.out.println(a.getAlignMap().toString());
+        System.out.println(a.getRevMap().toString());
+
     }
 
 }

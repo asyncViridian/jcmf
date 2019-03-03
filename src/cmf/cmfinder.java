@@ -311,6 +311,88 @@ public class cmfinder {
         return new MergeMotif(start, end, seq1, ss1, gap_seq, gap_ss, seq2, ss2);
     }
 
+    public void merge_alignment(
+            Alignment alignment1,
+            Alignment alignment2,
+            HashMap<String, AlignSeq> seqs,
+            Path out) throws MyException {
+        HashMap<String, AlignSeq> align1 = alignment1.getSeqs();
+        HashMap<String, AlignSeq> align2 = alignment2.getSeqs();
+        String ss_con1 = alignment1.getSsCons();
+        String ss_con2 = alignment2.getSsCons();
+        String rf1 = alignment1.getRf();
+        String rf2 = alignment2.getRf();
+
+        ArrayList<String> motif_overlap = new ArrayList<>();
+        double max_gap_len = 0;
+        double max_m1_len = 0;
+        double max_m2_len = 0;
+        double avg_gap_len = 0;
+        int start;
+        int end;
+        String seq1;
+        String ss1;
+        String gap_seq;
+        String gap_ss;
+        String seq2;
+        String ss2;
+        ArrayList<String> nerged_motif = new ArrayList<>();
+        String merged_ss_cons;
+        String merged_rf;
+        int olap_own = resolve_overlap(alignment1, alignment2);
+        HashMap<String, Integer> ids = new HashMap<>();
+        int max_id = 0;
+
+        for (Map.Entry<String, AlignSeq> entry : align1.entrySet()) {
+            align_seq_map(entry.getValue()); //entry AlignSeq's two maps updated
+            ids.put(entry.getKey(), entry.getValue().getId());
+            if (ids.get(entry.getKey()) > max_id) {
+                max_id = ids.get(entry.getKey());
+            }
+        }
+
+        for (Map.Entry<String, AlignSeq> entry : align2.entrySet()) {
+            align_seq_map(entry.getValue()); //entry AlignSeq's two maps updated
+            if (ids.containsKey(entry.getKey())) {
+                continue;
+            }
+            max_id++;
+            ids.put(entry.getKey(), max_id);
+        }
+
+        for (Map.Entry<String, Integer> entry : ids.entrySet()) {
+            String acc;
+            int weight;
+            if (align2.containsKey(entry.getKey())) {
+                acc = align2.get(entry.getKey()).getAcc();
+            } else {
+                acc = align1.get(entry.getKey()).getAcc();
+            }
+            if (!seqs.containsKey(entry.getKey())) {
+                throw new MyException(entry.getKey() + " does not exist in input sequences ");
+            }
+            if (!align2.containsKey(entry.getKey())) {
+                weight = align1.get(entry.getKey()).getWeight();
+                MergeMotif mm = merge_motif(
+                        align1.get(entry.getValue()),
+                        null,
+                        seqs.get(entry.getKey()).getSeq(),
+                        olap_own
+                );
+                start = mm.getStart();
+                end = mm.getEnd();
+                seq1 = mm.getSeq1();
+                ss1 = mm.getSs1();
+                gap_seq = mm.getGapSeq();
+                gap_ss = mm.getGapSs();
+                seq2 = mm.getSeq2();
+                ss2 = mm.getSs2();
+            }
+
+        }
+
+    }
+
     public void print_version() {
         System.out.println("CMFINDER_PACKAGE_VERSION=" + CMFINDER_PACKAGE_VERSION);
     }
