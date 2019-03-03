@@ -311,11 +311,12 @@ public class cmfinder {
         return new MergeMotif(start, end, seq1, ss1, gap_seq, gap_ss, seq2, ss2);
     }
 
-    public void merge_alignment(
+    public Alignment merge_alignment(
             Alignment alignment1,
             Alignment alignment2,
             HashMap<String, AlignSeq> seqs,
-            Path out) throws MyException {
+            String out) throws MyException {
+
         HashMap<String, AlignSeq> align1 = alignment1.getSeqs();
         HashMap<String, AlignSeq> align2 = alignment2.getSeqs();
         String ss_con1 = alignment1.getSsCons();
@@ -323,7 +324,7 @@ public class cmfinder {
         String rf1 = alignment1.getRf();
         String rf2 = alignment2.getRf();
 
-        ArrayList<String> motif_overlap = new ArrayList<>();
+        HashMap<String, MergeMotif> motif_overlap = new HashMap<>();
         double max_gap_len = 0;
         double max_m1_len = 0;
         double max_m2_len = 0;
@@ -336,10 +337,11 @@ public class cmfinder {
         String gap_ss;
         String seq2;
         String ss2;
-        ArrayList<String> nerged_motif = new ArrayList<>();
+        ArrayList<String> merged_motif = new ArrayList<>();
         String merged_ss_cons;
         String merged_rf;
         int olap_own = resolve_overlap(alignment1, alignment2);
+
         HashMap<String, Integer> ids = new HashMap<>();
         int max_id = 0;
 
@@ -374,8 +376,41 @@ public class cmfinder {
             if (!align2.containsKey(entry.getKey())) {
                 weight = align1.get(entry.getKey()).getWeight();
                 MergeMotif mm = merge_motif(
-                        align1.get(entry.getValue()),
+                        align1.get(entry.getKey()),
                         null,
+                        seqs.get(entry.getKey()).getSeq(),
+                        olap_own
+                );
+                start = mm.getStart();
+                end = mm.getEnd();
+                seq1 = mm.getSeq1();
+                ss1 = mm.getSs1();
+                gap_seq = mm.getGapSeq();
+                gap_ss = mm.getGapSs();
+                seq2 = mm.getSeq2();
+                ss2 = mm.getSs2();
+            } else if (!align1.containsKey(entry.getKey())) {
+                weight = align2.get(entry.getKey()).getWeight();
+                MergeMotif mm = merge_motif(
+                        null,
+                        align2.get(entry.getKey()),
+                        seqs.get(entry.getKey()).getSeq(),
+                        olap_own
+                );
+                start = mm.getStart();
+                end = mm.getEnd();
+                seq1 = mm.getSeq1();
+                ss1 = mm.getSs1();
+                gap_seq = mm.getGapSeq();
+                gap_ss = mm.getGapSs();
+                seq2 = mm.getSeq2();
+                ss2 = mm.getSs2();
+            } else {
+                weight = align2.get(entry.getKey()).getWeight()
+                        + align1.get(entry.getKey()).getWeight();
+                MergeMotif mm = merge_motif(
+                        align1.get(entry.getKey()),
+                        align2.get(entry.getKey()),
                         seqs.get(entry.getKey()).getSeq(),
                         olap_own
                 );
@@ -389,8 +424,40 @@ public class cmfinder {
                 ss2 = mm.getSs2();
             }
 
+            if (start >= 0 && end >= 0) {
+                MergeMotif mm = new MergeMotif(
+                        start, end, seq1, ss1, gap_seq, gap_ss, seq2, ss2
+                );
+                mm.setWeight(weight / 2.0d);
+                motif_overlap.put(entry.getKey(), mm);
+                if (max_gap_len < gap_seq.length()) {
+                    max_gap_len = gap_seq.length();
+                }
+                if (max_gap_len < seq1.length()) {
+                    max_gap_len = seq1.length();
+                }
+                if (max_gap_len < seq2.length()) {
+                    max_gap_len = seq2.length();
+                }
+            }
+        } // loop ids is done
+
+        if (motif_overlap.size() < 2) {
+            System.out.println("Merge_alignment returns null");
+            return null;
         }
 
+        //now out file should be using gap file extension
+        String out_file =out;
+        if (out_file == null || out_file.isEmpty() || out_file.equals("")) {
+            out_file = "out.gap";
+        }
+        Path p = Paths.get(out_file);
+        
+        
+        
+        //tmp use below value
+        return new Alignment(align1, alignment1.getFlags(), "", "", 0, 0, 0);
     }
 
     public void print_version() {
