@@ -329,15 +329,15 @@ public class cmfinder {
 
         HashMap<String, AlignSeq> align1 = alignment1.getSeqs();
         HashMap<String, AlignSeq> align2 = alignment2.getSeqs();
-        String ss_con1 = alignment1.getSsCons();
-        String ss_con2 = alignment2.getSsCons();
+        String ss_cons1 = alignment1.getSsCons();
+        String ss_cons2 = alignment2.getSsCons();
         String rf1 = alignment1.getRf();
         String rf2 = alignment2.getRf();
 
         HashMap<String, MergeMotif> motif_overlap = new HashMap<>();
-        double max_gap_len = 0;
-        double max_m1_len = 0;
-        double max_m2_len = 0;
+        int max_gap_len = 0;
+        int max_m1_len = 0;
+        int max_m2_len = 0;
         double avg_gap_len = 0;
         int start;
         int end;
@@ -347,7 +347,7 @@ public class cmfinder {
         String gap_ss;
         String seq2;
         String ss2;
-        ArrayList<String> merged_motif = new ArrayList<>();
+        HashMap<String, AlignSeq> merged_motif = new HashMap<>();
         String merged_ss_cons;
         String merged_rf;
         int olap_own = resolve_overlap(alignment1, alignment2);
@@ -374,7 +374,7 @@ public class cmfinder {
 
         for (Map.Entry<String, Integer> entry : ids.entrySet()) {
             String acc;
-            int weight;
+            double weight;
             if (align2.containsKey(entry.getKey())) {
                 acc = align2.get(entry.getKey()).getAcc();
             } else {
@@ -525,8 +525,47 @@ public class cmfinder {
             }
         }
 
-        //tmp use below value
-        return new Alignment(align1, alignment1.getFlags(), "", "", 0, 0, 0);
+        merged_ss_cons = ss_cons1 + pad_string("", max_gap_len, ".", 1) + ss_cons2;
+        merged_rf = rf1 + pad_string("", max_gap_len, ".", 1) + rf2;
+
+        //  my ($align_seq,$align_ss,$score1,$score2,$score,$weight,$desc);
+        String align_seq = "";
+        String align_ss = "";
+        float score1 = 0;
+        float score2 = 0;
+        float score;
+        double weight;
+        String desc;
+
+        for (Map.Entry<String, MergeMotif> entry : motif_overlap.entrySet()) {
+            gap_seq = pad_string(entry.getValue().getGapSeq(), max_gap_len, ".", 1);
+            gap_ss = pad_string(entry.getValue().getGapSs(), max_gap_len, ".", 1);
+            align_seq = pad_string(entry.getValue().getSeq1(), max_m1_len, ".", 1)
+                    + gap_seq + pad_string(entry.getValue().getSeq2(), max_m2_len, ".", 1);
+            align_ss = pad_string(entry.getValue().getSs1(), max_m1_len, ".", 1)
+                    + gap_ss + pad_string(entry.getValue().getSs2(), max_m2_len, ".", 1);
+            if (align1.containsKey(entry.getKey())) {
+                score1 = align1.get(entry.getKey()).getScore();
+            }
+            if (align2.containsKey(entry.getKey())) {
+                score2 = align2.get(entry.getKey()).getScore();
+            }
+            start = entry.getValue().getStart();
+            end = entry.getValue().getEnd();
+            score = score1 + score2 - remove_gap(gap_seq).length();
+            weight = entry.getValue().getWeight();
+            desc = String.format("%3d", start)
+                    + ".." + String.format("%3d", end) + "\t"
+                    + String.format("%.3f", score);
+
+            merged_motif.put(entry.getKey(),
+                    new AlignSeq(entry.getKey(), ids.get(entry.getKey()),
+                            start, end, desc, score, weight, align_seq, align_ss));
+
+        }
+
+        //final return value
+        return new Alignment(merged_motif, alignment1.getFlags(), merged_ss_cons, merged_rf);
     }
 
     public void print_version() {

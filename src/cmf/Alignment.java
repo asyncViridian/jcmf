@@ -15,7 +15,7 @@ public class Alignment {
     private String ss_cons;
     private String rf;
     private float score;
-    private int weight;
+    private double weight;
     private float len;
 
     public Alignment(
@@ -24,7 +24,7 @@ public class Alignment {
             String v_ss_cons,
             String v_rf,
             float v_score,
-            int v_weight,
+            double v_weight,
             float v_len) {
         seqs = v_seqs;
         flags = v_flags;
@@ -33,6 +33,17 @@ public class Alignment {
         score = v_score;
         weight = v_weight;
         len = v_len;
+    }
+
+    public Alignment(
+            HashMap<String, AlignSeq> v_seqs,
+            HashMap<String, Integer> v_flags,
+            String v_ss_cons,
+            String v_rf) {
+        seqs = v_seqs;
+        flags = v_flags;
+        ss_cons = v_ss_cons;
+        rf = v_rf;
     }
 
     public HashMap<String, AlignSeq> getSeqs() {
@@ -63,7 +74,7 @@ public class Alignment {
         return score;
     }
 
-    public int getWeight() {
+    public double getWeight() {
         return weight;
     }
 

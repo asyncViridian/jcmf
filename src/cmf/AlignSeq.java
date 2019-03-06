@@ -13,7 +13,7 @@ public class AlignSeq {
     private String acc;
     private int id;
     private String desc;
-    private int weight;
+    private double weight;
     private String seq;
     private String align_seq;
     private String ss;
@@ -26,7 +26,7 @@ public class AlignSeq {
 
     public AlignSeq(
             String v_acc,
-            int v_weight,
+            double v_weight,
             int v_id
     ) {
         acc = v_acc;
@@ -36,7 +36,7 @@ public class AlignSeq {
 
     public AlignSeq(
             String v_acc,
-            int v_weight,
+            double v_weight,
             int v_id,
             String v_misc,
             String type
@@ -49,6 +49,28 @@ public class AlignSeq {
         } else if (type.equals("align_seq")) {
             this.align_seq = v_misc;
         }
+    }
+
+    public AlignSeq(
+            String v_acc,
+            int v_id,
+            Integer v_start,
+            Integer v_end,
+            String v_desc,
+            float v_score,
+            double v_weight,
+            String v_align_seq,
+            String v_align_ss
+    ) {
+        this.acc = v_acc;
+        this.id = v_id;
+        this.start = v_start;
+        this.end = v_end;
+        this.desc = v_desc;
+        this.score = v_score;
+        this.weight = v_weight;
+        this.align_seq = v_align_seq;
+        this.align_ss = v_align_ss;
     }
 
     public String getAcc() {
@@ -75,11 +97,11 @@ public class AlignSeq {
         desc = v_desc;
     }
 
-    public int getWeight() {
+    public double getWeight() {
         return weight;
     }
 
-    public void setWeight(int v_weight) {
+    public void setWeight(double v_weight) {
         weight = v_weight;
     }
 

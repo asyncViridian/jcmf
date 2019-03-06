@@ -704,6 +704,14 @@ public class Io {
         System.out.println(a.getAlignMap().toString());
         System.out.println(a.getRevMap().toString());
 
+        //test pad
+        int start = 1;
+        int end = 10;
+        float scroe = 26.89678f;
+
+        String desc = String.format("%3d", start) + ".." + String.format("%3d", end)  + "\t" + String.format("%.3f", scroe);
+        System.out.println(desc);
+
     }
 
 }
