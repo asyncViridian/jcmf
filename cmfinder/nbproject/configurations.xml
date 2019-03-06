@@ -1,0 +1,2766 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configurationDescriptor version="100">
+  <logicalFolder name="root" displayName="root" projectFiles="true" kind="ROOT">
+    <df root="." name="0">
+      <df name="clustalw1.83">
+        <in>alnscore.c</in>
+        <in>amenu.c</in>
+        <in>calcgapcoeff.c</in>
+        <in>calcprf1.c</in>
+        <in>calcprf2.c</in>
+        <in>calctree.c</in>
+        <in>clustalw.c</in>
+        <in>gcgcheck.c</in>
+        <in>interface.c</in>
+        <in>malign.c</in>
+        <in>pairalign.c</in>
+        <in>prfalign.c</in>
+        <in>random.c</in>
+        <in>readmat.c</in>
+        <in>sequence.c</in>
+        <in>showpair.c</in>
+        <in>trees.c</in>
+        <in>util.c</in>
+      </df>
+      <df name="cmfinder03">
+        <in>align.c</in>
+        <in>automaker.c</in>
+        <in>cand.c</in>
+        <in>canda.c</in>
+        <in>candf.c</in>
+        <in>cands.c</in>
+        <in>cluster.c</in>
+        <in>cmfinder.c</in>
+        <in>count_seq.c</in>
+        <in>diff_motif.c</in>
+        <in>em.c</in>
+        <in>global.c</in>
+        <in>histogram.c</in>
+        <in>match_constr.c</in>
+        <in>summarize.c</in>
+      </df>
+      <df name="cmfinder04">
+        <in>base_pair_prediction.c</in>
+        <in>cand.c</in>
+        <in>cmfinder.c</in>
+        <in>em.c</in>
+        <in>from_cmbuild.c</in>
+        <in>from_cmcalibrate.c</in>
+        <in>from_cmsearch.c</in>
+        <in>global.c</in>
+      </df>
+      <df name="hmmpair">
+        <in>AlignmentConsensusAndScoring.cpp</in>
+        <in>Cm2HMM.cpp</in>
+        <in>Cm2HmmOptimize.cpp</in>
+        <in>CommaSepFileReader.cpp</in>
+        <in>CovarianceModel.cpp</in>
+        <in>GSCConsensus.cpp</in>
+        <in>HmmType1.cpp</in>
+        <in>InfernalHmm.cpp</in>
+        <in>MLHeuristic.cpp</in>
+        <in>MarkovModelStats.cpp</in>
+        <in>MiscExceptions.cpp</in>
+        <in>NaryCounter.cpp</in>
+        <in>Optimize.cpp</in>
+        <in>PositionsToIgnore.cpp</in>
+        <in>ScanHmm.cpp</in>
+        <in>SymbolicMath.cpp</in>
+        <in>hmmpair.cpp</in>
+      </df>
+      <df name="lib-infernal-0.7">
+        <df name="easel">
+          <in>easel.c</in>
+          <in>esl_alphabet.c</in>
+          <in>esl_dirichlet.c</in>
+          <in>esl_exponential.c</in>
+          <in>esl_fileparser.c</in>
+          <in>esl_gamma.c</in>
+          <in>esl_getopts.c</in>
+          <in>esl_gev.c</in>
+          <in>esl_gumbel.c</in>
+          <in>esl_histogram.c</in>
+          <in>esl_hyperexp.c</in>
+          <in>esl_keyhash.c</in>
+          <in>esl_minimizer.c</in>
+          <in>esl_mixgev.c</in>
+          <in>esl_msa.c</in>
+          <in>esl_random.c</in>
+          <in>esl_regexp.c</in>
+          <in>esl_sqio.c</in>
+          <in>esl_stack.c</in>
+          <in>esl_stats.c</in>
+          <in>esl_stretchexp.c</in>
+          <in>esl_vectorops.c</in>
+          <in>esl_weibull.c</in>
+          <in>esl_wuss.c</in>
+        </df>
+        <df name="squid">
+          <in>a2m.c</in>
+          <in>aligneval.c</in>
+          <in>alignio.c</in>
+          <in>clustal.c</in>
+          <in>cluster.c</in>
+          <in>dayhoff.c</in>
+          <in>dirichlet.c</in>
+          <in>eps.c</in>
+          <in>file.c</in>
+          <in>getopt.c</in>
+          <in>gki.c</in>
+          <in>hsregex.c</in>
+          <in>iupac.c</in>
+          <in>msa.c</in>
+          <in>msf.c</in>
+          <in>phylip.c</in>
+          <in>revcomp.c</in>
+          <in>rk.c</in>
+          <in>selex.c</in>
+          <in>seqencode.c</in>
+          <in>shuffle.c</in>
+          <in>sqerror.c</in>
+          <in>sqio.c</in>
+          <in>squidcore.c</in>
+          <in>sre_ctype.c</in>
+          <in>sre_math.c</in>
+          <in>sre_random.c</in>
+          <in>sre_stack.c</in>
+          <in>sre_string.c</in>
+          <in>sreformat_main.c</in>
+          <in>ssi.c</in>
+          <in>stockholm.c</in>
+          <in>stopwatch.c</in>
+          <in>translate.c</in>
+          <in>types.c</in>
+          <in>vectorops.c</in>
+          <in>weight.c</in>
+          <in>wuss.c</in>
+        </df>
+        <df name="src">
+          <in>CP9_cm2wrhmm.c</in>
+          <in>CP9_hmmio.c</in>
+          <in>CP9_scan.c</in>
+          <in>alphabet.c</in>
+          <in>bandcyk.c</in>
+          <in>cm.c</in>
+          <in>cm_eweight.c</in>
+          <in>cm_masks.c</in>
+          <in>cm_postprob.c</in>
+          <in>cmio.c</in>
+          <in>cplan9.c</in>
+          <in>display.c</in>
+          <in>emit.c</in>
+          <in>emitmap.c</in>
+          <in>globals.c</in>
+          <in>hbandcyk.c</in>
+          <in>hmmband.c</in>
+          <in>modelconfig.c</in>
+          <in>modelmaker.c</in>
+          <in>parsetree.c</in>
+          <in>prior.c</in>
+          <in>scancyk.c</in>
+          <in>scaninside.c</in>
+          <in>smallcyk.c</in>
+          <in>sub_cm.c</in>
+        </df>
+      </df>
+      <df name="lib-infernal-1.1">
+        <df name="easel">
+          <in>easel.c</in>
+          <in>esl_alphabet.c</in>
+          <in>esl_buffer.c</in>
+          <in>esl_cluster.c</in>
+          <in>esl_dirichlet.c</in>
+          <in>esl_distance.c</in>
+          <in>esl_dmatrix.c</in>
+          <in>esl_exponential.c</in>
+          <in>esl_fileparser.c</in>
+          <in>esl_gamma.c</in>
+          <in>esl_getopts.c</in>
+          <in>esl_gev.c</in>
+          <in>esl_gumbel.c</in>
+          <in>esl_histogram.c</in>
+          <in>esl_hmm.c</in>
+          <in>esl_hyperexp.c</in>
+          <in>esl_keyhash.c</in>
+          <in>esl_mem.c</in>
+          <in>esl_minimizer.c</in>
+          <in>esl_mixgev.c</in>
+          <in>esl_mpi.c</in>
+          <in>esl_msa.c</in>
+          <in>esl_msacluster.c</in>
+          <in>esl_msafile.c</in>
+          <in>esl_msafile2.c</in>
+          <in>esl_msafile_a2m.c</in>
+          <in>esl_msafile_afa.c</in>
+          <in>esl_msafile_clustal.c</in>
+          <in>esl_msafile_phylip.c</in>
+          <in>esl_msafile_psiblast.c</in>
+          <in>esl_msafile_selex.c</in>
+          <in>esl_msafile_stockholm.c</in>
+          <in>esl_msashuffle.c</in>
+          <in>esl_msaweight.c</in>
+          <in>esl_normal.c</in>
+          <in>esl_paml.c</in>
+          <in>esl_random.c</in>
+          <in>esl_randomseq.c</in>
+          <in>esl_ratematrix.c</in>
+          <in>esl_recorder.c</in>
+          <in>esl_regexp.c</in>
+          <in>esl_rootfinder.c</in>
+          <in>esl_scorematrix.c</in>
+          <in>esl_sq.c</in>
+          <in>esl_sqio.c</in>
+          <in>esl_sqio_ascii.c</in>
+          <in>esl_sqio_ncbi.c</in>
+          <in>esl_sse.c</in>
+          <in>esl_ssi.c</in>
+          <in>esl_stack.c</in>
+          <in>esl_stats.c</in>
+          <in>esl_stopwatch.c</in>
+          <in>esl_stretchexp.c</in>
+          <in>esl_threads.c</in>
+          <in>esl_tree.c</in>
+          <in>esl_vectorops.c</in>
+          <in>esl_vmx.c</in>
+          <in>esl_weibull.c</in>
+          <in>esl_workqueue.c</in>
+          <in>esl_wuss.c</in>
+        </df>
+        <df name="hmmer">
+          <df name="libdivsufsort">
+            <in>divsufsort.c</in>
+          </df>
+          <df name="src">
+            <df name="impl_sse">
+              <in>decoding.c</in>
+              <in>fm.c</in>
+              <in>fwdback.c</in>
+              <in>io.c</in>
+              <in>mpi.c</in>
+              <in>msvfilter.c</in>
+              <in>null2.c</in>
+              <in>optacc.c</in>
+              <in>p7_omx.c</in>
+              <in>p7_oprofile.c</in>
+              <in>ssvfilter.c</in>
+              <in>stotrace.c</in>
+              <in>vitfilter.c</in>
+            </df>
+            <in>build.c</in>
+            <in>cachedb.c</in>
+            <in>emit.c</in>
+            <in>errors.c</in>
+            <in>evalues.c</in>
+            <in>eweight.c</in>
+            <in>fm_alphabet.c</in>
+            <in>fm_general.c</in>
+            <in>fm_msv.c</in>
+            <in>generic_decoding.c</in>
+            <in>generic_fwdback.c</in>
+            <in>generic_fwdback_banded.c</in>
+            <in>generic_fwdback_chk.c</in>
+            <in>generic_msv.c</in>
+            <in>generic_null2.c</in>
+            <in>generic_optacc.c</in>
+            <in>generic_stotrace.c</in>
+            <in>generic_viterbi.c</in>
+            <in>generic_vtrace.c</in>
+            <in>h2_io.c</in>
+            <in>heatmap.c</in>
+            <in>hmmdmstr.c</in>
+            <in>hmmdutils.c</in>
+            <in>hmmdwrkr.c</in>
+            <in>hmmer.c</in>
+            <in>hmmlogo.c</in>
+            <in>hmmpgmd2msa.c</in>
+            <in>logsum.c</in>
+            <in>modelconfig.c</in>
+            <in>modelstats.c</in>
+            <in>mpisupport.c</in>
+            <in>p7_alidisplay.c</in>
+            <in>p7_bg.c</in>
+            <in>p7_builder.c</in>
+            <in>p7_domaindef.c</in>
+            <in>p7_gbands.c</in>
+            <in>p7_gmx.c</in>
+            <in>p7_gmxb.c</in>
+            <in>p7_gmxchk.c</in>
+            <in>p7_hmm.c</in>
+            <in>p7_hmmcache.c</in>
+            <in>p7_hmmfile.c</in>
+            <in>p7_hmmwindow.c</in>
+            <in>p7_msvdata.c</in>
+            <in>p7_null3.c</in>
+            <in>p7_pipeline.c</in>
+            <in>p7_prior.c</in>
+            <in>p7_profile.c</in>
+            <in>p7_spensemble.c</in>
+            <in>p7_tophits.c</in>
+            <in>p7_trace.c</in>
+            <in>seqmodel.c</in>
+            <in>tracealign.c</in>
+          </df>
+        </df>
+        <df name="src">
+          <df name="impl_sse">
+            <in>cm_optimized.c</in>
+            <in>sse_cm_dpsearch.c</in>
+            <in>sse_cm_dpsmall.c</in>
+            <in>sse_cmcons_hitmx.c</in>
+            <in>sse_cmcons_mscyk.c</in>
+            <in>sse_util.c</in>
+          </df>
+          <in>alphabet.c</in>
+          <in>bandcyk-montecarlo-test.c</in>
+          <in>bandcyk-truncation-test.c</in>
+          <in>cm.c</in>
+          <in>cm_alidisplay.c</in>
+          <in>cm_alndata.c</in>
+          <in>cm_dpalign.c</in>
+          <in>cm_dpalign_trunc.c</in>
+          <in>cm_dpsearch.c</in>
+          <in>cm_dpsearch_trunc.c</in>
+          <in>cm_dpsmall.c</in>
+          <in>cm_file.c</in>
+          <in>cm_modelconfig.c</in>
+          <in>cm_modelmaker.c</in>
+          <in>cm_mx.c</in>
+          <in>cm_p7_band.c</in>
+          <in>cm_p7_domaindef.c</in>
+          <in>cm_p7_modelconfig_trunc.c</in>
+          <in>cm_p7_modelmaker.c</in>
+          <in>cm_parsetree.c</in>
+          <in>cm_pipeline.c</in>
+          <in>cm_qdband.c</in>
+          <in>cm_submodel.c</in>
+          <in>cm_tophits.c</in>
+          <in>cm_trunc.c</in>
+          <in>cmalign.c</in>
+          <in>cmbuild.c</in>
+          <in>cmcalibrate.c</in>
+          <in>cmconvert.c</in>
+          <in>cmemit.c</in>
+          <in>cmfetch.c</in>
+          <in>cmpress.c</in>
+          <in>cmscan.c</in>
+          <in>cmsearch.c</in>
+          <in>cmstat.c</in>
+          <in>cp9-test.c</in>
+          <in>cp9.c</in>
+          <in>cp9_dp.c</in>
+          <in>cp9_modelmaker.c</in>
+          <in>cp9_mx.c</in>
+          <in>cp9_trace.c</in>
+          <in>display.c</in>
+          <in>errors.c</in>
+          <in>eweight.c</in>
+          <in>hmmband.c</in>
+          <in>logsum.c</in>
+          <in>mpisupport.c</in>
+          <in>prior.c</in>
+          <in>rnamat.c</in>
+          <in>stats.c</in>
+          <in>sub_cm-test.c</in>
+          <in>trcyk.c</in>
+          <in>truncyk.c</in>
+          <in>truncyk_check.c</in>
+        </df>
+      </df>
+      <df name="lib-qrna">
+        <in>er_math.c</in>
+        <in>evolve.c</in>
+        <in>mat_globals.c</in>
+        <in>matrix.c</in>
+        <in>misc.c</in>
+      </df>
+      <df name="lib-vienna-1.4">
+        <in>dist_vars.c</in>
+        <in>edit_cost.c</in>
+        <in>energy_par.c</in>
+        <in>fold.c</in>
+        <in>fold_vars.c</in>
+        <in>part_func.c</in>
+        <in>read_epars.c</in>
+        <in>treedist.c</in>
+        <in>utils.c</in>
+      </df>
+      <df name="lib-vienna-1.7.1">
+        <in>LPfold.c</in>
+        <in>Lfold.c</in>
+        <in>PS_dot.c</in>
+        <in>ProfileAln.c</in>
+        <in>ProfileDist.c</in>
+        <in>RNAstruct.c</in>
+        <in>alifold.c</in>
+        <in>alipfold.c</in>
+        <in>aln_util.c</in>
+        <in>cofold.c</in>
+        <in>dist_vars.c</in>
+        <in>duplex.c</in>
+        <in>energy_par.c</in>
+        <in>fold.c</in>
+        <in>fold_vars.c</in>
+        <in>inverse.c</in>
+        <in>list.c</in>
+        <in>naview.c</in>
+        <in>params.c</in>
+        <in>part_func.c</in>
+        <in>part_func_co.c</in>
+        <in>part_func_up.c</in>
+        <in>read_epars.c</in>
+        <in>stringdist.c</in>
+        <in>subopt.c</in>
+        <in>treedist.c</in>
+        <in>utils.c</in>
+      </df>
+      <df name="pfold-extras">
+        <in>addparen.c</in>
+        <in>align.c</in>
+        <in>col.c</in>
+        <in>col2fasta.c</in>
+        <in>col2newick.c</in>
+        <in>col2psalign.c</in>
+        <in>col2txtalign.c</in>
+        <in>drawdot.c</in>
+        <in>drawphyl.c</in>
+        <in>edouble.c</in>
+        <in>extendstem.c</in>
+        <in>file.c</in>
+        <in>findphyl.c</in>
+        <in>grammar.c</in>
+        <in>graph.c</in>
+        <in>inout.c</in>
+        <in>llist.c</in>
+        <in>matrix.c</in>
+        <in>mltree.c</in>
+        <in>newcolprob.c</in>
+        <in>newick2col.c</in>
+        <in>nohead.c</in>
+        <in>optimize.c</in>
+        <in>phyl.c</in>
+        <in>rna.c</in>
+        <in>scfg.c</in>
+        <in>search.c</in>
+        <in>stdpair.c</in>
+      </df>
+      <df name="RNAPhylo">
+        <in>RNAPhylo.c</in>
+        <in>get_tm_freq_cache.cpp</in>
+        <in>global.c</in>
+        <in>grammar.c</in>
+        <in>my_matrix.c</in>
+        <in>phytree.c</in>
+      </df>
+    </df>
+    <logicalFolder name="ExternalFiles"
+                   displayName="Important Files"
+                   projectFiles="false"
+                   kind="IMPORTANT_FILES_FOLDER">
+      <itemPath>Makefile</itemPath>
+      <itemPath>configure</itemPath>
+      <itemPath>nbproject/private/launcher.properties</itemPath>
+    </logicalFolder>
+  </logicalFolder>
+  <sourceFolderFilter>^(nbproject)$</sourceFolderFilter>
+  <sourceRootList>
+    <Elem>.</Elem>
+  </sourceRootList>
+  <projectmakefile>Makefile</projectmakefile>
+  <confs>
+    <conf name="Default" type="0">
+      <toolsSet>
+        <compilerSet>default</compilerSet>
+        <dependencyChecking>false</dependencyChecking>
+        <rebuildPropChanged>false</rebuildPropChanged>
+      </toolsSet>
+      <flagsDictionary>
+        <element flagsID="0" commonFlags="-fPIC"/>
+        <element flagsID="1" commonFlags="-fPIC -msse3"/>
+        <element flagsID="2" commonFlags="-msse3"/>
+      </flagsDictionary>
+      <codeAssistance>
+      </codeAssistance>
+      <makefileType>
+        <makeTool>
+          <buildCommandWorkingDir>.</buildCommandWorkingDir>
+          <buildCommand>${MAKE} -f Makefile</buildCommand>
+          <cleanCommand>${MAKE} -f Makefile clean</cleanCommand>
+          <executablePath></executablePath>
+          <ccTool>
+            <preprocessorList>
+              <Elem>HAVE_CONFIG_H</Elem>
+            </preprocessorList>
+          </ccTool>
+        </makeTool>
+        <preBuild>
+          <preBuildCommandWorkingDir>.</preBuildCommandWorkingDir>
+          <preBuildCommand>./configure CC=${IDE_CC} CXX=${IDE_CXX} CFLAGS="-g3 -gdwarf-2" CXXFLAGS="-g3 -gdwarf-2"</preBuildCommand>
+        </preBuild>
+      </makefileType>
+      <item path="RNAPhylo/RNAPhylo.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="RNAPhylo/get_tm_freq_cache.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="RNAPhylo/global.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="RNAPhylo/grammar.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="RNAPhylo/my_matrix.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="RNAPhylo/phytree.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="clustalw1.83/alnscore.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="clustalw1.83/amenu.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="clustalw1.83/calcgapcoeff.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="clustalw1.83/calcprf1.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="clustalw1.83/calcprf2.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="clustalw1.83/calctree.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="clustalw1.83/clustalw.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="clustalw1.83/gcgcheck.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="clustalw1.83/interface.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="clustalw1.83/malign.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="clustalw1.83/pairalign.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="clustalw1.83/prfalign.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="clustalw1.83/random.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="clustalw1.83/readmat.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="clustalw1.83/sequence.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="clustalw1.83/showpair.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="clustalw1.83/trees.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="clustalw1.83/util.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="cmfinder03/align.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="cmfinder03/automaker.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="cmfinder03/cand.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="cmfinder03/canda.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="cmfinder03/candf.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="cmfinder03/cands.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="cmfinder03/cluster.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="cmfinder03/cmfinder.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="cmfinder03/count_seq.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="cmfinder03/diff_motif.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="cmfinder03/em.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="cmfinder03/global.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="cmfinder03/histogram.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="cmfinder03/match_constr.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="cmfinder03/summarize.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="cmfinder04/base_pair_prediction.c" ex="false" tool="0" flavor2="0">
+        <cTool flags="2">
+        </cTool>
+      </item>
+      <item path="cmfinder04/cand.c" ex="false" tool="0" flavor2="0">
+        <cTool flags="2">
+        </cTool>
+      </item>
+      <item path="cmfinder04/cmfinder.c" ex="false" tool="0" flavor2="0">
+        <cTool flags="2">
+        </cTool>
+      </item>
+      <item path="cmfinder04/em.c" ex="false" tool="0" flavor2="0">
+        <cTool flags="2">
+        </cTool>
+      </item>
+      <item path="cmfinder04/from_cmbuild.c" ex="false" tool="0" flavor2="0">
+        <cTool flags="2">
+        </cTool>
+      </item>
+      <item path="cmfinder04/from_cmcalibrate.c" ex="false" tool="0" flavor2="0">
+        <cTool flags="2">
+        </cTool>
+      </item>
+      <item path="cmfinder04/from_cmsearch.c" ex="false" tool="0" flavor2="0">
+        <cTool flags="2">
+        </cTool>
+      </item>
+      <item path="cmfinder04/global.c" ex="false" tool="0" flavor2="0">
+        <cTool flags="2">
+        </cTool>
+      </item>
+      <folder path="0/RNAPhylo">
+        <cTool>
+          <incDir>
+            <pElem>RNAPhylo</pElem>
+            <pElem>lib-infernal-0.7/easel</pElem>
+            <pElem>lib-infernal-0.7/squid</pElem>
+            <pElem>lib-infernal-0.7/src</pElem>
+            <pElem>lib-vienna-1.4</pElem>
+            <pElem>lib-qrna</pElem>
+          </incDir>
+          <preprocessorList>
+            <Elem>HAVE_CONFIG_H</Elem>
+          </preprocessorList>
+        </cTool>
+        <ccTool>
+          <incDir>
+            <pElem>RNAPhylo</pElem>
+            <pElem>lib-infernal-0.7/easel</pElem>
+            <pElem>lib-infernal-0.7/squid</pElem>
+            <pElem>lib-infernal-0.7/src</pElem>
+            <pElem>lib-vienna-1.4</pElem>
+            <pElem>lib-qrna</pElem>
+          </incDir>
+        </ccTool>
+      </folder>
+      <folder path="0/clustalw1.83">
+        <cTool>
+          <incDir>
+            <pElem>clustalw1.83</pElem>
+          </incDir>
+          <preprocessorList>
+            <Elem>HAVE_CONFIG_H</Elem>
+          </preprocessorList>
+        </cTool>
+      </folder>
+      <folder path="0/cmfinder03">
+        <cTool>
+          <incDir>
+            <pElem>lib-infernal-0.7/src</pElem>
+            <pElem>lib-infernal-0.7/easel</pElem>
+            <pElem>lib-infernal-0.7/squid</pElem>
+            <pElem>lib-vienna-1.4</pElem>
+            <pElem>cmfinder03</pElem>
+          </incDir>
+        </cTool>
+      </folder>
+      <folder path="0/cmfinder04">
+        <cTool>
+          <incDir>
+            <pElem>lib-infernal-1.1/easel</pElem>
+            <pElem>lib-infernal-1.1/hmmer/src</pElem>
+            <pElem>lib-infernal-1.1/src</pElem>
+            <pElem>lib-vienna-1.4</pElem>
+          </incDir>
+          <preprocessorList>
+            <Elem>HAVE_CONFIG_H</Elem>
+          </preprocessorList>
+        </cTool>
+      </folder>
+      <folder path="0/hmmpair">
+        <ccTool>
+          <incDir>
+            <pElem>hmmpair</pElem>
+            <pElem>lib-infernal-0.7/easel</pElem>
+            <pElem>lib-infernal-0.7/squid</pElem>
+            <pElem>lib-infernal-0.7/src</pElem>
+            <pElem>lib-vienna-1.7.1</pElem>
+          </incDir>
+          <preprocessorList>
+            <Elem>HAS_MALLOC_OR_DIE</Elem>
+            <Elem>HMMPAIR</Elem>
+            <Elem>SRE_STRICT_ANSI</Elem>
+          </preprocessorList>
+        </ccTool>
+      </folder>
+      <folder path="0/lib-infernal-0.7/easel">
+        <cTool>
+          <incDir>
+            <pElem>lib-infernal-0.7/easel</pElem>
+          </incDir>
+        </cTool>
+      </folder>
+      <folder path="0/lib-infernal-0.7/squid">
+        <cTool>
+          <preprocessorList>
+            <Elem>HAVE_CONFIG_H</Elem>
+          </preprocessorList>
+        </cTool>
+      </folder>
+      <folder path="0/lib-infernal-0.7/src">
+        <cTool>
+          <incDir>
+            <pElem>lib-infernal-0.7/squid</pElem>
+            <pElem>lib-infernal-0.7/easel</pElem>
+          </incDir>
+          <preprocessorList>
+            <Elem>HAVE_CONFIG_H</Elem>
+          </preprocessorList>
+        </cTool>
+      </folder>
+      <folder path="0/lib-infernal-1.1/easel">
+        <cTool>
+          <incDir>
+            <pElem>lib-infernal-1.1/easel</pElem>
+          </incDir>
+        </cTool>
+      </folder>
+      <folder path="0/lib-infernal-1.1/hmmer/libdivsufsort">
+        <cTool>
+          <incDir>
+            <pElem>lib-infernal-1.1/hmmer/libdivsufsort</pElem>
+          </incDir>
+        </cTool>
+      </folder>
+      <folder path="0/lib-infernal-1.1/hmmer/src">
+        <cTool>
+          <incDir>
+            <pElem>lib-infernal-1.1/easel</pElem>
+          </incDir>
+          <preprocessorList>
+            <Elem>HAVE_CONFIG_H</Elem>
+          </preprocessorList>
+        </cTool>
+      </folder>
+      <folder path="0/lib-infernal-1.1/hmmer/src/impl_sse">
+        <cTool>
+          <incDir>
+            <pElem>easel</pElem>
+            <pElem>lib-infernal-1.1/hmmer/src/impl_sse</pElem>
+            <pElem>lib-infernal-1.1/hmmer/src</pElem>
+            <pElem>src</pElem>
+          </incDir>
+        </cTool>
+      </folder>
+      <folder path="0/lib-infernal-1.1/src">
+        <cTool>
+          <incDir>
+            <pElem>lib-infernal-1.1/easel</pElem>
+            <pElem>lib-infernal-1.1/hmmer/src</pElem>
+          </incDir>
+          <preprocessorList>
+            <Elem>HAVE_CONFIG_H</Elem>
+          </preprocessorList>
+        </cTool>
+      </folder>
+      <folder path="0/lib-infernal-1.1/src/impl_sse">
+        <cTool>
+          <incDir>
+            <pElem>lib-infernal-1.1/src/impl_sse</pElem>
+            <pElem>lib-infernal-1.1/src</pElem>
+            <pElem>src</pElem>
+          </incDir>
+        </cTool>
+      </folder>
+      <folder path="0/lib-qrna">
+        <cTool>
+          <incDir>
+            <pElem>lib-infernal-0.7/squid</pElem>
+          </incDir>
+          <preprocessorList>
+            <Elem>HAVE_CONFIG_H</Elem>
+          </preprocessorList>
+        </cTool>
+      </folder>
+      <folder path="0/lib-vienna-1.4">
+        <cTool>
+          <preprocessorList>
+            <Elem>HAVE_CONFIG_H</Elem>
+          </preprocessorList>
+        </cTool>
+      </folder>
+      <folder path="0/lib-vienna-1.7.1">
+        <cTool>
+          <incDir>
+            <pElem>lib-vienna-1.7.1</pElem>
+            <pElem>lib-infernal-1.1/src</pElem>
+            <pElem>lib-infernal-1.1/hmmer/src</pElem>
+            <pElem>lib-infernal-1.1/hmmer/libdivsufsort</pElem>
+            <pElem>lib-infernal-1.1/easel</pElem>
+            <pElem>lib-infernal-0.7/src</pElem>
+            <pElem>lib-infernal-0.7/easel</pElem>
+            <pElem>lib-infernal-0.7/squid</pElem>
+          </incDir>
+          <preprocessorList>
+            <Elem>HAVE_CONFIG_H</Elem>
+          </preprocessorList>
+        </cTool>
+      </folder>
+      <folder path="0/pfold-extras">
+        <cTool>
+          <incDir>
+            <pElem>pfold-extras</pElem>
+          </incDir>
+          <preprocessorList>
+            <Elem>HAVE_CONFIG_H</Elem>
+          </preprocessorList>
+        </cTool>
+      </folder>
+      <item path="hmmpair/AlignmentConsensusAndScoring.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="hmmpair/Cm2HMM.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="hmmpair/Cm2HmmOptimize.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="hmmpair/CommaSepFileReader.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="hmmpair/CovarianceModel.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="hmmpair/GSCConsensus.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="hmmpair/HmmType1.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="hmmpair/InfernalHmm.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="hmmpair/MLHeuristic.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="hmmpair/MarkovModelStats.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="hmmpair/MiscExceptions.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="hmmpair/NaryCounter.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="hmmpair/Optimize.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="hmmpair/PositionsToIgnore.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="hmmpair/ScanHmm.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="hmmpair/SymbolicMath.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="hmmpair/hmmpair.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="lib-infernal-0.7/easel/easel.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="lib-infernal-0.7/easel/esl_alphabet.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+      </item>
+      <item path="lib-infernal-0.7/easel/esl_dirichlet.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+      </item>
+      <item path="lib-infernal-0.7/easel/esl_exponential.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+      </item>
+      <item path="lib-infernal-0.7/easel/esl_fileparser.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+      </item>
+      <item path="lib-infernal-0.7/easel/esl_gamma.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="lib-infernal-0.7/easel/esl_getopts.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+      </item>
+      <item path="lib-infernal-0.7/easel/esl_gev.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="lib-infernal-0.7/easel/esl_gumbel.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+      </item>
+      <item path="lib-infernal-0.7/easel/esl_histogram.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+      </item>
+      <item path="lib-infernal-0.7/easel/esl_hyperexp.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+      </item>
+      <item path="lib-infernal-0.7/easel/esl_keyhash.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+      </item>
+      <item path="lib-infernal-0.7/easel/esl_minimizer.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+      </item>
+      <item path="lib-infernal-0.7/easel/esl_mixgev.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+      </item>
+      <item path="lib-infernal-0.7/easel/esl_msa.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="lib-infernal-0.7/easel/esl_random.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+      </item>
+      <item path="lib-infernal-0.7/easel/esl_regexp.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+      </item>
+      <item path="lib-infernal-0.7/easel/esl_sqio.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="lib-infernal-0.7/easel/esl_stack.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="lib-infernal-0.7/easel/esl_stats.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="lib-infernal-0.7/easel/esl_stretchexp.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+      </item>
+      <item path="lib-infernal-0.7/easel/esl_vectorops.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+      </item>
+      <item path="lib-infernal-0.7/easel/esl_weibull.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+      </item>
+      <item path="lib-infernal-0.7/easel/esl_wuss.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="lib-infernal-0.7/squid/a2m.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="lib-infernal-0.7/squid/aligneval.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="lib-infernal-0.7/squid/alignio.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="lib-infernal-0.7/squid/clustal.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="lib-infernal-0.7/squid/cluster.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="lib-infernal-0.7/squid/dayhoff.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="lib-infernal-0.7/squid/dirichlet.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="lib-infernal-0.7/squid/eps.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="lib-infernal-0.7/squid/file.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="lib-infernal-0.7/squid/getopt.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="lib-infernal-0.7/squid/gki.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="lib-infernal-0.7/squid/hsregex.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="lib-infernal-0.7/squid/iupac.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="lib-infernal-0.7/squid/msa.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="lib-infernal-0.7/squid/msf.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="lib-infernal-0.7/squid/phylip.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="lib-infernal-0.7/squid/revcomp.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="lib-infernal-0.7/squid/rk.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="lib-infernal-0.7/squid/selex.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="lib-infernal-0.7/squid/seqencode.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="lib-infernal-0.7/squid/shuffle.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="lib-infernal-0.7/squid/sqerror.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="lib-infernal-0.7/squid/sqio.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="lib-infernal-0.7/squid/squidcore.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="lib-infernal-0.7/squid/sre_ctype.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="lib-infernal-0.7/squid/sre_math.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="lib-infernal-0.7/squid/sre_random.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+      </item>
+      <item path="lib-infernal-0.7/squid/sre_stack.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="lib-infernal-0.7/squid/sre_string.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+      </item>
+      <item path="lib-infernal-0.7/squid/sreformat_main.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+      </item>
+      <item path="lib-infernal-0.7/squid/ssi.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="lib-infernal-0.7/squid/stockholm.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="lib-infernal-0.7/squid/stopwatch.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="lib-infernal-0.7/squid/translate.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="lib-infernal-0.7/squid/types.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="lib-infernal-0.7/squid/vectorops.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="lib-infernal-0.7/squid/weight.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="lib-infernal-0.7/squid/wuss.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="lib-infernal-0.7/src/CP9_cm2wrhmm.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+      </item>
+      <item path="lib-infernal-0.7/src/CP9_hmmio.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="lib-infernal-0.7/src/CP9_scan.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="lib-infernal-0.7/src/alphabet.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="lib-infernal-0.7/src/bandcyk.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="lib-infernal-0.7/src/cm.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="lib-infernal-0.7/src/cm_eweight.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="lib-infernal-0.7/src/cm_masks.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="lib-infernal-0.7/src/cm_postprob.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="lib-infernal-0.7/src/cmio.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="lib-infernal-0.7/src/cplan9.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="lib-infernal-0.7/src/display.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="lib-infernal-0.7/src/emit.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="lib-infernal-0.7/src/emitmap.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="lib-infernal-0.7/src/globals.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="lib-infernal-0.7/src/hbandcyk.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="lib-infernal-0.7/src/hmmband.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="lib-infernal-0.7/src/modelconfig.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="lib-infernal-0.7/src/modelmaker.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="lib-infernal-0.7/src/parsetree.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="lib-infernal-0.7/src/prior.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="lib-infernal-0.7/src/scancyk.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="lib-infernal-0.7/src/scaninside.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="lib-infernal-0.7/src/smallcyk.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="lib-infernal-0.7/src/sub_cm.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="lib-infernal-1.1/easel/easel.c" ex="false" tool="0" flavor2="0">
+        <cTool flags="1">
+        </cTool>
+      </item>
+      <item path="lib-infernal-1.1/easel/esl_alphabet.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+        <cTool flags="1">
+        </cTool>
+      </item>
+      <item path="lib-infernal-1.1/easel/esl_buffer.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+        <cTool flags="1">
+        </cTool>
+      </item>
+      <item path="lib-infernal-1.1/easel/esl_cluster.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+        <cTool flags="1">
+        </cTool>
+      </item>
+      <item path="lib-infernal-1.1/easel/esl_dirichlet.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+        <cTool flags="1">
+        </cTool>
+      </item>
+      <item path="lib-infernal-1.1/easel/esl_distance.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+        <cTool flags="1">
+        </cTool>
+      </item>
+      <item path="lib-infernal-1.1/easel/esl_dmatrix.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+        <cTool flags="1">
+        </cTool>
+      </item>
+      <item path="lib-infernal-1.1/easel/esl_exponential.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+        <cTool flags="1">
+        </cTool>
+      </item>
+      <item path="lib-infernal-1.1/easel/esl_fileparser.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+        <cTool flags="1">
+        </cTool>
+      </item>
+      <item path="lib-infernal-1.1/easel/esl_gamma.c" ex="false" tool="0" flavor2="0">
+        <cTool flags="1">
+        </cTool>
+      </item>
+      <item path="lib-infernal-1.1/easel/esl_getopts.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+        <cTool flags="1">
+        </cTool>
+      </item>
+      <item path="lib-infernal-1.1/easel/esl_gev.c" ex="false" tool="0" flavor2="0">
+        <cTool flags="1">
+        </cTool>
+      </item>
+      <item path="lib-infernal-1.1/easel/esl_gumbel.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+        <cTool flags="1">
+        </cTool>
+      </item>
+      <item path="lib-infernal-1.1/easel/esl_histogram.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+        <cTool flags="1">
+        </cTool>
+      </item>
+      <item path="lib-infernal-1.1/easel/esl_hmm.c" ex="false" tool="0" flavor2="0">
+        <cTool flags="1">
+        </cTool>
+      </item>
+      <item path="lib-infernal-1.1/easel/esl_hyperexp.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+        <cTool flags="1">
+        </cTool>
+      </item>
+      <item path="lib-infernal-1.1/easel/esl_keyhash.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+        <cTool flags="1">
+        </cTool>
+      </item>
+      <item path="lib-infernal-1.1/easel/esl_mem.c" ex="false" tool="0" flavor2="0">
+        <cTool flags="1">
+        </cTool>
+      </item>
+      <item path="lib-infernal-1.1/easel/esl_minimizer.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+        <cTool flags="1">
+        </cTool>
+      </item>
+      <item path="lib-infernal-1.1/easel/esl_mixgev.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+        <cTool flags="1">
+        </cTool>
+      </item>
+      <item path="lib-infernal-1.1/easel/esl_mpi.c" ex="false" tool="0" flavor2="0">
+        <cTool flags="1">
+        </cTool>
+      </item>
+      <item path="lib-infernal-1.1/easel/esl_msa.c" ex="false" tool="0" flavor2="0">
+        <cTool flags="1">
+        </cTool>
+      </item>
+      <item path="lib-infernal-1.1/easel/esl_msacluster.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+        <cTool flags="1">
+        </cTool>
+      </item>
+      <item path="lib-infernal-1.1/easel/esl_msafile.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+        <cTool flags="1">
+        </cTool>
+      </item>
+      <item path="lib-infernal-1.1/easel/esl_msafile2.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+        <cTool flags="1">
+        </cTool>
+      </item>
+      <item path="lib-infernal-1.1/easel/esl_msafile_a2m.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+        <cTool flags="1">
+        </cTool>
+      </item>
+      <item path="lib-infernal-1.1/easel/esl_msafile_afa.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+        <cTool flags="1">
+        </cTool>
+      </item>
+      <item path="lib-infernal-1.1/easel/esl_msafile_clustal.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+        <cTool flags="1">
+        </cTool>
+      </item>
+      <item path="lib-infernal-1.1/easel/esl_msafile_phylip.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+        <cTool flags="1">
+        </cTool>
+      </item>
+      <item path="lib-infernal-1.1/easel/esl_msafile_psiblast.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+        <cTool flags="1">
+        </cTool>
+      </item>
+      <item path="lib-infernal-1.1/easel/esl_msafile_selex.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+        <cTool flags="1">
+        </cTool>
+      </item>
+      <item path="lib-infernal-1.1/easel/esl_msafile_stockholm.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+        <cTool flags="1">
+        </cTool>
+      </item>
+      <item path="lib-infernal-1.1/easel/esl_msashuffle.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+        <cTool flags="1">
+        </cTool>
+      </item>
+      <item path="lib-infernal-1.1/easel/esl_msaweight.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+        <cTool flags="1">
+        </cTool>
+      </item>
+      <item path="lib-infernal-1.1/easel/esl_normal.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+        <cTool flags="1">
+        </cTool>
+      </item>
+      <item path="lib-infernal-1.1/easel/esl_paml.c" ex="false" tool="0" flavor2="0">
+        <cTool flags="1">
+        </cTool>
+      </item>
+      <item path="lib-infernal-1.1/easel/esl_random.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+        <cTool flags="1">
+        </cTool>
+      </item>
+      <item path="lib-infernal-1.1/easel/esl_randomseq.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+        <cTool flags="1">
+        </cTool>
+      </item>
+      <item path="lib-infernal-1.1/easel/esl_ratematrix.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+        <cTool flags="1">
+        </cTool>
+      </item>
+      <item path="lib-infernal-1.1/easel/esl_recorder.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+        <cTool flags="1">
+        </cTool>
+      </item>
+      <item path="lib-infernal-1.1/easel/esl_regexp.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+        <cTool flags="1">
+        </cTool>
+      </item>
+      <item path="lib-infernal-1.1/easel/esl_rootfinder.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+        <cTool flags="1">
+        </cTool>
+      </item>
+      <item path="lib-infernal-1.1/easel/esl_scorematrix.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+        <cTool flags="1">
+        </cTool>
+      </item>
+      <item path="lib-infernal-1.1/easel/esl_sq.c" ex="false" tool="0" flavor2="0">
+        <cTool flags="1">
+        </cTool>
+      </item>
+      <item path="lib-infernal-1.1/easel/esl_sqio.c" ex="false" tool="0" flavor2="0">
+        <cTool flags="1">
+        </cTool>
+      </item>
+      <item path="lib-infernal-1.1/easel/esl_sqio_ascii.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+        <cTool flags="1">
+        </cTool>
+      </item>
+      <item path="lib-infernal-1.1/easel/esl_sqio_ncbi.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+        <cTool flags="1">
+        </cTool>
+      </item>
+      <item path="lib-infernal-1.1/easel/esl_sse.c" ex="false" tool="0" flavor2="0">
+        <cTool flags="1">
+        </cTool>
+      </item>
+      <item path="lib-infernal-1.1/easel/esl_ssi.c" ex="false" tool="0" flavor2="0">
+        <cTool flags="1">
+        </cTool>
+      </item>
+      <item path="lib-infernal-1.1/easel/esl_stack.c" ex="false" tool="0" flavor2="0">
+        <cTool flags="1">
+        </cTool>
+      </item>
+      <item path="lib-infernal-1.1/easel/esl_stats.c" ex="false" tool="0" flavor2="0">
+        <cTool flags="1">
+        </cTool>
+      </item>
+      <item path="lib-infernal-1.1/easel/esl_stopwatch.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+        <cTool flags="1">
+        </cTool>
+      </item>
+      <item path="lib-infernal-1.1/easel/esl_stretchexp.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+        <cTool flags="1">
+        </cTool>
+      </item>
+      <item path="lib-infernal-1.1/easel/esl_threads.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+        <cTool flags="1">
+        </cTool>
+      </item>
+      <item path="lib-infernal-1.1/easel/esl_tree.c" ex="false" tool="0" flavor2="0">
+        <cTool flags="1">
+        </cTool>
+      </item>
+      <item path="lib-infernal-1.1/easel/esl_vectorops.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+        <cTool flags="1">
+        </cTool>
+      </item>
+      <item path="lib-infernal-1.1/easel/esl_vmx.c" ex="false" tool="0" flavor2="0">
+        <cTool flags="1">
+        </cTool>
+      </item>
+      <item path="lib-infernal-1.1/easel/esl_weibull.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+        <cTool flags="1">
+        </cTool>
+      </item>
+      <item path="lib-infernal-1.1/easel/esl_workqueue.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+        <cTool flags="1">
+        </cTool>
+      </item>
+      <item path="lib-infernal-1.1/easel/esl_wuss.c" ex="false" tool="0" flavor2="0">
+        <cTool flags="1">
+        </cTool>
+      </item>
+      <item path="lib-infernal-1.1/hmmer/libdivsufsort/divsufsort.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+        <cTool flags="0">
+        </cTool>
+      </item>
+      <item path="lib-infernal-1.1/hmmer/src/build.c" ex="false" tool="0" flavor2="0">
+        <cTool flags="1">
+          <incDir>
+            <pElem>lib-infernal-1.1/hmmer/libdivsufsort</pElem>
+            <pElem>easel</pElem>
+            <pElem>lib-infernal-1.1/hmmer/src</pElem>
+          </incDir>
+        </cTool>
+      </item>
+      <item path="lib-infernal-1.1/hmmer/src/cachedb.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+        <cTool flags="1">
+          <incDir>
+            <pElem>lib-infernal-1.1/hmmer/libdivsufsort</pElem>
+            <pElem>easel</pElem>
+            <pElem>lib-infernal-1.1/hmmer/src</pElem>
+          </incDir>
+        </cTool>
+      </item>
+      <item path="lib-infernal-1.1/hmmer/src/emit.c" ex="false" tool="0" flavor2="0">
+        <cTool flags="1">
+          <incDir>
+            <pElem>lib-infernal-1.1/hmmer/libdivsufsort</pElem>
+            <pElem>easel</pElem>
+            <pElem>lib-infernal-1.1/hmmer/src</pElem>
+          </incDir>
+        </cTool>
+      </item>
+      <item path="lib-infernal-1.1/hmmer/src/errors.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+        <cTool flags="1">
+          <incDir>
+            <pElem>lib-infernal-1.1/hmmer/libdivsufsort</pElem>
+            <pElem>easel</pElem>
+            <pElem>lib-infernal-1.1/hmmer/src</pElem>
+          </incDir>
+        </cTool>
+      </item>
+      <item path="lib-infernal-1.1/hmmer/src/evalues.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+        <cTool flags="1">
+          <incDir>
+            <pElem>lib-infernal-1.1/hmmer/libdivsufsort</pElem>
+            <pElem>easel</pElem>
+            <pElem>lib-infernal-1.1/hmmer/src</pElem>
+          </incDir>
+        </cTool>
+      </item>
+      <item path="lib-infernal-1.1/hmmer/src/eweight.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+        <cTool flags="1">
+          <incDir>
+            <pElem>lib-infernal-1.1/hmmer/libdivsufsort</pElem>
+            <pElem>easel</pElem>
+            <pElem>lib-infernal-1.1/hmmer/src</pElem>
+          </incDir>
+        </cTool>
+      </item>
+      <item path="lib-infernal-1.1/hmmer/src/fm_alphabet.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+        <cTool flags="1">
+          <incDir>
+            <pElem>lib-infernal-1.1/hmmer/libdivsufsort</pElem>
+            <pElem>easel</pElem>
+            <pElem>lib-infernal-1.1/hmmer/src</pElem>
+          </incDir>
+        </cTool>
+      </item>
+      <item path="lib-infernal-1.1/hmmer/src/fm_general.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+        <cTool flags="1">
+          <incDir>
+            <pElem>lib-infernal-1.1/hmmer/libdivsufsort</pElem>
+            <pElem>easel</pElem>
+            <pElem>lib-infernal-1.1/hmmer/src</pElem>
+          </incDir>
+        </cTool>
+      </item>
+      <item path="lib-infernal-1.1/hmmer/src/fm_msv.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+        <cTool flags="1">
+          <incDir>
+            <pElem>lib-infernal-1.1/hmmer/libdivsufsort</pElem>
+            <pElem>easel</pElem>
+            <pElem>lib-infernal-1.1/hmmer/src</pElem>
+          </incDir>
+        </cTool>
+      </item>
+      <item path="lib-infernal-1.1/hmmer/src/generic_decoding.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+        <cTool flags="1">
+          <incDir>
+            <pElem>lib-infernal-1.1/hmmer/libdivsufsort</pElem>
+            <pElem>easel</pElem>
+            <pElem>lib-infernal-1.1/hmmer/src</pElem>
+          </incDir>
+        </cTool>
+      </item>
+      <item path="lib-infernal-1.1/hmmer/src/generic_fwdback.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+        <cTool flags="1">
+          <incDir>
+            <pElem>lib-infernal-1.1/hmmer/libdivsufsort</pElem>
+            <pElem>easel</pElem>
+            <pElem>lib-infernal-1.1/hmmer/src</pElem>
+          </incDir>
+        </cTool>
+      </item>
+      <item path="lib-infernal-1.1/hmmer/src/generic_fwdback_banded.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+        <cTool flags="1">
+          <incDir>
+            <pElem>lib-infernal-1.1/hmmer/libdivsufsort</pElem>
+            <pElem>easel</pElem>
+            <pElem>lib-infernal-1.1/hmmer/src</pElem>
+          </incDir>
+        </cTool>
+      </item>
+      <item path="lib-infernal-1.1/hmmer/src/generic_fwdback_chk.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+        <cTool flags="1">
+          <incDir>
+            <pElem>lib-infernal-1.1/hmmer/libdivsufsort</pElem>
+            <pElem>easel</pElem>
+            <pElem>lib-infernal-1.1/hmmer/src</pElem>
+          </incDir>
+        </cTool>
+      </item>
+      <item path="lib-infernal-1.1/hmmer/src/generic_msv.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+        <cTool flags="1">
+          <incDir>
+            <pElem>lib-infernal-1.1/hmmer/libdivsufsort</pElem>
+            <pElem>easel</pElem>
+            <pElem>lib-infernal-1.1/hmmer/src</pElem>
+          </incDir>
+        </cTool>
+      </item>
+      <item path="lib-infernal-1.1/hmmer/src/generic_null2.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+        <cTool flags="1">
+          <incDir>
+            <pElem>lib-infernal-1.1/hmmer/libdivsufsort</pElem>
+            <pElem>easel</pElem>
+            <pElem>lib-infernal-1.1/hmmer/src</pElem>
+          </incDir>
+        </cTool>
+      </item>
+      <item path="lib-infernal-1.1/hmmer/src/generic_optacc.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+        <cTool flags="1">
+          <incDir>
+            <pElem>lib-infernal-1.1/hmmer/libdivsufsort</pElem>
+            <pElem>easel</pElem>
+            <pElem>lib-infernal-1.1/hmmer/src</pElem>
+          </incDir>
+        </cTool>
+      </item>
+      <item path="lib-infernal-1.1/hmmer/src/generic_stotrace.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+        <cTool flags="1">
+          <incDir>
+            <pElem>lib-infernal-1.1/hmmer/libdivsufsort</pElem>
+            <pElem>easel</pElem>
+            <pElem>lib-infernal-1.1/hmmer/src</pElem>
+          </incDir>
+        </cTool>
+      </item>
+      <item path="lib-infernal-1.1/hmmer/src/generic_viterbi.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+        <cTool flags="1">
+          <incDir>
+            <pElem>lib-infernal-1.1/hmmer/libdivsufsort</pElem>
+            <pElem>easel</pElem>
+            <pElem>lib-infernal-1.1/hmmer/src</pElem>
+          </incDir>
+        </cTool>
+      </item>
+      <item path="lib-infernal-1.1/hmmer/src/generic_vtrace.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+        <cTool flags="1">
+          <incDir>
+            <pElem>lib-infernal-1.1/hmmer/libdivsufsort</pElem>
+            <pElem>easel</pElem>
+            <pElem>lib-infernal-1.1/hmmer/src</pElem>
+          </incDir>
+        </cTool>
+      </item>
+      <item path="lib-infernal-1.1/hmmer/src/h2_io.c" ex="false" tool="0" flavor2="0">
+        <cTool flags="1">
+          <incDir>
+            <pElem>lib-infernal-1.1/hmmer/libdivsufsort</pElem>
+            <pElem>easel</pElem>
+            <pElem>lib-infernal-1.1/hmmer/src</pElem>
+          </incDir>
+        </cTool>
+      </item>
+      <item path="lib-infernal-1.1/hmmer/src/heatmap.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+        <cTool flags="1">
+          <incDir>
+            <pElem>lib-infernal-1.1/hmmer/libdivsufsort</pElem>
+            <pElem>easel</pElem>
+            <pElem>lib-infernal-1.1/hmmer/src</pElem>
+          </incDir>
+        </cTool>
+      </item>
+      <item path="lib-infernal-1.1/hmmer/src/hmmdmstr.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+        <cTool flags="1">
+          <incDir>
+            <pElem>lib-infernal-1.1/hmmer/libdivsufsort</pElem>
+            <pElem>easel</pElem>
+            <pElem>lib-infernal-1.1/hmmer/src</pElem>
+          </incDir>
+        </cTool>
+      </item>
+      <item path="lib-infernal-1.1/hmmer/src/hmmdutils.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+        <cTool flags="1">
+          <incDir>
+            <pElem>lib-infernal-1.1/hmmer/libdivsufsort</pElem>
+            <pElem>easel</pElem>
+            <pElem>lib-infernal-1.1/hmmer/src</pElem>
+          </incDir>
+        </cTool>
+      </item>
+      <item path="lib-infernal-1.1/hmmer/src/hmmdwrkr.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+        <cTool flags="1">
+          <incDir>
+            <pElem>lib-infernal-1.1/hmmer/libdivsufsort</pElem>
+            <pElem>easel</pElem>
+            <pElem>lib-infernal-1.1/hmmer/src</pElem>
+          </incDir>
+        </cTool>
+      </item>
+      <item path="lib-infernal-1.1/hmmer/src/hmmer.c" ex="false" tool="0" flavor2="0">
+        <cTool flags="1">
+          <incDir>
+            <pElem>lib-infernal-1.1/hmmer/libdivsufsort</pElem>
+            <pElem>easel</pElem>
+            <pElem>lib-infernal-1.1/hmmer/src</pElem>
+          </incDir>
+        </cTool>
+      </item>
+      <item path="lib-infernal-1.1/hmmer/src/hmmlogo.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+        <cTool flags="1">
+          <incDir>
+            <pElem>lib-infernal-1.1/hmmer/libdivsufsort</pElem>
+            <pElem>easel</pElem>
+            <pElem>lib-infernal-1.1/hmmer/src</pElem>
+          </incDir>
+        </cTool>
+      </item>
+      <item path="lib-infernal-1.1/hmmer/src/hmmpgmd2msa.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+        <cTool flags="1">
+          <incDir>
+            <pElem>lib-infernal-1.1/hmmer/libdivsufsort</pElem>
+            <pElem>easel</pElem>
+            <pElem>lib-infernal-1.1/hmmer/src</pElem>
+          </incDir>
+        </cTool>
+      </item>
+      <item path="lib-infernal-1.1/hmmer/src/impl_sse/decoding.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+        <cTool flags="1">
+        </cTool>
+      </item>
+      <item path="lib-infernal-1.1/hmmer/src/impl_sse/fm.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+        <cTool flags="1">
+        </cTool>
+      </item>
+      <item path="lib-infernal-1.1/hmmer/src/impl_sse/fwdback.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+        <cTool flags="1">
+        </cTool>
+      </item>
+      <item path="lib-infernal-1.1/hmmer/src/impl_sse/io.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+        <cTool flags="1">
+        </cTool>
+      </item>
+      <item path="lib-infernal-1.1/hmmer/src/impl_sse/mpi.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+        <cTool flags="1">
+        </cTool>
+      </item>
+      <item path="lib-infernal-1.1/hmmer/src/impl_sse/msvfilter.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+        <cTool flags="1">
+        </cTool>
+      </item>
+      <item path="lib-infernal-1.1/hmmer/src/impl_sse/null2.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+        <cTool flags="1">
+        </cTool>
+      </item>
+      <item path="lib-infernal-1.1/hmmer/src/impl_sse/optacc.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+        <cTool flags="1">
+        </cTool>
+      </item>
+      <item path="lib-infernal-1.1/hmmer/src/impl_sse/p7_omx.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+        <cTool flags="1">
+        </cTool>
+      </item>
+      <item path="lib-infernal-1.1/hmmer/src/impl_sse/p7_oprofile.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+        <cTool flags="1">
+        </cTool>
+      </item>
+      <item path="lib-infernal-1.1/hmmer/src/impl_sse/ssvfilter.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+        <cTool flags="1">
+        </cTool>
+      </item>
+      <item path="lib-infernal-1.1/hmmer/src/impl_sse/stotrace.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+        <cTool flags="1">
+        </cTool>
+      </item>
+      <item path="lib-infernal-1.1/hmmer/src/impl_sse/vitfilter.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+        <cTool flags="1">
+        </cTool>
+      </item>
+      <item path="lib-infernal-1.1/hmmer/src/logsum.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+        <cTool flags="1">
+          <incDir>
+            <pElem>lib-infernal-1.1/hmmer/libdivsufsort</pElem>
+            <pElem>easel</pElem>
+            <pElem>lib-infernal-1.1/hmmer/src</pElem>
+          </incDir>
+        </cTool>
+      </item>
+      <item path="lib-infernal-1.1/hmmer/src/modelconfig.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+        <cTool flags="1">
+          <incDir>
+            <pElem>lib-infernal-1.1/hmmer/libdivsufsort</pElem>
+            <pElem>easel</pElem>
+            <pElem>lib-infernal-1.1/hmmer/src</pElem>
+          </incDir>
+        </cTool>
+      </item>
+      <item path="lib-infernal-1.1/hmmer/src/modelstats.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+        <cTool flags="1">
+          <incDir>
+            <pElem>lib-infernal-1.1/hmmer/libdivsufsort</pElem>
+            <pElem>easel</pElem>
+            <pElem>lib-infernal-1.1/hmmer/src</pElem>
+          </incDir>
+        </cTool>
+      </item>
+      <item path="lib-infernal-1.1/hmmer/src/mpisupport.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+        <cTool flags="1">
+          <incDir>
+            <pElem>lib-infernal-1.1/hmmer/libdivsufsort</pElem>
+            <pElem>easel</pElem>
+            <pElem>lib-infernal-1.1/hmmer/src</pElem>
+          </incDir>
+        </cTool>
+      </item>
+      <item path="lib-infernal-1.1/hmmer/src/p7_alidisplay.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+        <cTool flags="1">
+          <incDir>
+            <pElem>lib-infernal-1.1/hmmer/libdivsufsort</pElem>
+            <pElem>easel</pElem>
+            <pElem>lib-infernal-1.1/hmmer/src</pElem>
+          </incDir>
+        </cTool>
+      </item>
+      <item path="lib-infernal-1.1/hmmer/src/p7_bg.c" ex="false" tool="0" flavor2="0">
+        <cTool flags="1">
+          <incDir>
+            <pElem>lib-infernal-1.1/hmmer/libdivsufsort</pElem>
+            <pElem>easel</pElem>
+            <pElem>lib-infernal-1.1/hmmer/src</pElem>
+          </incDir>
+        </cTool>
+      </item>
+      <item path="lib-infernal-1.1/hmmer/src/p7_builder.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+        <cTool flags="1">
+          <incDir>
+            <pElem>lib-infernal-1.1/hmmer/libdivsufsort</pElem>
+            <pElem>easel</pElem>
+            <pElem>lib-infernal-1.1/hmmer/src</pElem>
+          </incDir>
+        </cTool>
+      </item>
+      <item path="lib-infernal-1.1/hmmer/src/p7_domaindef.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+        <cTool flags="1">
+          <incDir>
+            <pElem>lib-infernal-1.1/hmmer/libdivsufsort</pElem>
+            <pElem>easel</pElem>
+            <pElem>lib-infernal-1.1/hmmer/src</pElem>
+          </incDir>
+        </cTool>
+      </item>
+      <item path="lib-infernal-1.1/hmmer/src/p7_gbands.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+        <cTool flags="1">
+          <incDir>
+            <pElem>lib-infernal-1.1/hmmer/libdivsufsort</pElem>
+            <pElem>easel</pElem>
+            <pElem>lib-infernal-1.1/hmmer/src</pElem>
+          </incDir>
+        </cTool>
+      </item>
+      <item path="lib-infernal-1.1/hmmer/src/p7_gmx.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+        <cTool flags="1">
+          <incDir>
+            <pElem>lib-infernal-1.1/hmmer/libdivsufsort</pElem>
+            <pElem>easel</pElem>
+            <pElem>lib-infernal-1.1/hmmer/src</pElem>
+          </incDir>
+        </cTool>
+      </item>
+      <item path="lib-infernal-1.1/hmmer/src/p7_gmxb.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+        <cTool flags="1">
+          <incDir>
+            <pElem>lib-infernal-1.1/hmmer/libdivsufsort</pElem>
+            <pElem>easel</pElem>
+            <pElem>lib-infernal-1.1/hmmer/src</pElem>
+          </incDir>
+        </cTool>
+      </item>
+      <item path="lib-infernal-1.1/hmmer/src/p7_gmxchk.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+        <cTool flags="1">
+          <incDir>
+            <pElem>lib-infernal-1.1/hmmer/libdivsufsort</pElem>
+            <pElem>easel</pElem>
+            <pElem>lib-infernal-1.1/hmmer/src</pElem>
+          </incDir>
+        </cTool>
+      </item>
+      <item path="lib-infernal-1.1/hmmer/src/p7_hmm.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+        <cTool flags="1">
+          <incDir>
+            <pElem>lib-infernal-1.1/hmmer/libdivsufsort</pElem>
+            <pElem>easel</pElem>
+            <pElem>lib-infernal-1.1/hmmer/src</pElem>
+          </incDir>
+        </cTool>
+      </item>
+      <item path="lib-infernal-1.1/hmmer/src/p7_hmmcache.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+        <cTool flags="1">
+          <incDir>
+            <pElem>lib-infernal-1.1/hmmer/libdivsufsort</pElem>
+            <pElem>easel</pElem>
+            <pElem>lib-infernal-1.1/hmmer/src</pElem>
+          </incDir>
+        </cTool>
+      </item>
+      <item path="lib-infernal-1.1/hmmer/src/p7_hmmfile.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+        <cTool flags="1">
+          <incDir>
+            <pElem>lib-infernal-1.1/hmmer/libdivsufsort</pElem>
+            <pElem>easel</pElem>
+            <pElem>lib-infernal-1.1/hmmer/src</pElem>
+          </incDir>
+        </cTool>
+      </item>
+      <item path="lib-infernal-1.1/hmmer/src/p7_hmmwindow.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+        <cTool flags="1">
+          <incDir>
+            <pElem>lib-infernal-1.1/hmmer/libdivsufsort</pElem>
+            <pElem>easel</pElem>
+            <pElem>lib-infernal-1.1/hmmer/src</pElem>
+          </incDir>
+        </cTool>
+      </item>
+      <item path="lib-infernal-1.1/hmmer/src/p7_msvdata.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+        <cTool flags="1">
+          <incDir>
+            <pElem>lib-infernal-1.1/hmmer/libdivsufsort</pElem>
+            <pElem>easel</pElem>
+            <pElem>lib-infernal-1.1/hmmer/src</pElem>
+          </incDir>
+        </cTool>
+      </item>
+      <item path="lib-infernal-1.1/hmmer/src/p7_null3.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+        <cTool flags="1">
+          <incDir>
+            <pElem>lib-infernal-1.1/hmmer/libdivsufsort</pElem>
+            <pElem>easel</pElem>
+            <pElem>lib-infernal-1.1/hmmer/src</pElem>
+          </incDir>
+        </cTool>
+      </item>
+      <item path="lib-infernal-1.1/hmmer/src/p7_pipeline.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+        <cTool flags="1">
+          <incDir>
+            <pElem>lib-infernal-1.1/hmmer/libdivsufsort</pElem>
+            <pElem>easel</pElem>
+            <pElem>lib-infernal-1.1/hmmer/src</pElem>
+          </incDir>
+        </cTool>
+      </item>
+      <item path="lib-infernal-1.1/hmmer/src/p7_prior.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+        <cTool flags="1">
+          <incDir>
+            <pElem>lib-infernal-1.1/hmmer/libdivsufsort</pElem>
+            <pElem>easel</pElem>
+            <pElem>lib-infernal-1.1/hmmer/src</pElem>
+          </incDir>
+        </cTool>
+      </item>
+      <item path="lib-infernal-1.1/hmmer/src/p7_profile.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+        <cTool flags="1">
+          <incDir>
+            <pElem>lib-infernal-1.1/hmmer/libdivsufsort</pElem>
+            <pElem>easel</pElem>
+            <pElem>lib-infernal-1.1/hmmer/src</pElem>
+          </incDir>
+        </cTool>
+      </item>
+      <item path="lib-infernal-1.1/hmmer/src/p7_spensemble.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+        <cTool flags="1">
+          <incDir>
+            <pElem>lib-infernal-1.1/hmmer/libdivsufsort</pElem>
+            <pElem>easel</pElem>
+            <pElem>lib-infernal-1.1/hmmer/src</pElem>
+          </incDir>
+        </cTool>
+      </item>
+      <item path="lib-infernal-1.1/hmmer/src/p7_tophits.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+        <cTool flags="1">
+          <incDir>
+            <pElem>lib-infernal-1.1/hmmer/libdivsufsort</pElem>
+            <pElem>easel</pElem>
+            <pElem>lib-infernal-1.1/hmmer/src</pElem>
+          </incDir>
+        </cTool>
+      </item>
+      <item path="lib-infernal-1.1/hmmer/src/p7_trace.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+        <cTool flags="1">
+          <incDir>
+            <pElem>lib-infernal-1.1/hmmer/libdivsufsort</pElem>
+            <pElem>easel</pElem>
+            <pElem>lib-infernal-1.1/hmmer/src</pElem>
+          </incDir>
+        </cTool>
+      </item>
+      <item path="lib-infernal-1.1/hmmer/src/seqmodel.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+        <cTool flags="1">
+          <incDir>
+            <pElem>lib-infernal-1.1/hmmer/libdivsufsort</pElem>
+            <pElem>easel</pElem>
+            <pElem>lib-infernal-1.1/hmmer/src</pElem>
+          </incDir>
+        </cTool>
+      </item>
+      <item path="lib-infernal-1.1/hmmer/src/tracealign.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+        <cTool flags="1">
+          <incDir>
+            <pElem>lib-infernal-1.1/hmmer/libdivsufsort</pElem>
+            <pElem>easel</pElem>
+            <pElem>lib-infernal-1.1/hmmer/src</pElem>
+          </incDir>
+        </cTool>
+      </item>
+      <item path="lib-infernal-1.1/src/alphabet.c" ex="false" tool="0" flavor2="0">
+        <cTool flags="2">
+          <incDir>
+            <pElem>lib-infernal-1.1/src</pElem>
+          </incDir>
+        </cTool>
+      </item>
+      <item path="lib-infernal-1.1/src/bandcyk-montecarlo-test.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+        <cTool flags="2">
+          <incDir>
+            <pElem>lib-infernal-1.1/src</pElem>
+          </incDir>
+        </cTool>
+      </item>
+      <item path="lib-infernal-1.1/src/bandcyk-truncation-test.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+        <cTool flags="2">
+          <incDir>
+            <pElem>lib-infernal-1.1/src</pElem>
+          </incDir>
+        </cTool>
+      </item>
+      <item path="lib-infernal-1.1/src/cm.c" ex="false" tool="0" flavor2="0">
+        <cTool flags="2">
+          <incDir>
+            <pElem>lib-infernal-1.1/src</pElem>
+          </incDir>
+        </cTool>
+      </item>
+      <item path="lib-infernal-1.1/src/cm_alidisplay.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+        <cTool flags="2">
+          <incDir>
+            <pElem>lib-infernal-1.1/src</pElem>
+          </incDir>
+        </cTool>
+      </item>
+      <item path="lib-infernal-1.1/src/cm_alndata.c" ex="false" tool="0" flavor2="0">
+        <cTool flags="2">
+          <incDir>
+            <pElem>lib-infernal-1.1/src</pElem>
+          </incDir>
+        </cTool>
+      </item>
+      <item path="lib-infernal-1.1/src/cm_dpalign.c" ex="false" tool="0" flavor2="0">
+        <cTool flags="2">
+          <incDir>
+            <pElem>lib-infernal-1.1/src</pElem>
+          </incDir>
+        </cTool>
+      </item>
+      <item path="lib-infernal-1.1/src/cm_dpalign_trunc.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+        <cTool flags="2">
+          <incDir>
+            <pElem>lib-infernal-1.1/src</pElem>
+          </incDir>
+        </cTool>
+      </item>
+      <item path="lib-infernal-1.1/src/cm_dpsearch.c" ex="false" tool="0" flavor2="0">
+        <cTool flags="2">
+          <incDir>
+            <pElem>lib-infernal-1.1/src</pElem>
+          </incDir>
+        </cTool>
+      </item>
+      <item path="lib-infernal-1.1/src/cm_dpsearch_trunc.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+        <cTool flags="2">
+          <incDir>
+            <pElem>lib-infernal-1.1/src</pElem>
+          </incDir>
+        </cTool>
+      </item>
+      <item path="lib-infernal-1.1/src/cm_dpsmall.c" ex="false" tool="0" flavor2="0">
+        <cTool flags="2">
+          <incDir>
+            <pElem>lib-infernal-1.1/src</pElem>
+          </incDir>
+        </cTool>
+      </item>
+      <item path="lib-infernal-1.1/src/cm_file.c" ex="false" tool="0" flavor2="0">
+        <cTool flags="2">
+          <incDir>
+            <pElem>lib-infernal-1.1/src</pElem>
+          </incDir>
+        </cTool>
+      </item>
+      <item path="lib-infernal-1.1/src/cm_modelconfig.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+        <cTool flags="2">
+          <incDir>
+            <pElem>lib-infernal-1.1/src</pElem>
+          </incDir>
+        </cTool>
+      </item>
+      <item path="lib-infernal-1.1/src/cm_modelmaker.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+        <cTool flags="2">
+          <incDir>
+            <pElem>lib-infernal-1.1/src</pElem>
+          </incDir>
+        </cTool>
+      </item>
+      <item path="lib-infernal-1.1/src/cm_mx.c" ex="false" tool="0" flavor2="0">
+        <cTool flags="2">
+          <incDir>
+            <pElem>lib-infernal-1.1/src</pElem>
+          </incDir>
+        </cTool>
+      </item>
+      <item path="lib-infernal-1.1/src/cm_p7_band.c" ex="false" tool="0" flavor2="0">
+        <cTool flags="2">
+          <incDir>
+            <pElem>lib-infernal-1.1/src</pElem>
+          </incDir>
+        </cTool>
+      </item>
+      <item path="lib-infernal-1.1/src/cm_p7_domaindef.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+        <cTool flags="2">
+          <incDir>
+            <pElem>lib-infernal-1.1/src</pElem>
+          </incDir>
+        </cTool>
+      </item>
+      <item path="lib-infernal-1.1/src/cm_p7_modelconfig_trunc.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+        <cTool flags="2">
+          <incDir>
+            <pElem>lib-infernal-1.1/src</pElem>
+          </incDir>
+        </cTool>
+      </item>
+      <item path="lib-infernal-1.1/src/cm_p7_modelmaker.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+        <cTool flags="2">
+          <incDir>
+            <pElem>lib-infernal-1.1/src</pElem>
+          </incDir>
+        </cTool>
+      </item>
+      <item path="lib-infernal-1.1/src/cm_parsetree.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+        <cTool flags="2">
+          <incDir>
+            <pElem>lib-infernal-1.1/src</pElem>
+          </incDir>
+        </cTool>
+      </item>
+      <item path="lib-infernal-1.1/src/cm_pipeline.c" ex="false" tool="0" flavor2="0">
+        <cTool flags="2">
+          <incDir>
+            <pElem>lib-infernal-1.1/src</pElem>
+          </incDir>
+        </cTool>
+      </item>
+      <item path="lib-infernal-1.1/src/cm_qdband.c" ex="false" tool="0" flavor2="0">
+        <cTool flags="2">
+          <incDir>
+            <pElem>lib-infernal-1.1/src</pElem>
+          </incDir>
+        </cTool>
+      </item>
+      <item path="lib-infernal-1.1/src/cm_submodel.c" ex="false" tool="0" flavor2="0">
+        <cTool flags="2">
+          <incDir>
+            <pElem>lib-infernal-1.1/src</pElem>
+          </incDir>
+        </cTool>
+      </item>
+      <item path="lib-infernal-1.1/src/cm_tophits.c" ex="false" tool="0" flavor2="0">
+        <cTool flags="2">
+          <incDir>
+            <pElem>lib-infernal-1.1/src</pElem>
+          </incDir>
+        </cTool>
+      </item>
+      <item path="lib-infernal-1.1/src/cm_trunc.c" ex="false" tool="0" flavor2="0">
+        <cTool flags="2">
+          <incDir>
+            <pElem>lib-infernal-1.1/src</pElem>
+          </incDir>
+        </cTool>
+      </item>
+      <item path="lib-infernal-1.1/src/cmalign.c" ex="false" tool="0" flavor2="0">
+        <cTool flags="2">
+          <incDir>
+            <pElem>lib-infernal-1.1/src</pElem>
+          </incDir>
+        </cTool>
+      </item>
+      <item path="lib-infernal-1.1/src/cmbuild.c" ex="false" tool="0" flavor2="0">
+        <cTool flags="2">
+          <incDir>
+            <pElem>lib-infernal-1.1/src</pElem>
+          </incDir>
+        </cTool>
+      </item>
+      <item path="lib-infernal-1.1/src/cmcalibrate.c" ex="false" tool="0" flavor2="0">
+        <cTool flags="2">
+          <incDir>
+            <pElem>lib-infernal-1.1/src</pElem>
+          </incDir>
+        </cTool>
+      </item>
+      <item path="lib-infernal-1.1/src/cmconvert.c" ex="false" tool="0" flavor2="0">
+        <cTool flags="2">
+          <incDir>
+            <pElem>lib-infernal-1.1/src</pElem>
+          </incDir>
+        </cTool>
+      </item>
+      <item path="lib-infernal-1.1/src/cmemit.c" ex="false" tool="0" flavor2="0">
+        <cTool flags="2">
+          <incDir>
+            <pElem>lib-infernal-1.1/src</pElem>
+          </incDir>
+        </cTool>
+      </item>
+      <item path="lib-infernal-1.1/src/cmfetch.c" ex="false" tool="0" flavor2="0">
+        <cTool flags="2">
+          <incDir>
+            <pElem>lib-infernal-1.1/src</pElem>
+          </incDir>
+        </cTool>
+      </item>
+      <item path="lib-infernal-1.1/src/cmpress.c" ex="false" tool="0" flavor2="0">
+        <cTool flags="2">
+          <incDir>
+            <pElem>lib-infernal-1.1/src</pElem>
+          </incDir>
+        </cTool>
+      </item>
+      <item path="lib-infernal-1.1/src/cmscan.c" ex="false" tool="0" flavor2="0">
+        <cTool flags="2">
+          <incDir>
+            <pElem>lib-infernal-1.1/src</pElem>
+          </incDir>
+        </cTool>
+      </item>
+      <item path="lib-infernal-1.1/src/cmsearch.c" ex="false" tool="0" flavor2="0">
+        <cTool flags="2">
+          <incDir>
+            <pElem>lib-infernal-1.1/src</pElem>
+          </incDir>
+        </cTool>
+      </item>
+      <item path="lib-infernal-1.1/src/cmstat.c" ex="false" tool="0" flavor2="0">
+        <cTool flags="2">
+          <incDir>
+            <pElem>lib-infernal-1.1/src</pElem>
+          </incDir>
+        </cTool>
+      </item>
+      <item path="lib-infernal-1.1/src/cp9-test.c" ex="false" tool="0" flavor2="0">
+        <cTool flags="2">
+          <incDir>
+            <pElem>lib-infernal-1.1/src</pElem>
+          </incDir>
+        </cTool>
+      </item>
+      <item path="lib-infernal-1.1/src/cp9.c" ex="false" tool="0" flavor2="0">
+        <cTool flags="2">
+          <incDir>
+            <pElem>lib-infernal-1.1/src</pElem>
+          </incDir>
+        </cTool>
+      </item>
+      <item path="lib-infernal-1.1/src/cp9_dp.c" ex="false" tool="0" flavor2="0">
+        <cTool flags="2">
+          <incDir>
+            <pElem>lib-infernal-1.1/src</pElem>
+          </incDir>
+        </cTool>
+      </item>
+      <item path="lib-infernal-1.1/src/cp9_modelmaker.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+        <cTool flags="2">
+          <incDir>
+            <pElem>lib-infernal-1.1/src</pElem>
+          </incDir>
+        </cTool>
+      </item>
+      <item path="lib-infernal-1.1/src/cp9_mx.c" ex="false" tool="0" flavor2="0">
+        <cTool flags="2">
+          <incDir>
+            <pElem>lib-infernal-1.1/src</pElem>
+          </incDir>
+        </cTool>
+      </item>
+      <item path="lib-infernal-1.1/src/cp9_trace.c" ex="false" tool="0" flavor2="0">
+        <cTool flags="2">
+          <incDir>
+            <pElem>lib-infernal-1.1/src</pElem>
+          </incDir>
+        </cTool>
+      </item>
+      <item path="lib-infernal-1.1/src/display.c" ex="false" tool="0" flavor2="0">
+        <cTool flags="2">
+          <incDir>
+            <pElem>lib-infernal-1.1/src</pElem>
+          </incDir>
+        </cTool>
+      </item>
+      <item path="lib-infernal-1.1/src/errors.c" ex="false" tool="0" flavor2="0">
+        <cTool flags="2">
+          <incDir>
+            <pElem>lib-infernal-1.1/src</pElem>
+          </incDir>
+        </cTool>
+      </item>
+      <item path="lib-infernal-1.1/src/eweight.c" ex="false" tool="0" flavor2="0">
+        <cTool flags="2">
+          <incDir>
+            <pElem>lib-infernal-1.1/src</pElem>
+          </incDir>
+        </cTool>
+      </item>
+      <item path="lib-infernal-1.1/src/hmmband.c" ex="false" tool="0" flavor2="0">
+        <cTool flags="2">
+          <incDir>
+            <pElem>lib-infernal-1.1/src</pElem>
+          </incDir>
+        </cTool>
+      </item>
+      <item path="lib-infernal-1.1/src/impl_sse/cm_optimized.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+        <cTool flags="2">
+        </cTool>
+      </item>
+      <item path="lib-infernal-1.1/src/impl_sse/sse_cm_dpsearch.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+        <cTool flags="2">
+        </cTool>
+      </item>
+      <item path="lib-infernal-1.1/src/impl_sse/sse_cm_dpsmall.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+        <cTool flags="2">
+        </cTool>
+      </item>
+      <item path="lib-infernal-1.1/src/impl_sse/sse_cmcons_hitmx.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+        <cTool flags="2">
+        </cTool>
+      </item>
+      <item path="lib-infernal-1.1/src/impl_sse/sse_cmcons_mscyk.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+        <cTool flags="2">
+        </cTool>
+      </item>
+      <item path="lib-infernal-1.1/src/impl_sse/sse_util.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+        <cTool flags="2">
+        </cTool>
+      </item>
+      <item path="lib-infernal-1.1/src/logsum.c" ex="false" tool="0" flavor2="0">
+        <cTool flags="2">
+          <incDir>
+            <pElem>lib-infernal-1.1/src</pElem>
+          </incDir>
+        </cTool>
+      </item>
+      <item path="lib-infernal-1.1/src/mpisupport.c" ex="false" tool="0" flavor2="0">
+        <cTool flags="2">
+          <incDir>
+            <pElem>lib-infernal-1.1/src</pElem>
+          </incDir>
+        </cTool>
+      </item>
+      <item path="lib-infernal-1.1/src/prior.c" ex="false" tool="0" flavor2="0">
+        <cTool flags="2">
+          <incDir>
+            <pElem>lib-infernal-1.1/src</pElem>
+          </incDir>
+        </cTool>
+      </item>
+      <item path="lib-infernal-1.1/src/rnamat.c" ex="false" tool="0" flavor2="0">
+        <cTool flags="2">
+          <incDir>
+            <pElem>lib-infernal-1.1/src</pElem>
+          </incDir>
+        </cTool>
+      </item>
+      <item path="lib-infernal-1.1/src/stats.c" ex="false" tool="0" flavor2="0">
+        <cTool flags="2">
+          <incDir>
+            <pElem>lib-infernal-1.1/src</pElem>
+          </incDir>
+        </cTool>
+      </item>
+      <item path="lib-infernal-1.1/src/sub_cm-test.c" ex="false" tool="0" flavor2="0">
+        <cTool flags="2">
+          <incDir>
+            <pElem>lib-infernal-1.1/src</pElem>
+          </incDir>
+        </cTool>
+      </item>
+      <item path="lib-infernal-1.1/src/trcyk.c" ex="false" tool="0" flavor2="0">
+        <cTool flags="2">
+          <incDir>
+            <pElem>lib-infernal-1.1/src</pElem>
+          </incDir>
+        </cTool>
+      </item>
+      <item path="lib-infernal-1.1/src/truncyk.c" ex="false" tool="0" flavor2="0">
+        <cTool flags="2">
+          <incDir>
+            <pElem>lib-infernal-1.1/src</pElem>
+          </incDir>
+        </cTool>
+      </item>
+      <item path="lib-infernal-1.1/src/truncyk_check.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+        <cTool flags="2">
+          <incDir>
+            <pElem>lib-infernal-1.1/src</pElem>
+          </incDir>
+        </cTool>
+      </item>
+      <item path="lib-qrna/er_math.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="lib-qrna/evolve.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="lib-qrna/mat_globals.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="lib-qrna/matrix.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="lib-qrna/misc.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="lib-vienna-1.4/dist_vars.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="lib-vienna-1.4/edit_cost.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="lib-vienna-1.4/energy_par.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="lib-vienna-1.4/fold.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="lib-vienna-1.4/fold_vars.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="lib-vienna-1.4/part_func.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="lib-vienna-1.4/read_epars.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="lib-vienna-1.4/treedist.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="lib-vienna-1.4/utils.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="lib-vienna-1.7.1/LPfold.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="lib-vienna-1.7.1/Lfold.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="lib-vienna-1.7.1/PS_dot.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="lib-vienna-1.7.1/ProfileAln.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="lib-vienna-1.7.1/ProfileDist.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="lib-vienna-1.7.1/RNAstruct.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="lib-vienna-1.7.1/alifold.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="lib-vienna-1.7.1/alipfold.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="lib-vienna-1.7.1/aln_util.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="lib-vienna-1.7.1/cofold.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="lib-vienna-1.7.1/dist_vars.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="lib-vienna-1.7.1/duplex.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="lib-vienna-1.7.1/energy_par.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="lib-vienna-1.7.1/fold.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="lib-vienna-1.7.1/fold_vars.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="lib-vienna-1.7.1/inverse.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="lib-vienna-1.7.1/list.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="lib-vienna-1.7.1/naview.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="lib-vienna-1.7.1/params.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="lib-vienna-1.7.1/part_func.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="lib-vienna-1.7.1/part_func_co.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="lib-vienna-1.7.1/part_func_up.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="lib-vienna-1.7.1/read_epars.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="lib-vienna-1.7.1/stringdist.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="lib-vienna-1.7.1/subopt.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="lib-vienna-1.7.1/treedist.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="lib-vienna-1.7.1/utils.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="pfold-extras/addparen.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="pfold-extras/align.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="pfold-extras/col.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="pfold-extras/col2fasta.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="pfold-extras/col2newick.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="pfold-extras/col2psalign.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="pfold-extras/col2txtalign.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="pfold-extras/drawdot.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="pfold-extras/drawphyl.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="pfold-extras/edouble.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="pfold-extras/extendstem.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="pfold-extras/file.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="pfold-extras/findphyl.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="pfold-extras/grammar.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="pfold-extras/graph.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="pfold-extras/inout.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="pfold-extras/llist.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="pfold-extras/matrix.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="pfold-extras/mltree.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="pfold-extras/newcolprob.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="pfold-extras/newick2col.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="pfold-extras/nohead.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="pfold-extras/optimize.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="pfold-extras/phyl.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="pfold-extras/rna.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="pfold-extras/scfg.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="pfold-extras/search.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="pfold-extras/stdpair.c" ex="false" tool="0" flavor2="0">
+      </item>
+    </conf>
+  </confs>
+</configurationDescriptor>

@@ -5,14 +5,18 @@ package cmf;
  * cmfinder04.pl
  */
 import static cmf.Io.*;
+import static cmf.utilities.*;
+import java.io.File;
 import java.io.IOException;
 import java.nio.file.*;
 import java.util.*;
 import java.util.logging.*;
+import static java.util.stream.Collectors.joining;
 import org.json.*;
 
 public class cmfinder {
 
+    public static String bin_path = "cmfinder/bin";
     // default parameters
     String CMFINDER_PACKAGE_VERSION = "0.4.1.15";
     int CAND = 40;
@@ -41,13 +45,12 @@ public class cmfinder {
     int comb_min_overlap = 2;
     double comb_min_num = 2.5;
     int comb_max_len = 200;
-    int output_more_like_old_cmfinder_pl = 0;
+    boolean output_more_like_old_cmfinder_pl = false; //perl using 0, debug flag
     ArrayList<String> motifList;
     int minCandScoreInFinal = 0; // be more like old cmfinder for now
     String emSeq;
 
     //getOptions parameters from json file
-    /*
     boolean version;
     boolean h;
     boolean v;
@@ -70,15 +73,15 @@ public class cmfinder {
     boolean justGetCmfinderCommand;
     String copyCmfinderRunsFromLog;
     boolean amaa;
-    String motifList;
-    int minCandScoreInFinal;
-    String emSeq;
     boolean filterNonFrag;
     boolean fragmentary;
     //flags
-    boolean degen_rand;
-    String degen_keep;
-     */
+    boolean commaSepEmFlags_degen_rand;
+    String commaSepEmFlags_degen_keep;
+    boolean commaSepEmFlags_fragmentary;
+
+    static JSONObject jo;
+
     //read json file
     public JSONObject read_json_file(String file_name) throws JSONException, IOException {
         Path p = Paths.get(file_name);
@@ -87,40 +90,47 @@ public class cmfinder {
         return jsonObject;
     }
 
-    /* decide too many parameters, use JSONObject directly
-    public void parse_param(JSONObject jo) {
-        version = jo.optBoolean("version");
-        h = jo.optBoolean("h");
-        v = jo.optBoolean("v");
-        w = jo.optString("w");
-        c = jo.optInt("c");
-        minspan1 = jo.optInt("minspan1");
-        maxspan1 = jo.optInt("maxspan1");
-        minspan2 = jo.optInt("minspan2");
-        maxspan2 = jo.optInt("maxspan2");
-        f = jo.optDouble("f");
-        s1 = jo.optInt("s1");
-        s2 = jo.optInt("s2");
-        combine = jo.optInt("combine");
-        o = jo.optInt("o");
-        n = jo.optDouble("n");
-        skipClustalw = jo.optBoolean("skipClustalw");
-        likeold = jo.optBoolean("likeold");
-        useOldCmfinder = jo.optBoolean("useOldCmfinder");
-        simpleMotifsAlreadyDone = jo.optBoolean("simpleMotifsAlreadyDone");
-        justGetCmfinderCommand = jo.optBoolean("justGetCmfinderCommand");
-        copyCmfinderRunsFromLog = jo.optString("copyCmfinderRunsFromLog");
-        amaa = jo.optBoolean("amaa");
-        motifList = jo.optString("motifList");
-        minCandScoreInFinal = jo.optInt("minCandScoreInFinal");
-        emSeq = jo.optString("emSeq");
-        filterNonFrag = jo.optBoolean("filterNonFrag");
-        fragmentary = jo.optBoolean("fragmentary");
-        degen_rand = jo.getJSONObject("commaSepEmFlags").optBoolean("degen-rand");
-        degen_keep = jo.getJSONObject("commaSepEmFlags").optString("degen_keep");
-        fragmentary = jo.optBoolean("fragmentary");
-    }
-     */
+    // get parameter by read jo oject;
+    //    public void parse_param(JSONObject jo) {
+    //        version = jo.optBoolean("version");
+    //        h = jo.optBoolean("h");
+    //        v = jo.optBoolean("v");
+    //        w = jo.optString("w");
+    //        c = jo.optInt("c");
+    //        minspan1 = jo.optInt("minspan1");
+    //        maxspan1 = jo.optInt("maxspan1");
+    //        minspan2 = jo.optInt("minspan2");
+    //        maxspan2 = jo.optInt("maxspan2");
+    //        f = jo.optDouble("f");
+    //        s1 = jo.optInt("s1");
+    //        s2 = jo.optInt("s2");
+    //        combine = jo.optInt("combine");
+    //        o = jo.optInt("o");
+    //        n = jo.optDouble("n");
+    //        skipClustalw = jo.optBoolean("skipClustalw");
+    //        likeold = jo.optBoolean("likeold");
+    //        useOldCmfinder = jo.optBoolean("useOldCmfinder");
+    //        simpleMotifsAlreadyDone = jo.optBoolean("simpleMotifsAlreadyDone");
+    //        justGetCmfinderCommand = jo.optBoolean("justGetCmfinderCommand");
+    //        copyCmfinderRunsFromLog = jo.optString("copyCmfinderRunsFromLog");
+    //        amaa = jo.optBoolean("amaa");
+    //        ArrayList<String> motifList = new ArrayList<String>();
+    //        JSONArray jsonArray = jo.optJSONArray("motifList");
+    //        if (jsonArray != null) {
+    //            int len = jsonArray.length();
+    //            for (int i = 0; i < len; i++) {
+    //                motifList.add(jsonArray.get(i).toString());
+    //            }
+    //        }
+    //        minCandScoreInFinal = jo.optInt("minCandScoreInFinal");
+    //        emSeq = jo.optString("emSeq");
+    //        filterNonFrag = jo.optBoolean("filterNonFrag");
+    //        fragmentary = jo.optBoolean("fragmentary");
+    //        // flags
+    //        commaSepEmFlags_degen_rand = jo.getJSONObject("commaSepEmFlags").optBoolean("degen-rand");
+    //        commaSepEmFlags_degen_keep = jo.getJSONObject("commaSepEmFlags").optString("degen_keep");
+    //        commaSepEmFlags_fragmentary = jo.optBoolean("fragmentary");
+    //    }
     public int resolve_overlap(Alignment alignment1, Alignment alignment2) {
 
         int cost1 = 0;
@@ -474,7 +484,46 @@ public class cmfinder {
         } catch (IOException e) {
             System.err.println("Can't open file " + out_file + ": " + e);
         }
-        
+
+        if (gap_count > 1) {
+            if (jo.optBoolean("skipClustalw")) {
+                if (output_more_like_old_cmfinder_pl) {
+                    System.out.println("Can't exec \"clustalw\": No such file or directory at " + bin_path + "/merge_motif.pl line 290.");
+                    System.out.println("FATAL: Alignment file " + out + ".gap.aln could not be opened for reading");
+                    System.out.println("Illegal division by zero at " + bin_path + "/io.pl line 353.");
+                } else {
+                    System.out.println("Aborting merge_motif since -skipClustalw");
+                }
+                return null;
+            } else {
+                String[] cmd1 = {findFile(bin_path, "clustalw"),
+                    "-infile=" + out_file,
+                    "-outfile=" + out_file + ".aln"};
+                System.out.println(runCmd(cmd1, 1800)); //giving runCmd result
+
+                String[] cmd2 = {findFile(bin_path, "sreformat"),
+                    "stockholm",
+                    out_file + ".aln",
+                    ">",
+                    out_file + ".align"};
+                System.out.println(runCmd(cmd2, 1800));//giving runCmd result
+                Alignment gap_sto = read_stockholm(out_file + ".align");
+                HashMap<String, AlignSeq> gap_align = gap_sto.getSeqs();
+
+                for (Map.Entry<String, MergeMotif> entry : motif_overlap.entrySet()) {
+                    if (gap_align.containsKey(entry.getKey())) {
+                        gap_seq = gap_align.get(entry.getKey()).getAlignSeq();
+                        entry.getValue().setGapSeq(gap_seq);
+                        entry.getValue().setGapSs("");
+                        if (max_gap_len < gap_seq.length()) {
+                            max_gap_len = gap_seq.length();
+                        }
+                    }
+                }
+                //delete out.gap out_file
+                deleteFile(out_file);
+            }
+        }
 
         //tmp use below value
         return new Alignment(align1, alignment1.getFlags(), "", "", 0, 0, 0);
@@ -564,8 +613,7 @@ public class cmfinder {
 
         // test read jason file
         try {
-            cmfinder cm = new cmfinder();
-            JSONObject jo = cm.read_json_file("src/cmf/cmfinder_param.json");
+            jo = new cmfinder().read_json_file("src/cmf/cmfinder_param.json");
             //cm.parse_param(jo);
 
         } catch (JSONException ex) {
@@ -578,6 +626,12 @@ public class cmfinder {
         String target = "FOOfBar";
         target = target.replaceAll("(?i)f", "U");
         System.out.println(target);
+
+        //test findfiles
+        Path p = Paths.get(bin_path + "/clustalw");
+        System.out.println(p.toAbsolutePath().toString());
+        findFiles(bin_path, "clustalw").forEach(System.out::println);
+        System.out.println("find it:" + findFile(bin_path, "clustalw"));
 
     }
 }
