@@ -6,12 +6,10 @@ package cmf;
  */
 import static cmf.Io.*;
 import static cmf.utilities.*;
-import java.io.File;
 import java.io.IOException;
 import java.nio.file.*;
 import java.util.*;
 import java.util.logging.*;
-import static java.util.stream.Collectors.joining;
 import org.json.*;
 
 public class cmfinder {
@@ -529,8 +527,8 @@ public class cmfinder {
         merged_rf = rf1 + pad_string("", max_gap_len, ".", 1) + rf2;
 
         //  my ($align_seq,$align_ss,$score1,$score2,$score,$weight,$desc);
-        String align_seq = "";
-        String align_ss = "";
+        String align_seq;
+        String align_ss;
         float score1 = 0;
         float score2 = 0;
         float score;
@@ -561,11 +559,15 @@ public class cmfinder {
             merged_motif.put(entry.getKey(),
                     new AlignSeq(entry.getKey(), ids.get(entry.getKey()),
                             start, end, desc, score, weight, align_seq, align_ss));
-
         }
 
         //final return value
         return new Alignment(merged_motif, alignment1.getFlags(), merged_ss_cons, merged_rf);
+    }
+
+    public void CombMotif(String cand_weight_option, String seq_file, ArrayList<String> motifFilesRef) {
+        ArrayList<String> align_files = motifFilesRef;
+
     }
 
     public void print_version() {
