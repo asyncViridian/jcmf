@@ -10,6 +10,8 @@ import java.io.IOException;
 import java.nio.file.*;
 import java.util.*;
 import java.util.logging.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import org.json.*;
 
 public class cmfinder {
@@ -80,8 +82,20 @@ public class cmfinder {
 
     static JSONObject jo;
 
+    String saveTimerFlag = "";
+    ArrayList<String> summarizeFlagsList;
+    String summarizeFlagsStr;
+
+    static {
+        try {
+            jo = read_json_file("cmfinder_param.json");
+        } catch (JSONException | IOException ex) {
+            System.out.println(ex);
+        }
+    }
+
     //read json file
-    public JSONObject read_json_file(String file_name) throws JSONException, IOException {
+    public static JSONObject read_json_file(String file_name) throws JSONException, IOException {
         Path p = Paths.get(file_name);
         byte[] jsonByte = Files.readAllBytes(p);
         JSONObject jsonObject = new JSONObject(new String(jsonByte));
@@ -497,14 +511,14 @@ public class cmfinder {
                 String[] cmd1 = {findFile(bin_path, "clustalw"),
                     "-infile=" + out_file,
                     "-outfile=" + out_file + ".aln"};
-                System.out.println(runCmd(cmd1, 1800)); //giving runCmd result
+                runCmd(cmd1, 1800); //giving runCmd result
 
                 String[] cmd2 = {findFile(bin_path, "sreformat"),
                     "stockholm",
                     out_file + ".aln",
                     ">",
                     out_file + ".align"};
-                System.out.println(runCmd(cmd2, 1800));//giving runCmd result
+                runCmd(cmd2, 1800);//giving runCmd result
                 Alignment gap_sto = read_stockholm(out_file + ".align");
                 HashMap<String, AlignSeq> gap_align = gap_sto.getSeqs();
 
@@ -565,9 +579,54 @@ public class cmfinder {
         return new Alignment(merged_motif, alignment1.getFlags(), merged_ss_cons, merged_rf);
     }
 
-    public void CombMotif(String cand_weight_option, String seq_file, ArrayList<String> motifFilesRef) {
+    public void CombMotif(String cand_weight_option, String seq_file, ArrayList<String> motifFilesRef) throws MyException {
         ArrayList<String> align_files = motifFilesRef;
+        ArrayList<String> all_files = align_files;
+        // HashMap<> all_stats;
+        HashMap<String, HashMap<String, String>> all_stats = new HashMap<>();
+        HashMap<String, Alignment> alignments = new HashMap<>();
+        for (String item : align_files) {
+            Alignment align = read_stockholm(item);
+            if (align.getWeight() >= comb_min_num) {
+                HashMap<String, String> stat = RunSummarize(item);
+                all_stats.put(item, stat);
+                alignments.put(item, align);
+            }
+        }
+    }
 
+    // note we assume the file is in bin_path folder
+    public HashMap<String, String> RunSummarize(String file_name) throws MyException {
+        String f = findFile(bin_path, file_name);
+        if (false) {
+            String[] cmd = {findFile(bin_path, "summarize"), f};
+            System.out.println("Running " + String.join(" ", cmd));
+            cmdOut exec1 = runCmd(cmd, 300);
+            ArrayList<String> summary = exec1.getOut(); //ArrayList to String
+            if (!exec1.getextVal()) {
+                throw new MyException(String.join(" ", cmd) + " failed.");
+            }
+        }
+        String cmfinder = findFile(bin_path, "cmfinder04");
+        String[] cmd2 = {cmfinder, saveTimerFlag, "--summarize", summarizeFlagsStr, f};
+        System.out.println("Running " + String.join(" ", cmd2));
+        cmdOut exec2 = runCmd(cmd2, 300);
+        ArrayList<String> summary2 = exec2.getOut();
+        if (!exec2.getextVal()) {
+            throw new MyException(String.join(" ", cmd2) + " failed.");
+        }
+        //he matcher.group() function expects to take a single integer argument: The capturing group index, starting from 1. 
+        //The index 0 is special, which means "the entire match". 
+        Pattern p = Pattern.compile("\\s*(\\S+)=(\\S+)\\s*");
+        HashMap<String, String> result = new HashMap<>();
+        summary2.forEach(e -> {
+            Matcher m = p.matcher(e);
+            if (m.matches()) {
+                result.put(m.group(1), m.group(2));
+            }
+        }
+        );
+        return result;
     }
 
     public void print_version() {
@@ -651,17 +710,6 @@ public class cmfinder {
     }
 
     public static void main(String[] args) {
-
-        // test read jason file
-        try {
-            jo = new cmfinder().read_json_file("src/cmf/cmfinder_param.json");
-            //cm.parse_param(jo);
-
-        } catch (JSONException ex) {
-            Logger.getLogger(cmfinder.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IOException ex) {
-            Logger.getLogger(cmfinder.class.getName()).log(Level.SEVERE, null, ex);
-        }
 
         //test case insensitive replaceAll
         String target = "FOOfBar";

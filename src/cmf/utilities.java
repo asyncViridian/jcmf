@@ -47,8 +47,10 @@ public class utilities {
     }
 
     //return value is good to decide if the next command should be executed or not
-    public static synchronized String runCmd(String[] args, int timeout) {
+    public static synchronized cmdOut runCmd(String[] args, int timeout) {
         String ret = Arrays.stream(args).collect(joining(" ")) + "executing";
+        boolean exitVal = true;
+        ArrayList<String> out = new ArrayList<>();
         try {
             ProcessBuilder probuilder = new ProcessBuilder(args);
             Process p = probuilder.start();
@@ -56,20 +58,20 @@ public class utilities {
             BufferedReader reader = new BufferedReader(new InputStreamReader(p.getInputStream()));
             String line;
             while ((line = reader.readLine()) != null) {
+                out.add(line);
                 System.out.println(line);
             }
-            boolean exitVal = p.waitFor(timeout, TimeUnit.SECONDS); //10 minute timeout guard. 
+            exitVal = p.waitFor(timeout, TimeUnit.SECONDS); //10 minute timeout guard. Java 8 only
             if (exitVal) {
-                ret = Arrays.stream(args).collect(joining(" "))
-                        + " command process completed successfully.";
+                ret = ret + " command process completed successfully.";
             } else {
-                ret = Arrays.stream(args).collect(joining(" "))
-                        + " command process is killed over " + timeout + " seconds";
+                ret = ret + " command process is killed over " + timeout + " seconds";
             }
         } catch (IOException | InterruptedException ex) {
             System.out.println(ex.getMessage());
         }
-        return ret;
+        System.out.println(ret);
+        return new cmdOut(out, exitVal);
     }
 
 }
