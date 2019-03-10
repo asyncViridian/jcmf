@@ -579,7 +579,8 @@ public class cmfinder {
         return new Alignment(merged_motif, alignment1.getFlags(), merged_ss_cons, merged_rf);
     }
 
-    public void CombMotif(String cand_weight_option, String seq_file, ArrayList<String> motifFilesRef) throws MyException {
+    public void CombMotif(String cand_weight_option, String seq_file, ArrayList<String> motifFilesRef)
+            throws MyException {
         ArrayList<String> align_files = motifFilesRef;
         ArrayList<String> all_files = align_files;
         // HashMap<> all_stats;
@@ -593,6 +594,33 @@ public class cmfinder {
                 alignments.put(item, align);
             }
         }
+        //try merging all pairs of motifs, and see how they fit together
+        HashMap<String, AlignSeq> merge_motif = new HashMap<>();
+        //line 743
+
+    }
+
+    public static void try_merge(String f1, String f2) {
+
+    }
+
+    public static String[] my_strcmp(String s1, String s2) {
+        String[] t1 = s1.split("\\.");
+        String[] t2 = s2.split("\\.");
+        String prefix = "";
+        for (int i = 0; i < t1.length && i < t2.length; i++) {
+            if (!t1[i].equals(t2[i])) {
+                break;
+            }
+            if (prefix.equals("")) {
+                prefix = t1[i];
+            } else {
+                prefix = prefix + "." + t1[i];
+            }
+        }
+        String suffix1 = String.join(".", t1);
+        String suffix2 = String.join(".", t2);
+        return new String[]{prefix, suffix1, suffix2};
     }
 
     // note we assume the file is in bin_path folder
@@ -633,7 +661,7 @@ public class cmfinder {
         System.out.println("CMFINDER_PACKAGE_VERSION=" + CMFINDER_PACKAGE_VERSION);
     }
 
-    public void print_help() {
+    public static void print_help() {
         String help_content = "CMFINDER [options] SEQ\n"
                 + "Options:\n"
                 + "    -c <number>      \n"
@@ -722,5 +750,7 @@ public class cmfinder {
         findFiles(bin_path, "clustalw").forEach(System.out::println);
         System.out.println("find it:" + findFile(bin_path, "clustalw"));
 
+        //test my_strcmp
+        System.out.println(Arrays.toString(my_strcmp("abc.def.ghi","abc.def.ghi")));
     }
 }
