@@ -1,109 +1,88 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package cmf;
 
 /**
  *
- * @MergeMotif for merge_motif return multiple values
+ * @author james
  */
 public class MergeMotif {
 
-//    String motif1;
-//    String motif2;
-//    int num_seq;
-//    double score;
-//    int gao;
-//    String overlap;
-//    int weight;
-    private int start;
-    private int end;
-    private String seq1;
-    private String ss1;
-    private String gap_seq;
-    private String gap_ss;
-    private String seq2;
-    private String ss2;
-    double weight;
+    private String motif1;
+    private String motif2;
+    private int num_seq;
+    private double score;
+    private double gap;
+    private double overlap;
+    private double weight;
 
-    MergeMotif(
-            int start,
-            int end,
-            String seq1,
-            String ss1,
-            String gap_seq,
-            String gap_ss,
-            String seq2,
-            String ss2) {
-        this.start = start;
-        this.end = end;
-        this.seq1 = seq1;
-        this.ss1 = ss1;
-        this.gap_seq = gap_seq;
-        this.gap_ss = gap_ss;
-        this.seq2 = seq2;
-        this.ss2 = ss2;
+    public void MergeMotif(
+            String motif1,
+            String motif2,
+            int num_seq,
+            double score,
+            double gap,
+            double overlap,
+            double weight
+    ) {
+        this.motif1 = motif1;
+        this.motif2 = motif2;
+        this.num_seq = num_seq;
+        this.score = score;
+        this.gap = gap;
+        this.overlap = overlap;
+        this.weight = weight;
     }
 
-    public int getStart() {
-        return start;
+    public String getMotif1() {
+        return motif1;
     }
 
-    public void setStart(int start) {
-        this.start = start;
+    public void setMotif1(String motif1) {
+        this.motif1 = motif1;
     }
 
-    public int getEnd() {
-        return end;
+    public String getMotif2() {
+        return motif2;
     }
 
-    public void setEnd(int end) {
-        this.end = end;
+    public void setMotif2(String motif2) {
+        this.motif2 = motif2;
     }
 
-    public String getSeq1() {
-        return seq1;
+    public int getNum_seq() {
+        return num_seq;
     }
 
-    public void setSeq1(String seq1) {
-        this.seq1 = seq1;
+    public void setNum_seq(int num_seq) {
+        this.num_seq = num_seq;
     }
 
-    public String getSs1() {
-        return ss1;
+    public double getScore() {
+        return score;
     }
 
-    public void setSs1(String ss1) {
-        this.ss1 = ss1;
+    public void setScore(double score) {
+        this.score = score;
     }
 
-    public String getGapSeq() {
-        return gap_seq;
+    public double getGap() {
+        return gap;
     }
 
-    public void setGapSeq(String gap_seq) {
-        this.gap_seq = gap_seq;
+    public void setGap(double gap) {
+        this.gap = gap;
     }
 
-    public String getGapSs() {
-        return gap_ss;
+    public double getOverlap() {
+        return overlap;
     }
 
-    public void setGapSs(String gap_ss) {
-        this.gap_ss = gap_ss;
-    }
-
-    public String getSeq2() {
-        return seq2;
-    }
-
-    public void setSeq2(String seq2) {
-        this.seq2 = seq2;
-    }
-
-    public String getSs2() {
-        return ss2;
-    }
-
-    public void setSs2(String ss2) {
-        this.ss2 = ss2;
+    public void setOverlap(double overlap) {
+        this.overlap = overlap;
     }
 
     public double getWeight() {
@@ -113,4 +92,5 @@ public class MergeMotif {
     public void setWeight(double weight) {
         this.weight = weight;
     }
+
 }
