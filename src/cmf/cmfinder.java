@@ -626,11 +626,20 @@ public class cmfinder {
         int gap2 = 0;
         int overlap1 = 0;
         int overlap2 = 0;
-        
-        if (!alignments.containsKey(f1) || !alignments.containsKey(f2)){
-            
+
+        if (!alignments.containsKey(f1) || !alignments.containsKey(f2)) {
+            if (verbose) {
+                System.out.println("alignments don't containt key for " + f1 + " or " + f2);
+            }
+            return null;
         }
 
+        HashMap<String, AlignSeq> align1 = alignments.get(f1).getSeqs();
+        HashMap<String, AlignSeq> align2 = alignments.get(f2).getSeqs();
+        
+        
+
+        //etect overlap
         return null;
     }
 
