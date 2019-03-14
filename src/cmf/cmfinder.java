@@ -602,7 +602,8 @@ public class cmfinder {
 
     }
 
-    public static MergeMotif try_merge(String f1, String f2, HashMap<String, String> merge_motif_ref) throws MyException {
+    public static HashMap<String, MergeMotif> try_merge(String f1, String f2, HashMap<String, MergeMotif> merge_motif_ref)
+            throws MyException {
         if (merge_motif_ref.isEmpty()) {
             throw new MyException("merge_motif_ref Hashmap is empty");
         }
@@ -682,14 +683,87 @@ public class cmfinder {
                     }
                 }
             } else { //this 'else' case is the mirror image of the 'if' case
-                
-
+                if (motif1.getEnd() < motif2.getEnd()) {
+                    int overlap = motif1.getEnd() - motif2.getStart();
+                    if (overlap > -comb_max_gap) {
+                        if (((len1 - overlap < 25) || (len2 - overlap < 25))
+                                && ((overlap > 0.9 * len1) || overlap > 0.9 * len2)) {
+                            num_overlap += motif1.getWeight() * motif2.getWeight();
+                        } else {
+                            start1 += (motif1.getWeight() + motif2.getWeight()) / 2;
+                            start1_score += motif1.getScore() * motif1.getWeight() + motif2.getScore() * motif2.getWeight();
+                            if (overlap > 0) {
+                                overlap1 += overlap * motif1.getWeight() * motif2.getWeight();
+                            } else if (-overlap1 < comb_max_gap) {
+                                gap1 += -overlap * motif1.getWeight() * motif2.getWeight();
+                            }
+                        }
+                    }
+                } else {
+                    //overlap
+                    // motif2 contained within motif1
+                    num_overlap += motif1.getWeight() * motif2.getWeight();
+                }
             }
-
         }
 
-        //etect overlap
-        return null;
+        if (verbose) {
+            System.out.println("start1=" + start1 + " start2=" + start2 + " num_overlap=" + num_overlap);
+        }
+        if (num_overlap > start1 && num_overlap > start2) {
+            if (verbose) {
+                System.out.println("num_overlap>start1 && num_overlap>start2 :"
+                        + num_overlap + ">" + start1 + " && " + num_overlap + ">" + start2);
+            }
+            return null;
+        }
+        if (start1_score > start2_score) {
+            //# is motif1 more often to the left of motif2 or vice versa?  Where's the bias?
+            if (start1 < comb_min_overlap) {
+                //# not enough sequences favor this orientation in absolute terms (compared to the constant 
+                //$comb_min_overlap) for it to be worthwhile  
+                if (verbose) {
+                    System.out.println("start1<comb_min_overlap :" + start1 + "<" + comb_min_overlap);
+                }
+                return null;
+            }
+
+            //	#motif1 is before motif2
+            merge_motif_ref.put(index,
+                    new MergeMotif(
+                            f1,
+                            f2,
+                            start1,
+                            start1_score,
+                            gap1 / start1,
+                            overlap1 / start1,
+                            start1_score - gap1 / 2 - overlap1));
+            System.out.println("accept id=" + index + ":"
+                    + f1 + "-" + f2 + ":" + start1_score + " " + gap1 / 2 + " " + overlap1 + " " + start1
+            );
+        } else { //# this 'else' case mirrors the 'if' case
+            if (start2 < comb_min_overlap) {
+                if (verbose) {
+                    System.out.println("start2 < comb_min_overlap :" + start2 + "<" + comb_min_overlap);
+                }
+                return null;
+            }
+            //#motif2 is before motif1
+            merge_motif_ref.put(index,
+                    new MergeMotif(
+                            f2,
+                            f1,
+                            start2,
+                            start2_score,
+                            gap2 / start2,
+                            overlap2 / start2,
+                            start2_score - gap2 / 2 - overlap2)
+            );
+            System.out.println("taccept id=" + index + ":"
+                    + f2 + "-" + f1 + ":" + start2_score + " " + gap2 / 2 + " " + overlap2 + " " + start2);
+        }
+
+        return merge_motif_ref;
     }
 
     public static String[] my_strcmp(String s1, String s2) {

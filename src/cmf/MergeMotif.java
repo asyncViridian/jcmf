@@ -13,16 +13,16 @@ public class MergeMotif {
 
     private String motif1;
     private String motif2;
-    private int num_seq;
+    private double num_seq;
     private double score;
     private double gap;
     private double overlap;
     private double weight;
 
-    public void MergeMotif(
+    public MergeMotif(
             String motif1,
             String motif2,
-            int num_seq,
+            double num_seq,
             double score,
             double gap,
             double overlap,
@@ -53,11 +53,11 @@ public class MergeMotif {
         this.motif2 = motif2;
     }
 
-    public int getNum_seq() {
+    public double getNum_seq() {
         return num_seq;
     }
 
-    public void setNum_seq(int num_seq) {
+    public void setNum_seq(double num_seq) {
         this.num_seq = num_seq;
     }
 
