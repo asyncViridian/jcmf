@@ -9,7 +9,6 @@ import static cmf.utilities.*;
 import java.io.IOException;
 import java.nio.file.*;
 import java.util.*;
-import java.util.logging.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import org.json.*;
@@ -617,9 +616,9 @@ public class cmfinder {
             return null;
         }
 
-        int num_overlap = 0;
-        int start1 = 0;
-        int start2 = 0;
+        double num_overlap = 0;
+        double start1 = 0;
+        double start2 = 0;
         double start1_score = 0;
         double start2_score = 0;
         int gap1 = 0;
@@ -636,8 +635,58 @@ public class cmfinder {
 
         HashMap<String, AlignSeq> align1 = alignments.get(f1).getSeqs();
         HashMap<String, AlignSeq> align2 = alignments.get(f2).getSeqs();
-        
-        
+
+        for (HashMap.Entry<String, AlignSeq> entry : align1.entrySet()) {
+            if (!align2.containsKey(entry.getKey())) {
+                continue;
+            }
+            //below, we know that hit id $id is common to both alignments $f1 and $f2
+            //figure out if the hits for id=$id in the two motifs overlap
+            AlignSeq motif1 = align1.get(entry.getKey());
+            AlignSeq motif2 = align2.get(entry.getKey());
+
+            //we only look for motifs on the forward strand
+            if ((motif1.getStart() > motif1.getEnd())
+                    || (motif2.getStart() > motif2.getEnd())) {
+                throw new MyException("motif start is bigger than end unexpected");
+            }
+
+            int len1 = motif1.getEnd() - motif1.getStart();
+            int len2 = motif2.getEnd() - motif2.getStart();
+
+            if (motif1.getStart() > motif2.getStart()) {
+                if (motif1.getEnd() < motif2.getEnd()) {
+                    //overlap
+                    //motif1 contained within motif2
+                    num_overlap += motif1.getWeight() * motif2.getWeight();
+                } else {
+                    int overlap = motif2.getEnd() - motif1.getStart();
+                    if (overlap > -comb_max_gap) {
+                        if (((len1 - overlap < 25) || (len2 - overlap < 25))
+                                && ((overlap > 0.9 * len1) || (overlap > 0.9 * len2))) {
+                            //the motif instances almost entirely overlap (have up leave at most 25 nucs 
+                            //and 10% of each instance un-overlapped
+                            num_overlap += motif1.getWeight() * motif2.getWeight();
+                        } else {
+                            //he motif instances are near to one another or somewhat overlapping, let's 
+                            //record the weight for this orientation (motif2 instance coords > motif1 instance coords)
+                            start2 += (motif1.getWeight() + motif2.getWeight()) / 2;
+                            start2_score += motif1.getScore() * motif1.getWeight() + motif2.getScore() * motif2.getWeight();
+                            if (overlap > 0) {
+                                //the motif instances actually overlap
+                                overlap2 += overlap * motif1.getWeight() * motif2.getWeight();
+                            } else if (-overlap < comb_max_gap) {//I think this is always true because of the test some lines up
+                                gap2 += -overlap * motif1.getWeight() * motif2.getWeight();
+                            }
+                        }
+                    }
+                }
+            } else { //this 'else' case is the mirror image of the 'if' case
+                
+
+            }
+
+        }
 
         //etect overlap
         return null;
