@@ -11,6 +11,7 @@ import java.nio.file.*;
 import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 import org.json.*;
 
 public class cmfinder {
@@ -587,24 +588,126 @@ public class cmfinder {
         ArrayList<String> all_files = align_files;
         // HashMap<> all_stats;
         HashMap<String, HashMap<String, String>> all_stats = new HashMap<>();
-        HashMap<String, Alignment> alignments = new HashMap<>();
-        for (String item : align_files) {
-            Alignment align = read_stockholm(item);
+
+        for (String ff : align_files) {
+            Alignment align = read_stockholm(ff);
             if (align.getWeight() >= comb_min_num) {
-                HashMap<String, String> stat = RunSummarize(item);
-                all_stats.put(item, stat);
-                alignments.put(item, align);
+                HashMap<String, String> stat = RunSummarize(ff);
+                all_stats.put(ff, stat);
+                alignments.put(ff, align);
             }
         }
         //try merging all pairs of motifs, and see how they fit together
-        HashMap<String, AlignSeq> merge_motif = new HashMap<>();
-        //line 743
+        HashMap<String, MergeMotif> merge_motif = new HashMap<>();
+        for (String f1 : align_files) {
+            for (String f2 : align_files) {
+                // java This method returns 0 if two Strings are equal or if both are null, 
+                // a negative number if the first String comes before the argument, and 
+                // a number greater than zero if the first String comes after the argument String
+                if (f1.compareTo(saveTimerFlag) < 0) {
+                    merge_motif = try_merge(f1, f2, merge_motif);
+                }
+            }
+        }
+
+        HashMap<String, MergeMotif> processed = new HashMap<>();
+        HashMap<String, String> merged_files = new HashMap<>();
+        //add crete a reverse sort merge_motif_reverse
+
+        HashMap<String, MergeMotif> merge_motif_reverse_sorted
+                = merge_motif.entrySet().stream()
+                        .sorted(Map.Entry.comparingByValue(
+                                Comparator.comparingDouble(MergeMotif::getWeight)
+                                        .reversed()))
+                        .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue,
+                                (oldValue, newValue) -> oldValue, LinkedHashMap::new));
+
+        while (merge_motif.size() > 0) {
+            if (verbose) {
+                System.out.println("entering for my \\$id, with list:");
+                //print key value based on object's weight reverse sorted
+                merge_motif_reverse_sorted.entrySet().stream()
+                        .forEachOrdered(e -> System.out.println(e.getKey()));
+            }
+            for (Map.Entry<String, MergeMotif> entry : merge_motif_reverse_sorted.entrySet()) {
+                //ake motifs whose combination has the biggest weight first
+                if (verbose) {
+                    System.out.println("while keys merge_motif : id=" + entry.getKey());
+                }
+                //MergeMotif m = merge_motif.get(entry.getKey());
+                MergeMotif m = entry.getValue();
+                merge_motif.remove(entry.getKey());
+
+                if (processed.containsKey(entry.getKey())) {
+                    if (verbose) {
+                        System.out.println("while keys merge_motif NEXT : exists \\$processed{"
+                                + entry.getKey() + "}");
+                    }
+                    continue;
+                }
+                processed.put(entry.getKey(), m);
+                String f1 = m.getMotif1();
+                String f2 = m.getMotif2();
+
+                if (m.getWeight() <= 0) {
+                    if (verbose) {
+                        System.out.println("while keys merge_motif NEXT : weight <= 0");
+                    }
+                }
+
+                if (m.getWeight() > 0) { //has to be favorable
+                    if (merged_files.containsKey(f1) || merged_files.containsKey(f2)) {
+                        //# ??  apparently each motif can only appear in one merging?
+                        if (verbose) {
+                            System.out.println("while keys merge_motif NEXT : exists \\$merged_files{"
+                                    + f1 + "}=" + (merged_files.containsKey(f1) ? "true" : "false")
+                                    + " || exists \\$merged_files{" + f2 + "}="
+                                    + (merged_files.containsKey(f2) ? "true" : "false"));
+                        }
+                        continue;
+                    }
+                    if (m.getGap() > comb_max_gap) {
+                        double m_gap = m.getGap();
+                        if (verbose) {
+                            System.out.println("while keys merge_motif NEXT : \\$m->gap > \\$comb_max_gap :"
+                                    + m_gap + ">" + comb_max_gap);
+                        }
+                        continue;
+                    }
+
+                    String f = entry.getKey();
+                    int found = 0;
+                    for (String tmp : all_files) {
+                        if (tmp.equals(f)) {
+                            found = 1;
+                            break;
+                        }
+                    }
+
+                    if (found != 0) {
+                        if (verbose) {
+                            System.out.println("while keys merge_motif NEXT : not found.  all_files = "
+                                    + String.join(" ", all_files));
+                        }
+                        continue;  //# file has already been made
+                    }
+
+                    System.out.println("( near merge_motif: "
+                            + entry.getKey() + ", " + m.getNum_seq() + ", \t" + f1 + "\t" + f2 + "\t,"
+                            + m.getWeight() + ",t" + m.getGap() + ",\t" + m.getOverlap());
+
+                    // this used to be a call to the merge_motif.pl script
+                    //todo line 800
+                }
+
+            }
+        }
 
     }
 
     public static HashMap<String, MergeMotif> try_merge(String f1, String f2, HashMap<String, MergeMotif> merge_motif_ref)
             throws MyException {
-        if (merge_motif_ref.isEmpty()) {
+        if (merge_motif_ref == null) { //perl !defined not isEmpty()
             throw new MyException("merge_motif_ref Hashmap is empty");
         }
 
@@ -914,5 +1017,11 @@ public class cmfinder {
 
         //test my_strcmp
         System.out.println(Arrays.toString(my_strcmp("abc.def.ghi", "abc.def.ghi")));
+
+        //test hashmap empty
+        HashMap<String, MergeMotif> test = new HashMap<>();
+        if (test != null) {
+            System.out.println("HashMap is empty");
+        }
     }
 }
