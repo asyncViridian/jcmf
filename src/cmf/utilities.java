@@ -5,6 +5,8 @@ import java.nio.file.*;
 import java.util.*;
 import java.util.concurrent.TimeUnit;
 import static java.util.stream.Collectors.joining;
+import cmf.cmfinder.*;
+import static cmf.cmfinder.bin_path;
 
 /**
  *
@@ -36,6 +38,7 @@ public class utilities {
         return f;
     }
 
+    //note filename should give full path
     public static void deleteFile(String filename) {
         Path fileToDeletePath = Paths.get(filename);
         try {
@@ -72,6 +75,37 @@ public class utilities {
         }
         System.out.println(ret);
         return new cmdOut(out, exitVal);
+    }
+
+    public static synchronized cmdOut runCmd(String[] args) {
+        String ret = Arrays.stream(args).collect(joining(" ")) + "executing";
+        int exitCode = 0;
+        boolean res = true;
+        ArrayList<String> out = new ArrayList<>();
+        try {
+            ProcessBuilder probuilder = new ProcessBuilder(args);
+            Process p = probuilder.start();
+            // output to java console
+            BufferedReader reader = new BufferedReader(new InputStreamReader(p.getInputStream()));
+            String line;
+            while ((line = reader.readLine()) != null) {
+                out.add(line);
+                System.out.println(line);
+            }
+            exitCode = p.waitFor(); //no time limit
+            if (exitCode == 0) {
+                ret = ret + " command process completed successfully.";
+                res = true;
+            } else {
+                ret = ret + " command process failed.";
+                // couldn't produce acceptable output
+                res = false;
+            }
+        } catch (IOException | InterruptedException ex) {
+            System.out.println(ex.getMessage());
+        }
+        System.out.println(ret);
+        return new cmdOut(out, res, exitCode);
     }
 
 }

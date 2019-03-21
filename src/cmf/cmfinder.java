@@ -66,9 +66,9 @@ public class cmfinder {
     int combine;
     int o;
     double n;
-    boolean skipClustalw;
+    boolean skipClustalw = jo.getBoolean("skipClustalw");
     boolean likeold;
-    boolean useOldCmfinder;
+    public boolean useOldCmfinder = jo.getBoolean("useOldCmfinder");
     boolean simpleMotifsAlreadyDone;
     boolean justGetCmfinderCommand;
     String copyCmfinderRunsFromLog;
@@ -86,8 +86,14 @@ public class cmfinder {
     ArrayList<String> summarizeFlagsList;
     String summarizeFlagsStr;
 
+    HashMap<String, Seq> unaligned_seqs = read_fasta(seqForExpectationMaximization);
+
     //usage for aligments: try_merge
     static HashMap<String, Alignment> alignments = new HashMap<>();
+
+    //SEQ setting in main method
+    static String SEQ;
+    static String seqForExpectationMaximization = SEQ;
 
     static {
         try {
@@ -339,7 +345,7 @@ public class cmfinder {
     public Alignment merge_alignment(
             Alignment alignment1,
             Alignment alignment2,
-            HashMap<String, AlignSeq> seqs,
+            HashMap<String, Seq> seqs,
             String out) throws MyException {
 
         HashMap<String, AlignSeq> align1 = alignment1.getSeqs();
@@ -697,7 +703,49 @@ public class cmfinder {
                             + m.getWeight() + ",t" + m.getGap() + ",\t" + m.getOverlap());
 
                     // this used to be a call to the merge_motif.pl script
-                    //todo line 800
+                    if (output_more_like_old_cmfinder_pl) {
+                        if (verbose) {
+                            System.out.println(bin_path + "/merge_motif.pl " + SEQ
+                                    + " " + f1 + " " + f2 + " " + f + ".temp");
+                        }
+                    } else {
+                        if (verbose) {
+                            System.out.println("call to merge_motif "
+                                    + f1 + " " + f2 + " " + f + ".temp");
+                        }
+
+                        if (!alignments.containsKey(f1) || !alignments.containsKey(f2)) {
+                            throw new MyException("internal error");
+                        }
+
+                        String f_temp = f + ".temp";
+                        Alignment new_alignment
+                                = merge_alignment(alignments.get(f1), alignments.get(f2), unaligned_seqs, f_temp);
+                        if (new_alignment != null) {
+                            if (!skipClustalw) {
+                                throw new MyException("unexpected");
+                            }
+                            if (output_more_like_old_cmfinder_pl) {
+                                if (verbose) {
+                                    String cmfile = seq_file;
+                                    cmfile = cmfile.replace(".motif.", ".cm.");  //$cmfile =~ s/[.]motif[.]/.cm./g;
+                                    System.out.println(bin_path + "/cmfinder      -o "
+                                            + f + " -a " + f_temp + " " + seq_file + " " + cmfile);
+                                    System.out.println("FATAL: Alignment file "
+                                            + f_temp + " could not be opened for reading");
+                                    System.out.println("while keys merge_motif NEXT : !-s " + f);
+                                }
+                            } else {
+                                if (verbose) {
+                                    System.out.println("while keys merge_motif NEXT : -skipClustalw");
+                                }
+                            }
+                            continue;
+                        }
+                        write_stockholm(new_alignment, f_temp);
+
+                        //todo
+                    }
                 }
 
             }
@@ -888,6 +936,39 @@ public class cmfinder {
         return new String[]{prefix, suffix1, suffix2};
     }
 
+    public boolean RunCmfinder(String[] cmd, String output_motif_file) throws MyException {
+        if (output_motif_file == null || output_motif_file.isEmpty()) {
+            throw new MyException("must pass output_motif_file");
+        }
+        if (output_more_like_old_cmfinder_pl) {
+            System.out.println(String.join(" ", cmd));
+        } else {
+            System.out.println("Running:" + String.join(" ", cmd));
+        }
+
+        cmdOut co = runCmd(cmd);  //30 minutes default
+        boolean status = co.getextVal();
+        int exitCode = co.getExitCode();
+
+        if (status) {
+            //made an alignment
+            return true;
+        } else {
+            if (exitCode >= 2 && exitCode <= 8) {
+                //couldn't produce acceptable output
+                return false;
+            } else {
+                if (useOldCmfinder) {
+                    System.out.println("cmfinder returned error, but I'm ignoring it because I think it's benign");
+                    deleteFile(output_motif_file);
+                    return true;
+                } else {
+                    throw new MyException("problem running cmd:" + String.join(" ", cmd));
+                }
+            }
+        }
+    }
+
     // note we assume the file is in bin_path folder
     public HashMap<String, String> RunSummarize(String file_name) throws MyException {
         String f = findFile(bin_path, file_name);
@@ -1004,24 +1085,19 @@ public class cmfinder {
 
     public static void main(String[] args) {
 
+        //set SEQ
+        SEQ = args[0];
+
         //test case insensitive replaceAll
-        String target = "FOOfBar";
-        target = target.replaceAll("(?i)f", "U");
-        System.out.println(target);
-
+        //        String target = "FOOfBar";
+        //        target = target.replaceAll("(?i)f", "U");
+        //        System.out.println(target);
         //test findfiles
-        Path p = Paths.get(bin_path + "/clustalw");
-        System.out.println(p.toAbsolutePath().toString());
-        findFiles(bin_path, "clustalw").forEach(System.out::println);
-        System.out.println("find it:" + findFile(bin_path, "clustalw"));
-
+        //        Path p = Paths.get(bin_path + "/clustalw");
+        //        System.out.println(p.toAbsolutePath().toString());
+        //        findFiles(bin_path, "clustalw").forEach(System.out::println);
+        //        System.out.println("find it:" + findFile(bin_path, "clustalw"));
         //test my_strcmp
-        System.out.println(Arrays.toString(my_strcmp("abc.def.ghi", "abc.def.ghi")));
-
-        //test hashmap empty
-        HashMap<String, MergeMotif> test = new HashMap<>();
-        if (test != null) {
-            System.out.println("HashMap is empty");
-        }
+        //System.out.println(Arrays.toString(my_strcmp("abc.def.ghi", "abc.def.ghi")));
     }
 }
