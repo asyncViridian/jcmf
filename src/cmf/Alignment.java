@@ -14,7 +14,7 @@ public class Alignment {
     private HashMap<String, Integer> flags;
     private String ss_cons;
     private String rf;
-    private float score;
+    private double score;
     private double weight;
     private float len;
 
@@ -70,7 +70,7 @@ public class Alignment {
         return rf;
     }
 
-    public float getScore() {
+    public double getScore() {
         return score;
     }
 

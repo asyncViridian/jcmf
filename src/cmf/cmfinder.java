@@ -9,44 +9,46 @@ import static cmf.utilities.*;
 import java.io.IOException;
 import java.nio.file.*;
 import java.util.*;
-import java.util.logging.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 import org.json.*;
 
 public class cmfinder {
 
     public static String bin_path = "cmfinder/bin";
     // default parameters
-    String CMFINDER_PACKAGE_VERSION = "0.4.1.15";
-    int CAND = 40;
-    int MAXSPAN1 = 100;
-    int MINSPAN1 = 30;
-    int MAXSPAN2 = 100;
-    int MINSPAN2 = 40;
-    int CLUSTER = 3;
-    double FRACTION = 0.8;
-    int SINGLE = 5;
-    int DOUBLE = 5;
-    int verbose = 0;
-    int help = 0;
-    int COMBINE = 0;
-    String cand_weight_option = "";
-    String cmfinderBaseExe = "cmfinder04";
+    static String CMFINDER_PACKAGE_VERSION = "0.4.1.15";
+    static int CAND = 40;
+    static int MAXSPAN1 = 100;
+    static int MINSPAN1 = 30;
+    static int MAXSPAN2 = 100;
+    static int MINSPAN2 = 40;
+    static int CLUSTER = 3;
+    static double FRACTION = 0.8;
+    static int SINGLE = 5;
+    static int DOUBLE = 5;
+    static boolean verbose = true;
+    static int help = 0;
+    static int COMBINE = 0;
+    static String cand_weight_option = "";
+    static String cmfinderBaseExe = "cmfinder04";
     // ($likeold,$skipClustalw,$useOldCmfinder,$simpleMotifsAlreadyDone,$justGetCmfinderCommand,
     // $copyCmfinderRunsFromLog,$amaa,$version,$filterNonFrag,$fragmentary,$commaSepEmFlags,
     // $commaSepSummarizeFlags,$commaSepCandfFlags,$saveTimer,$allCpus,$cpu,$candsParallel,$outFileSuffix,
     // $columnOnlyBasePairProbs);
-    boolean emulate_apparent_bug_in_resolve_overlap = false;
+    static boolean emulate_apparent_bug_in_resolve_overlap = false;
 
     //parameters from comb_motif.pl
-    int comb_max_gap = 100; // motif instances within this distance of each other can be considered close enough for merging
-    double comb_len_energy_threshold = 0.1;
-    int comb_min_overlap = 2;
-    double comb_min_num = 2.5;
-    int comb_max_len = 200;
-    boolean output_more_like_old_cmfinder_pl = false; //perl using 0, debug flag
-    ArrayList<String> motifList;
-    int minCandScoreInFinal = 0; // be more like old cmfinder for now
-    String emSeq;
+    static int comb_max_gap = 100; // motif instances within this distance of each other can be considered close enough for merging
+    static double comb_len_energy_threshold = 0.1;
+    static int comb_min_overlap = 2;
+    static double comb_min_num = 2.5;
+    static int comb_max_len = 200;
+    static boolean output_more_like_old_cmfinder_pl = false; //perl using 0, debug flag
+    static ArrayList<String> motifList;
+    static int minCandScoreInFinal = 0; // be more like old cmfinder for now
+    static String emSeq;
 
     //getOptions parameters from json file
     boolean version;
@@ -64,9 +66,9 @@ public class cmfinder {
     int combine;
     int o;
     double n;
-    boolean skipClustalw;
+    boolean skipClustalw = jo.getBoolean("skipClustalw");
     boolean likeold;
-    boolean useOldCmfinder;
+    public boolean useOldCmfinder = jo.getBoolean("useOldCmfinder");
     boolean simpleMotifsAlreadyDone;
     boolean justGetCmfinderCommand;
     String copyCmfinderRunsFromLog;
@@ -80,8 +82,29 @@ public class cmfinder {
 
     static JSONObject jo;
 
+    String saveTimerFlag = "";
+    ArrayList<String> summarizeFlagsList;
+    String summarizeFlagsStr;
+
+    HashMap<String, Seq> unaligned_seqs = read_fasta(seqForExpectationMaximization);
+
+    //usage for aligments: try_merge
+    static HashMap<String, Alignment> alignments = new HashMap<>();
+
+    //SEQ setting in main method
+    static String SEQ;
+    static String seqForExpectationMaximization = SEQ;
+
+    static {
+        try {
+            jo = read_json_file("cmfinder_param.json");
+        } catch (JSONException | IOException ex) {
+            System.out.println(ex);
+        }
+    }
+
     //read json file
-    public JSONObject read_json_file(String file_name) throws JSONException, IOException {
+    public static JSONObject read_json_file(String file_name) throws JSONException, IOException {
         Path p = Paths.get(file_name);
         byte[] jsonByte = Files.readAllBytes(p);
         JSONObject jsonObject = new JSONObject(new String(jsonByte));
@@ -195,12 +218,12 @@ public class cmfinder {
         return (cost1 < cost2) ? 1 : 2;
     }
 
-    public MergeMotif merge_motif(AlignSeq motif1, AlignSeq motif2, String whole_seq, int olap_own) {
+    public Merge_Motif_Output merge_motif(AlignSeq motif1, AlignSeq motif2, String whole_seq, int olap_own) {
         //assume that $motif1 should be before $motif2;
-        MergeMotif mm = new MergeMotif(0, 0, "", "", "", "", "", "");
+        Merge_Motif_Output mm = new Merge_Motif_Output(0, 0, "", "", "", "", "", "");
 
         if (motif1 == null) {
-            return new MergeMotif(
+            return new Merge_Motif_Output(
                     motif2.getStart(),
                     motif2.getEnd(),
                     "", "", "", "",
@@ -208,7 +231,7 @@ public class cmfinder {
                     motif2.getAlignSs());
         }
         if (motif2 == null) {
-            return new MergeMotif(
+            return new Merge_Motif_Output(
                     motif1.getStart(),
                     motif1.getEnd(),
                     "", "", "", "",
@@ -218,7 +241,7 @@ public class cmfinder {
 
         // Two motifs can't be merged.    
         if (motif1.getStart() > motif2.getStart()) {
-            return new MergeMotif(-1, -1, "", "", "", "", "", "");
+            return new Merge_Motif_Output(-1, -1, "", "", "", "", "", "");
         }
 
         String gap_seq = "";
@@ -233,7 +256,7 @@ public class cmfinder {
         // motif2 is contained in motif1
         if (motif2.getEnd() < motif1.getEnd()) {
             //return ($motif1->start, $motif1->end, $seq1, $ss1, "", "", "","");
-            return new MergeMotif(-1, -1, "", "", "", "", "", "");
+            return new Merge_Motif_Output(-1, -1, "", "", "", "", "", "");
         }
 
         HashMap<Integer, Integer> map1 = motif1.getAlignMap();
@@ -316,13 +339,13 @@ public class cmfinder {
         }
         gap_seq = gap_seq.replaceAll("(?i)t", "U");  // sed ~s /[tT]/U/g;  case-insentive replace
 
-        return new MergeMotif(start, end, seq1, ss1, gap_seq, gap_ss, seq2, ss2);
+        return new Merge_Motif_Output(start, end, seq1, ss1, gap_seq, gap_ss, seq2, ss2);
     }
 
     public Alignment merge_alignment(
             Alignment alignment1,
             Alignment alignment2,
-            HashMap<String, AlignSeq> seqs,
+            HashMap<String, Seq> seqs,
             String out) throws MyException {
 
         HashMap<String, AlignSeq> align1 = alignment1.getSeqs();
@@ -332,7 +355,7 @@ public class cmfinder {
         String rf1 = alignment1.getRf();
         String rf2 = alignment2.getRf();
 
-        HashMap<String, MergeMotif> motif_overlap = new HashMap<>();
+        HashMap<String, Merge_Motif_Output> motif_overlap = new HashMap<>();
         int max_gap_len = 0;
         int max_m1_len = 0;
         int max_m2_len = 0;
@@ -383,7 +406,7 @@ public class cmfinder {
             }
             if (!align2.containsKey(entry.getKey())) {
                 weight = align1.get(entry.getKey()).getWeight();
-                MergeMotif mm = merge_motif(
+                Merge_Motif_Output mm = merge_motif(
                         align1.get(entry.getKey()),
                         null,
                         seqs.get(entry.getKey()).getSeq(),
@@ -399,7 +422,7 @@ public class cmfinder {
                 ss2 = mm.getSs2();
             } else if (!align1.containsKey(entry.getKey())) {
                 weight = align2.get(entry.getKey()).getWeight();
-                MergeMotif mm = merge_motif(
+                Merge_Motif_Output mm = merge_motif(
                         null,
                         align2.get(entry.getKey()),
                         seqs.get(entry.getKey()).getSeq(),
@@ -416,7 +439,7 @@ public class cmfinder {
             } else {
                 weight = align2.get(entry.getKey()).getWeight()
                         + align1.get(entry.getKey()).getWeight();
-                MergeMotif mm = merge_motif(
+                Merge_Motif_Output mm = merge_motif(
                         align1.get(entry.getKey()),
                         align2.get(entry.getKey()),
                         seqs.get(entry.getKey()).getSeq(),
@@ -433,7 +456,7 @@ public class cmfinder {
             }
 
             if (start >= 0 && end >= 0) {
-                MergeMotif mm = new MergeMotif(
+                Merge_Motif_Output mm = new Merge_Motif_Output(
                         start, end, seq1, ss1, gap_seq, gap_ss, seq2, ss2
                 );
                 mm.setWeight(weight / 2.0d);
@@ -465,7 +488,7 @@ public class cmfinder {
         try {
             Files.createFile(p_out);
             //now loop motif_overlap
-            for (Map.Entry<String, MergeMotif> entry : motif_overlap.entrySet()) {
+            for (Map.Entry<String, Merge_Motif_Output> entry : motif_overlap.entrySet()) {
                 String gap = motif_overlap.get(entry.getKey()).getGapSeq();
                 if (gap.length() > 0) {
                     Files.write(p_out,
@@ -497,18 +520,18 @@ public class cmfinder {
                 String[] cmd1 = {findFile(bin_path, "clustalw"),
                     "-infile=" + out_file,
                     "-outfile=" + out_file + ".aln"};
-                System.out.println(runCmd(cmd1, 1800)); //giving runCmd result
+                runCmd(cmd1, 1800); //giving runCmd result
 
                 String[] cmd2 = {findFile(bin_path, "sreformat"),
                     "stockholm",
                     out_file + ".aln",
                     ">",
                     out_file + ".align"};
-                System.out.println(runCmd(cmd2, 1800));//giving runCmd result
+                runCmd(cmd2, 1800);//giving runCmd result
                 Alignment gap_sto = read_stockholm(out_file + ".align");
                 HashMap<String, AlignSeq> gap_align = gap_sto.getSeqs();
 
-                for (Map.Entry<String, MergeMotif> entry : motif_overlap.entrySet()) {
+                for (Map.Entry<String, Merge_Motif_Output> entry : motif_overlap.entrySet()) {
                     if (gap_align.containsKey(entry.getKey())) {
                         gap_seq = gap_align.get(entry.getKey()).getAlignSeq();
                         entry.getValue().setGapSeq(gap_seq);
@@ -535,7 +558,7 @@ public class cmfinder {
         double weight;
         String desc;
 
-        for (Map.Entry<String, MergeMotif> entry : motif_overlap.entrySet()) {
+        for (Map.Entry<String, Merge_Motif_Output> entry : motif_overlap.entrySet()) {
             gap_seq = pad_string(entry.getValue().getGapSeq(), max_gap_len, ".", 1);
             gap_ss = pad_string(entry.getValue().getGapSs(), max_gap_len, ".", 1);
             align_seq = pad_string(entry.getValue().getSeq1(), max_m1_len, ".", 1)
@@ -565,16 +588,426 @@ public class cmfinder {
         return new Alignment(merged_motif, alignment1.getFlags(), merged_ss_cons, merged_rf);
     }
 
-    public void CombMotif(String cand_weight_option, String seq_file, ArrayList<String> motifFilesRef) {
+    public void CombMotif(String cand_weight_option, String seq_file, ArrayList<String> motifFilesRef)
+            throws MyException {
         ArrayList<String> align_files = motifFilesRef;
+        ArrayList<String> all_files = align_files;
+        // HashMap<> all_stats;
+        HashMap<String, HashMap<String, String>> all_stats = new HashMap<>();
 
+        for (String ff : align_files) {
+            Alignment align = read_stockholm(ff);
+            if (align.getWeight() >= comb_min_num) {
+                HashMap<String, String> stat = RunSummarize(ff);
+                all_stats.put(ff, stat);
+                alignments.put(ff, align);
+            }
+        }
+        //try merging all pairs of motifs, and see how they fit together
+        HashMap<String, MergeMotif> merge_motif = new HashMap<>();
+        for (String f1 : align_files) {
+            for (String f2 : align_files) {
+                // java This method returns 0 if two Strings are equal or if both are null, 
+                // a negative number if the first String comes before the argument, and 
+                // a number greater than zero if the first String comes after the argument String
+                if (f1.compareTo(saveTimerFlag) < 0) {
+                    merge_motif = try_merge(f1, f2, merge_motif);
+                }
+            }
+        }
+
+        HashMap<String, MergeMotif> processed = new HashMap<>();
+        HashMap<String, String> merged_files = new HashMap<>();
+        //add crete a reverse sort merge_motif_reverse
+
+        HashMap<String, MergeMotif> merge_motif_reverse_sorted
+                = merge_motif.entrySet().stream()
+                        .sorted(Map.Entry.comparingByValue(
+                                Comparator.comparingDouble(MergeMotif::getWeight)
+                                        .reversed()))
+                        .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue,
+                                (oldValue, newValue) -> oldValue, LinkedHashMap::new));
+
+        while (merge_motif.size() > 0) {
+            if (verbose) {
+                System.out.println("entering for my \\$id, with list:");
+                //print key value based on object's weight reverse sorted
+                merge_motif_reverse_sorted.entrySet().stream()
+                        .forEachOrdered(e -> System.out.println(e.getKey()));
+            }
+            for (Map.Entry<String, MergeMotif> entry : merge_motif_reverse_sorted.entrySet()) {
+                //ake motifs whose combination has the biggest weight first
+                if (verbose) {
+                    System.out.println("while keys merge_motif : id=" + entry.getKey());
+                }
+                //MergeMotif m = merge_motif.get(entry.getKey());
+                MergeMotif m = entry.getValue();
+                merge_motif.remove(entry.getKey());
+
+                if (processed.containsKey(entry.getKey())) {
+                    if (verbose) {
+                        System.out.println("while keys merge_motif NEXT : exists \\$processed{"
+                                + entry.getKey() + "}");
+                    }
+                    continue;
+                }
+                processed.put(entry.getKey(), m);
+                String f1 = m.getMotif1();
+                String f2 = m.getMotif2();
+
+                if (m.getWeight() <= 0) {
+                    if (verbose) {
+                        System.out.println("while keys merge_motif NEXT : weight <= 0");
+                    }
+                }
+
+                if (m.getWeight() > 0) { //has to be favorable
+                    if (merged_files.containsKey(f1) || merged_files.containsKey(f2)) {
+                        //# ??  apparently each motif can only appear in one merging?
+                        if (verbose) {
+                            System.out.println("while keys merge_motif NEXT : exists \\$merged_files{"
+                                    + f1 + "}=" + (merged_files.containsKey(f1) ? "true" : "false")
+                                    + " || exists \\$merged_files{" + f2 + "}="
+                                    + (merged_files.containsKey(f2) ? "true" : "false"));
+                        }
+                        continue;
+                    }
+                    if (m.getGap() > comb_max_gap) {
+                        double m_gap = m.getGap();
+                        if (verbose) {
+                            System.out.println("while keys merge_motif NEXT : \\$m->gap > \\$comb_max_gap :"
+                                    + m_gap + ">" + comb_max_gap);
+                        }
+                        continue;
+                    }
+
+                    String f = entry.getKey();
+                    int found = 0;
+                    for (String tmp : all_files) {
+                        if (tmp.equals(f)) {
+                            found = 1;
+                            break;
+                        }
+                    }
+
+                    if (found != 0) {
+                        if (verbose) {
+                            System.out.println("while keys merge_motif NEXT : not found.  all_files = "
+                                    + String.join(" ", all_files));
+                        }
+                        continue;  //# file has already been made
+                    }
+
+                    System.out.println("( near merge_motif: "
+                            + entry.getKey() + ", " + m.getNum_seq() + ", \t" + f1 + "\t" + f2 + "\t,"
+                            + m.getWeight() + ",t" + m.getGap() + ",\t" + m.getOverlap());
+
+                    // this used to be a call to the merge_motif.pl script
+                    if (output_more_like_old_cmfinder_pl) {
+                        if (verbose) {
+                            System.out.println(bin_path + "/merge_motif.pl " + SEQ
+                                    + " " + f1 + " " + f2 + " " + f + ".temp");
+                        }
+                    } else {
+                        if (verbose) {
+                            System.out.println("call to merge_motif "
+                                    + f1 + " " + f2 + " " + f + ".temp");
+                        }
+
+                        if (!alignments.containsKey(f1) || !alignments.containsKey(f2)) {
+                            throw new MyException("internal error");
+                        }
+
+                        String f_temp = f + ".temp";
+                        Alignment new_alignment
+                                = merge_alignment(alignments.get(f1), alignments.get(f2), unaligned_seqs, f_temp);
+                        if (new_alignment != null) {
+                            if (!skipClustalw) {
+                                throw new MyException("unexpected");
+                            }
+                            if (output_more_like_old_cmfinder_pl) {
+                                if (verbose) {
+                                    String cmfile = seq_file;
+                                    cmfile = cmfile.replace(".motif.", ".cm.");  //$cmfile =~ s/[.]motif[.]/.cm./g;
+                                    System.out.println(bin_path + "/cmfinder      -o "
+                                            + f + " -a " + f_temp + " " + seq_file + " " + cmfile);
+                                    System.out.println("FATAL: Alignment file "
+                                            + f_temp + " could not be opened for reading");
+                                    System.out.println("while keys merge_motif NEXT : !-s " + f);
+                                }
+                            } else {
+                                if (verbose) {
+                                    System.out.println("while keys merge_motif NEXT : -skipClustalw");
+                                }
+                            }
+                            continue;
+                        }
+                        write_stockholm(new_alignment, f_temp);
+
+                        //todo
+                    }
+                }
+
+            }
+        }
+
+    }
+
+    public static HashMap<String, MergeMotif> try_merge(String f1, String f2, HashMap<String, MergeMotif> merge_motif_ref)
+            throws MyException {
+        if (merge_motif_ref == null) { //perl !defined not isEmpty()
+            throw new MyException("merge_motif_ref Hashmap is empty");
+        }
+
+        String index = String.join(".", my_strcmp(f1, f2));
+        System.out.println("try_merge " + f1 + " " + f2);
+        if (merge_motif_ref.containsKey(index)) {
+            if (verbose) {
+                System.out.println();
+            }
+            return null;
+        }
+
+        double num_overlap = 0;
+        double start1 = 0;
+        double start2 = 0;
+        double start1_score = 0;
+        double start2_score = 0;
+        int gap1 = 0;
+        int gap2 = 0;
+        int overlap1 = 0;
+        int overlap2 = 0;
+
+        if (!alignments.containsKey(f1) || !alignments.containsKey(f2)) {
+            if (verbose) {
+                System.out.println("alignments don't containt key for " + f1 + " or " + f2);
+            }
+            return null;
+        }
+
+        HashMap<String, AlignSeq> align1 = alignments.get(f1).getSeqs();
+        HashMap<String, AlignSeq> align2 = alignments.get(f2).getSeqs();
+
+        for (HashMap.Entry<String, AlignSeq> entry : align1.entrySet()) {
+            if (!align2.containsKey(entry.getKey())) {
+                continue;
+            }
+            //below, we know that hit id $id is common to both alignments $f1 and $f2
+            //figure out if the hits for id=$id in the two motifs overlap
+            AlignSeq motif1 = align1.get(entry.getKey());
+            AlignSeq motif2 = align2.get(entry.getKey());
+
+            //we only look for motifs on the forward strand
+            if ((motif1.getStart() > motif1.getEnd())
+                    || (motif2.getStart() > motif2.getEnd())) {
+                throw new MyException("motif start is bigger than end unexpected");
+            }
+
+            int len1 = motif1.getEnd() - motif1.getStart();
+            int len2 = motif2.getEnd() - motif2.getStart();
+
+            if (motif1.getStart() > motif2.getStart()) {
+                if (motif1.getEnd() < motif2.getEnd()) {
+                    //overlap
+                    //motif1 contained within motif2
+                    num_overlap += motif1.getWeight() * motif2.getWeight();
+                } else {
+                    int overlap = motif2.getEnd() - motif1.getStart();
+                    if (overlap > -comb_max_gap) {
+                        if (((len1 - overlap < 25) || (len2 - overlap < 25))
+                                && ((overlap > 0.9 * len1) || (overlap > 0.9 * len2))) {
+                            //the motif instances almost entirely overlap (have up leave at most 25 nucs 
+                            //and 10% of each instance un-overlapped
+                            num_overlap += motif1.getWeight() * motif2.getWeight();
+                        } else {
+                            //he motif instances are near to one another or somewhat overlapping, let's 
+                            //record the weight for this orientation (motif2 instance coords > motif1 instance coords)
+                            start2 += (motif1.getWeight() + motif2.getWeight()) / 2;
+                            start2_score += motif1.getScore() * motif1.getWeight() + motif2.getScore() * motif2.getWeight();
+                            if (overlap > 0) {
+                                //the motif instances actually overlap
+                                overlap2 += overlap * motif1.getWeight() * motif2.getWeight();
+                            } else if (-overlap < comb_max_gap) {//I think this is always true because of the test some lines up
+                                gap2 += -overlap * motif1.getWeight() * motif2.getWeight();
+                            }
+                        }
+                    }
+                }
+            } else { //this 'else' case is the mirror image of the 'if' case
+                if (motif1.getEnd() < motif2.getEnd()) {
+                    int overlap = motif1.getEnd() - motif2.getStart();
+                    if (overlap > -comb_max_gap) {
+                        if (((len1 - overlap < 25) || (len2 - overlap < 25))
+                                && ((overlap > 0.9 * len1) || overlap > 0.9 * len2)) {
+                            num_overlap += motif1.getWeight() * motif2.getWeight();
+                        } else {
+                            start1 += (motif1.getWeight() + motif2.getWeight()) / 2;
+                            start1_score += motif1.getScore() * motif1.getWeight() + motif2.getScore() * motif2.getWeight();
+                            if (overlap > 0) {
+                                overlap1 += overlap * motif1.getWeight() * motif2.getWeight();
+                            } else if (-overlap1 < comb_max_gap) {
+                                gap1 += -overlap * motif1.getWeight() * motif2.getWeight();
+                            }
+                        }
+                    }
+                } else {
+                    //overlap
+                    // motif2 contained within motif1
+                    num_overlap += motif1.getWeight() * motif2.getWeight();
+                }
+            }
+        }
+
+        if (verbose) {
+            System.out.println("start1=" + start1 + " start2=" + start2 + " num_overlap=" + num_overlap);
+        }
+        if (num_overlap > start1 && num_overlap > start2) {
+            if (verbose) {
+                System.out.println("num_overlap>start1 && num_overlap>start2 :"
+                        + num_overlap + ">" + start1 + " && " + num_overlap + ">" + start2);
+            }
+            return null;
+        }
+        if (start1_score > start2_score) {
+            //# is motif1 more often to the left of motif2 or vice versa?  Where's the bias?
+            if (start1 < comb_min_overlap) {
+                //# not enough sequences favor this orientation in absolute terms (compared to the constant 
+                //$comb_min_overlap) for it to be worthwhile  
+                if (verbose) {
+                    System.out.println("start1<comb_min_overlap :" + start1 + "<" + comb_min_overlap);
+                }
+                return null;
+            }
+
+            //	#motif1 is before motif2
+            merge_motif_ref.put(index,
+                    new MergeMotif(
+                            f1,
+                            f2,
+                            start1,
+                            start1_score,
+                            gap1 / start1,
+                            overlap1 / start1,
+                            start1_score - gap1 / 2 - overlap1));
+            System.out.println("accept id=" + index + ":"
+                    + f1 + "-" + f2 + ":" + start1_score + " " + gap1 / 2 + " " + overlap1 + " " + start1
+            );
+        } else { //# this 'else' case mirrors the 'if' case
+            if (start2 < comb_min_overlap) {
+                if (verbose) {
+                    System.out.println("start2 < comb_min_overlap :" + start2 + "<" + comb_min_overlap);
+                }
+                return null;
+            }
+            //#motif2 is before motif1
+            merge_motif_ref.put(index,
+                    new MergeMotif(
+                            f2,
+                            f1,
+                            start2,
+                            start2_score,
+                            gap2 / start2,
+                            overlap2 / start2,
+                            start2_score - gap2 / 2 - overlap2)
+            );
+            System.out.println("taccept id=" + index + ":"
+                    + f2 + "-" + f1 + ":" + start2_score + " " + gap2 / 2 + " " + overlap2 + " " + start2);
+        }
+
+        return merge_motif_ref;
+    }
+
+    public static String[] my_strcmp(String s1, String s2) {
+        String[] t1 = s1.split("\\.");
+        String[] t2 = s2.split("\\.");
+        String prefix = "";
+        for (int i = 0; i < t1.length && i < t2.length; i++) {
+            if (!t1[i].equals(t2[i])) {
+                break;
+            }
+            if (prefix.equals("")) {
+                prefix = t1[i];
+            } else {
+                prefix = prefix + "." + t1[i];
+            }
+        }
+        String suffix1 = String.join(".", t1);
+        String suffix2 = String.join(".", t2);
+        return new String[]{prefix, suffix1, suffix2};
+    }
+
+    public boolean RunCmfinder(String[] cmd, String output_motif_file) throws MyException {
+        if (output_motif_file == null || output_motif_file.isEmpty()) {
+            throw new MyException("must pass output_motif_file");
+        }
+        if (output_more_like_old_cmfinder_pl) {
+            System.out.println(String.join(" ", cmd));
+        } else {
+            System.out.println("Running:" + String.join(" ", cmd));
+        }
+
+        cmdOut co = runCmd(cmd);  //30 minutes default
+        boolean status = co.getextVal();
+        int exitCode = co.getExitCode();
+
+        if (status) {
+            //made an alignment
+            return true;
+        } else {
+            if (exitCode >= 2 && exitCode <= 8) {
+                //couldn't produce acceptable output
+                return false;
+            } else {
+                if (useOldCmfinder) {
+                    System.out.println("cmfinder returned error, but I'm ignoring it because I think it's benign");
+                    deleteFile(output_motif_file);
+                    return true;
+                } else {
+                    throw new MyException("problem running cmd:" + String.join(" ", cmd));
+                }
+            }
+        }
+    }
+
+    // note we assume the file is in bin_path folder
+    public HashMap<String, String> RunSummarize(String file_name) throws MyException {
+        String f = findFile(bin_path, file_name);
+        if (false) {
+            String[] cmd = {findFile(bin_path, "summarize"), f};
+            System.out.println("Running " + String.join(" ", cmd));
+            cmdOut exec1 = runCmd(cmd, 300);
+            ArrayList<String> summary = exec1.getOut(); //ArrayList to String
+            if (!exec1.getextVal()) {
+                throw new MyException(String.join(" ", cmd) + " failed.");
+            }
+        }
+        String cmfinder = findFile(bin_path, "cmfinder04");
+        String[] cmd2 = {cmfinder, saveTimerFlag, "--summarize", summarizeFlagsStr, f};
+        System.out.println("Running " + String.join(" ", cmd2));
+        cmdOut exec2 = runCmd(cmd2, 300);
+        ArrayList<String> summary2 = exec2.getOut();
+        if (!exec2.getextVal()) {
+            throw new MyException(String.join(" ", cmd2) + " failed.");
+        }
+        //he matcher.group() function expects to take a single integer argument: The capturing group index, starting from 1. 
+        //The index 0 is special, which means "the entire match". 
+        Pattern p = Pattern.compile("\\s*(\\S+)=(\\S+)\\s*");
+        HashMap<String, String> result = new HashMap<>();
+        summary2.forEach(e -> {
+            Matcher m = p.matcher(e);
+            if (m.matches()) {
+                result.put(m.group(1), m.group(2));
+            }
+        }
+        );
+        return result;
     }
 
     public void print_version() {
         System.out.println("CMFINDER_PACKAGE_VERSION=" + CMFINDER_PACKAGE_VERSION);
     }
 
-    public void print_help() {
+    public static void print_help() {
         String help_content = "CMFINDER [options] SEQ\n"
                 + "Options:\n"
                 + "    -c <number>      \n"
@@ -652,27 +1085,19 @@ public class cmfinder {
 
     public static void main(String[] args) {
 
-        // test read jason file
-        try {
-            jo = new cmfinder().read_json_file("src/cmf/cmfinder_param.json");
-            //cm.parse_param(jo);
-
-        } catch (JSONException ex) {
-            Logger.getLogger(cmfinder.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IOException ex) {
-            Logger.getLogger(cmfinder.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        //set SEQ
+        SEQ = args[0];
 
         //test case insensitive replaceAll
-        String target = "FOOfBar";
-        target = target.replaceAll("(?i)f", "U");
-        System.out.println(target);
-
+        //        String target = "FOOfBar";
+        //        target = target.replaceAll("(?i)f", "U");
+        //        System.out.println(target);
         //test findfiles
-        Path p = Paths.get(bin_path + "/clustalw");
-        System.out.println(p.toAbsolutePath().toString());
-        findFiles(bin_path, "clustalw").forEach(System.out::println);
-        System.out.println("find it:" + findFile(bin_path, "clustalw"));
-
+        //        Path p = Paths.get(bin_path + "/clustalw");
+        //        System.out.println(p.toAbsolutePath().toString());
+        //        findFiles(bin_path, "clustalw").forEach(System.out::println);
+        //        System.out.println("find it:" + findFile(bin_path, "clustalw"));
+        //test my_strcmp
+        //System.out.println(Arrays.toString(my_strcmp("abc.def.ghi", "abc.def.ghi")));
     }
 }
