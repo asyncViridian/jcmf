@@ -1,13 +1,60 @@
 package blockmerge.util;
 
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.math.BigDecimal;
 import java.math.BigInteger;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.Objects;
 
 public class AlignmentBlock {
-    private List<Sequence> sequences;
+    private Map<String, Sequence> sequences;
+    private String reference;
+    private BigDecimal score;
 
-    public AlignmentBlock(List<Sequence> sequences) {
-        this.sequences = sequences;
+    public static void main(String[] args) throws IOException {
+        List<String> lines = new ArrayList<>();
+        new AlignmentBlock(Files.readAllLines(Paths.get("src","blockmerge","multiz100way_chr12_62602752-62622213.maf")));
+    }
+
+    /**
+     * Construct an AlignmentBlock from a set of Strings that comprise it,
+     * starting from the first "a" line to the last "e" line
+     *
+     * @param lines
+     */
+    public AlignmentBlock(List<String> lines) {
+        for (int i = 0; i < lines.size(); i++) {
+            String line = lines.get(i);
+            if (line.charAt(0) == 'a') {
+                // if this is the initial line
+                // TODO make this more resilient for general MAF-format?
+                this.score = new BigDecimal(line.split("\\s")[1].split("=")[1]);
+            } else if (line.charAt(0) == 's') {
+                if (i != lines.size() - 1 && lines.get(i + 1).charAt(0) == 'i') {
+                    // if there's a context line
+                    this.sequences.put(line.split("\\s")[1],
+                            new Sequence(line, lines.get(i + 1)));
+                    i++;
+                } else {
+                    // no context line
+                    this.sequences.put(line.split("\\s")[1],
+                            new Sequence(line));
+                    // make this the reference
+                    this.reference = line.split("\\s")[1];
+                }
+            } else if (line.charAt(0) == 'e') {
+                // create a gap sequence
+                this.sequences.put(line.split("\\s")[1], new Sequence(line));
+            }
+        }
     }
 
     public static class Sequence {
@@ -24,14 +71,63 @@ public class AlignmentBlock {
         AdjacentDetail right;
         /**
          * True means this is the reference sequence (the first one listed in
-         * a block)
+         * a block). Iff true, then the AdjacentDetails must be "C 0 C 0"
          */
         boolean isReference;
+        /**
+         * True means that this sequence is entirely empty throughout the
+         * containing alignment block. Iff true, then has a non-null gapType,
+         * the AdjacentDetails must be "C 0 C 0", and the contents is "".
+         */
+        boolean isGap;
+        GapType gapType;
 
+        /**
+         * Construct a Sequence given each argument manually. Part of this
+         * javadoc is copied from the UCSC MAF format specification.
+         *
+         * @param src         The name of one of the source sequences for the
+         *                    alignment. For sequences that are resident in a
+         *                    browser assembly, the form 'database
+         *                    .chromosome' allows automatic creation of links
+         *                    to other assemblies. Non-browser sequences are
+         *                    typically reference by the species name alone.
+         * @param start       The start of the aligning region in the source
+         *                    sequence. This is a zero-based number. If the
+         *                    strand field is "-" then this is the start
+         *                    relative to the reverse-complemented source
+         *                    sequence.
+         * @param size        The size of the aligning region in the source
+         *                    sequence. This number is equal to the number of
+         *                    non-dash characters in the alignment text field.
+         * @param strand      Either "+" (true) or "-" (false). If "-", then
+         *                    the alignment is to the reverse-complemented
+         *                    source.
+         * @param srcSize     The size of the entire source sequence, not
+         *                    just the parts involved in the alignment.
+         * @param contents    The nucleotides (or amino acids) in the
+         *                    alignment and any insertions (dashes) as well.
+         * @param left        Information about the context of the sequence
+         *                    line: relationship between the sequence in this
+         *                    block and the sequence in the block immediately
+         *                    preceding it.
+         * @param right       Information about the context of the sequence
+         *                    line: relationship between the sequence in this
+         *                    block and the sequence in the block immediately
+         *                    following it.
+         * @param isReference True iff this is the reference sequence for the
+         *                    containing alignment block.
+         * @param isGap       True iff this sequence is gapped for the
+         *                    relevant alignment block.
+         * @param gapType     Null iff isGap is true, otherwise equals the
+         *                    type of gap that this sequence is.
+         * @see
+         * <a href="https://genome.ucsc.edu/FAQ/FAQformat.html#format5">the UCSC MAF spec</a>
+         */
         public Sequence(String src, BigInteger start, BigInteger size,
                         boolean strand, BigInteger srcSize, String contents,
                         AdjacentDetail left, AdjacentDetail right,
-                        boolean isReference) {
+                        boolean isReference, boolean isGap, GapType gapType) {
             this.src = src;
             this.start = start;
             this.size = size;
@@ -41,24 +137,39 @@ public class AlignmentBlock {
             this.left = left;
             this.right = right;
             this.isReference = isReference;
+            this.isGap = isGap;
+            this.gapType = gapType;
+            checkRep();
         }
 
         /**
-         * Construct a reference MAF sequence
+         * Construct a single-line MAF sequence
+         *
          * @param onlyLine line for the sequence
          */
         public Sequence(String onlyLine) {
             String[] split = onlyLine.split("\\s");
             this.buildBasic(split);
-            this.left = null;
-            this.right = null;
-            this.isReference = true;
+            if (onlyLine.charAt(0) == 's') {
+                // Create a reference sequence
+                this.left = new AdjacentDetail("C", BigInteger.valueOf(0));
+                this.right = new AdjacentDetail("C", BigInteger.valueOf(0));
+                this.isReference = true;
+                this.isGap = false;
+                this.gapType = null;
+            } else if (onlyLine.charAt(0) == 'e') {
+                // Create a gap sequence
+                this.contents = "";
+                this.isGap = true;
+                this.gapType = GapType.valueOf(split[6]);
+            }
         }
 
         /**
-         * Construct a non-reference MAF sequence
-         * @param line1 first line for the sequence
-         * @param line2 second line for the sequence
+         * Construct a non-reference MAF sequence (with context information)
+         *
+         * @param line1 first (s-) line for the sequence
+         * @param line2 second (i-) line for the sequence
          */
         public Sequence(String line1, String line2) {
             String[] split1 = line1.split("\\s");
@@ -69,10 +180,12 @@ public class AlignmentBlock {
             this.right = new AdjacentDetail(split2[4],
                     new BigInteger(split2[5]));
             this.isReference = false;
+            this.isGap = false;
+            this.gapType = null;
         }
 
         /**
-         * Populate the fields available in all sequence types given the
+         * Populate the fields available in all non-gap sequence types given the
          * first line for the sequence
          *
          * @param firstLine first line of the sequence, whitespace-split
@@ -85,47 +198,90 @@ public class AlignmentBlock {
             this.srcSize = new BigInteger(firstLine[5]);
             this.contents = firstLine[6];
         }
-    }
 
-    public static class AdjacentDetail {
-        public enum Type {
-            /**
-             * the sequence before or after is contiguous with this block
-             */
-            C,
-            /**
-             * there are bases between the bases in this block and the one
-             * before or after it
-             */
-            I,
-            /**
-             * this is the first sequence from this src chrom or scaffold
-             */
-            N,
-            /**
-             * this is the first sequence from this src chrom or scaffold but
-             * it is bridged by another alignment from a different chrom or
-             * scaffold
-             */
-            n,
-            /**
-             * there is missing data before or after this block (Ns in the
-             * sequence)
-             */
-            M,
-            /**
-             * the sequence in this block has been used before in a previous
-             * block (likely a tandem duplication)
-             */
-            T
+        private void checkRep() {
+            // cannot both be a reference sequence and a gap sequence
+            assert !(this.isReference && this.isGap);
+            // check that isReference enforces the correct requirements
+            if (this.isReference) {
+                assert this.left.equals(new AdjacentDetail("C",
+                        BigInteger.ZERO));
+                assert this.right.equals(new AdjacentDetail("C",
+                        BigInteger.ZERO));
+            }
+            // check that isGap enforces the correct requirements
+            if (this.isGap) {
+                assert this.left.equals(new AdjacentDetail("C",
+                        BigInteger.ZERO));
+                assert this.right.equals(new AdjacentDetail("C",
+                        BigInteger.ZERO));
+                assert this.gapType != null;
+                assert this.contents.equals("");
+            } else {
+                assert this.gapType == null;
+            }
         }
 
-        Type type;
-        BigInteger length;
+        public static class AdjacentDetail {
+            public enum Type {
+                /**
+                 * the sequence before or after is contiguous with this block
+                 */
+                C,
+                /**
+                 * there are bases between the bases in this block and the one
+                 * before or after it
+                 */
+                I,
+                /**
+                 * this is the first sequence from this src chrom or scaffold
+                 */
+                N,
+                /**
+                 * this is the first sequence from this src chrom or scaffold
+                 * but
+                 * it is bridged by another alignment from a different chrom or
+                 * scaffold
+                 */
+                n,
+                /**
+                 * there is missing data before or after this block (Ns in the
+                 * sequence)
+                 */
+                M,
+                /**
+                 * the sequence in this block has been used before in a previous
+                 * block (likely a tandem duplication)
+                 */
+                T
+            }
 
-        public AdjacentDetail(String type, BigInteger length) {
-            this.type = Type.valueOf(type);
-            this.length = length;
+            Type type;
+            BigInteger length;
+
+            public AdjacentDetail(String type, BigInteger length) {
+                this.type = Type.valueOf(type);
+                this.length = length;
+            }
+
+            @Override
+            public boolean equals(Object o) {
+                if (!(o instanceof AdjacentDetail)) {
+                    return false;
+                }
+                AdjacentDetail ad = (AdjacentDetail) o;
+                return ad.type.equals(this.type) && ad.length.equals(this.length);
+            }
+
+            @Override
+            public int hashCode() {
+                return Objects.hash(this.type, this.length);
+            }
+        }
+
+        public enum GapType {
+
         }
     }
+
 }

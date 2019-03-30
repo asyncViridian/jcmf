@@ -1,3 +1,0 @@
-some test content...
-line1
-line2
