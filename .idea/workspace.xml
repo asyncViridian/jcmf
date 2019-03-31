@@ -2,17 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3da6e499-81fb-4a08-856f-3dc0c5fe102e" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/cmf.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/cmf.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/jcmf/META-INF/jcmf.kotlin_module" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/jcmf/cmf/AlignSeq.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/jcmf/cmf/Alignment.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/jcmf/cmf/Io.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/jcmf/cmf/MyException.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/jcmf/cmf/Seq.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/test/jcmf/META-INF/jcmf.kotlin_module" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/test/jcmf/cmf/IoTest.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/test/jcmf/try.txt" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/blockmerge/util/AlignmentBlock.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/blockmerge/util/AlignmentBlock.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -54,32 +44,16 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/blockmerge/util/AlignmentBlock.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="234">
-              <caret line="18" column="29" lean-forward="true" selection-start-line="18" selection-start-column="29" selection-end-line="18" selection-end-column="29" />
+            <state relative-caret-position="158">
+              <caret line="28" selection-start-line="28" selection-end-line="28" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="method#Sequence#0;class#Sequence#0;class#AlignmentBlock#0" />
-                <element signature="method#Sequence#1;class#Sequence#0;class#AlignmentBlock#0" />
-                <element signature="method#buildBasic#0;class#Sequence#0;class#AlignmentBlock#0" />
-                <element signature="class#AdjacentDetail#0;class#Sequence#0;class#AlignmentBlock#0" />
-                <element signature="class#Type#0;class#AdjacentDetail#0;class#Sequence#0;class#AlignmentBlock#0" />
-                <element signature="method#AdjacentDetail#0;class#AdjacentDetail#0;class#Sequence#0;class#AlignmentBlock#0" />
                 <element signature="method#equals#0;class#AdjacentDetail#0;class#Sequence#0;class#AlignmentBlock#0" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/cmf/cmfinder.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="169">
-              <caret line="15" lean-forward="true" selection-start-line="15" selection-end-line="15" />
-              <folding>
-                <element signature="imports" expanded="true" />
+                <element signature="class#GapType#0;class#Sequence#0;class#AlignmentBlock#0" />
               </folding>
             </state>
           </provider>
@@ -99,6 +73,7 @@
     <findStrings>
       <find>assertEquals\((.*), (&quot;.*&quot;)\);</find>
       <find>write</find>
+      <find>\\s</find>
     </findStrings>
     <replaceStrings>
       <replace>assertEquals\((\2), (\1)\);</replace>
@@ -142,6 +117,11 @@
             <path>
               <item name="jcmf" type="b2602c69:ProjectViewProjectNode" />
               <item name="jcmf" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="jcmf" type="b2602c69:ProjectViewProjectNode" />
+              <item name="jcmf" type="462c0819:PsiDirectoryNode" />
+              <item name="ext_lib" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="jcmf" type="b2602c69:ProjectViewProjectNode" />
@@ -204,7 +184,7 @@
     <property name="Repository.Attach.Sources" value="false" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1553984098240" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1553991578326" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/dist/cmf.jar!/" />
     <property name="project.structure.last.edited" value="Libraries" />
     <property name="project.structure.proportion" value="0.15" />
@@ -325,7 +305,7 @@
       <workItem from="1552607972898" duration="1199000" />
       <workItem from="1553147239551" duration="620000" />
       <workItem from="1553749971863" duration="1232000" />
-      <workItem from="1553922739993" duration="9797000" />
+      <workItem from="1553922739993" duration="13204000" />
     </task>
     <servers />
   </component>
@@ -356,13 +336,13 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="27976000" />
+    <option name="totallyTimeSpent" value="31383000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-9" y="-9" width="1698" height="1020" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49942988" visible="true" weight="0.20843521" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49942988" visible="true" weight="0.20843521" />
       <window_info id="Structure" order="1" sideWeight="0.5005701" side_tool="true" weight="0.22493887" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -372,14 +352,14 @@
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
       <window_info anchor="bottom" id="Run" order="2" weight="0.32997763" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info active="true" anchor="bottom" id="Debug" order="3" visible="true" weight="0.3990878" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Terminal" order="7" weight="0.3296582" />
       <window_info anchor="bottom" id="Event Log" order="8" side_tool="true" />
       <window_info anchor="bottom" id="Version Control" order="9" weight="0.3296582" />
-      <window_info anchor="bottom" id="Messages" order="10" visible="true" weight="0.3295325" />
+      <window_info anchor="bottom" id="Messages" order="10" weight="0.3295325" />
       <window_info anchor="bottom" id="Docker" order="11" show_stripe_button="false" />
       <window_info anchor="bottom" id="Database Changes" order="12" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -395,18 +375,6 @@
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/blockmerge/util/AlignmentBlock.java</url>
-          <line>22</line>
-          <properties />
-          <option name="timeStamp" value="4" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/src/cmf/Seq.java">
@@ -458,29 +426,25 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/blockmerge/util/AlignmentBlock.java">
+    <entry file="file://$PROJECT_DIR$/src/cmf/cmfinder.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="234">
-          <caret line="18" column="29" lean-forward="true" selection-start-line="18" selection-start-column="29" selection-end-line="18" selection-end-column="29" />
+        <state relative-caret-position="169">
+          <caret line="15" selection-start-line="15" selection-end-line="15" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="method#Sequence#0;class#Sequence#0;class#AlignmentBlock#0" />
-            <element signature="method#Sequence#1;class#Sequence#0;class#AlignmentBlock#0" />
-            <element signature="method#buildBasic#0;class#Sequence#0;class#AlignmentBlock#0" />
-            <element signature="class#AdjacentDetail#0;class#Sequence#0;class#AlignmentBlock#0" />
-            <element signature="class#Type#0;class#AdjacentDetail#0;class#Sequence#0;class#AlignmentBlock#0" />
-            <element signature="method#AdjacentDetail#0;class#AdjacentDetail#0;class#Sequence#0;class#AlignmentBlock#0" />
-            <element signature="method#equals#0;class#AdjacentDetail#0;class#Sequence#0;class#AlignmentBlock#0" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/cmf/cmfinder.java">
+    <entry file="file://$PROJECT_DIR$/src/blockmerge/util/AlignmentBlock.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="169">
-          <caret line="15" lean-forward="true" selection-start-line="15" selection-end-line="15" />
+        <state relative-caret-position="158">
+          <caret line="28" selection-start-line="28" selection-end-line="28" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="method#Sequence#0;class#Sequence#0;class#AlignmentBlock#0" />
+            <element signature="method#equals#0;class#AdjacentDetail#0;class#Sequence#0;class#AlignmentBlock#0" />
+            <element signature="class#GapType#0;class#Sequence#0;class#AlignmentBlock#0" />
           </folding>
         </state>
       </provider>
@@ -562,7 +526,7 @@
       </state>
       <state key="ProjectLibrariesConfigurable.UI">
         <settings>
-          <last-edited>cmf</last-edited>
+          <last-edited>org.json-20161124</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>

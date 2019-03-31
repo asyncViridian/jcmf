@@ -1,27 +1,32 @@
 package blockmerge.util;
 
 import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.nio.file.Files;
-import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.Objects;
+import java.util.*;
 
 public class AlignmentBlock {
-    private Map<String, Sequence> sequences;
+    private Map<String, Sequence> sequences = new HashMap<>();
     private String reference;
     private BigDecimal score;
 
     public static void main(String[] args) throws IOException {
         List<String> lines = new ArrayList<>();
-        new AlignmentBlock(Files.readAllLines(Paths.get("src","blockmerge","multiz100way_chr12_62602752-62622213.maf")));
+        BufferedReader r = Files.newBufferedReader(Paths.get("src",
+                "blockmerge", "multiz100way_chr12_62602752-62622213.maf"));
+        Iterator<String> it = r.lines().iterator();
+        while (it.hasNext()) {
+            String s = it.next();
+            if (!s.isEmpty()) {
+                lines.add(s);
+            } else {
+                break;
+            }
+        }
+        new AlignmentBlock(lines);
     }
 
     /**
@@ -40,19 +45,19 @@ public class AlignmentBlock {
             } else if (line.charAt(0) == 's') {
                 if (i != lines.size() - 1 && lines.get(i + 1).charAt(0) == 'i') {
                     // if there's a context line
-                    this.sequences.put(line.split("\\s")[1],
+                    this.sequences.put(line.split("\\s+")[1],
                             new Sequence(line, lines.get(i + 1)));
                     i++;
                 } else {
                     // no context line
-                    this.sequences.put(line.split("\\s")[1],
+                    this.sequences.put(line.split("\\s+")[1],
                             new Sequence(line));
                     // make this the reference
-                    this.reference = line.split("\\s")[1];
+                    this.reference = line.split("\\s+")[1];
                 }
             } else if (line.charAt(0) == 'e') {
                 // create a gap sequence
-                this.sequences.put(line.split("\\s")[1], new Sequence(line));
+                this.sequences.put(line.split("\\s+")[1], new Sequence(line));
             }
         }
     }
@@ -148,12 +153,12 @@ public class AlignmentBlock {
          * @param onlyLine line for the sequence
          */
         public Sequence(String onlyLine) {
-            String[] split = onlyLine.split("\\s");
+            String[] split = onlyLine.split("\\s+");
             this.buildBasic(split);
+            this.left = new AdjacentDetail("C", BigInteger.valueOf(0));
+            this.right = new AdjacentDetail("C", BigInteger.valueOf(0));
             if (onlyLine.charAt(0) == 's') {
                 // Create a reference sequence
-                this.left = new AdjacentDetail("C", BigInteger.valueOf(0));
-                this.right = new AdjacentDetail("C", BigInteger.valueOf(0));
                 this.isReference = true;
                 this.isGap = false;
                 this.gapType = null;
@@ -163,6 +168,7 @@ public class AlignmentBlock {
                 this.isGap = true;
                 this.gapType = GapType.valueOf(split[6]);
             }
+            checkRep();
         }
 
         /**
@@ -172,8 +178,8 @@ public class AlignmentBlock {
          * @param line2 second (i-) line for the sequence
          */
         public Sequence(String line1, String line2) {
-            String[] split1 = line1.split("\\s");
-            String[] split2 = line2.split("\\s");
+            String[] split1 = line1.split("\\s+");
+            String[] split2 = line2.split("\\s+");
             this.buildBasic(split1);
             this.left = new AdjacentDetail(split2[2],
                     new BigInteger(split2[3]));
@@ -280,7 +286,28 @@ public class AlignmentBlock {
         }
 
         public enum GapType {
-
+            /**
+             * the sequence before and after is contiguous implying that this
+             * region was either deleted in the source or inserted in the
+             * reference sequence
+             */
+            C,
+            /**
+             * there are non-aligning bases in the source species between
+             * chained alignment blocks before and after this block
+             */
+            I,
+            /**
+             * there are non-aligning bases in the source and more than 90%
+             * of them are Ns in the source
+             */
+            M,
+            /**
+             * there are non-aligning bases in the source and the next
+             * aligning block starts in a new chromosome or scaffold that is
+             * bridged by a chain between still other blocks
+             */
+            n
         }
     }
 
