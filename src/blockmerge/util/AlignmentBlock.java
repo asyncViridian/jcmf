@@ -1,5 +1,7 @@
 package blockmerge.util;
 
+import cmf.Alignment;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.math.BigDecimal;
@@ -26,7 +28,8 @@ public class AlignmentBlock {
                 break;
             }
         }
-        new AlignmentBlock(lines);
+        AlignmentBlock result = new AlignmentBlock(lines);
+        System.out.print("done");
     }
 
     /**
@@ -42,28 +45,34 @@ public class AlignmentBlock {
                 // if this is the initial line
                 // TODO make this more resilient for general MAF-format?
                 this.score = new BigDecimal(line.split("\\s")[1].split("=")[1]);
-            } else if (line.charAt(0) == 's') {
-                if (i != lines.size() - 1 && lines.get(i + 1).charAt(0) == 'i') {
-                    // if there's a context line
-                    this.sequences.put(line.split("\\s+")[1],
-                            new Sequence(line, lines.get(i + 1)));
-                    i++;
-                } else {
-                    // no context line
-                    this.sequences.put(line.split("\\s+")[1],
-                            new Sequence(line));
-                    // make this the reference
-                    this.reference = line.split("\\s+")[1];
+            } else {
+                // this is a non-initial line, so it corresponds sto a
+                // sequence from some species
+                String source = line.split("\\s+")[1];
+                source = source.substring(0, source.indexOf('.'));
+                if (line.charAt(0) == 's') {
+                    if (i != lines.size() - 1 && lines.get(i + 1).charAt(0) == 'i') {
+                        // if there's a context line
+                        this.sequences.put(source, new Sequence(line,
+                                lines.get(i + 1)));
+                        i++;
+                    } else {
+                        // no context line
+                        this.sequences.put(source, new Sequence(line));
+                        // make this the reference
+                        this.reference = source;
+                    }
+                } else if (line.charAt(0) == 'e') {
+                    // create a gap sequence
+                    this.sequences.put(source, new Sequence(line));
                 }
-            } else if (line.charAt(0) == 'e') {
-                // create a gap sequence
-                this.sequences.put(line.split("\\s+")[1], new Sequence(line));
             }
         }
     }
 
     public static class Sequence {
         String src;
+        String section;
         BigInteger start;
         BigInteger size;
         /**
@@ -129,11 +138,13 @@ public class AlignmentBlock {
          * @see
          * <a href="https://genome.ucsc.edu/FAQ/FAQformat.html#format5">the UCSC MAF spec</a>
          */
-        public Sequence(String src, BigInteger start, BigInteger size,
-                        boolean strand, BigInteger srcSize, String contents,
-                        AdjacentDetail left, AdjacentDetail right,
-                        boolean isReference, boolean isGap, GapType gapType) {
+        public Sequence(String src, String section, BigInteger start,
+                        BigInteger size, boolean strand, BigInteger srcSize,
+                        String contents, AdjacentDetail left,
+                        AdjacentDetail right, boolean isReference,
+                        boolean isGap, GapType gapType) {
             this.src = src;
+            this.section = section;
             this.start = start;
             this.size = size;
             this.strand = strand;
@@ -197,7 +208,9 @@ public class AlignmentBlock {
          * @param firstLine first line of the sequence, whitespace-split
          */
         private void buildBasic(String[] firstLine) {
-            this.src = firstLine[1];
+            this.src = firstLine[1].substring(0, firstLine[1].indexOf('.'));
+            this.section =
+                    firstLine[1].substring(firstLine[1].indexOf('.') + 1);
             this.start = new BigInteger(firstLine[2]);
             this.size = new BigInteger(firstLine[3]);
             this.strand = firstLine[4].equals("+");
