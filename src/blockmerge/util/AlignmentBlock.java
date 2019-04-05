@@ -15,23 +15,6 @@ public class AlignmentBlock {
     private String reference;
     private BigDecimal score;
 
-    public static void main(String[] args) throws IOException {
-        List<String> lines = new ArrayList<>();
-        BufferedReader r = Files.newBufferedReader(Paths.get("src",
-                "blockmerge", "multiz100way_chr12_62602752-62622213.maf"));
-        Iterator<String> it = r.lines().iterator();
-        while (it.hasNext()) {
-            String s = it.next();
-            if (!s.isEmpty()) {
-                lines.add(s);
-            } else {
-                break;
-            }
-        }
-        AlignmentBlock result = new AlignmentBlock(lines);
-        System.out.print("done");
-    }
-
     /**
      * Construct an AlignmentBlock from a set of Strings that comprise it,
      * starting from the first "a" line to the last "e" line
@@ -41,7 +24,10 @@ public class AlignmentBlock {
     public AlignmentBlock(List<String> lines) {
         for (int i = 0; i < lines.size(); i++) {
             String line = lines.get(i);
-            if (line.charAt(0) == 'a') {
+            if (line.indexOf("##") == 0) {
+                // this is a comment line, idc about this
+                // TODO more general MAF support?
+            } else if (line.charAt(0) == 'a') {
                 // if this is the initial line
                 // TODO make this more resilient for general MAF-format?
                 this.score = new BigDecimal(line.split("\\s")[1].split("=")[1]);
