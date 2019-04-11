@@ -2,10 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3da6e499-81fb-4a08-856f-3dc0c5fe102e" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/blockmerge/multiz100way_chr12_62602752-62622213.maf" beforeDir="false" afterPath="$PROJECT_DIR$/data/multiz100way_chr12_62602752-62622213.maf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/blockmerge/BlockMerger.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/blockmerge/BlockMerger.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/blockmerge/util/AlignmentBlock.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/blockmerge/util/AlignmentBlock.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/blockmerge/util/MAFReader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/blockmerge/util/MAFReader.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -14,56 +14,56 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="DefaultGradleProjectSettings">
+    <option name="testRunner" value="GRADLE" />
+    <option name="delegatedBuild" value="true" />
+  </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/cmf/Io.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <caret line="589" column="9" selection-start-line="589" selection-start-column="9" selection-end-line="589" selection-end-column="9" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/blockmerge/BlockMerger.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="36">
-              <caret line="2" column="24" selection-start-line="2" selection-start-column="24" selection-end-line="2" selection-end-column="24" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/blockmerge/util/MAFReader.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="346">
-              <caret line="25" column="20" lean-forward="true" selection-start-line="25" selection-start-column="20" selection-end-line="25" selection-end-column="20" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#313#314#0" expanded="true" />
-                <element signature="e#353#354#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/blockmerge/util/AlignmentBlock.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="52">
-              <caret line="15" column="29" selection-start-line="15" selection-start-column="29" selection-end-line="15" selection-end-column="29" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="method#Sequence#0;class#Sequence#0;class#AlignmentBlock#0" />
-                <element signature="method#equals#0;class#AdjacentDetail#0;class#Sequence#0;class#AlignmentBlock#0" />
-                <element signature="class#GapType#0;class#Sequence#0;class#AlignmentBlock#0" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <splitter split-orientation="horizontal" split-proportion="0.566273">
+      <split-first>
+        <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+          <file pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/src/blockmerge/BlockMerger.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="351">
+                  <caret line="118" column="20" selection-start-line="118" selection-start-column="20" selection-end-line="118" selection-end-column="20" />
+                  <folding>
+                    <element signature="imports" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/blockmerge/util/AlignmentBlock.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="369">
+                  <caret line="330" column="14" lean-forward="true" selection-start-line="330" selection-start-column="14" selection-end-line="330" selection-end-column="14" />
+                  <folding>
+                    <element signature="imports" expanded="true" />
+                    <element signature="method#Sequence#0;class#Sequence#0;class#AlignmentBlock#0" />
+                    <element signature="method#equals#0;class#AdjacentDetail#0;class#Sequence#0;class#AlignmentBlock#0" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+        </leaf>
+      </split-first>
+      <split-second>
+        <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+          <file pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/data/multiz100way_chr12_62602752-62622213.maf">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="-270">
+                  <caret line="69" column="37" lean-forward="true" selection-start-line="69" selection-start-column="37" selection-end-line="69" selection-end-column="37" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+        </leaf>
+      </split-second>
+    </splitter>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -78,6 +78,9 @@
       <find>assertEquals\((.*), (&quot;.*&quot;)\);</find>
       <find>write</find>
       <find>\\s</find>
+      <find>S</find>
+      <find>e latCha1.JH127196                805190 14264 +</find>
+      <find>'e</find>
     </findStrings>
     <replaceStrings>
       <replace>assertEquals\((\2), (\1)\);</replace>
@@ -99,8 +102,9 @@
         <option value="$PROJECT_DIR$/src/blockmerge/util/ReadMAF.java" />
         <option value="$PROJECT_DIR$/src/blockmerge/util/Sequence.java" />
         <option value="$PROJECT_DIR$/src/blockmerge/multiz100way_chr12_62602752-62622213.maf" />
-        <option value="$PROJECT_DIR$/src/blockmerge/util/AlignmentBlock.java" />
         <option value="$PROJECT_DIR$/src/blockmerge/util/MAFReader.java" />
+        <option value="$PROJECT_DIR$/src/blockmerge/util/AlignmentBlock.java" />
+        <option value="$PROJECT_DIR$/src/blockmerge/BlockMerger.java" />
       </list>
     </option>
   </component>
@@ -121,6 +125,11 @@
             <path>
               <item name="jcmf" type="b2602c69:ProjectViewProjectNode" />
               <item name="jcmf" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="jcmf" type="b2602c69:ProjectViewProjectNode" />
+              <item name="jcmf" type="462c0819:PsiDirectoryNode" />
+              <item name="data" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="jcmf" type="b2602c69:ProjectViewProjectNode" />
@@ -177,8 +186,8 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
       <pane id="PackagesPane" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -186,14 +195,15 @@
     <property name="Repository.Attach.Annotations" value="false" />
     <property name="Repository.Attach.JavaDocs" value="false" />
     <property name="Repository.Attach.Sources" value="false" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1554422121138" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1554926021811" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/dist/cmf.jar!/" />
     <property name="project.structure.last.edited" value="Libraries" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
-    <property name="settings.editor.selected.configurable" value="editor.preferences.gutterIcons" />
+    <property name="settings.editor.selected.configurable" value="preferences.sourceCode.Java" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -212,13 +222,26 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.AlignmentBlock">
+  <component name="RunManager" selected="Application.BlockMerger">
     <configuration name="AlignmentBlock" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="blockmerge.util.AlignmentBlock" />
       <module name="jcmf" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="blockmerge.util.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="BlockMerger" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="blockmerge.BlockMerger" />
+      <module name="jcmf" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="blockmerge.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -235,22 +258,6 @@
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="perl_ioTest.testPad_string" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="jcmf" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="cmf.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="cmf" />
-      <option name="MAIN_CLASS_NAME" value="cmf.perl_ioTest" />
-      <option name="METHOD_NAME" value="testPad_string" />
-      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -289,11 +296,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.BlockMerger" />
         <item itemvalue="Application.AlignmentBlock" />
         <item itemvalue="JUnit.perl_ioTest.testRemove_gap" />
         <item itemvalue="JUnit.perl_ioTest.testRead_fasta" />
         <item itemvalue="Application.perl_io" />
-        <item itemvalue="JUnit.perl_ioTest.testPad_string" />
       </list>
     </recent_temporary>
   </component>
@@ -315,6 +322,9 @@
       <workItem from="1553147239551" duration="620000" />
       <workItem from="1553749971863" duration="1232000" />
       <workItem from="1553922739993" duration="18479000" />
+      <workItem from="1554422421403" duration="2946000" />
+      <workItem from="1554924880449" duration="1141000" />
+      <workItem from="1554926820892" duration="8767000" />
     </task>
     <servers />
   </component>
@@ -345,12 +355,13 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="36658000" />
+    <option name="totallyTimeSpent" value="49512000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-9" y="-9" width="1938" height="1050" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49942988" visible="true" weight="0.18176973" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49942988" visible="true" weight="0.18763326" />
       <window_info id="Structure" order="1" sideWeight="0.5005701" side_tool="true" weight="0.22493887" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -360,7 +371,7 @@
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
       <window_info anchor="bottom" id="Run" order="2" weight="0.32997763" />
-      <window_info active="true" anchor="bottom" id="Debug" order="3" visible="true" weight="0.4024256" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4024256" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
@@ -388,10 +399,10 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/blockmerge/util/MAFReader.java</url>
-          <line>30</line>
+          <url>file://$PROJECT_DIR$/src/blockmerge/util/AlignmentBlock.java</url>
+          <line>62</line>
           <properties />
-          <option name="timeStamp" value="20" />
+          <option name="timeStamp" value="2" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
@@ -415,27 +426,6 @@
     <entry file="file://$PROJECT_DIR$/test/cmf/perl_ioTest.java" />
     <entry file="file://$PROJECT_DIR$/src/blockmerge/util/ReadMAF.java" />
     <entry file="file://$PROJECT_DIR$/src/blockmerge/util/Sequence.java" />
-    <entry file="file://$PROJECT_DIR$/src/cmf/Io.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret line="589" column="9" selection-start-line="589" selection-start-column="9" selection-end-line="589" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/blockmerge/BlockMerger.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="36">
-          <caret line="2" column="24" selection-start-line="2" selection-start-column="24" selection-end-line="2" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/data/multiz100way_chr12_62602752-62622213.maf">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="15" column="55" lean-forward="true" selection-start-line="15" selection-start-column="55" selection-end-line="15" selection-end-column="55" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/cmf/cmfinder.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="169">
@@ -449,27 +439,52 @@
     <entry file="jar://C:/Program Files/Java/jdk1.8.0_151/jre/lib/rt.jar!/java/lang/String.class">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/blockmerge/util/AlignmentBlock.java">
+    <entry file="file://$PROJECT_DIR$/src/cmf/Io.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="52">
-          <caret line="15" column="29" selection-start-line="15" selection-start-column="29" selection-end-line="15" selection-end-column="29" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="method#Sequence#0;class#Sequence#0;class#AlignmentBlock#0" />
-            <element signature="method#equals#0;class#AdjacentDetail#0;class#Sequence#0;class#AlignmentBlock#0" />
-            <element signature="class#GapType#0;class#Sequence#0;class#AlignmentBlock#0" />
-          </folding>
+        <state relative-caret-position="18">
+          <caret line="589" column="9" selection-start-line="589" selection-start-column="9" selection-end-line="589" selection-end-column="9" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/blockmerge/util/MAFReader.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="346">
-          <caret line="25" column="20" lean-forward="true" selection-start-line="25" selection-start-column="20" selection-end-line="25" selection-end-column="20" />
+        <state relative-caret-position="549">
+          <caret line="34" column="30" selection-start-line="34" selection-start-column="30" selection-end-line="34" selection-end-column="30" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#313#314#0" expanded="true" />
-            <element signature="e#353#354#0" expanded="true" />
+            <element signature="e#986#987#0" expanded="true" />
+            <element signature="e#1032#1033#0" expanded="true" />
+            <element signature="e#707#708#0" expanded="true" />
+            <element signature="e#747#748#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/data/multiz100way_chr12_62602752-62622213.maf">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-270">
+          <caret line="69" column="37" lean-forward="true" selection-start-line="69" selection-start-column="37" selection-end-line="69" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/blockmerge/util/AlignmentBlock.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="369">
+          <caret line="330" column="14" lean-forward="true" selection-start-line="330" selection-start-column="14" selection-end-line="330" selection-end-column="14" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="method#Sequence#0;class#Sequence#0;class#AlignmentBlock#0" />
+            <element signature="method#equals#0;class#AdjacentDetail#0;class#Sequence#0;class#AlignmentBlock#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/blockmerge/BlockMerger.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="351">
+          <caret line="118" column="20" selection-start-line="118" selection-start-column="20" selection-end-line="118" selection-end-column="20" />
+          <folding>
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
