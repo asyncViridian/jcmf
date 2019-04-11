@@ -1,19 +1,22 @@
 package blockmerge.util;
 
-import cmf.Alignment;
-
-import java.io.BufferedReader;
-import java.io.IOException;
 import java.math.BigDecimal;
 import java.math.BigInteger;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.util.*;
 
 public class AlignmentBlock {
-    private Map<String, Sequence> sequences = new HashMap<>();
-    private String reference;
-    private BigDecimal score;
+    /**
+     * All sequences and gapped sections in the alignment block.
+     */
+    public Map<String, Sequence> sequences = new HashMap<>();
+    /**
+     * The name of the species that this alignment block is "aligned to"
+     */
+    public String reference;
+    /**
+     * The score of the alignment block
+     */
+    public BigDecimal score;
 
     /**
      * Construct an AlignmentBlock from a set of Strings that comprise it,
@@ -37,10 +40,11 @@ public class AlignmentBlock {
                 String source = line.split("\\s+")[1];
                 source = source.substring(0, source.indexOf('.'));
                 if (line.charAt(0) == 's') {
-                    if (i != lines.size() - 1 && lines.get(i + 1).charAt(0) == 'i') {
+                    if (i != lines.size() - 1 && lines.get(i + 1).charAt(
+                            0) == 'i') {
                         // if there's a context line
-                        this.sequences.put(source, new Sequence(line,
-                                lines.get(i + 1)));
+                        this.sequences.put(source, new Sequence(line, lines.get(
+                                i + 1)));
                         i++;
                     } else {
                         // no context line
@@ -57,30 +61,63 @@ public class AlignmentBlock {
     }
 
     public static class Sequence {
-        String src;
-        String section;
-        BigInteger start;
-        BigInteger size;
+        /**
+         * The species that this sequence comes from
+         */
+        public String src;
+        /**
+         * The name of the chromosome (or scaffold) that this sequence comes
+         * from
+         */
+        public String section;
+        /**
+         * The start index of this sequence in the chromosome relative to the
+         * start position of the strand
+         */
+        public BigInteger start;
+        /**
+         * The number of non-gap bases in this sequence
+         */
+        public BigInteger size;
         /**
          * True means + strand, false means - strand
          */
-        boolean strand;
-        BigInteger srcSize;
-        String contents;
-        AdjacentDetail left;
-        AdjacentDetail right;
+        public boolean strand;
+        /**
+         * The total length of the source chromosome/scaffold that this
+         * sequence comes from
+         */
+        public BigInteger srcSize;
+        /**
+         * The contents of this sequence, including gap characters etc.
+         */
+        public String contents;
+        /**
+         * The left-side context of the sequence. Is "C 0" if this sequence
+         * is reference or gap.
+         */
+        public AdjacentDetail left;
+        /**
+         * The right-side context of the sequence. Is "C 0" if this sequence
+         * is reference or gap.
+         */
+        public AdjacentDetail right;
         /**
          * True means this is the reference sequence (the first one listed in
          * a block). Iff true, then the AdjacentDetails must be "C 0 C 0"
          */
-        boolean isReference;
+        public boolean isReference;
         /**
          * True means that this sequence is entirely empty throughout the
          * containing alignment block. Iff true, then has a non-null gapType,
          * the AdjacentDetails must be "C 0 C 0", and the contents is "".
          */
-        boolean isGap;
-        GapType gapType;
+        public boolean isGap;
+        /**
+         * The type of gap that this sequence is (see GapType documentation
+         * for more details)
+         */
+        public GapType gapType;
 
         /**
          * Construct a Sequence given each argument manually. Part of this
@@ -92,6 +129,7 @@ public class AlignmentBlock {
          *                    .chromosome' allows automatic creation of links
          *                    to other assemblies. Non-browser sequences are
          *                    typically reference by the species name alone.
+         * @param section     The chromosome that this sequence comes from.
          * @param start       The start of the aligning region in the source
          *                    sequence. This is a zero-based number. If the
          *                    strand field is "-" then this is the start
@@ -179,9 +217,9 @@ public class AlignmentBlock {
             String[] split2 = line2.split("\\s+");
             this.buildBasic(split1);
             this.left = new AdjacentDetail(split2[2],
-                    new BigInteger(split2[3]));
+                                           new BigInteger(split2[3]));
             this.right = new AdjacentDetail(split2[4],
-                    new BigInteger(split2[5]));
+                                            new BigInteger(split2[5]));
             this.isReference = false;
             this.isGap = false;
             this.gapType = null;
@@ -195,8 +233,8 @@ public class AlignmentBlock {
          */
         private void buildBasic(String[] firstLine) {
             this.src = firstLine[1].substring(0, firstLine[1].indexOf('.'));
-            this.section =
-                    firstLine[1].substring(firstLine[1].indexOf('.') + 1);
+            this.section = firstLine[1].substring(
+                    firstLine[1].indexOf('.') + 1);
             this.start = new BigInteger(firstLine[2]);
             this.size = new BigInteger(firstLine[3]);
             this.strand = firstLine[4].equals("+");
@@ -209,17 +247,17 @@ public class AlignmentBlock {
             assert !(this.isReference && this.isGap);
             // check that isReference enforces the correct requirements
             if (this.isReference) {
-                assert this.left.equals(new AdjacentDetail("C",
-                        BigInteger.ZERO));
-                assert this.right.equals(new AdjacentDetail("C",
-                        BigInteger.ZERO));
+                assert this.left.equals(
+                        new AdjacentDetail("C", BigInteger.ZERO));
+                assert this.right.equals(
+                        new AdjacentDetail("C", BigInteger.ZERO));
             }
             // check that isGap enforces the correct requirements
             if (this.isGap) {
-                assert this.left.equals(new AdjacentDetail("C",
-                        BigInteger.ZERO));
-                assert this.right.equals(new AdjacentDetail("C",
-                        BigInteger.ZERO));
+                assert this.left.equals(
+                        new AdjacentDetail("C", BigInteger.ZERO));
+                assert this.right.equals(
+                        new AdjacentDetail("C", BigInteger.ZERO));
                 assert this.gapType != null;
                 assert this.contents.equals("");
             } else {
@@ -244,9 +282,8 @@ public class AlignmentBlock {
                 N,
                 /**
                  * this is the first sequence from this src chrom or scaffold
-                 * but
-                 * it is bridged by another alignment from a different chrom or
-                 * scaffold
+                 * but it is bridged by another alignment from a different
+                 * chrom or scaffold
                  */
                 n,
                 /**
@@ -275,7 +312,8 @@ public class AlignmentBlock {
                     return false;
                 }
                 AdjacentDetail ad = (AdjacentDetail) o;
-                return ad.type.equals(this.type) && ad.length.equals(this.length);
+                return ad.type.equals(this.type) && ad.length.equals(
+                        this.length);
             }
 
             @Override
