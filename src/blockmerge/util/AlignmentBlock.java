@@ -298,8 +298,8 @@ public class AlignmentBlock {
                 T
             }
 
-            Type type;
-            BigInteger length;
+            public Type type;
+            public BigInteger length;
 
             public AdjacentDetail(String type, BigInteger length) {
                 this.type = Type.valueOf(type);
