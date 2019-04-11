@@ -66,6 +66,7 @@ public class BlockMerger {
                     current.remove();
                 }
                 // TODO write to disk
+                // TODO fill long gaps or unaligned sequence with Ns
             }
         }
     }
@@ -121,10 +122,6 @@ public class BlockMerger {
                     BigInteger.valueOf(GAP_THRESHOLD)) > 0) {
                 return false;
             }
-        } else {
-            // if first isn't a gap sequence, but the intervening (non-block)
-            // space is too long
-            // todo
         }
         if (secondSeq.isGap) {
             // if second is a gap sequence and it is too long to be included
@@ -133,7 +130,20 @@ public class BlockMerger {
                 return false;
             }
         }
-        // TODO
+        if (!firstSeq.isGap && !secondSeq.isGap) {
+            // if neither is a gap, but the intervening "gap" is too long
+            if (firstSeq.right.length.compareTo(
+                    BigInteger.valueOf(GAP_THRESHOLD)) > 0) {
+                // the context "after" the first block
+                return false;
+            } else if (secondSeq.left.length.compareTo(
+                    BigInteger.valueOf(GAP_THRESHOLD)) > 0) {
+                // the context "before" the second block
+                // should be the same as thing above???
+                return false;
+            }
+            // TODO what else should I check here?
+        }
 
         // TODO are there more criteria?
 
