@@ -60,6 +60,14 @@ public class AlignmentBlock {
         }
     }
 
+    public Set<String> getSpecies() {
+        Set<String> result = new HashSet<>();
+        for (Sequence s : this.sequences.values()) {
+            result.add(s.src);
+        }
+        return result;
+    }
+
     public static class Sequence {
         /**
          * The species that this sequence comes from
