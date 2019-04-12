@@ -60,6 +60,12 @@ public class AlignmentBlock {
         }
     }
 
+    /**
+     * Returns the set of species names that are represented in this
+     * alignment block (sequences or gaps both)
+     *
+     * @return set of species in this block
+     */
     public Set<String> getSpecies() {
         Set<String> result = new HashSet<>();
         for (Sequence s : this.sequences.values()) {
