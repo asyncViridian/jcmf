@@ -1,0 +1,12 @@
+##maf version=1
+a score=413
+s SPECA.chr1                    35 10 + 500 AAA-------AA-AAA-A--A
+s SPECB.chr1                    40 16 + 550 AAAA-A-AAA-A--AAAAAAA
+i SPECB.chr1                   C 0 C 0
+e SPECC.chr1                    50 10 + 340 I
+
+a score=612
+s SPECA.chr1                    45 10 + 500 --BBBBB---BBB-BB-----
+s SPECB.chr1                    50 10 + 550 ---BBBB---BBBBBB-----
+i SPECB.chr1                   C 0 C 0
+e SPECC.chr1                    60 50 + 340 I

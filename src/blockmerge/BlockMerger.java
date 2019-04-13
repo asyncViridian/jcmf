@@ -49,7 +49,7 @@ public class BlockMerger {
 
     public static void main(String[] args) throws IOException {
         // TODO take this from input?
-        String mafSrc = "test-longgap.maf";
+        String mafSrc = "test-reversedblocks.maf";
         //"multiz100way_chr12_62602752-62622213.maf";
         // TODO take this from input?
         String outputPrefix = "test";
@@ -232,6 +232,8 @@ public class BlockMerger {
         }
 
         // test if they are at incomparable locations / overlapping:
+        // TODO there is a bug here, check test-overlap.maf test input
+        // TODO there is a bug here, check test-reversedblocks.maf test input
         if (firstSeq.start.add(firstSeq.size).compareTo(secondSeq.start) < 0) {
             // if the ending of the first block is after
             // the beginning of the second block
