@@ -2,13 +2,16 @@ package blockmerge;
 
 import blockmerge.util.AlignmentBlock;
 import blockmerge.util.MAFReader;
-import com.sun.scenario.effect.Merge;
 
+import java.io.BufferedWriter;
 import java.io.IOException;
 import java.math.BigInteger;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Set;
 
 public class BlockMerger {
 
@@ -46,7 +49,7 @@ public class BlockMerger {
         // TODO take this from input?
         String mafSrc = "multiz100way_chr12_62602752-62622213.maf";
         // TODO take this from input?
-        String outputPrefix = "multiz100way_chr12_62602752-62622213";
+        String outputPrefix = "m100_chr12_62602752-62622213";
         // TODO take this from input?
         String outputDir = "output";
         MAFReader reader = new MAFReader(mafSrc);
@@ -56,7 +59,7 @@ public class BlockMerger {
             throw new RuntimeException("not implemented yet");
         } else if (type == MergeType.BLOCKS) {
             LinkedList<AlignmentBlock> current = new LinkedList<>();
-            // TODO add block join logic
+            BigInteger i = BigInteger.ONE;
             while (reader.hasNext()) {
                 // add the next block
                 current.add(reader.next());
@@ -65,9 +68,109 @@ public class BlockMerger {
                 if (current.size() > NUM_BLOCKS_PER_OUTPUT) {
                     current.remove();
                 }
-                // TODO write to disk
-                // TODO fill long gaps or unaligned sequence with Ns
+
+                // find the set of mergeable species
+                List<String> speciesToMerge = new LinkedList<>();
+                for (String species : current.getFirst().getSpecies()) {
+                    // initialize iterators through the blocks
+                    Iterator<AlignmentBlock> secondIt = current.iterator();
+                    secondIt.next();
+                    Iterator<AlignmentBlock> firstIt = current.iterator();
+                    // retrieve the list of species that can be included in
+                    // this set of alignment blocks
+                    if (isMergeable(firstIt.next(), secondIt.next(), species)) {
+                        speciesToMerge.add(species);
+                    }
+                }
+
+                // create output FASTA file
+                Path file = Paths.get(outputDir,
+                                      outputPrefix + "_" + i.toString() +
+                                              ".fasta");
+
+                // write FASTA lines to disk
+                for (String species : speciesToMerge) {
+                    // write each species sequence
+                    // write the species and originating chromosome
+                    AlignmentBlock.Sequence first =
+                            current.getFirst().sequences.get(
+                            species);
+                    AlignmentBlock.Sequence last =
+                            current.getLast().sequences.get(
+                            species);
+                    // build the sequence name (species, chrom, strand, coords)
+                    StringBuilder speciesHeader = new StringBuilder();
+                    speciesHeader.append(species);
+                    speciesHeader.append(first.section);
+                    speciesHeader.append(
+                            "(" + (first.strand ? "+" : "-") + ")");
+                    speciesHeader.append(":");
+                    speciesHeader.append(first.start);
+                    speciesHeader.append("-");
+                    speciesHeader.append(last.start.add(last.size));
+                    writeToFasta(file, speciesHeader.toString(), null);
+                    for (AlignmentBlock block : current) {
+                        // write the contents of each block for each species
+                        AlignmentBlock.Sequence seq = block.sequences.get(
+                                species);
+                        if (!seq.isGap) {
+                            // if we have contents write the contents directly
+                            writeToFasta(file, null, seq.contents);
+                            if (!seq.right.length.equals(BigInteger.ZERO)) {
+                                // if there is nonzero amount of context
+                                // bases (to the right)
+                                writeToFasta(file, null,
+                                             repeat("N", seq.right.length));
+                            }
+                        } else {
+                            // if this is gap (unknown reference?) fill with Ns
+                            writeToFasta(file, null, repeat("N", seq.size));
+                        }
+                    }
+                }
+
+                // increment the file number
+                i = i.add(BigInteger.ONE);
             }
+        }
+    }
+
+    /**
+     * Return a string consisting of src repeated num times
+     *
+     * @param src String to repeat
+     * @param num number of times to repeat this string
+     * @return src repeated num times
+     */
+    public static String repeat(String src, BigInteger num) {
+        StringBuilder builder = new StringBuilder();
+        for (BigInteger i = BigInteger.ZERO; i.compareTo(num) < 0; i = i.add(
+                BigInteger.ONE)) {
+            builder.append(src);
+        }
+        return builder.toString();
+    }
+
+    /**
+     * Append a FASTA-format sequence with the given title and the given
+     * content to the end of the given file.
+     *
+     * @param file     file to append to
+     * @param header   title of the sequence. Iff null then just append to
+     *                 the last sequence, do not write a new sequence
+     * @param sequence content of the sequence. Iff null then do not write
+     *                 any sequence content.
+     */
+    public static void writeToFasta(Path file, String header, String sequence) {
+        try (BufferedWriter writer = Files.newBufferedWriter(file)) {
+            if (header != null) {
+                writer.write(">" + header + "\n");
+            }
+            if (sequence != null) {
+                writer.write(sequence + "\n");
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 
