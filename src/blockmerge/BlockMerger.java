@@ -4,6 +4,7 @@ import blockmerge.util.AlignmentBlock;
 import blockmerge.util.MAFReader;
 
 import java.io.BufferedWriter;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.math.BigInteger;
 import java.nio.file.Files;
@@ -45,11 +46,15 @@ public class BlockMerger {
      */
     public static final int GAP_THRESHOLD = 300;
 
+    // TODO add a parameter for "minimum relevant species"
+
     public static void main(String[] args) throws IOException {
         // TODO take this from input?
-        String mafSrc = "multiz100way_chr12_62602752-62622213.maf";
+        String mafSrc = "toy.maf";
+        //"multiz100way_chr12_62602752-62622213.maf";
         // TODO take this from input?
-        String outputPrefix = "m100_chr12_62602752-62622213";
+        String outputPrefix = "toy";
+        //"m100_chr12_62602752-62622213";
         // TODO take this from input?
         String outputDir = "output";
         MAFReader reader = new MAFReader(mafSrc);
@@ -63,6 +68,11 @@ public class BlockMerger {
             while (reader.hasNext()) {
                 // add the next block
                 current.add(reader.next());
+                if (current.size() == 1) {
+                    // abort if we only have one block
+                    // (don't merge single block)
+                    continue;
+                }
                 // keep the set of working blocks small
                 // (we only write n blocks at a time)
                 if (current.size() > NUM_BLOCKS_PER_OUTPUT) {
@@ -78,7 +88,15 @@ public class BlockMerger {
                     Iterator<AlignmentBlock> firstIt = current.iterator();
                     // retrieve the list of species that can be included in
                     // this set of alignment blocks
-                    if (isMergeable(firstIt.next(), secondIt.next(), species)) {
+                    boolean mergeable = true;
+                    while (secondIt.hasNext()) {
+                        if (mergeable && !isMergeable(firstIt.next(),
+                                                      secondIt.next(),
+                                                      species)) {
+                            mergeable = false;
+                        }
+                    }
+                    if (mergeable) {
                         speciesToMerge.add(species);
                     }
                 }
@@ -87,6 +105,9 @@ public class BlockMerger {
                 Path file = Paths.get(outputDir,
                                       outputPrefix + "_" + i.toString() +
                                               ".fasta");
+                Files.deleteIfExists(file);
+                Files.createFile(file);
+                BufferedWriter writer = Files.newBufferedWriter(file);
 
                 // write FASTA lines to disk
                 for (String species : speciesToMerge) {
@@ -101,6 +122,7 @@ public class BlockMerger {
                     // build the sequence name (species, chrom, strand, coords)
                     StringBuilder speciesHeader = new StringBuilder();
                     speciesHeader.append(species);
+                    speciesHeader.append(".");
                     speciesHeader.append(first.section);
                     speciesHeader.append(
                             "(" + (first.strand ? "+" : "-") + ")");
@@ -108,29 +130,31 @@ public class BlockMerger {
                     speciesHeader.append(first.start);
                     speciesHeader.append("-");
                     speciesHeader.append(last.start.add(last.size));
-                    writeToFasta(file, speciesHeader.toString(), null);
+                    writeToFasta(writer, speciesHeader.toString(), null);
                     for (AlignmentBlock block : current) {
                         // write the contents of each block for each species
                         AlignmentBlock.Sequence seq = block.sequences.get(
                                 species);
                         if (!seq.isGap) {
                             // if we have contents write the contents directly
-                            writeToFasta(file, null, seq.contents);
+                            writeToFasta(writer, null, seq.contents);
                             if (!seq.right.length.equals(BigInteger.ZERO)) {
                                 // if there is nonzero amount of context
                                 // bases (to the right)
-                                writeToFasta(file, null,
+                                writeToFasta(writer, null,
                                              repeat("N", seq.right.length));
                             }
                         } else {
                             // if this is gap (unknown reference?) fill with Ns
-                            writeToFasta(file, null, repeat("N", seq.size));
+                            writeToFasta(writer, null, repeat("N", seq.size));
                         }
                     }
                 }
 
                 // increment the file number
                 i = i.add(BigInteger.ONE);
+
+                writer.close();
             }
         }
     }
@@ -155,14 +179,15 @@ public class BlockMerger {
      * Append a FASTA-format sequence with the given title and the given
      * content to the end of the given file.
      *
-     * @param file     file to append to
+     * @param writer   writer for file to append to
      * @param header   title of the sequence. Iff null then just append to
      *                 the last sequence, do not write a new sequence
      * @param sequence content of the sequence. Iff null then do not write
      *                 any sequence content.
      */
-    public static void writeToFasta(Path file, String header, String sequence) {
-        try (BufferedWriter writer = Files.newBufferedWriter(file)) {
+    public static void writeToFasta(BufferedWriter writer, String header,
+                                    String sequence) {
+        try {
             if (header != null) {
                 writer.write(">" + header + "\n");
             }
