@@ -45,14 +45,14 @@ public class BlockMerger {
      */
     public static final int GAP_THRESHOLD = 300;
 
-    // TODO add a parameter for "minimum relevant species"
+    // TODO add a parameter & test clause for "minimum relevant species #"
 
     public static void main(String[] args) throws IOException {
         // TODO take this from input?
-        String mafSrc = "toy.maf";
+        String mafSrc = "test-longgap.maf";
         //"multiz100way_chr12_62602752-62622213.maf";
         // TODO take this from input?
-        String outputPrefix = "toy";
+        String outputPrefix = "test";
         //"m100_chr12_62602752-62622213";
         // TODO take this from input?
         String outputDir = "output";
