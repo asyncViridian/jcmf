@@ -23,43 +23,86 @@ public class BlockMerger {
      * Blocks = each output alignment block contains a certain number of
      * original alignment blocks.
      */
-    public static final MergeType type = MergeType.BLOCKS;
+    private static MergeType type;
     /**
      * For merge type block: the number of blocks to contain in each output
      * alignment block
      */
-    public static final int NUM_BLOCKS_PER_OUTPUT = 2;
+    private static int NUM_BLOCKS_PER_OUTPUT;
     /**
      * For merge type bases: the number of bases to contain in each output
      * alignment block
      */
-    public static final int NUM_BASES_PER_OUTPUT = 300;
+    private static int NUM_BASES_PER_OUTPUT;
     /**
      * For merge type bases: the number of bases to shift forwards by in each
      * block
      */
-    public static final int NUM_BASES_INCREMENT = 50;
+    private static int NUM_BASES_INCREMENT;
     /**
      * The maximum gap length between two blocks that still allows them to be
      * considered mergeable.
      */
-    public static final int GAP_THRESHOLD = 300;
+    private static int GAP_THRESHOLD;
+    /**
+     * The minimum number of species in a merged block that still allows the
+     * block to be output (if a block has fewer species, it is considered
+     * irrelevant/useless for the purposes of alignment)
+     */
+    private static int MIN_NUM_SPECIES;
+    /**
+     * The source MAF file with all alignment blocks we want to merge.
+     */
+    private static String srcName;
+    /**
+     * The directory to read input files from.
+     */
+    private static String srcDir;
+    /**
+     * The custom name part of the FASTA-format output files that we will write.
+     */
+    private static String outName;
+    /**
+     * The directory to output files into.
+     */
+    private static String outDir;
 
-    // TODO add a parameter & test clause for "minimum relevant species #"
+    static {
+        // Set default values for arguments
+        BlockMerger.type = MergeType.BLOCKS;
+        BlockMerger.NUM_BLOCKS_PER_OUTPUT = 2;
+        BlockMerger.NUM_BASES_PER_OUTPUT = 300;
+        BlockMerger.NUM_BASES_INCREMENT = 50;
+        BlockMerger.GAP_THRESHOLD = 300;
+        BlockMerger.MIN_NUM_SPECIES = 5;
+        BlockMerger.srcDir = "";
+        BlockMerger.outDir = "";
+    }
+
+    private static void setArguments(String[] args) {
+        // TODO IMPORTANT switch to using apache common-cli
+        // TODO read in, assign thresholds
+        // TODO read in, assign filenames
+    }
 
     public static void main(String[] args) throws IOException {
+        // handle command-line argument processing :)
+        setArguments(args);
         // TODO take this from input?
-        String mafSrc = "test-gaps.maf";
+        BlockMerger.srcDir = "data";
+        // TODO take this from input?
+        BlockMerger.srcName = "test-gaps.maf";
         //"multiz100way_chr12_62602752-62622213.maf";
         // TODO take this from input?
-        String outputPrefix = "test";
-        //"m100_chr12_62602752-62622213";
+        BlockMerger.outDir = "output";
         // TODO take this from input?
-        String outputDir = "output";
-        MAFReader reader = new MAFReader(mafSrc);
+        BlockMerger.outName = "test";
+        //"m100_chr12_62602752-62622213";
+        MAFReader reader = new MAFReader(BlockMerger.srcDir,
+                                         BlockMerger.srcName);
 
         if (type == MergeType.BASES) {
-            // TODO do base-based merging
+            // TODO write base-based merging?
             throw new RuntimeException("not implemented yet");
         } else if (type == MergeType.BLOCKS) {
             LinkedList<AlignmentBlock> current = new LinkedList<>();
@@ -100,10 +143,14 @@ public class BlockMerger {
                     }
                 }
 
+                // checks the # of merged species threshold
+                if (speciesToMerge.size() < MIN_NUM_SPECIES) {
+                    continue;
+                }
+
                 // create output FASTA file
-                Path file = Paths.get(outputDir,
-                                      outputPrefix + "_" + i.toString() +
-                                              ".fasta");
+                Path file = Paths.get(BlockMerger.outDir,
+                                      BlockMerger.outName + "_" + i.toString() + ".fasta");
                 Files.deleteIfExists(file);
                 Files.createFile(file);
                 BufferedWriter writer = Files.newBufferedWriter(file);
@@ -184,8 +231,8 @@ public class BlockMerger {
      * @param sequence content of the sequence. Iff null then do not write
      *                 any sequence content.
      */
-    public static void writeToFasta(BufferedWriter writer, String header,
-                                    String sequence) {
+    private static void writeToFasta(BufferedWriter writer, String header,
+                                     String sequence) {
         try {
             if (header != null) {
                 writer.write(">" + header + "\n");
@@ -209,8 +256,8 @@ public class BlockMerger {
      * @param species the species to attempt to merge these two blocks for
      * @return true iff the two given blocks can merge for the given species
      */
-    public static boolean isMergeable(AlignmentBlock first,
-                                      AlignmentBlock second, String species) {
+    private static boolean isMergeable(AlignmentBlock first,
+                                       AlignmentBlock second, String species) {
         AlignmentBlock.Sequence firstSeq = first.sequences.get(species);
         AlignmentBlock.Sequence secondSeq = second.sequences.get(species);
 
@@ -232,8 +279,6 @@ public class BlockMerger {
         }
 
         // test if they are at incomparable locations / overlapping:
-        // TODO there is a bug here, check test-overlap.maf test input
-        // TODO there is a bug here, check test-reversedblocks.maf test input
         if (firstSeq.start.add(firstSeq.size).compareTo(secondSeq.start) > 0) {
             // if the ending of the first block is after
             // the beginning of the second block
@@ -271,10 +316,10 @@ public class BlockMerger {
                 // should be the same as thing above???
                 return false;
             }
-            // TODO what else should I check here?
+            // TODO may need to add more checks here if bugs appear
         }
 
-        // TODO are there more criteria?
+        // TODO check if there are more criteria?
 
         return true;
     }

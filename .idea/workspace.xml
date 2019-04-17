@@ -2,18 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3da6e499-81fb-4a08-856f-3dc0c5fe102e" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/test/blockmerge/BlockMergerTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/test-gaps.maf" beforeDir="false" afterPath="$PROJECT_DIR$/test/blockmerge/data/test-gaps.maf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/test-longgap.maf" beforeDir="false" afterPath="$PROJECT_DIR$/test/blockmerge/data/test-longgap.maf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/test-noskips.maf" beforeDir="false" afterPath="$PROJECT_DIR$/test/blockmerge/data/test-noskips.maf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/test-overlap.maf" beforeDir="false" afterPath="$PROJECT_DIR$/test/blockmerge/data/test-overlap.maf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/test-reversedblocks.maf" beforeDir="false" afterPath="$PROJECT_DIR$/test/blockmerge/data/test-reversedblocks.maf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/test-scaffold.maf" beforeDir="false" afterPath="$PROJECT_DIR$/test/blockmerge/data/test-scaffold.maf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/test-wrongchrom.maf" beforeDir="false" afterPath="$PROJECT_DIR$/test/blockmerge/data/test-wrongchrom.maf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/test-wrongstrand.maf" beforeDir="false" afterPath="$PROJECT_DIR$/test/blockmerge/data/test-wrongstrand.maf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/jcmf.iml" beforeDir="false" afterPath="$PROJECT_DIR$/jcmf.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/blockmerge/BlockMerger.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/blockmerge/BlockMerger.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/blockmerge/util/MAFReader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/blockmerge/util/MAFReader.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/blockmerge/BlockMergerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/blockmerge/BlockMergerTest.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -32,11 +24,10 @@
           <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/blockmerge/BlockMerger.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="203">
-                  <caret line="81" column="53" selection-start-line="81" selection-start-column="53" selection-end-line="81" selection-end-column="53" />
+                <state relative-caret-position="253">
+                  <caret line="82" column="59" lean-forward="true" selection-start-line="82" selection-start-column="59" selection-end-line="82" selection-end-column="59" />
                   <folding>
                     <element signature="imports" expanded="true" />
-                    <element signature="e#3118#7682#1" />
                     <element signature="method#repeat#0;class#BlockMerger#0" />
                   </folding>
                 </state>
@@ -351,7 +342,7 @@
       <workItem from="1554422421403" duration="2946000" />
       <workItem from="1554924880449" duration="1141000" />
       <workItem from="1554926820892" duration="20236000" />
-      <workItem from="1555475167172" duration="5493000" />
+      <workItem from="1555475167172" duration="5985000" />
     </task>
     <servers />
   </component>
@@ -388,7 +379,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="66474000" />
+    <option name="totallyTimeSpent" value="66966000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-9" y="-9" width="1938" height="1050" extended-state="6" />
@@ -623,11 +614,10 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/blockmerge/BlockMerger.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="203">
-          <caret line="81" column="53" selection-start-line="81" selection-start-column="53" selection-end-line="81" selection-end-column="53" />
+        <state relative-caret-position="253">
+          <caret line="82" column="59" lean-forward="true" selection-start-line="82" selection-start-column="59" selection-end-line="82" selection-end-column="59" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#3118#7682#1" />
             <element signature="method#repeat#0;class#BlockMerger#0" />
           </folding>
         </state>
@@ -690,7 +680,6 @@
             <option name="proportions">
               <list>
                 <option value="0.2" />
-                <option value="0.6" />
               </list>
             </option>
           </splitter-proportions>
@@ -710,7 +699,7 @@
       </state>
       <state key="ProjectLibrariesConfigurable.UI">
         <settings>
-          <last-edited>org.json-20161124</last-edited>
+          <last-edited>commons-cli-1</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>

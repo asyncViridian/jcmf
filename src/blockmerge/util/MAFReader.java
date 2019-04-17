@@ -10,12 +10,14 @@ import java.util.List;
 
 public class MAFReader implements Iterator<AlignmentBlock> {
     private String filepath;
+    private String filename;
     private BufferedReader r;
     private Iterator<String> it;
 
-    public MAFReader(String filepath) throws IOException {
+    public MAFReader(String filepath, String filename) throws IOException {
         this.filepath = filepath;
-        this.r = Files.newBufferedReader(Paths.get("data", filepath));
+        this.filename = filename;
+        this.r = Files.newBufferedReader(Paths.get(filepath, filename));
         this.it = this.r.lines().iterator();
     }
 
