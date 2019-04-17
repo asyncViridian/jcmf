@@ -49,7 +49,7 @@ public class BlockMerger {
 
     public static void main(String[] args) throws IOException {
         // TODO take this from input?
-        String mafSrc = "test-overlap.maf";
+        String mafSrc = "test-gaps.maf";
         //"multiz100way_chr12_62602752-62622213.maf";
         // TODO take this from input?
         String outputPrefix = "test";
