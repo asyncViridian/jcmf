@@ -1,12 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="3da6e499-81fb-4a08-856f-3dc0c5fe102e" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/jcmf.iml" beforeDir="false" afterPath="$PROJECT_DIR$/jcmf.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/blockmerge/BlockMerger.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/blockmerge/BlockMerger.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/blockmerge/util/MAFReader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/blockmerge/util/MAFReader.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/blockmerge/BlockMergerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/blockmerge/BlockMergerTest.java" afterDir="false" />
-    </list>
+    <list default="true" id="3da6e499-81fb-4a08-856f-3dc0c5fe102e" name="Default Changelist" comment="" />
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -131,7 +126,7 @@
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
+  <component name="ProjectFrameBounds" extendedState="7">
     <option name="x" value="342" />
     <option name="y" value="-20" />
     <option name="width" value="960" />
@@ -342,7 +337,7 @@
       <workItem from="1554422421403" duration="2946000" />
       <workItem from="1554924880449" duration="1141000" />
       <workItem from="1554926820892" duration="20236000" />
-      <workItem from="1555475167172" duration="5985000" />
+      <workItem from="1555475167172" duration="6585000" />
     </task>
     <servers />
   </component>
@@ -379,10 +374,10 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="66966000" />
+    <option name="totallyTimeSpent" value="67566000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-9" y="-9" width="1938" height="1050" extended-state="6" />
+    <frame x="-9" y="-9" width="1938" height="1050" extended-state="7" />
     <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49942988" visible="true" weight="0.12526652" />

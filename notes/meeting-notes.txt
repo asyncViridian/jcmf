@@ -1,0 +1,209 @@
+2019-04-11
+- Continue merging blocks!
+    - additional rules to keep track of:
+        - If the strand switches, then it is not mergeable
+        - If a gap is too long (exceeds some threshold), then it is not mergeable
+    - Include all mergeable species possible per merging-block
+        - If number of result species is too small (maybe use human + macaque + at least 4 other species as a minimum) then probably discard the block
+- Handling the output?
+    - probably don't want to write a java program to call mergeblocks + cmfinder + summary, since each component individually is helpful
+    - Write a java program (or whatever other language is helpful) for summary itself
+    - Then call each component in sequence with a bash script
+        - note to self: please just get better at bash, you're going to need it for debianmed as well omg
+
+Note: "Syntax error: node identifier ........ not found" sources from these lines in vienna
+lib-vienna-1.7.1/treedist.c:   fprintf(stderr,"Syntax error: node identifier \"%s\" not found "
+lib-vienna-1.7.1/stringdist.c:    fprintf(stderr,"Syntax error: node identifier \"%s\" not found "
+
+===============================================================================
+2019-04-04
+- Thesis vs paper:
+    - thesis can be slightly less focused on a single topic, instead have more room to explain what the process is and the reasoning behind doing certain things
+    - thesis could be refined into a paper
+- Continue merging blocks :)
+    - Don't prematurely optimize!
+    - Base-based merging:
+        - TODO
+    - Block-based merging:
+        - contain up to N alignment blocks per merge
+        - contain a specific set of species S per merge
+            - focus on hominids?
+            - although if there is another species outside of S that is still mergeable, include it
+                - maybe make this toggleable: TODO
+    - Block merge criteria!
+        - Two blocks are "mergeable" for a single species sequence if:
+            - The bases ascend reasonably (not overlapping in coordinates, not wrongly ordered)
+            - Iff neither block is in a scaffold: They are not within two separate chromosomes (if either is in a scaffold, disregard this rule)
+        - Two blocks are "mergeable" for a set of species S if the blocks are mergable for each species in S
+        - If two adjacent blocks are un-mergeable for N,S and the current set of alignment blocks being attempted to merge:
+            - Treat the first block as the end of the whole MAF, then the second one as the beginning of the next "MAF file".
+    - Block merge intervals:
+        - can slide down at every N bases, selecting the M contiguous bases that qualify under the above criteria
+        - or can slide down containing N alignment blocks, etc the same
+            - although this could produce much more variable results since each alignment blocks has varying lengths
+    - Memory?
+        - can write to disk as we go / "paging" the parts that are relevant and saving the irrelevant parts to disk
+        - in the case of reading MAF: maybe read each successive block when we need more bases?
+        - discard the old blocks that are not used anymore perhaps
+
+===============================================================================
+
+- Continue merging blocks
+    - went over some of the MAF spec
+    - probably can ignore some of the more complicated alignment details, since those are probably less helpful
+    - "scaffold": not fully constructed sequence, so there are a lot more chunks than there should be
+
+===============================================================================
+
+- MERGE THE BLOCKS
+    - try different multi-block merges (i.e. N in a row, sliding down, exclude noncontinuous species sequences)
+- save more interesting results
+- can use CMscore in infernal to try to match found results on a sequence
+    - can check out weird results (i.e. those found in primates but not humans) by searching?
+- check out rnaphylo at leisure
+
+===============================================================================
+
+- List of questions about RNAPhylo(pscore), Jukes-Cantor and model family?
+    - uhh...
+- Notes about parameters for cmfinder04.pl
+    - looks like -likeold is making it so that no motifs are found, interesting
+        - maybe a debug bug?
+    - looks like -combine makes some weird .gap, .dnd, and .temp. files
+        - they're being scored? what are these
+    - try varying span inputs especially.
+        - I made the range really wide, in particular.
+        - Try making it lean small or lean large. (doesn't seem like these should give different results)
+    - also lower the % motifs in sequence, esp since 100-way means that we probably dont have very related species?
+    - check the FASTA input!!!! the current species included are a bit weird
+        - have a new fasta input that uses the species closest to human only
+            - humans+monkeys? + rodents
+- Notes about merging blocks
+    - goddamn it galaxy being annoying
+    - I'll just script this out in Java. TODO this!
+        - maybe pass in the score and merge based on the sequuences used in scoring???
+- Some interesting motifs found?
+    - saved in interesting/
+    - block 847 keeps showing up as one of the top scoring motif locations, but cmfinder reports that human dna does not contain that motif ? hmm
+
+===============================================================================
+
+- Pscore
+    - randomize sequences (with same G-C content, etc) to find the typical distribution of scores
+    - what is "RNA posterior" vs "pair posterior"?
+        - "Pair posterior" possibly the more useful one. Read the paper lol.
+- check motifs
+    - particularly interesting area: block 68
+- cmfinder command
+    - cmfinder04.pl -likeold -combine -amaa "$file"
+
+===============================================================================
+
+RNAPhylo/Pscore
+    - Look up Jukes-Cantor phylogenetic tree / DNA sequence evolution model
+        - matrix model of change frequency
+    - as well as slightly more complex models
+    - Zizhen's Yao's paper, describe how Pscore works
+        - RNAPhylo
+    - Basically: given some reliable phylogenetic tree and parameters of DNA evolution (rates of change?), find probabilities of some set of sequences being covariance vs regular evolution vs unrelated
+    - Keep an eye out for the code that calculates those parameters it uses
+    - Previous studies that used Pscore set thresholds for significance at around 50?
+        - chr12 seems to have RNA posterior maxed around 30 (even the pair posterior ~ 30 for that one)
+Again, try combining adjacent blocks
+    - need to pick an interval for that, try using MAF stitch in Galaxy
+Again, try varying CMFinder parameters
+    - this may be ready to test!
+    - first find a way to grep-sort the scores though lol
+
+===============================================================================
+
+Have some interesting sequences (scored - pick some good scores)
+try to combine adjacent blocks and run again
+    - Galaxy Stitch MAF looks promising. Yet to try this
+Also vary parameters as usual
+    - Figure out a way to automate this / check results, perhaps
+pscore: find a phylogenetic tree, also might need a score matrix sort of thing
+    - Got a phylo tree! multiz100way.newick in the data folder
+    - RNAPhylo -t (phylo tree) (Stockholm aligned)
+
+===============================================================================
+
+- cmfinder04.pl should suffice
+        cmfinder04.pl -skipClustalW -minCandScoreInFinal 10 -combine -fragmentary -commaSepEmFlags x--filter-non-frag,--max-degen-per-hit,2,--max-degen-flanking-nucs,7,--degen-keep,--amaa SEQUENCE
+    - add BLAST anchor functionality back in if it turns out it's much slower without it later ...
+- Genome browser tables are cool now!
+- Block merging: see if Galaxy does that work
+    - https://usegalaxy.org/u/dan/p/maf
+
+===============================================================================
+
+- Try creating fasta from the output in examples folder (remove gaps)
+    - fasta made (test.fasta)
+    - cmfinder.pl fails (versioning bad?)
+    - cmfinder04.pl works (but may have differences in output, it seems optimized for truncated sequences???)
+        cmfinder04.pl -skipClustalW -minCandScoreInFinal 10 -combine -fragmentary -commaSepEmFlags x--filter-non-frag,--max-degen-per-hit,2,--max-degen-flanking-nucs,7,--degen-keep,--amaa SEQUENCE
+- Try querying the genome browser tables - MAF file, get just the sequency part of the MAF files? read docs of the format
+- Try getting the block merging to work... Well see if there's working tools for it first
+
+===============================================================================
+
+here are a few of my colleague's candidates.  Coordinates are with respect to "GRCh38" (a genome build version number; I think this is the same as the data base in denmark that I sent earlier, but we should be careful).
+    - Denmark uses hg38 : same build version number
+
+So a suggested starting point is to look each of these up in that data base and see what if anything we found there.  You also should look at them in the genome browser (http://genome.ucsc.edu/) to see what else is known about these regions, e.g. nearby genes.
+
+ID               Chr   start     end       strand
+ENSG00000261716  chr1  149844498 149849024 -
+    - Exactly named RP11-196G18.22
+    - Contains subsequence RP11-196G18.24
+    - Doesn't align with rhesus at all??
+        Your query:
+        hg38/chr1:149844498-149849024     [UCSC Genome browser]
+        Your query matches 0 CRSs. Click on the CRS identifiers to get their annotation.
+    http://genome.ucsc.edu/cgi-bin/hgTracks?db=hg38&position=chr1:149844498-149849024&hubUrl=https://rth.dk/resources/rnannotator/crs/vert/v2/data/cmfscreenhub/getme.txt
+ENSG00000245146  chr5  140072857 140108630 -
+    - Exactly named LINC01024
+    - Overlaps at the very end with PURA
+        Your query:
+        hg38/chr5:140072857-140108630     [UCSC Genome browser]
+        Your query matches 12 CRSs. Click on the CRS identifiers to get their annotation.
+            CRS         Chr     Start       End         FDR     Strand
+            M2215197    chr5    140073561   140073623   11.72   - (reverse)
+            M0920623    chr5    140074003   140074044   14.68   + (forward)
+            M0920624    chr5    140074022   140074054   14.68   +
+            M0920627    chr5    140081934   140081967   9.92    +
+            M0920625    chr5    140081960   140082015   7.52    +
+            M0920636    chr5    140082161   140082195   16.64   +
+            M0920632    chr5    140082167   140082253   16.64   +
+            M2215201    chr5    140087159   140087254   14.68   -
+            M2215203    chr5    140087224   140087254   14.35   -
+            M0920639    chr5    140104528   140104596   11.72   +
+            M0920641    chr5    140107116   140107182   24.43   +
+            M0920654    chr5    140107657   140107716   35.44   +
+    http://genome.ucsc.edu/cgi-bin/hgTracks?db=hg38&lastVirtModeType=default&lastVirtModeExtraState=&virtModeType=default&virtMode=0&nonVirtPosition=&position=chr5%3A140072857-140108630&hgsid=699931569_0un4dVAubI1GCqXq6A9rHZJGLrKr
+ENSG00000257354  chr12  62602752  62622213 +
+    - No exact name
+    - Beginning section within LINC01465
+        - lots of conservation here, also high H3K27Ac ("often found near regulatory elements")
+    - Beginning half overlaps RP11-631N16.2
+    - Overlaps fairly well with AC048341.1 - half intron, half exon
+        Your query:
+        hg38/chr12:62602752-62622213     [UCSC Genome browser]
+        Your query matches 6 CRSs. Click on the CRS identifiers to get their annotation.
+            CRS         Chr     Start       End         FDR     Strand
+            M1585556    chr12   62603599    62603639    35.44   -
+            M0301489    chr12   62604118    62604149    24.43   +
+            M1585559    chr12   62612220    62612286    9.2     -
+            M0301493    chr12   62618045    62618093    9.2     +
+            M0301492    chr12   62618046    62618105    10.85   +
+            M0301495    chr12   62621154    62621219    16.64   +
+    http://genome.ucsc.edu/cgi-bin/hgTracks?db=hg38&lastVirtModeType=default&lastVirtModeExtraState=&virtModeType=default&virtMode=0&nonVirtPosition=&position=chr12%3A62602752-62622213&hgsid=699931827_IUZZNskofxtd6MSNkDIwNmx3jqFU
+
+ENSG00000261338  chr2  218255319 218257366 +
+    - Exactly named RP11-378A13.1
+    - Exactly named AC021016.2 - all exon
+        Your query:
+        hg38/chr2:218255319-218257366     [UCSC Genome browser]
+        Your query matches 0 CRSs. Click on the CRS identifiers to get their annotation.
+    http://genome.ucsc.edu/cgi-bin/hgTracks?db=hg38&lastVirtModeType=default&lastVirtModeExtraState=&virtModeType=default&virtMode=0&nonVirtPosition=&position=chr2%3A218255319-218257366&hgsid=699931923_MnWU2n942ldNyqNw2Np7Y4gssrwS
+
