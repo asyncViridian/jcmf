@@ -2,10 +2,18 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3da6e499-81fb-4a08-856f-3dc0c5fe102e" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/data/test-gaps.maf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test/blockmerge/BlockMergerTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/output/test_1.fasta" beforeDir="false" afterPath="$PROJECT_DIR$/output/test_1.fasta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/test-gaps.maf" beforeDir="false" afterPath="$PROJECT_DIR$/test/blockmerge/data/test-gaps.maf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/test-longgap.maf" beforeDir="false" afterPath="$PROJECT_DIR$/test/blockmerge/data/test-longgap.maf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/test-noskips.maf" beforeDir="false" afterPath="$PROJECT_DIR$/test/blockmerge/data/test-noskips.maf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/test-overlap.maf" beforeDir="false" afterPath="$PROJECT_DIR$/test/blockmerge/data/test-overlap.maf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/test-reversedblocks.maf" beforeDir="false" afterPath="$PROJECT_DIR$/test/blockmerge/data/test-reversedblocks.maf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/test-scaffold.maf" beforeDir="false" afterPath="$PROJECT_DIR$/test/blockmerge/data/test-scaffold.maf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/test-wrongchrom.maf" beforeDir="false" afterPath="$PROJECT_DIR$/test/blockmerge/data/test-wrongchrom.maf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/test-wrongstrand.maf" beforeDir="false" afterPath="$PROJECT_DIR$/test/blockmerge/data/test-wrongstrand.maf" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/blockmerge/BlockMerger.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/blockmerge/BlockMerger.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/blockmerge/util/MAFReader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/blockmerge/util/MAFReader.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -21,29 +29,37 @@
     <splitter split-orientation="horizontal" split-proportion="0.55214286">
       <split-first>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-          <file pinned="false" current-in-tab="false">
+          <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/blockmerge/BlockMerger.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="221">
-                  <caret line="51" column="34" selection-start-line="51" selection-start-column="34" selection-end-line="51" selection-end-column="34" />
+                <state relative-caret-position="203">
+                  <caret line="81" column="53" selection-start-line="81" selection-start-column="53" selection-end-line="81" selection-end-column="53" />
                   <folding>
                     <element signature="imports" expanded="true" />
+                    <element signature="e#3118#7682#1" />
                     <element signature="method#repeat#0;class#BlockMerger#0" />
                   </folding>
                 </state>
               </provider>
             </entry>
           </file>
-          <file pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/output/test_1.fasta">
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/test/blockmerge/BlockMergerTest.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="54">
-                  <caret line="3" column="20" lean-forward="true" selection-start-line="3" selection-start-column="20" selection-end-line="3" selection-end-column="20" />
+                <state relative-caret-position="324">
+                  <caret line="24" selection-start-line="24" selection-end-line="24" />
+                  <folding>
+                    <element signature="method#testRepeat#0;class#BlockMergerTest#0" />
+                  </folding>
                 </state>
               </provider>
             </entry>
           </file>
-          <file pinned="false" current-in-tab="false">
+        </leaf>
+      </split-first>
+      <split-second>
+        <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+          <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/blockmerge/util/AlignmentBlock.java">
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="189">
@@ -58,28 +74,6 @@
             </entry>
           </file>
         </leaf>
-      </split-first>
-      <split-second>
-        <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/data/test-noskips.maf">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="54">
-                  <caret line="3" column="11" selection-start-line="3" selection-start-column="11" selection-end-line="3" selection-end-column="11" />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/data/test-gaps.maf">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="180">
-                  <caret line="10" column="34" selection-start-line="10" selection-start-column="34" selection-end-line="10" selection-end-column="34" />
-                </state>
-              </provider>
-            </entry>
-          </file>
-        </leaf>
       </split-second>
     </splitter>
   </component>
@@ -88,6 +82,7 @@
       <list>
         <option value="FxmlFile" />
         <option value="Class" />
+        <option value="JUnit5 Test Class" />
       </list>
     </option>
   </component>
@@ -101,6 +96,13 @@
       <find>'e</find>
       <find>overlap</find>
       <find>print</find>
+      <find>public static final</find>
+      <find>mafSrc</find>
+      <find>outputName</find>
+      <find>outputDir</find>
+      <find>isMergeable</find>
+      <find>isMergeable`</find>
+      <find>writeTo</find>
     </findStrings>
     <replaceStrings>
       <replace>assertEquals\((\2), (\1)\);</replace>
@@ -131,9 +133,10 @@
         <option value="$PROJECT_DIR$/data/test-scaffold.maf" />
         <option value="$PROJECT_DIR$/data/test-overlap.maf" />
         <option value="$PROJECT_DIR$/data/test-reversedblocks.maf" />
-        <option value="$PROJECT_DIR$/src/blockmerge/util/MAFReader.java" />
-        <option value="$PROJECT_DIR$/src/blockmerge/BlockMerger.java" />
         <option value="$PROJECT_DIR$/data/test-gaps.maf" />
+        <option value="$PROJECT_DIR$/src/blockmerge/util/MAFReader.java" />
+        <option value="$PROJECT_DIR$/test/blockmerge/BlockMergerTest.java" />
+        <option value="$PROJECT_DIR$/src/blockmerge/BlockMerger.java" />
       </list>
     </option>
   </component>
@@ -159,17 +162,7 @@
             <path>
               <item name="jcmf" type="b2602c69:ProjectViewProjectNode" />
               <item name="jcmf" type="462c0819:PsiDirectoryNode" />
-              <item name="data" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="jcmf" type="b2602c69:ProjectViewProjectNode" />
-              <item name="jcmf" type="462c0819:PsiDirectoryNode" />
               <item name="ext_lib" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="jcmf" type="b2602c69:ProjectViewProjectNode" />
-              <item name="jcmf" type="462c0819:PsiDirectoryNode" />
-              <item name="output" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="jcmf" type="b2602c69:ProjectViewProjectNode" />
@@ -192,26 +185,13 @@
             <path>
               <item name="jcmf" type="b2602c69:ProjectViewProjectNode" />
               <item name="jcmf" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="cmf" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="jcmf" type="b2602c69:ProjectViewProjectNode" />
-              <item name="jcmf" type="462c0819:PsiDirectoryNode" />
               <item name="test" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="jcmf" type="b2602c69:ProjectViewProjectNode" />
               <item name="jcmf" type="462c0819:PsiDirectoryNode" />
               <item name="test" type="462c0819:PsiDirectoryNode" />
-              <item name="cmf" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="jcmf" type="b2602c69:ProjectViewProjectNode" />
-              <item name="jcmf" type="462c0819:PsiDirectoryNode" />
-              <item name="test" type="462c0819:PsiDirectoryNode" />
-              <item name="cmf" type="462c0819:PsiDirectoryNode" />
-              <item name="data" type="462c0819:PsiDirectoryNode" />
+              <item name="blockmerge" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="jcmf" type="b2602c69:ProjectViewProjectNode" />
@@ -233,14 +213,23 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1554926021811" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/dist/cmf.jar!/" />
+    <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary" value="JUnit5" />
+    <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5" value="" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/ext_lib/commons-cli-1.4" />
     <property name="project.structure.last.edited" value="Libraries" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="settings.editor.selected.configurable" value="preferences.sourceCode.Java" />
   </component>
   <component name="RecentsManager">
+    <key name="CreateTestDialog.RecentsKey">
+      <recent name="blockmerge" />
+    </key>
+    <key name="CreateTestDialog.Recents.Supers">
+      <recent name="" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\JZ\git\jcmf\test\blockmerge\data" />
       <recent name="C:\Users\JZ\git\jcmf\data" />
     </key>
   </component>
@@ -256,7 +245,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.BlockMerger">
+  <component name="RunManager" selected="JUnit.BlockMergerTest.testRepeat">
     <configuration name="AlignmentBlock" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="blockmerge.util.AlignmentBlock" />
       <module name="jcmf" />
@@ -283,15 +272,18 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="perl_io" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="cmf.perl_io" />
+    <configuration name="BlockMergerTest.testRepeat" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="jcmf" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="cmf.*" />
+          <option name="PATTERN" value="blockmerge.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
+      <option name="PACKAGE_NAME" value="blockmerge" />
+      <option name="MAIN_CLASS_NAME" value="blockmerge.BlockMergerTest" />
+      <option name="METHOD_NAME" value="testRepeat" />
+      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -330,11 +322,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.BlockMergerTest.testRepeat" />
         <item itemvalue="Application.BlockMerger" />
         <item itemvalue="Application.AlignmentBlock" />
         <item itemvalue="JUnit.perl_ioTest.testRemove_gap" />
         <item itemvalue="JUnit.perl_ioTest.testRead_fasta" />
-        <item itemvalue="Application.perl_io" />
       </list>
     </recent_temporary>
   </component>
@@ -359,7 +351,7 @@
       <workItem from="1554422421403" duration="2946000" />
       <workItem from="1554924880449" duration="1141000" />
       <workItem from="1554926820892" duration="20236000" />
-      <workItem from="1555475167172" duration="1104000" />
+      <workItem from="1555475167172" duration="5493000" />
     </task>
     <servers />
   </component>
@@ -388,15 +380,21 @@
     <history-entry file="perl_ioTest_testRead_fasta - 2019.02.16 at 22h 30m 09s.xml">
       <configuration name="perl_ioTest.testRead_fasta" configurationId="JUnit" />
     </history-entry>
+    <history-entry file="BlockMergerTest_testRepeat - 2019.04.17 at 13h 29m 49s.xml">
+      <configuration name="BlockMergerTest.testRepeat" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="BlockMergerTest_testRepeat - 2019.04.17 at 13h 30m 06s.xml">
+      <configuration name="BlockMergerTest.testRepeat" configurationId="JUnit" />
+    </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="62085000" />
+    <option name="totallyTimeSpent" value="66474000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-9" y="-9" width="1938" height="1050" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49942988" visible="true" weight="0.12739871" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49942988" visible="true" weight="0.12526652" />
       <window_info id="Structure" order="1" sideWeight="0.5005701" side_tool="true" weight="0.22493887" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -429,18 +427,6 @@
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/blockmerge/BlockMerger.java</url>
-          <line>153</line>
-          <properties />
-          <option name="timeStamp" value="8" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
   <component name="debuggerHistoryManager">
     <expressions id="evaluateExpression">
@@ -484,13 +470,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/test/cmf/data/example.fasta">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="302">
-          <caret line="98" column="45" selection-start-line="98" selection-start-column="45" selection-end-line="98" selection-end-column="45" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/cmf/perl_io.java" />
     <entry file="file://$PROJECT_DIR$/test/cmf/perl_ioTest.java" />
     <entry file="file://$PROJECT_DIR$/src/blockmerge/util/ReadMAF.java" />
@@ -524,7 +503,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/output/toy_1.fasta" />
     <entry file="file://$PROJECT_DIR$/data/toy.maf" />
-    <entry file="file://$PROJECT_DIR$/data/test-longgap.maf">
+    <entry file="file://$PROJECT_DIR$/test/blockmerge/data/test-longgap.maf">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="108">
           <caret line="6" lean-forward="true" selection-end-line="12" />
@@ -538,31 +517,59 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/data/test-wrongchrom.maf">
+    <entry file="file://$PROJECT_DIR$/test/blockmerge/data/test-wrongchrom.maf">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="108">
           <caret line="6" lean-forward="true" selection-start-line="6" selection-end-line="6" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/data/test-wrongstrand.maf">
+    <entry file="file://$PROJECT_DIR$/test/blockmerge/data/test-wrongstrand.maf">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="90">
           <caret line="5" column="21" lean-forward="true" selection-start-line="5" selection-start-column="21" selection-end-line="5" selection-end-column="21" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/data/test-scaffold.maf">
+    <entry file="file://$PROJECT_DIR$/test/blockmerge/data/test-scaffold.maf">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="216">
           <caret line="12" selection-start-line="12" selection-end-line="12" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/data/test-reversedblocks.maf">
+    <entry file="file://$PROJECT_DIR$/test/blockmerge/data/test-reversedblocks.maf">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="54">
           <caret line="3" column="33" selection-start-line="3" selection-start-column="33" selection-end-line="3" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/blockmerge/data/test-overlap.maf">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="72">
+          <caret line="4" column="12" selection-start-line="4" selection-start-column="12" selection-end-line="4" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/blockmerge/data/test-gaps.maf">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="10" column="34" selection-start-line="10" selection-start-column="34" selection-end-line="10" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/output/test_1.fasta">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="36">
+          <caret line="2" column="5" selection-start-line="2" selection-start-column="5" selection-end-line="2" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/blockmerge/data/test-noskips.maf">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="54">
+          <caret line="3" column="11" selection-start-line="3" selection-start-column="11" selection-end-line="3" selection-end-column="11" />
         </state>
       </provider>
     </entry>
@@ -578,10 +585,24 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/test/cmf/data/example.fasta">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="302">
+          <caret line="98" column="45" selection-start-line="98" selection-start-column="45" selection-end-line="98" selection-end-column="45" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/cmf/IoTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="144">
+          <caret line="18" column="13" selection-start-line="18" selection-start-column="13" selection-end-line="18" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/blockmerge/util/MAFReader.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="42" column="58" selection-start-line="42" selection-start-column="58" selection-end-line="42" selection-end-column="58" />
+        <state relative-caret-position="198">
+          <caret line="11" column="28" lean-forward="true" selection-start-line="11" selection-start-column="28" selection-end-line="11" selection-end-column="28" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#707#708#0" expanded="true" />
@@ -590,42 +611,25 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/data/test-overlap.maf">
+    <entry file="file://$PROJECT_DIR$/test/blockmerge/BlockMergerTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="72">
-          <caret line="4" column="12" selection-start-line="4" selection-start-column="12" selection-end-line="4" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/data/test-noskips.maf">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="54">
-          <caret line="3" column="11" selection-start-line="3" selection-start-column="11" selection-end-line="3" selection-end-column="11" />
+        <state relative-caret-position="324">
+          <caret line="24" selection-start-line="24" selection-end-line="24" />
+          <folding>
+            <element signature="method#testRepeat#0;class#BlockMergerTest#0" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/blockmerge/BlockMerger.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="51" column="34" selection-start-line="51" selection-start-column="34" selection-end-line="51" selection-end-column="34" />
+        <state relative-caret-position="203">
+          <caret line="81" column="53" selection-start-line="81" selection-start-column="53" selection-end-line="81" selection-end-column="53" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="e#3118#7682#1" />
             <element signature="method#repeat#0;class#BlockMerger#0" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/output/test_1.fasta">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="54">
-          <caret line="3" column="20" lean-forward="true" selection-start-line="3" selection-start-column="20" selection-end-line="3" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/data/test-gaps.maf">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="10" column="34" selection-start-line="10" selection-start-column="34" selection-end-line="10" selection-end-column="34" />
         </state>
       </provider>
     </entry>
