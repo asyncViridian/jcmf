@@ -41,7 +41,6 @@ public class MAFReader implements Iterator<AlignmentBlock> {
             }
         }
         AlignmentBlock result = new AlignmentBlock(lines);
-        System.out.print("done");
         return result;
     }
 }
