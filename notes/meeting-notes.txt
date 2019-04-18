@@ -1,3 +1,6 @@
+2019-04-18
+
+===============================================================================
 2019-04-11
 - Continue merging blocks!
     - additional rules to keep track of:
@@ -12,8 +15,20 @@
         - note to self: please just get better at bash, you're going to need it for debianmed as well omg
 
 Note: "Syntax error: node identifier ........ not found" sources from these lines in vienna
-lib-vienna-1.7.1/treedist.c:   fprintf(stderr,"Syntax error: node identifier \"%s\" not found "
-lib-vienna-1.7.1/stringdist.c:    fprintf(stderr,"Syntax error: node identifier \"%s\" not found "
+    lib-vienna-1.7.1/treedist.c:   fprintf(stderr,"Syntax error: node identifier \"%s\" not found "
+    lib-vienna-1.7.1/stringdist.c:    fprintf(stderr,"Syntax error: node identifier \"%s\" not found "
+
+Command to merge the blocks given some input maf (see also the usage output...)
+    BlockMerger -sd data -s multiz100way_chr12_62602752-62622213.maf -od output -o m100_chr12_62602752-62622213
+
+WHAT TO DO NEXT:
+- Automatic evaluation of results and visualizing them cleanly would be neat
+    - Write that summary script...
+- Test different values of merge parameters, CMFinder parameters
+- Compare the results of nonmerged results vs merged results
+    - (There should probably be some results that are now longer?)
+    - How to evaluate the result quality other than looking over each hit manually?
+- Debug any weirdness in CMFinder you happen to notice
 
 ===============================================================================
 2019-04-04
