@@ -229,24 +229,13 @@ public class BlockMerger {
                     options);
             return;
         }
-//        // TODO fix the below
-//        // TODO take this from input?
-//        BlockMerger.srcDir = "data";
-//        // TODO take this from input?
-//        BlockMerger.srcName = "test-gaps.maf";
-//        //"multiz100way_chr12_62602752-62622213.maf";
-//        // TODO take this from input?
-//        BlockMerger.outDir = "output";
-//        // TODO take this from input?
-//        BlockMerger.outName = "test";
-//        //"m100_chr12_62602752-62622213";
 
         // start reading from the given files etc.
         MAFReader reader = new MAFReader(BlockMerger.srcDir,
                                          BlockMerger.srcName);
 
         if (type == MergeType.BASES) {
-            // TODO write base-based merging?
+            // TODO write base-based merging...
             throw new RuntimeException("not implemented yet");
         } else if (type == MergeType.BLOCKS) {
             LinkedList<AlignmentBlock> current = new LinkedList<>();

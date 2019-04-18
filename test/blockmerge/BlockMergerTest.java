@@ -1,10 +1,16 @@
 package blockmerge;
 
+import org.apache.commons.cli.ParseException;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.io.IOException;
 import java.math.BigInteger;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -20,7 +26,31 @@ class BlockMergerTest {
 
     @Test
     void main() {
+        try {
+            Files.list(
+                    Paths.get("test/blockmerge/data"))
+                    .map(p -> p.getFileName().toString())
+                    .map(s -> s.substring(0, s.indexOf(".maf")))
+                    .forEach(filename -> {
+                        String[] args = {"-numBlocksPerOutput", "2",
+                                "--minNumSpecies", "0",
+                                "-sd", "test/blockmerge/data",
+                                "-s", filename + ".maf",
+                                "-od", "test/blockmerge/output",
+                                "-o", filename};
+                        try {
+                            BlockMerger.main(args);
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                            fail("check test integrity");
+                        }
 
+                        // TODO add check against expected behavior???
+                    });
+        } catch (Exception e) {
+            e.printStackTrace();
+            fail("check test integrity");
+        }
     }
 
     @Test
