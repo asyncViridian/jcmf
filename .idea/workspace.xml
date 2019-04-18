@@ -2,9 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3da6e499-81fb-4a08-856f-3dc0c5fe102e" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/blockmerge/BlockMerger.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/blockmerge/BlockMerger.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/blockmerge/util/AlignmentBlock.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/blockmerge/util/AlignmentBlock.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -21,10 +19,12 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/blockmerge/BlockMerger.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="360">
-              <caret line="38" column="62" selection-start-line="38" selection-start-column="62" selection-end-line="38" selection-end-column="62" />
+            <state relative-caret-position="378">
+              <caret line="33" column="7" selection-start-line="33" selection-start-column="7" selection-end-line="33" selection-end-column="7" />
               <folding>
                 <element signature="imports" expanded="true" />
+                <element signature="e#2365#6479#1" />
+                <element signature="e#6543#6847#0" />
                 <element signature="e#6862#6911#1" />
                 <element signature="e#6933#6982#1" />
                 <element signature="e#7133#7197#1" />
@@ -38,6 +38,7 @@
                 <element signature="e#8456#8520#1" />
                 <element signature="e#9035#9114#1" />
                 <element signature="e#9120#9176#1" />
+                <element signature="e#6495#6630#0" />
                 <element signature="e#5341#7546#1" />
                 <element signature="method#repeat#0;class#BlockMerger#0" />
                 <element signature="method#writeToFasta#0;class#BlockMerger#0" />
@@ -388,7 +389,7 @@
       <workItem from="1554422421403" duration="2946000" />
       <workItem from="1554924880449" duration="1141000" />
       <workItem from="1554926820892" duration="20236000" />
-      <workItem from="1555475167172" duration="13103000" />
+      <workItem from="1555475167172" duration="14004000" />
     </task>
     <servers />
   </component>
@@ -425,7 +426,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="74084000" />
+    <option name="totallyTimeSpent" value="74985000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-9" y="-9" width="1698" height="1020" extended-state="6" />
@@ -669,10 +670,12 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/blockmerge/BlockMerger.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="360">
-          <caret line="38" column="62" selection-start-line="38" selection-start-column="62" selection-end-line="38" selection-end-column="62" />
+        <state relative-caret-position="378">
+          <caret line="33" column="7" selection-start-line="33" selection-start-column="7" selection-end-line="33" selection-end-column="7" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="e#2365#6479#1" />
+            <element signature="e#6543#6847#0" />
             <element signature="e#6862#6911#1" />
             <element signature="e#6933#6982#1" />
             <element signature="e#7133#7197#1" />
@@ -686,6 +689,7 @@
             <element signature="e#8456#8520#1" />
             <element signature="e#9035#9114#1" />
             <element signature="e#9120#9176#1" />
+            <element signature="e#6495#6630#0" />
             <element signature="e#5341#7546#1" />
             <element signature="method#repeat#0;class#BlockMerger#0" />
             <element signature="method#writeToFasta#0;class#BlockMerger#0" />

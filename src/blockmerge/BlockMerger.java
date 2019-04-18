@@ -36,7 +36,7 @@ public class BlockMerger {
      * alignment block
      */
     private static int NUM_BLOCKS_PER_OUTPUT;
-    private static final int NUM_BLOCKS_PER_OUTPUT_DEFAULT = 3;
+    private static final int NUM_BLOCKS_PER_OUTPUT_DEFAULT = 5;
     /**
      * For merge type bases: the number of bases to contain in each output
      * alignment block
@@ -279,10 +279,10 @@ public class BlockMerger {
                     // retrieve the list of species that can be included in
                     // this set of alignment blocks
                     boolean mergeable = true;
-                    while (secondIt.hasNext()) {
-                        if (mergeable && !isMergeable(firstIt.next(),
-                                                      secondIt.next(),
-                                                      species)) {
+                    while (secondIt.hasNext() && mergeable) {
+                        if (!isMergeable(firstIt.next(),
+                                         secondIt.next(),
+                                         species)) {
                             mergeable = false;
                         }
                     }
