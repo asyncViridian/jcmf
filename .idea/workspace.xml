@@ -21,10 +21,12 @@
           <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/blockmerge/BlockMerger.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="462">
-                  <caret line="176" column="50" selection-start-line="176" selection-start-column="50" selection-end-line="176" selection-end-column="50" />
+                <state relative-caret-position="294">
+                  <caret line="225" column="35" selection-start-line="225" selection-start-column="35" selection-end-line="225" selection-end-column="35" />
                   <folding>
                     <element signature="imports" expanded="true" />
+                    <element signature="e#2365#6479#1" />
+                    <element signature="e#6543#6847#0" />
                     <element signature="method#repeat#0;class#BlockMerger#0" />
                   </folding>
                 </state>
@@ -50,8 +52,8 @@
           <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/blockmerge/BlockMerger.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="324">
-                  <caret line="79" column="45" selection-start-line="79" selection-start-column="45" selection-end-line="79" selection-end-column="45" />
+                <state relative-caret-position="161">
+                  <caret line="173" selection-start-line="173" selection-end-line="173" />
                   <folding>
                     <element signature="imports" expanded="true" />
                     <element signature="method#repeat#0;class#BlockMerger#0" />
@@ -232,7 +234,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="JUnit.BlockMergerTest.testRepeat">
+  <component name="RunManager" selected="Application.BlockMerger">
     <configuration name="AlignmentBlock" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="blockmerge.util.AlignmentBlock" />
       <module name="jcmf" />
@@ -246,9 +248,10 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="BlockMerger" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+    <configuration name="BlockMerger" type="Application" factoryName="Application" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="blockmerge.BlockMerger" />
       <module name="jcmf" />
+      <option name="PROGRAM_PARAMETERS" value="-numBlocksPerOutput 2 --minNumSpecies 0 -sd test/blockmerge/data -s test-gaps.maf -od output -o test" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="blockmerge.*" />
@@ -307,10 +310,16 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <list>
+      <item itemvalue="Application.BlockMerger" />
+      <item itemvalue="Application.AlignmentBlock" />
+      <item itemvalue="JUnit.BlockMergerTest.testRepeat" />
+      <item itemvalue="JUnit.perl_ioTest.testRead_fasta" />
+      <item itemvalue="JUnit.perl_ioTest.testRemove_gap" />
+    </list>
     <recent_temporary>
       <list>
         <item itemvalue="JUnit.BlockMergerTest.testRepeat" />
-        <item itemvalue="Application.BlockMerger" />
         <item itemvalue="Application.AlignmentBlock" />
         <item itemvalue="JUnit.perl_ioTest.testRemove_gap" />
         <item itemvalue="JUnit.perl_ioTest.testRead_fasta" />
@@ -338,14 +347,11 @@
       <workItem from="1554422421403" duration="2946000" />
       <workItem from="1554924880449" duration="1141000" />
       <workItem from="1554926820892" duration="20236000" />
-      <workItem from="1555475167172" duration="8697000" />
+      <workItem from="1555475167172" duration="10721000" />
     </task>
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="perl_ioTest_testRead_fasta - 2019.02.15 at 22h 29m 11s.xml">
-      <configuration name="perl_ioTest.testRead_fasta" configurationId="JUnit" />
-    </history-entry>
     <history-entry file="perl_ioTest_testRead_fasta - 2019.02.15 at 22h 29m 35s.xml">
       <configuration name="perl_ioTest.testRead_fasta" configurationId="JUnit" />
     </history-entry>
@@ -373,16 +379,19 @@
     <history-entry file="BlockMergerTest_testRepeat - 2019.04.17 at 13h 30m 06s.xml">
       <configuration name="BlockMergerTest.testRepeat" configurationId="JUnit" />
     </history-entry>
+    <history-entry file="BlockMergerTest_testRepeat - 2019.04.18 at 00h 40m 45s.xml">
+      <configuration name="BlockMergerTest.testRepeat" configurationId="JUnit" />
+    </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="69678000" />
+    <option name="totallyTimeSpent" value="71702000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-9" y="-9" width="1698" height="1020" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49942988" visible="true" weight="0.14364304" />
-      <window_info id="Structure" order="1" sideWeight="0.5005701" side_tool="true" weight="0.22493887" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.4983871" visible="true" weight="0.13814181" />
+      <window_info id="Structure" order="1" sideWeight="0.5016129" side_tool="true" visible="true" weight="0.13814181" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
       <window_info id="UI Designer" order="4" />
@@ -390,8 +399,8 @@
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.3523375" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.3880926" />
+      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.29304448" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.3876853" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
@@ -417,6 +426,11 @@
   </component>
   <component name="debuggerHistoryManager">
     <expressions id="evaluateExpression">
+      <expression>
+        <expression-string>line.getOptionValue(&quot;numBlocksPerOutput&quot;)</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
       <expression>
         <expression-string>firstSeq.start.add(firstSeq.size).compareTo(secondSeq.start)</expression-string>
         <language-id>JAVA</language-id>
@@ -608,12 +622,17 @@
         </state>
       </provider>
     </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_151/jre/lib/rt.jar!/java/lang/Integer.class">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/blockmerge/BlockMerger.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="462">
-          <caret line="176" column="50" selection-start-line="176" selection-start-column="50" selection-end-line="176" selection-end-column="50" />
+        <state relative-caret-position="294">
+          <caret line="225" column="35" selection-start-line="225" selection-start-column="35" selection-end-line="225" selection-end-column="35" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="e#2365#6479#1" />
+            <element signature="e#6543#6847#0" />
             <element signature="method#repeat#0;class#BlockMerger#0" />
           </folding>
         </state>
