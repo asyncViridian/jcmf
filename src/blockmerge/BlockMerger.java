@@ -20,6 +20,7 @@ public class BlockMerger {
      * Options for the block merging
      */
     private static Options options;
+    // TODO switch to using the Options values instead of class-level variables.
 
     /**
      * The type of block-merging to do.

@@ -1,4 +1,41 @@
 2019-04-18
+- Haven't run CMFinder on merged blocks before, it's all been from single alignment blocks in sequence
+    - check literature for other merged blocks work
+- Try running CMFinder on merged blocks!
+    - screen? disown?
+    - check the output log!!!
+- Possible other parameters to track:
+    - Maximum total block length?
+        - i.e. if a merged result is 5000 then it is probably too long!
+    - Minimum total block length? 
+        - i.e. if a merged result is 20 then it is probably no(t much) better than just using a single block really
+    - For total block length: perhaps track based on human sequence length.
+- Possible other features to add:
+    - Output the bounds of each source alignment block into the FASTA file
+        - This is useful for filtering out CMFinder hits that are maybe only within one block anyway and are not particularly interesting for mergeblock purposes
+        - Add it to the header line?
+            - Figure out a good way to format the headerline that is conducive to parsing CMFinder output.
+    - Check if removing gap characters (-) from the FASTA output changes the CMFinder output?
+        - this can be a simple diff...
+- Possible other statistics that are helpful
+    - Gap% or N% statistics tracking
+    - % of each block from each source block
+
+Debug notes (from the cmfinder output):
+    WHEN RUNNING ON MERGED BLOCKS (default parameters):
+        (It is only outputting results ranging from blocks 80-85, and then this type of output appears in the logs:)
+        parallel running candf
+        ran childPid=14375
+        Running: /homes/iws/jyzhou15/498r/cmfinder-0.4.1.15/bin/candf  -t times/split/m100_chr12_62602752-62622213_1000.fasta -c 60 -o split/m100_chr12_62602752-62622213_1000.fasta.cand.h1 -M 150 -m 20 -s 1 -S 1 split/m100_chr12_62602752-62622213_1000.fasta
+        Running: /homes/iws/jyzhou15/498r/cmfinder-0.4.1.15/bin/candf  -t times/split/m100_chr12_62602752-62622213_1000.fasta -c 60 -o split/m100_chr12_62602752-62622213_1000.fasta.cand.h2 -M 150 -m 20 -s 2 -S 2 split/m100_chr12_62602752-62622213_1000.fasta
+
+        initialize_fold: argument must be greater 0
+                command failed: 256  at /homes/iws/jyzhou15/498r/cmfinder-0.4.1.15/bin/cmfinder04.pl line 1082.
+        child exited with status=256 at /homes/iws/jyzhou15/498r/cmfinder-0.4.1.15/bin/cmfinder04.pl line 312.
+        ran childPid=14376
+        about to collect childPid=14375
+    WHEN RUNNING ON APESRODENTS FILTERED BLOCKS:
+        Contains .temp and .temp.dnd files in the output, is this expected / an error / what?
 
 ===============================================================================
 2019-04-11
