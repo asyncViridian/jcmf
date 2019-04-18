@@ -2,6 +2,8 @@ package blockmerge;
 
 import blockmerge.util.AlignmentBlock;
 import blockmerge.util.MAFReader;
+import org.apache.commons.cli.Option;
+import org.apache.commons.cli.Options;
 
 import java.io.BufferedWriter;
 import java.io.IOException;
@@ -14,6 +16,11 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class BlockMerger {
+
+    /**
+     * Options for the block merging
+     */
+    private static Options options;
 
     /**
      * The type of block-merging to do.
@@ -79,15 +86,83 @@ public class BlockMerger {
         BlockMerger.outDir = "";
     }
 
-    private static void setArguments(String[] args) {
-        // TODO IMPORTANT switch to using apache common-cli
-        // TODO read in, assign thresholds
-        // TODO read in, assign filenames
-    }
-
     public static void main(String[] args) throws IOException {
         // handle command-line argument processing :)
-        setArguments(args);
+        // add all the arguments we need
+        BlockMerger.options = new Options();
+        BlockMerger.options.addOption(
+                Option.builder("a")
+                        .longOpt("basemerge")
+                        .desc("Use base-counting based merging (by "
+                                      + "default BlockMerger uses "
+                                      + "block-based merging). " +
+                                      "Defaults to 2")
+                        .build());
+        BlockMerger.options.addOption(
+                Option.builder()
+                        .longOpt("numBasesPerOutput")
+                        .hasArg()
+                        .desc("Number of bases to include in each "
+                                      + "output block (if using "
+                                      + "base-counting merging). " +
+                                      "Defaults to 300")
+                        .build());
+        BlockMerger.options.addOption(
+                Option.builder()
+                        .longOpt("numBasesIncrement")
+                        .hasArg()
+                        .desc("Number of bases to increment between "
+                                      + "each output merged block (if" +
+                                      " using base-counting merging)." +
+                                      " Defaults to 50")
+                        .build());
+        BlockMerger.options.addOption(
+                Option.builder()
+                        .longOpt("gapThreshold")
+                        .hasArg()
+                        .desc("Maximum gap length between two source " +
+                                      "alignment blocks before they " +
+                                      "are determined unmergeable. " +
+                                      "Defaults to 300")
+                        .build());
+        BlockMerger.options.addOption(
+                Option.builder()
+                        .longOpt("minNumSpecies")
+                        .hasArg()
+                        .desc("Minimum number of species that are " +
+                                      "mergeable to include in each " +
+                                      "result alignment block. " +
+                                      "Defaults to 5")
+                        .build());
+        BlockMerger.options.addOption(
+                Option.builder("sd")
+                        .longOpt("srcDir")
+                        .hasArg()
+                        .desc("Directory to read input files from. " +
+                                      "Defaults to current directory")
+                        .build());
+        BlockMerger.options.addOption(
+                Option.builder("s")
+                        .longOpt("srcName")
+                        .hasArg()
+                        .desc("Input MAF file")
+                        .required()
+                        .build());
+        BlockMerger.options.addOption(
+                Option.builder("od")
+                        .longOpt("outDir")
+                        .hasArg()
+                        .desc("Directory to write output files to. " +
+                                      "Defaults to current directory")
+                        .build());
+        BlockMerger.options.addOption(
+                Option.builder("o")
+                        .longOpt("outName")
+                        .hasArg()
+                        .desc("Output FASTA files prefix")
+                        .required()
+                        .build());
+        // TODO fix the below
         // TODO take this from input?
         BlockMerger.srcDir = "data";
         // TODO take this from input?
@@ -98,6 +173,8 @@ public class BlockMerger {
         // TODO take this from input?
         BlockMerger.outName = "test";
         //"m100_chr12_62602752-62622213";
+
+        // start reading from the given files etc.
         MAFReader reader = new MAFReader(BlockMerger.srcDir,
                                          BlockMerger.srcName);
 
@@ -161,10 +238,10 @@ public class BlockMerger {
                     // write the species and originating chromosome
                     AlignmentBlock.Sequence first =
                             current.getFirst().sequences.get(
-                            species);
+                                    species);
                     AlignmentBlock.Sequence last =
                             current.getLast().sequences.get(
-                            species);
+                                    species);
                     // build the sequence name (species, chrom, strand, coords)
                     StringBuilder speciesHeader = new StringBuilder();
                     speciesHeader.append(species);
