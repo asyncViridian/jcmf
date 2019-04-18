@@ -29,33 +29,39 @@ public class BlockMerger {
      * Blocks = each output alignment block contains a certain number of
      * original alignment blocks.
      */
-    private static MergeType type;
+    private static MergeType MERGE_TYPE;
+    private static final MergeType MERGE_TYPE_DEFAULT = MergeType.BLOCKS;
     /**
      * For merge type block: the number of blocks to contain in each output
      * alignment block
      */
     private static int NUM_BLOCKS_PER_OUTPUT;
+    private static final int NUM_BLOCKS_PER_OUTPUT_DEFAULT = 3;
     /**
      * For merge type bases: the number of bases to contain in each output
      * alignment block
      */
     private static int NUM_BASES_PER_OUTPUT;
+    private static final int NUM_BASES_PER_OUTPUT_DEFAULT = 300;
     /**
      * For merge type bases: the number of bases to shift forwards by in each
      * block
      */
     private static int NUM_BASES_INCREMENT;
+    private static final int NUM_BASES_INCREMENT_DEFAULT = 50;
     /**
      * The maximum gap length between two blocks that still allows them to be
      * considered mergeable.
      */
     private static int GAP_THRESHOLD;
+    private static final int GAP_THRESHOLD_DEFAULT = 300;
     /**
      * The minimum number of species in a merged block that still allows the
      * block to be output (if a block has fewer species, it is considered
      * irrelevant/useless for the purposes of alignment)
      */
     private static int MIN_NUM_SPECIES;
+    private static final int MIN_NUM_SPECIES_DEFAULT = 5;
     /**
      * The source MAF file with all alignment blocks we want to merge.
      */
@@ -64,6 +70,7 @@ public class BlockMerger {
      * The directory to read input files from.
      */
     private static String srcDir;
+    private static final String srcDir_DEFAULT = "";
     /**
      * The custom name part of the FASTA-format output files that we will write.
      */
@@ -72,6 +79,7 @@ public class BlockMerger {
      * The directory to output files into.
      */
     private static String outDir;
+    private static final String outDir_DEFAULT = "";
 
     public static void main(String[] args) throws IOException, ParseException {
         // handle command-line argument processing :)
@@ -92,7 +100,7 @@ public class BlockMerger {
                                           " " +
                                           "merged block (if using " +
                                           "block-counting " +
-                                          "merging). Defaults to 2")
+                                          "merging). Defaults to " + NUM_BLOCKS_PER_OUTPUT_DEFAULT)
                             .build());
             BlockMerger.options.addOption(
                     Option.builder()
@@ -101,7 +109,7 @@ public class BlockMerger {
                             .desc("Number of bases to include in each "
                                           + "output block (if using "
                                           + "base-counting merging). " +
-                                          "Defaults to 300")
+                                          "Defaults to " + NUM_BASES_PER_OUTPUT_DEFAULT)
                             .build());
             BlockMerger.options.addOption(
                     Option.builder()
@@ -110,7 +118,7 @@ public class BlockMerger {
                             .desc("Number of bases to increment between "
                                           + "each output merged block (if" +
                                           " using base-counting merging)." +
-                                          " Defaults to 50")
+                                          " Defaults to " + NUM_BASES_INCREMENT_DEFAULT)
                             .build());
             BlockMerger.options.addOption(
                     Option.builder()
@@ -119,7 +127,7 @@ public class BlockMerger {
                             .desc("Maximum gap length between two source " +
                                           "alignment blocks before they " +
                                           "are determined unmergeable. " +
-                                          "Defaults to 300")
+                                          "Defaults to " + GAP_THRESHOLD_DEFAULT)
                             .build());
             BlockMerger.options.addOption(
                     Option.builder()
@@ -128,14 +136,17 @@ public class BlockMerger {
                             .desc("Minimum number of species that are " +
                                           "mergeable to include in each " +
                                           "result alignment block. " +
-                                          "Defaults to 5")
+                                          "Defaults to " + MIN_NUM_SPECIES_DEFAULT)
                             .build());
             BlockMerger.options.addOption(
                     Option.builder("sd")
                             .longOpt("srcDir")
                             .hasArg()
                             .desc("Directory to read input files from. " +
-                                          "Defaults to current directory")
+                                          "Defaults to "
+                                          + (srcDir_DEFAULT.equals(
+                                    "") ? "current directory" :
+                                    "./" + srcDir_DEFAULT))
                             .build());
             BlockMerger.options.addOption(
                     Option.builder("s")
@@ -148,8 +159,11 @@ public class BlockMerger {
                     Option.builder("od")
                             .longOpt("outDir")
                             .hasArg()
-                            .desc("Directory to write output files to. " +
-                                          "Defaults to current directory")
+                            .desc("Directory to read input files from. " +
+                                          "Defaults to "
+                                          + (outDir_DEFAULT.equals(
+                                    "") ? "current directory" :
+                                    "./" + outDir_DEFAULT))
                             .build());
             BlockMerger.options.addOption(
                     Option.builder("o")
@@ -165,50 +179,51 @@ public class BlockMerger {
             CommandLine line = parser.parse(options, args);
             // set the merge type
             if (line.hasOption("base")) {
-                BlockMerger.type = MergeType.BASES;
+                BlockMerger.MERGE_TYPE = MergeType.BASES;
             } else {
-                BlockMerger.type = MergeType.BLOCKS;
+                BlockMerger.MERGE_TYPE = MERGE_TYPE_DEFAULT;
             }
             // set the numBlocksPerOutput
             if (line.hasOption("numBlocksPerOutput")) {
                 BlockMerger.NUM_BLOCKS_PER_OUTPUT = Integer.valueOf(
                         line.getOptionValue("numBlocksPerOutput"));
             } else {
-                BlockMerger.NUM_BLOCKS_PER_OUTPUT = 2;
+                BlockMerger.NUM_BLOCKS_PER_OUTPUT =
+                        NUM_BLOCKS_PER_OUTPUT_DEFAULT;
             }
             // set the numBasesPerOutput
             if (line.hasOption("numBasesPerOutput")) {
                 BlockMerger.NUM_BASES_PER_OUTPUT = Integer.valueOf(
                         line.getOptionValue("numBasesPerOutput"));
             } else {
-                BlockMerger.NUM_BASES_PER_OUTPUT = 300;
+                BlockMerger.NUM_BASES_PER_OUTPUT = NUM_BASES_PER_OUTPUT_DEFAULT;
             }
             // set the numBasesIncrement
             if (line.hasOption("numBasesIncrement")) {
                 BlockMerger.NUM_BASES_INCREMENT = Integer.valueOf(
                         line.getOptionValue("numBasesIncrement"));
             } else {
-                BlockMerger.NUM_BASES_INCREMENT = 50;
+                BlockMerger.NUM_BASES_INCREMENT = NUM_BASES_INCREMENT_DEFAULT;
             }
             // set the gapThreshold
             if (line.hasOption("gapThreshold")) {
                 BlockMerger.GAP_THRESHOLD = Integer.valueOf(
                         line.getOptionValue("gapThreshold"));
             } else {
-                BlockMerger.GAP_THRESHOLD = 300;
+                BlockMerger.GAP_THRESHOLD = GAP_THRESHOLD_DEFAULT;
             }
             // set the minNumSpecies
             if (line.hasOption("minNumSpecies")) {
                 BlockMerger.MIN_NUM_SPECIES = Integer.valueOf(
                         line.getOptionValue("minNumSpecies"));
             } else {
-                BlockMerger.MIN_NUM_SPECIES = 5;
+                BlockMerger.MIN_NUM_SPECIES = MIN_NUM_SPECIES_DEFAULT;
             }
             // set the src directory
             if (line.hasOption("sd")) {
                 BlockMerger.srcDir = line.getOptionValue("sd");
             } else {
-                BlockMerger.srcDir = "";
+                BlockMerger.srcDir = srcDir_DEFAULT;
             }
             // set the src filename
             BlockMerger.srcName = line.getOptionValue("s");
@@ -216,7 +231,7 @@ public class BlockMerger {
             if (line.hasOption("od")) {
                 BlockMerger.outDir = line.getOptionValue("od");
             } else {
-                BlockMerger.outDir = "";
+                BlockMerger.outDir = outDir_DEFAULT;
             }
             // set the out fileprefix
             BlockMerger.outName = line.getOptionValue("o");
@@ -234,10 +249,10 @@ public class BlockMerger {
         MAFReader reader = new MAFReader(BlockMerger.srcDir,
                                          BlockMerger.srcName);
 
-        if (type == MergeType.BASES) {
+        if (MERGE_TYPE == MergeType.BASES) {
             // TODO write base-based merging...
             throw new RuntimeException("not implemented yet");
-        } else if (type == MergeType.BLOCKS) {
+        } else if (MERGE_TYPE == MergeType.BLOCKS) {
             LinkedList<AlignmentBlock> current = new LinkedList<>();
             BigInteger i = BigInteger.ONE;
             while (reader.hasNext()) {
@@ -329,6 +344,8 @@ public class BlockMerger {
                         }
                     }
                 }
+                // note that we have created a file
+                System.out.println("Wrote " + file.toString());
 
                 // increment the file number
                 i = i.add(BigInteger.ONE);
@@ -393,6 +410,11 @@ public class BlockMerger {
                                        AlignmentBlock second, String species) {
         AlignmentBlock.Sequence firstSeq = first.sequences.get(species);
         AlignmentBlock.Sequence secondSeq = second.sequences.get(species);
+
+        // test if the species is actually in both blocks
+        if (firstSeq == null || secondSeq == null) {
+            return false;
+        }
 
         // test if they are in different non-scaffold chromosomes:
         String firstSec = firstSeq.section;

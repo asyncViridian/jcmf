@@ -358,7 +358,13 @@ public class AlignmentBlock {
              * aligning block starts in a new chromosome or scaffold that is
              * bridged by a chain between still other blocks
              */
-            n
+            n,
+            /**
+             * TODO
+             * This shows up in the data but there's no documentation
+             * on what this means. For now, treat it as a generic gap...
+             */
+            T
         }
     }
 
