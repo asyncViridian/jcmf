@@ -36,6 +36,7 @@ Debug notes (from the cmfinder output):
         about to collect childPid=14375
     WHEN RUNNING ON APESRODENTS FILTERED BLOCKS:
         Contains .temp and .temp.dnd files in the output, is this expected / an error / what?
+            - "guide tree"?
 
 ===============================================================================
 2019-04-11
