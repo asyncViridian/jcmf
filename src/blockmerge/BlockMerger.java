@@ -22,6 +22,8 @@ public class BlockMerger {
     private static Options options;
     // TODO switch to using the Options values instead of class-level variables.
 
+    private static final boolean REMOVE_GAPS = false;
+
     /**
      * The type of block-merging to do.
      * <p>
@@ -411,6 +413,9 @@ public class BlockMerger {
                 writer.write(">" + header + "\n");
             }
             if (sequence != null) {
+                if (BlockMerger.REMOVE_GAPS) {
+                    sequence = sequence.replace("-", "");
+                }
                 writer.write(sequence + "\n");
             }
         } catch (IOException e) {

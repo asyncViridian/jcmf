@@ -2,8 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3da6e499-81fb-4a08-856f-3dc0c5fe102e" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/notes/meeting-notes.txt" beforeDir="false" afterPath="$PROJECT_DIR$/notes/meeting-notes.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/blockmerge/BlockMerger.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/blockmerge/BlockMerger.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -21,12 +19,14 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/blockmerge/BlockMerger.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="226">
-              <caret line="333" column="75" selection-start-line="333" selection-start-column="75" selection-end-line="333" selection-end-column="75" />
+            <state relative-caret-position="366">
+              <caret line="416" column="57" selection-start-line="416" selection-start-column="57" selection-end-line="416" selection-end-column="57" />
               <folding>
                 <element signature="imports" expanded="true" />
+                <element signature="e#2940#7629#1" />
+                <element signature="e#7741#10393#0" />
+                <element signature="e#10421#10764#0" />
                 <element signature="method#repeat#0;class#BlockMerger#0" />
-                <element signature="method#writeToFasta#0;class#BlockMerger#0" />
               </folding>
             </state>
           </provider>
@@ -390,7 +390,7 @@
       <workItem from="1554924880449" duration="1141000" />
       <workItem from="1554926820892" duration="20236000" />
       <workItem from="1555475167172" duration="15567000" />
-      <workItem from="1556075861033" duration="2542000" />
+      <workItem from="1556075861033" duration="2836000" />
     </task>
     <servers />
   </component>
@@ -427,7 +427,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="79090000" />
+    <option name="totallyTimeSpent" value="79384000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-9" y="-9" width="1698" height="1020" extended-state="6" />
@@ -663,12 +663,14 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/blockmerge/BlockMerger.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="226">
-          <caret line="333" column="75" selection-start-line="333" selection-start-column="75" selection-end-line="333" selection-end-column="75" />
+        <state relative-caret-position="366">
+          <caret line="416" column="57" selection-start-line="416" selection-start-column="57" selection-end-line="416" selection-end-column="57" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="e#2940#7629#1" />
+            <element signature="e#7741#10393#0" />
+            <element signature="e#10421#10764#0" />
             <element signature="method#repeat#0;class#BlockMerger#0" />
-            <element signature="method#writeToFasta#0;class#BlockMerger#0" />
           </folding>
         </state>
       </provider>
