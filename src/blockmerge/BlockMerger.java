@@ -314,18 +314,40 @@ public class BlockMerger {
                     AlignmentBlock.Sequence last =
                             current.getLast().sequences.get(
                                     species);
-                    // build the sequence name (species, chrom, strand, coords)
+
+                    // build the sequence name
                     StringBuilder speciesHeader = new StringBuilder();
+                    // write species
                     speciesHeader.append(species);
-                    speciesHeader.append(".");
-                    speciesHeader.append(first.section);
-                    speciesHeader.append(
-                            "(" + (first.strand ? "+" : "-") + ")");
                     speciesHeader.append(":");
+                    // write chromosome
+                    speciesHeader.append(first.section);
+                    speciesHeader.append(":");
+                    // write strand
+                    speciesHeader.append(first.strand ? "+" : "-");
+                    speciesHeader.append(":");
+                    // write start and end coords
                     speciesHeader.append(first.start);
                     speciesHeader.append("-");
                     speciesHeader.append(last.start.add(last.size));
+                    speciesHeader.append(":");
+                    // write individual start and end coords for each block
+                    Iterator<AlignmentBlock> it = current.iterator();
+                    AlignmentBlock b = it.next();
+                    AlignmentBlock.Sequence s = b.sequences.get(species);
+                    speciesHeader.append(s.start);
+                    speciesHeader.append("-");
+                    speciesHeader.append(s.start.add(s.size));
+                    while (it.hasNext()) {
+                        b = it.next();
+                        s = b.sequences.get(species);
+                        speciesHeader.append(";");
+                        speciesHeader.append(s.start);
+                        speciesHeader.append("-");
+                        speciesHeader.append(s.start.add(s.size));
+                    }
                     writeToFasta(writer, speciesHeader.toString(), null);
+
                     for (AlignmentBlock block : current) {
                         // write the contents of each block for each species
                         AlignmentBlock.Sequence seq = block.sequences.get(

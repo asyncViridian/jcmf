@@ -15,6 +15,7 @@
         - This is useful for filtering out CMFinder hits that are maybe only within one block anyway and are not particularly interesting for mergeblock purposes
         - Add it to the header line?
             - Figure out a good way to format the headerline that is conducive to parsing CMFinder output.
+        - DONE.
     - Check if removing gap characters (-) from the FASTA output changes the CMFinder output?
         - this can be a simple diff...
 - Possible other statistics that are helpful
