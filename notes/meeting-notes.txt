@@ -18,12 +18,14 @@
         - DONE.
     - Check if removing gap characters (-) from the FASTA output changes the CMFinder output?
         - this can be a simple diff...
+        - Maybe this is why the "node identifier not found" type messages are appearing???
 - Possible other statistics that are helpful
     - Gap% or N% statistics tracking
     - % of each block from each source block
 
 Debug notes (from the cmfinder output):
     WHEN RUNNING ON MERGED BLOCKS (default parameters):
+        - Figured this out. This is because there were blank newlines in some files, possibly sequences of 0 length being included in the FASTA. This screws up the expectation of vienna initialize_fold.
         (It is only outputting results ranging from blocks 80-85, and then this type of output appears in the logs:)
         parallel running candf
         ran childPid=14375
@@ -38,6 +40,7 @@ Debug notes (from the cmfinder output):
     WHEN RUNNING ON APESRODENTS FILTERED BLOCKS:
         Contains .temp and .temp.dnd files in the output, is this expected / an error / what?
             - "guide tree"?
+            - looks like it's expected. don't touch this for now
 
 ===============================================================================
 2019-04-11

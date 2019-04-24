@@ -22,7 +22,8 @@ public class BlockMerger {
     private static Options options;
     // TODO switch to using the Options values instead of class-level variables.
 
-    private static final boolean REMOVE_GAPS = false;
+    private static final boolean REMOVE_GAPS = true;
+    private static final boolean REMOVE_NEWLINES = true;
 
     /**
      * The type of block-merging to do.
@@ -66,6 +67,18 @@ public class BlockMerger {
     private static int MIN_NUM_SPECIES;
     private static final int MIN_NUM_SPECIES_DEFAULT = 5;
     /**
+     * The maximum length of the reference genome in a resulting block that
+     * will still allow the resulting block to be output.
+     */
+    private static int MAX_OUTPUT_LENGTH;
+    private static int MAX_OUTPUT_LENGTH_DEFAULT = 5000;
+    /**
+     * The minimum length of the reference genome in a resulting block that
+     * will still allow the resulting block to be output.
+     */
+    private static int MIN_OUTPUT_LENGTH;
+    private static int MIN_OUTPUT_LENGTH_DEFAULT = 20;
+    /**
      * The source MAF file with all alignment blocks we want to merge.
      */
     private static String srcName;
@@ -84,7 +97,7 @@ public class BlockMerger {
     private static String outDir;
     private static final String outDir_DEFAULT = "";
 
-    public static void main(String[] args) throws IOException, ParseException {
+    public static void main(String[] args) throws IOException {
         // handle command-line argument processing :)
         // add all the arguments we need
         BlockMerger.options = new Options();
@@ -140,6 +153,26 @@ public class BlockMerger {
                                           "mergeable to include in each " +
                                           "result alignment block. " +
                                           "Defaults to " + MIN_NUM_SPECIES_DEFAULT)
+                            .build());
+            BlockMerger.options.addOption(
+                    Option.builder()
+                            .longOpt("maxOutputLength")
+                            .hasArg()
+                            .desc("Maximum length of the reference genome " +
+                                          "section in a resulting block that " +
+                                          "will still allow the resulting " +
+                                          "block to be output." +
+                                          "Defaults to " + MAX_OUTPUT_LENGTH_DEFAULT)
+                            .build());
+            BlockMerger.options.addOption(
+                    Option.builder()
+                            .longOpt("minOutputLength")
+                            .hasArg()
+                            .desc("Minimum length of the reference genome " +
+                                          "section in a resulting block that " +
+                                          "will still allow the resulting " +
+                                          "block to be output." +
+                                          "Defaults to " + MIN_OUTPUT_LENGTH_DEFAULT)
                             .build());
             BlockMerger.options.addOption(
                     Option.builder("sd")
@@ -222,6 +255,20 @@ public class BlockMerger {
             } else {
                 BlockMerger.MIN_NUM_SPECIES = MIN_NUM_SPECIES_DEFAULT;
             }
+            // set the maxOutputLength
+            if (line.hasOption("maxOutputLength")) {
+                BlockMerger.MAX_OUTPUT_LENGTH = Integer.valueOf(
+                        line.getOptionValue("maxOutputLength"));
+            } else {
+                BlockMerger.MAX_OUTPUT_LENGTH = MAX_OUTPUT_LENGTH_DEFAULT;
+            }
+            // set the minOutputLength
+            if (line.hasOption("minOutputLength")) {
+                BlockMerger.MIN_OUTPUT_LENGTH = Integer.valueOf(
+                        line.getOptionValue("minOutputLength"));
+            } else {
+                BlockMerger.MIN_OUTPUT_LENGTH = MIN_OUTPUT_LENGTH_DEFAULT;
+            }
             // set the src directory
             if (line.hasOption("sd")) {
                 BlockMerger.srcDir = line.getOptionValue("sd");
@@ -261,9 +308,8 @@ public class BlockMerger {
             while (reader.hasNext()) {
                 // add the next block
                 current.add(reader.next());
-                if (current.size() == 1) {
-                    // abort if we only have one block
-                    // (don't merge single block)
+                if (current.size() < NUM_BLOCKS_PER_OUTPUT) {
+                    // abort if we have too few blocks merged
                     continue;
                 }
                 // keep the set of working blocks small
@@ -299,6 +345,8 @@ public class BlockMerger {
                     continue;
                 }
 
+                // TODO implement the sequence length check somehow...
+
                 // create output FASTA file
                 Path file = Paths.get(BlockMerger.outDir,
                                       BlockMerger.outName + "_" + i.toString() + ".fasta");
@@ -316,6 +364,13 @@ public class BlockMerger {
                     AlignmentBlock.Sequence last =
                             current.getLast().sequences.get(
                                     species);
+
+                    // if the merged sequence has a size of 0
+                    if (first.start.equals(last.start.add(last.size))) {
+                        // don't even print it
+                        // skip this line of output
+                        continue;
+                    }
 
                     // build the sequence name
                     StringBuilder speciesHeader = new StringBuilder();
@@ -348,7 +403,7 @@ public class BlockMerger {
                         speciesHeader.append("-");
                         speciesHeader.append(s.start.add(s.size));
                     }
-                    writeToFasta(writer, speciesHeader.toString(), null);
+                    writeFastaHeader(writer, speciesHeader.toString());
 
                     for (AlignmentBlock block : current) {
                         // write the contents of each block for each species
@@ -356,18 +411,19 @@ public class BlockMerger {
                                 species);
                         if (!seq.isGap) {
                             // if we have contents write the contents directly
-                            writeToFasta(writer, null, seq.contents);
+                            writeFastaContent(writer, seq.contents);
                             if (!seq.right.length.equals(BigInteger.ZERO)) {
                                 // if there is nonzero amount of context
                                 // bases (to the right)
-                                writeToFasta(writer, null,
-                                             repeat("N", seq.right.length));
+                                writeFastaContent(writer, repeat("N",
+                                                                 seq.right.length));
                             }
                         } else {
                             // if this is gap (unknown reference?) fill with Ns
-                            writeToFasta(writer, null, repeat("N", seq.size));
+                            writeFastaContent(writer, repeat("N", seq.size));
                         }
                     }
+                    writer.write("\n");
                 }
                 // note that we have created a file
                 System.out.println("Wrote " + file.toString());
@@ -397,29 +453,45 @@ public class BlockMerger {
     }
 
     /**
-     * Append a FASTA-format sequence with the given title and the given
-     * content to the end of the given file.
+     * Writes a line to the given writer starting with ">" followed by the
+     * given header, then a newline.
      *
-     * @param writer   writer for file to append to
-     * @param header   title of the sequence. Iff null then just append to
-     *                 the last sequence, do not write a new sequence
-     * @param sequence content of the sequence. Iff null then do not write
-     *                 any sequence content.
+     * @param writer Writer to use.
+     * @param header Content of the header to write.
+     * @throws IOException if something goes wrong with using writer
      */
-    private static void writeToFasta(BufferedWriter writer, String header,
-                                     String sequence) {
-        try {
-            if (header != null) {
-                writer.write(">" + header + "\n");
-            }
-            if (sequence != null) {
-                if (BlockMerger.REMOVE_GAPS) {
-                    sequence = sequence.replace("-", "");
-                }
-                writer.write(sequence + "\n");
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
+    private static void writeFastaHeader(BufferedWriter writer, String header)
+            throws IOException {
+        if (writer == null) {
+            throw new IllegalArgumentException("null writer passed");
+        } else if (header == null) {
+            throw new IllegalArgumentException("null header passed");
+        }
+        writer.write(">" + header + "\n");
+    }
+
+    /**
+     * Writes the given content (sequence data) with the given writer. Note
+     * that this method will append newlines as determined by the variable
+     * REMOVE_NEWLINES.
+     *
+     * @param writer  Writer to use.
+     * @param content Content of the sequence to write.
+     * @throws IOException if something goes wrong with using writer
+     */
+    private static void writeFastaContent(BufferedWriter writer,
+                                          String content) throws IOException {
+        if (writer == null) {
+            throw new IllegalArgumentException("null writer passed");
+        } else if (content == null) {
+            throw new IllegalArgumentException("null header passed");
+        }
+        if (REMOVE_GAPS) {
+            content = content.replace("-", "");
+        }
+        writer.write(content);
+        if (!REMOVE_NEWLINES) {
+            writer.write("\n");
         }
     }
 
