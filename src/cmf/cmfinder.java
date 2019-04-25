@@ -590,9 +590,9 @@ public class cmfinder {
 
     public void CombMotif(String cand_weight_option, String seq_file, ArrayList<String> motifFilesRef)
             throws MyException {
+
         ArrayList<String> align_files = motifFilesRef;
         ArrayList<String> all_files = align_files;
-        // HashMap<> all_stats;
         HashMap<String, HashMap<String, String>> all_stats = new HashMap<>();
 
         for (String ff : align_files) {
@@ -744,13 +744,20 @@ public class cmfinder {
                         }
                         write_stockholm(new_alignment, f_temp);
 
-                        //todo
+                        //2019-04-24 continue
+                        String[] a = {bin_path + "/" + cmfinderBaseExe,
+                            saveTimerFlag
+                    // todo @cmfinder_inf11FlagsList
+                    };
+                        if (!RunCmfinder(a, f)) {
+                            //couldn't produce acceptable output
+                            //perl next = java continue?
+                            continue;
+                        }
                     }
                 }
-
             }
         }
-
     }
 
     public static HashMap<String, MergeMotif> try_merge(String f1, String f2, HashMap<String, MergeMotif> merge_motif_ref)

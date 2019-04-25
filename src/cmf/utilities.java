@@ -5,8 +5,6 @@ import java.nio.file.*;
 import java.util.*;
 import java.util.concurrent.TimeUnit;
 import static java.util.stream.Collectors.joining;
-import cmf.cmfinder.*;
-import static cmf.cmfinder.bin_path;
 
 /**
  *
