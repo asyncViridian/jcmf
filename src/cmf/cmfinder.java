@@ -82,9 +82,50 @@ public class cmfinder {
 
     static JSONObject jo;
 
-    String saveTimerFlag = "";
-    ArrayList<String> summarizeFlagsList;
+    static ArrayList<String> cmfinder_inf11FlagsList;
+    static ArrayList<String> summarizeFlagsList;
+
+    static {
+        try {
+            jo = read_json_file("cmfinder_param.json");
+            int cpu = jo.getInt("\"cpu <n>\"");
+            cpu = jo.optBoolean("allCpus") ? -1 : cpu;
+            if (cpu != 0) {
+                cmfinder_inf11FlagsList.add("--cpu " + cpu);
+            }
+            /*
+            skip following perl
+            if ($likeold && !$useOldCmfinder) {
+                push @cmfinder_inf11FlagsList,"--enone";
+                push @cmfinder_inf11FlagsList,"--p56";
+                push @cmfinder_inf11FlagsList,"--degen-rand";
+                push @cmfinder_inf11FlagsList,"--ints-like-03";
+                push @cmfinder_inf11FlagsList,"--min-seq-weight 0";
+                push @cmfinder_inf11FlagsList,"--no-elim-iden-seq";
+                push @cmfinder_inf11FlagsList,"--no-elim-iden-subseq";
+                push @cmfinder_inf11FlagsList,"--min-cand-score-in-final 0";
+            }
+             */
+            cmfinder_inf11FlagsList.add("--min-cand-score-in-final " + minCandScoreInFinal);
+            if (jo.optBoolean("amma")) {
+                cmfinder_inf11FlagsList.add("--amaa");
+            }
+            if (jo.optBoolean("filterNonFrag")) {
+                cmfinder_inf11FlagsList.add("--filter-non-frag");
+            }
+            if (jo.optBoolean("fragmentary")) {
+                cmfinder_inf11FlagsList.add("--fragmentary");
+                summarizeFlagsList.add("--fragmentary");
+            }
+
+        } catch (JSONException | IOException ex) {
+            System.out.println(ex);
+        }
+    }
+
     String summarizeFlagsStr;
+
+    String saveTimerFlag = "";
 
     HashMap<String, Seq> unaligned_seqs = read_fasta(seqForExpectationMaximization);
 
@@ -94,14 +135,6 @@ public class cmfinder {
     //SEQ setting in main method
     static String SEQ;
     static String seqForExpectationMaximization = SEQ;
-
-    static {
-        try {
-            jo = read_json_file("cmfinder_param.json");
-        } catch (JSONException | IOException ex) {
-            System.out.println(ex);
-        }
-    }
 
     //read json file
     public static JSONObject read_json_file(String file_name) throws JSONException, IOException {
