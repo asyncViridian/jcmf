@@ -85,6 +85,9 @@ public class cmfinder {
     static ArrayList<String> cmfinder_inf11FlagsList;
     static ArrayList<String> summarizeFlagsList;
 
+    static String cmfinder_inf11Flags;
+    static String summarizeFlagsStr;
+
     static {
         try {
             jo = read_json_file("cmfinder_param.json");
@@ -117,13 +120,11 @@ public class cmfinder {
                 cmfinder_inf11FlagsList.add("--fragmentary");
                 summarizeFlagsList.add("--fragmentary");
             }
-
+            cmfinder_inf11Flags = String.join(" ", cmfinder_inf11FlagsList);
         } catch (JSONException | IOException ex) {
             System.out.println(ex);
         }
     }
-
-    String summarizeFlagsStr;
 
     String saveTimerFlag = "";
 
