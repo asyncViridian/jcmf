@@ -1143,10 +1143,12 @@ public class cmfinder {
         while (keys.hasNext()) {
             String key = (String) keys.next();
             String value = jo.getJSONObject("commaSepEmFlags").get(key).toString();
-            //check if key has <x> part ?
-            System.out.println(
-                    (key.indexOf("<") > 1 ? key.substring(0, key.indexOf("<") - 1) : key)
-                    + " = " + value);
+            if (!value.equals("null") && !value.equals("false")) {
+                //check if key has <x> part ?
+                System.out.println(
+                        (key.indexOf("<") > 1 ? "--" + key.substring(0, key.indexOf("<") - 1) : "--" + key)
+                        + " " + value);
+            }
         }
 
     }
