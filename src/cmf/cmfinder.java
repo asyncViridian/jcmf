@@ -82,16 +82,16 @@ public class cmfinder {
 
     static JSONObject jo;
 
-    static ArrayList<String> cmfinder_inf11FlagsList;
-    static ArrayList<String> summarizeFlagsList;
+    static ArrayList<String> cmfinder_inf11FlagsList = new ArrayList<String>();
+    static ArrayList<String> summarizeFlagsList = new ArrayList<String>();
 
     static String cmfinder_inf11Flags;
     static String summarizeFlagsStr;
 
     static {
         try {
-            jo = read_json_file("cmfinder_param.json");
-            int cpu = jo.getInt("\"cpu <n>\"");
+            jo = read_json_file("./src/cmf/cmfinder_param.json");
+            int cpu = jo.getInt("cpu");
             cpu = jo.optBoolean("allCpus") ? -1 : cpu;
             if (cpu != 0) {
                 cmfinder_inf11FlagsList.add("--cpu " + cpu);
@@ -140,7 +140,8 @@ public class cmfinder {
     //read json file
     public static JSONObject read_json_file(String file_name) throws JSONException, IOException {
         Path p = Paths.get(file_name);
-        byte[] jsonByte = Files.readAllBytes(p);
+        //System.out.println(p.toAbsolutePath().toString());
+        byte[] jsonByte = Files.readAllBytes(p.toAbsolutePath());
         JSONObject jsonObject = new JSONObject(new String(jsonByte));
         return jsonObject;
     }
@@ -1126,9 +1127,6 @@ public class cmfinder {
 
     public static void main(String[] args) {
 
-        //set SEQ
-        SEQ = args[0];
-
         //test case insensitive replaceAll
         //        String target = "FOOfBar";
         //        target = target.replaceAll("(?i)f", "U");
@@ -1140,5 +1138,16 @@ public class cmfinder {
         //        System.out.println("find it:" + findFile(bin_path, "clustalw"));
         //test my_strcmp
         //System.out.println(Arrays.toString(my_strcmp("abc.def.ghi", "abc.def.ghi")));
+        //test jo subobjects loop
+        Iterator<?> keys = jo.getJSONObject("commaSepEmFlags").keys();
+        while (keys.hasNext()) {
+            String key = (String) keys.next();
+            String value = jo.getJSONObject("commaSepEmFlags").get(key).toString();
+            //check if key has <x> part ?
+            System.out.println(
+                    (key.indexOf("<") > 1 ? key.substring(0, key.indexOf("<") - 1) : key)
+                    + " = " + value);
+        }
+
     }
 }
