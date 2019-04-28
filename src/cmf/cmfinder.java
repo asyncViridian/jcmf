@@ -85,8 +85,9 @@ public class cmfinder {
     static ArrayList<String> cmfinder_inf11FlagsList = new ArrayList<String>();
     static ArrayList<String> summarizeFlagsList = new ArrayList<String>();
 
-    static String cmfinder_inf11Flags;
-    static String summarizeFlagsStr;
+    static String cmfinder_inf11Flags = "";
+    static String summarizeFlagsStr = "";
+    static String candfExtraFlags = "";
 
     static {
         try {
@@ -116,35 +117,64 @@ public class cmfinder {
             if (jo.optBoolean("filterNonFrag")) {
                 cmfinder_inf11FlagsList.add("--filter-non-frag");
             }
-            if (jo.optBoolean("fragmentary")) {
-                cmfinder_inf11FlagsList.add("--fragmentary");
-                summarizeFlagsList.add("--fragmentary");
-            }
             cmfinder_inf11Flags = String.join(" ", cmfinder_inf11FlagsList);
             //
-            Iterator<?> keys = jo.getJSONObject("commaSepEmFlags").keys();
-            while (keys.hasNext()) {
-                String key = (String) keys.next();
+            Iterator<?> key1 = jo.getJSONObject("commaSepEmFlags").keys();
+            while (key1.hasNext()) {
+                String key = (String) key1.next();
                 String value = jo.getJSONObject("commaSepEmFlags").get(key).toString();
                 if (!value.equals("null") && !value.equals("false")) {
                     //check if key has <x> part ?
                     cmfinder_inf11Flags
                             = cmfinder_inf11Flags
-                            + " "
+                            + ((cmfinder_inf11Flags != null && !cmfinder_inf11Flags.isEmpty()) ? " " : "")
                             + ((key.indexOf("<") > 1 ? "--" + key.substring(0, key.indexOf("<") - 1) : "--" + key)
                             + " "
                             + value);
-                    // System.out.println(
-                    // (key.indexOf("<") > 1 ? "--" + key.substring(0, key.indexOf("<") - 1) : "--" + key)
-                    // + " " + value);
                 }
             }
             if (jo.optBoolean("columnOnlyBasePairProbs")) {
                 cmfinder_inf11Flags = cmfinder_inf11Flags + " --column-only-base-pair-probs";
             }
-            //System.out.println(cmfinder_inf11Flags);
-            
-            
+            System.out.println(cmfinder_inf11Flags);
+
+            if (jo.optBoolean("fragmentary")) {
+                cmfinder_inf11FlagsList.add("--fragmentary");
+                summarizeFlagsList.add("--fragmentary");
+            }
+            summarizeFlagsStr = String.join(" ", summarizeFlagsList);
+            Iterator<?> key2 = jo.getJSONObject("commaSepSummarizeFlags").keys();
+            while (key2.hasNext()) {
+                String key = (String) key2.next();
+                String value = jo.getJSONObject("commaSepSummarizeFlags").get(key).toString();
+                if (!value.equals("null") && !value.equals("false")) {
+                    //check if key has <x> part ?
+                    summarizeFlagsStr
+                            = summarizeFlagsStr
+                            + ((summarizeFlagsStr != null && !summarizeFlagsStr.isEmpty()) ? " " : "")
+                            + ((key.indexOf("<") > 1 ? "--" + key.substring(0, key.indexOf("<") - 1) : "--" + key)
+                            + " "
+                            + value);
+                }
+            }
+            System.out.println(summarizeFlagsStr);
+
+            Iterator<?> key3 = jo.getJSONObject("commaSepCandfFlags").keys();
+            while (key3.hasNext()) {
+                String key = (String) key3.next();
+                String value = jo.getJSONObject("commaSepCandfFlags").get(key).toString();
+                if (!value.equals("null") && !value.equals("false")) {
+                    //check if key has <x> part ?
+                    candfExtraFlags
+                            = candfExtraFlags
+                            + ((candfExtraFlags != null && !candfExtraFlags.isEmpty()) ? " " : "")
+                            + ((key.indexOf("<") > 1 ? "--" + key.substring(0, key.indexOf("<") - 1) : "--" + key)
+                            + " "
+                            + value);
+                }
+            }
+            System.out.println(candfExtraFlags);
+
         } catch (JSONException | IOException ex) {
             System.out.println(ex);
         }

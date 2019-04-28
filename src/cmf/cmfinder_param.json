@@ -78,11 +78,11 @@
                 "EgfN <n>": 200
             },
     "commaSepSummarizeFlags": {
-        "summarize": null,
+        "summarize": true,
         "summarize-gsc": null,
         "summarize-save-msa <f>": null
     },
-    "commaSepCandfFlags=s": {
+    "commaSepCandfFlags": {
         "c": null,
         "o <f>": null,
         "m": null,
