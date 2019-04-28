@@ -77,7 +77,7 @@
                 "ElfN <n>": 200,
                 "EgfN <n>": 200
             },
-    "commaSepSummarizeFlags=s": {
+    "commaSepSummarizeFlags": {
         "summarize": null,
         "summarize-gsc": null,
         "summarize-save-msa <f>": null
