@@ -121,6 +121,30 @@ public class cmfinder {
                 summarizeFlagsList.add("--fragmentary");
             }
             cmfinder_inf11Flags = String.join(" ", cmfinder_inf11FlagsList);
+            //
+            Iterator<?> keys = jo.getJSONObject("commaSepEmFlags").keys();
+            while (keys.hasNext()) {
+                String key = (String) keys.next();
+                String value = jo.getJSONObject("commaSepEmFlags").get(key).toString();
+                if (!value.equals("null") && !value.equals("false")) {
+                    //check if key has <x> part ?
+                    cmfinder_inf11Flags
+                            = cmfinder_inf11Flags
+                            + " "
+                            + ((key.indexOf("<") > 1 ? "--" + key.substring(0, key.indexOf("<") - 1) : "--" + key)
+                            + " "
+                            + value);
+                    // System.out.println(
+                    // (key.indexOf("<") > 1 ? "--" + key.substring(0, key.indexOf("<") - 1) : "--" + key)
+                    // + " " + value);
+                }
+            }
+            if (jo.optBoolean("columnOnlyBasePairProbs")) {
+                cmfinder_inf11Flags = cmfinder_inf11Flags + " --column-only-base-pair-probs";
+            }
+            //System.out.println(cmfinder_inf11Flags);
+            
+            
         } catch (JSONException | IOException ex) {
             System.out.println(ex);
         }
@@ -1138,18 +1162,5 @@ public class cmfinder {
         //        System.out.println("find it:" + findFile(bin_path, "clustalw"));
         //test my_strcmp
         //System.out.println(Arrays.toString(my_strcmp("abc.def.ghi", "abc.def.ghi")));
-        //test jo subobjects loop
-        Iterator<?> keys = jo.getJSONObject("commaSepEmFlags").keys();
-        while (keys.hasNext()) {
-            String key = (String) keys.next();
-            String value = jo.getJSONObject("commaSepEmFlags").get(key).toString();
-            if (!value.equals("null") && !value.equals("false")) {
-                //check if key has <x> part ?
-                System.out.println(
-                        (key.indexOf("<") > 1 ? "--" + key.substring(0, key.indexOf("<") - 1) : "--" + key)
-                        + " " + value);
-            }
-        }
-
     }
 }
