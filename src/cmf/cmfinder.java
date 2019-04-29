@@ -5,6 +5,7 @@ package cmf;
  * cmfinder04.pl
  */
 import static cmf.Io.*;
+import cmf.utilities.*;
 import static cmf.utilities.*;
 import java.io.IOException;
 import java.nio.file.*;
@@ -88,6 +89,8 @@ public class cmfinder {
     static String cmfinder_inf11Flags = "";
     static String summarizeFlagsStr = "";
     static String candfExtraFlags = "";
+    static String saveTimerFlag = "";
+    static String saveTimer03Flag = "";
 
     static {
         try {
@@ -175,12 +178,31 @@ public class cmfinder {
             }
             System.out.println(candfExtraFlags);
 
+            cand_weight_option = (jo.optString("w=s").equals(null))
+                    ? cand_weight_option : jo.optString("w=s");
+            System.out.println(cand_weight_option);
+            if (!cand_weight_option.equals("")) {
+                cand_weight_option = "-w " + cand_weight_option;
+            }
+
+            //saveTimer is a file, such as "./src/cmf/test"
+            if (!jo.optString("saveTimer").equals(null)
+                    && !jo.optString("saveTimer").equals("")) {
+                System.out.println(jo.optString("saveTimer"));
+                //delete file first
+                deleteFile(jo.optString("saveTimer"));
+                saveTimerFlag = "--timer-append " + jo.optString("saveTimer");
+                saveTimer03Flag = "-t " + jo.optString("saveTimer");
+            }
+
+            if (jo.optBoolean("justGetCmfinderCommand")) {
+                //to do
+            }
+
         } catch (JSONException | IOException ex) {
             System.out.println(ex);
         }
     }
-
-    String saveTimerFlag = "";
 
     HashMap<String, Seq> unaligned_seqs = read_fasta(seqForExpectationMaximization);
 
