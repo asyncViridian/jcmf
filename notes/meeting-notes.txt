@@ -1,8 +1,31 @@
+2019-04-25
+Requirement and length enforcement
+    - By default: require human to be included
+    - Possibly also preference mouse DNA to be included? Unsure.
+    - Implemented!
+Collect stats
+    - This should be done via the scripts or in post-processing.
+    - Runtime stats
+    - CMFinder covariance model has a score / correlate with rna score and pair score?
+    - "motifs over which blocks" / merge effectiveness
+    - motif overlaps score / motifs showing up in multiple blocks that are the same thing?
+Run on data in background
+    - all of the different regions of interest.
+    - be sure to version these results very very clearly...
+    
+===============================================================================
 2019-04-18
 - Haven't run CMFinder on merged blocks before, it's all been from single alignment blocks in sequence
     - check literature for other merged blocks work
+        - https://bmcgenomics.biomedcentral.com/articles/10.1186/1471-2164-15-53#Sec1
+            - about alignment blocks
+    - Running 1000 5-merged-blocks with otherwise default settings takes about 16 hours
+    - Running scoring on all of the outputs from that process takes 30+ hours?
 - Try running CMFinder on merged blocks!
     - screen? disown?
+        - Disown works, have verified that a script can run for at least 2 days while disowned on attu.
+        - If it looks like it isn't showing up in top, that's because I'm on the wrong attu
+            - work on attu6 from now on.........
     - check the output log!!!
 - Possible other parameters to track:
     - Maximum total block length?
@@ -10,6 +33,8 @@
     - Minimum total block length? 
         - i.e. if a merged result is 20 then it is probably no(t much) better than just using a single block really
     - For total block length: perhaps track based on human sequence length.
+        - What do I do if human isn't actually in the merged block?
+        - Should I require that human sequence is in the merge block?
 - Possible other features to add:
     - Output the bounds of each source alignment block into the FASTA file
         - This is useful for filtering out CMFinder hits that are maybe only within one block anyway and are not particularly interesting for mergeblock purposes
@@ -19,13 +44,14 @@
     - Check if removing gap characters (-) from the FASTA output changes the CMFinder output?
         - this can be a simple diff...
         - Maybe this is why the "node identifier not found" type messages are appearing???
+            - I have implemented a switch for this, and it is getting rid of the "node identifier" messages. (Finally!)
 - Possible other statistics that are helpful
     - Gap% or N% statistics tracking
     - % of each block from each source block
 
 Debug notes (from the cmfinder output):
     WHEN RUNNING ON MERGED BLOCKS (default parameters):
-        - Figured this out. This is because there were blank newlines in some files, possibly sequences of 0 length being included in the FASTA. This screws up the expectation of vienna initialize_fold.
+            - Figured this out. This is because there were blank newlines in some files, possibly sequences of 0 length being included in the FASTA. This screws up the expectation of vienna initialize_fold.
         (It is only outputting results ranging from blocks 80-85, and then this type of output appears in the logs:)
         parallel running candf
         ran childPid=14375

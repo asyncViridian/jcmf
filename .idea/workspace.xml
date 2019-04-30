@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3da6e499-81fb-4a08-856f-3dc0c5fe102e" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/notes/meeting-notes.txt" beforeDir="false" afterPath="$PROJECT_DIR$/notes/meeting-notes.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/blockmerge/BlockMerger.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/blockmerge/BlockMerger.java" afterDir="false" />
     </list>
@@ -20,13 +21,16 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/blockmerge/BlockMerger.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="148">
-              <caret line="347" column="70" selection-start-line="347" selection-start-column="70" selection-end-line="347" selection-end-column="70" />
+            <state relative-caret-position="416">
+              <caret line="592" column="61" selection-start-line="592" selection-start-column="61" selection-end-line="592" selection-end-column="61" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#7741#10393#0" />
-                <element signature="e#10421#10764#0" />
+                <element signature="e#3531#9424#1" />
+                <element signature="e#9536#12852#0" />
+                <element signature="e#12880#13223#0" />
                 <element signature="method#repeat#0;class#BlockMerger#0" />
+                <element signature="method#writeFastaHeader#0;class#BlockMerger#0" />
+                <element signature="method#writeFastaContent#0;class#BlockMerger#0" />
               </folding>
             </state>
           </provider>
@@ -35,7 +39,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/blockmerge/util/AlignmentBlock.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="197">
+            <state relative-caret-position="1602">
               <caret line="89" column="11" selection-start-line="89" selection-start-column="11" selection-end-line="89" selection-end-column="11" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -70,7 +74,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/blockmerge/util/MAFReader.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="234">
+            <state relative-caret-position="342">
               <caret line="19" column="29" selection-start-line="19" selection-start-column="29" selection-end-line="19" selection-end-column="29" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -112,6 +116,7 @@
       <find>defaults</find>
       <find>header</find>
       <find>GAPS</find>
+      <find>BlockMerger.</find>
     </findStrings>
     <replaceStrings>
       <replace>assertEquals\((\2), (\1)\);</replace>
@@ -391,7 +396,9 @@
       <workItem from="1554924880449" duration="1141000" />
       <workItem from="1554926820892" duration="20236000" />
       <workItem from="1555475167172" duration="15567000" />
-      <workItem from="1556075861033" duration="8738000" />
+      <workItem from="1556075861033" duration="11843000" />
+      <workItem from="1556385381294" duration="50000" />
+      <workItem from="1556596946328" duration="1543000" />
     </task>
     <servers />
   </component>
@@ -428,14 +435,14 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="85286000" />
+    <option name="totallyTimeSpent" value="89984000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-9" y="-9" width="1938" height="1050" extended-state="6" />
+    <frame x="-9" y="-9" width="1698" height="1020" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.4969231" visible="true" weight="0.122068234" />
-      <window_info id="Structure" order="1" sideWeight="0.5030769" side_tool="true" visible="true" weight="0.122068234" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49486887" visible="true" weight="0.12469438" />
+      <window_info id="Structure" order="1" sideWeight="0.5051311" side_tool="true" visible="true" weight="0.12469438" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
       <window_info id="UI Designer" order="4" />
@@ -623,6 +630,34 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/blockmerge/BlockMerger.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="416">
+          <caret line="592" column="61" selection-start-line="592" selection-start-column="61" selection-end-line="592" selection-end-column="61" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#3531#9424#1" />
+            <element signature="e#9536#12852#0" />
+            <element signature="e#12880#13223#0" />
+            <element signature="method#repeat#0;class#BlockMerger#0" />
+            <element signature="method#writeFastaHeader#0;class#BlockMerger#0" />
+            <element signature="method#writeFastaContent#0;class#BlockMerger#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/blockmerge/util/AlignmentBlock.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1602">
+          <caret line="89" column="11" selection-start-line="89" selection-start-column="11" selection-end-line="89" selection-end-column="11" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="method#Sequence#0;class#Sequence#0;class#AlignmentBlock#0" />
+            <element signature="method#equals#0;class#AdjacentDetail#0;class#Sequence#0;class#AlignmentBlock#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/data/multiz100way_chr12_62602752-62622213.maf">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1890">
@@ -642,35 +677,10 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/blockmerge/util/MAFReader.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="234">
+        <state relative-caret-position="342">
           <caret line="19" column="29" selection-start-line="19" selection-start-column="29" selection-end-line="19" selection-end-column="29" />
           <folding>
             <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/blockmerge/util/AlignmentBlock.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="197">
-          <caret line="89" column="11" selection-start-line="89" selection-start-column="11" selection-end-line="89" selection-end-column="11" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="method#Sequence#0;class#Sequence#0;class#AlignmentBlock#0" />
-            <element signature="method#equals#0;class#AdjacentDetail#0;class#Sequence#0;class#AlignmentBlock#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/blockmerge/BlockMerger.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="148">
-          <caret line="347" column="70" selection-start-line="347" selection-start-column="70" selection-end-line="347" selection-end-column="70" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#7741#10393#0" />
-            <element signature="e#10421#10764#0" />
-            <element signature="method#repeat#0;class#BlockMerger#0" />
           </folding>
         </state>
       </provider>
