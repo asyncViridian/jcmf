@@ -2,7 +2,7 @@
     "version": false,
     "h": false,
     "v": false,
-    "w=s": null,
+    "w": null,
     "c": 40,
     "minspan1": 30,
     "maxspan1": 100,
@@ -77,12 +77,12 @@
                 "ElfN <n>": 200,
                 "EgfN <n>": 200
             },
-    "commaSepSummarizeFlags": {
-        "summarize": true,
+    "commaSepSummarizeFlags=s": {
+        "summarize": null,
         "summarize-gsc": null,
         "summarize-save-msa <f>": null
     },
-    "commaSepCandfFlags": {
+    "commaSepCandfFlags=s": {
         "c": null,
         "o <f>": null,
         "m": null,

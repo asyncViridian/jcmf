@@ -5,6 +5,7 @@ package cmf;
  * cmfinder04.pl
  */
 import static cmf.Io.*;
+import cmf.utilities.*;
 import static cmf.utilities.*;
 import java.io.IOException;
 import java.nio.file.*;
@@ -82,9 +83,126 @@ public class cmfinder {
 
     static JSONObject jo;
 
-    String saveTimerFlag = "";
-    ArrayList<String> summarizeFlagsList;
-    String summarizeFlagsStr;
+    static ArrayList<String> cmfinder_inf11FlagsList = new ArrayList<String>();
+    static ArrayList<String> summarizeFlagsList = new ArrayList<String>();
+
+    static String cmfinder_inf11Flags = "";
+    static String summarizeFlagsStr = "";
+    static String candfExtraFlags = "";
+    static String saveTimerFlag = "";
+    static String saveTimer03Flag = "";
+
+    static {
+        try {
+            jo = read_json_file("./src/cmf/cmfinder_param.json");
+            int cpu = jo.getInt("cpu");
+            cpu = jo.optBoolean("allCpus") ? -1 : cpu;
+            if (cpu != 0) {
+                cmfinder_inf11FlagsList.add("--cpu " + cpu);
+            }
+            /*
+            skip following perl
+            if ($likeold && !$useOldCmfinder) {
+                push @cmfinder_inf11FlagsList,"--enone";
+                push @cmfinder_inf11FlagsList,"--p56";
+                push @cmfinder_inf11FlagsList,"--degen-rand";
+                push @cmfinder_inf11FlagsList,"--ints-like-03";
+                push @cmfinder_inf11FlagsList,"--min-seq-weight 0";
+                push @cmfinder_inf11FlagsList,"--no-elim-iden-seq";
+                push @cmfinder_inf11FlagsList,"--no-elim-iden-subseq";
+                push @cmfinder_inf11FlagsList,"--min-cand-score-in-final 0";
+            }
+             */
+            cmfinder_inf11FlagsList.add("--min-cand-score-in-final " + minCandScoreInFinal);
+            if (jo.optBoolean("amma")) {
+                cmfinder_inf11FlagsList.add("--amaa");
+            }
+            if (jo.optBoolean("filterNonFrag")) {
+                cmfinder_inf11FlagsList.add("--filter-non-frag");
+            }
+            cmfinder_inf11Flags = String.join(" ", cmfinder_inf11FlagsList);
+            //
+            Iterator<?> key1 = jo.getJSONObject("commaSepEmFlags").keys();
+            while (key1.hasNext()) {
+                String key = (String) key1.next();
+                String value = jo.getJSONObject("commaSepEmFlags").get(key).toString();
+                if (!value.equals("null") && !value.equals("false")) {
+                    //check if key has <x> part ?
+                    cmfinder_inf11Flags
+                            = cmfinder_inf11Flags
+                            + ((cmfinder_inf11Flags != null && !cmfinder_inf11Flags.isEmpty()) ? " " : "")
+                            + ((key.indexOf("<") > 1 ? "--" + key.substring(0, key.indexOf("<") - 1) : "--" + key)
+                            + " "
+                            + value);
+                }
+            }
+            if (jo.optBoolean("columnOnlyBasePairProbs")) {
+                cmfinder_inf11Flags = cmfinder_inf11Flags + " --column-only-base-pair-probs";
+            }
+            System.out.println(cmfinder_inf11Flags);
+
+            if (jo.optBoolean("fragmentary")) {
+                cmfinder_inf11FlagsList.add("--fragmentary");
+                summarizeFlagsList.add("--fragmentary");
+            }
+            summarizeFlagsStr = String.join(" ", summarizeFlagsList);
+            Iterator<?> key2 = jo.getJSONObject("commaSepSummarizeFlags").keys();
+            while (key2.hasNext()) {
+                String key = (String) key2.next();
+                String value = jo.getJSONObject("commaSepSummarizeFlags").get(key).toString();
+                if (!value.equals("null") && !value.equals("false")) {
+                    //check if key has <x> part ?
+                    summarizeFlagsStr
+                            = summarizeFlagsStr
+                            + ((summarizeFlagsStr != null && !summarizeFlagsStr.isEmpty()) ? " " : "")
+                            + ((key.indexOf("<") > 1 ? "--" + key.substring(0, key.indexOf("<") - 1) : "--" + key)
+                            + " "
+                            + value);
+                }
+            }
+            System.out.println(summarizeFlagsStr);
+
+            Iterator<?> key3 = jo.getJSONObject("commaSepCandfFlags").keys();
+            while (key3.hasNext()) {
+                String key = (String) key3.next();
+                String value = jo.getJSONObject("commaSepCandfFlags").get(key).toString();
+                if (!value.equals("null") && !value.equals("false")) {
+                    //check if key has <x> part ?
+                    candfExtraFlags
+                            = candfExtraFlags
+                            + ((candfExtraFlags != null && !candfExtraFlags.isEmpty()) ? " " : "")
+                            + ((key.indexOf("<") > 1 ? "--" + key.substring(0, key.indexOf("<") - 1) : "--" + key)
+                            + " "
+                            + value);
+                }
+            }
+            System.out.println(candfExtraFlags);
+
+            cand_weight_option = (jo.optString("w=s").equals(null))
+                    ? cand_weight_option : jo.optString("w=s");
+            System.out.println(cand_weight_option);
+            if (!cand_weight_option.equals("")) {
+                cand_weight_option = "-w " + cand_weight_option;
+            }
+
+            //saveTimer is a file, such as "./src/cmf/test"
+            if (!jo.optString("saveTimer").equals(null)
+                    && !jo.optString("saveTimer").equals("")) {
+                System.out.println(jo.optString("saveTimer"));
+                //delete file first
+                deleteFile(jo.optString("saveTimer"));
+                saveTimerFlag = "--timer-append " + jo.optString("saveTimer");
+                saveTimer03Flag = "-t " + jo.optString("saveTimer");
+            }
+
+            if (jo.optBoolean("justGetCmfinderCommand")) {
+                //to do
+            }
+
+        } catch (JSONException | IOException ex) {
+            System.out.println(ex);
+        }
+    }
 
     HashMap<String, Seq> unaligned_seqs = read_fasta(seqForExpectationMaximization);
 
@@ -95,18 +213,11 @@ public class cmfinder {
     static String SEQ;
     static String seqForExpectationMaximization = SEQ;
 
-    static {
-        try {
-            jo = read_json_file("cmfinder_param.json");
-        } catch (JSONException | IOException ex) {
-            System.out.println(ex);
-        }
-    }
-
     //read json file
     public static JSONObject read_json_file(String file_name) throws JSONException, IOException {
         Path p = Paths.get(file_name);
-        byte[] jsonByte = Files.readAllBytes(p);
+        //System.out.println(p.toAbsolutePath().toString());
+        byte[] jsonByte = Files.readAllBytes(p.toAbsolutePath());
         JSONObject jsonObject = new JSONObject(new String(jsonByte));
         return jsonObject;
     }
@@ -590,9 +701,9 @@ public class cmfinder {
 
     public void CombMotif(String cand_weight_option, String seq_file, ArrayList<String> motifFilesRef)
             throws MyException {
+
         ArrayList<String> align_files = motifFilesRef;
         ArrayList<String> all_files = align_files;
-        // HashMap<> all_stats;
         HashMap<String, HashMap<String, String>> all_stats = new HashMap<>();
 
         for (String ff : align_files) {
@@ -744,13 +855,20 @@ public class cmfinder {
                         }
                         write_stockholm(new_alignment, f_temp);
 
-                        //todo
+                        //2019-04-24 continue
+                        String[] a = {bin_path + "/" + cmfinderBaseExe,
+                            saveTimerFlag
+                    // todo @cmfinder_inf11FlagsList
+                    };
+                        if (!RunCmfinder(a, f)) {
+                            //couldn't produce acceptable output
+                            //perl next = java continue?
+                            continue;
+                        }
                     }
                 }
-
             }
         }
-
     }
 
     public static HashMap<String, MergeMotif> try_merge(String f1, String f2, HashMap<String, MergeMotif> merge_motif_ref)
@@ -1084,9 +1202,6 @@ public class cmfinder {
     }
 
     public static void main(String[] args) {
-
-        //set SEQ
-        SEQ = args[0];
 
         //test case insensitive replaceAll
         //        String target = "FOOfBar";
