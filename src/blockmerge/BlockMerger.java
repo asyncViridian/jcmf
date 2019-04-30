@@ -303,6 +303,16 @@ public class BlockMerger {
             // TODO write base-based merging...
             throw new RuntimeException("not implemented yet");
         } else if (MERGE_TYPE == MergeType.BLOCKS) {
+            // Create overall statistics trackers
+            // Track gap content (N bases) in each merged block
+            // TODO make this filename argument-able
+            Path gapStatsFile = Paths.get(BlockMerger.outDir,
+                                          "gapStatistics" + ".png");
+            Files.deleteIfExists(gapStatsFile);
+            Files.createFile(gapStatsFile);
+            BlockGapStatistics gapStats = new BlockGapStatistics(
+                    gapStatsFile);
+
             LinkedList<AlignmentBlock> current = new LinkedList<>();
             BigInteger i = BigInteger.ONE;
             while (reader.hasNext()) {
@@ -385,6 +395,10 @@ public class BlockMerger {
 
                 // write FASTA lines to disk
                 for (String species : speciesToMerge) {
+                    // Initialize to track info for gapStats
+                    BigInteger seqLength = BigInteger.ZERO;
+                    BigInteger gapLength = BigInteger.ZERO;
+
                     // write each species sequence
                     // write the species and originating chromosome
                     AlignmentBlock.Sequence first =
@@ -394,8 +408,10 @@ public class BlockMerger {
                             current.getLast().sequences.get(
                                     species);
 
+                    seqLength = last.start.add(last.size).subtract(first.start);
+
                     // if the merged sequence has a size of 0
-                    if (first.start.equals(last.start.add(last.size))) {
+                    if (seqLength.equals(BigInteger.ZERO)) {
                         // don't even print it
                         // skip this line of output
                         continue;
@@ -447,13 +463,17 @@ public class BlockMerger {
                                 // bases (to the right)
                                 writeFastaContent(writer, repeat("N",
                                                                  seq.right.length));
+                                gapLength = gapLength.add(seq.right.length);
                             }
                         } else {
                             // if this is gap (unknown reference?) fill with Ns
                             writeFastaContent(writer, repeat("N", seq.size));
+                            gapLength = gapLength.add(seq.size);
                         }
                     }
                     writer.write("\n");
+                    // write the stats for this sequence to tracker
+                    gapStats.addGap(seqLength, gapLength);
                 }
                 // note that we have created a file
                 System.out.println("Wrote " + file.toString());
@@ -463,6 +483,10 @@ public class BlockMerger {
 
                 writer.close();
             }
+
+            // Output overall statistics
+            gapStats.write();
+            System.out.println("Wrote gap statistics");
         }
     }
 
