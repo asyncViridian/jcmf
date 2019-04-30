@@ -340,13 +340,40 @@ public class BlockMerger {
                     }
                 }
 
+                // Filter:
                 // checks the # of merged species threshold
                 if (speciesToMerge.size() < MIN_NUM_SPECIES) {
                     continue;
                 }
 
-                // TODO implement the sequence length check somehow...
+                // Filter:
+                // require that the merged species includes human
+                if (!speciesToMerge.contains("hg38")) {
+                    continue;
+                }
 
+                // Filter:
+                // check output against sequence length bounds
+                AlignmentBlock.Sequence firstCheckSeqLen =
+                        current.getFirst().sequences.get(
+                                "hg38");
+                AlignmentBlock.Sequence lastCheckSeqLen =
+                        current.getLast().sequences.get(
+                                "hg38");
+                BigInteger humanSeqLen = lastCheckSeqLen.start.add(
+                        lastCheckSeqLen.size).subtract(firstCheckSeqLen.start);
+                // check lower bound
+                if (humanSeqLen.compareTo(
+                        BigInteger.valueOf(MIN_OUTPUT_LENGTH)) < 0) {
+                    continue;
+                }
+                // check upper bound
+                if (humanSeqLen.compareTo(
+                        BigInteger.valueOf(MAX_OUTPUT_LENGTH)) > 0) {
+                    continue;
+                }
+
+                // Write to disk!:
                 // create output FASTA file
                 Path file = Paths.get(BlockMerger.outDir,
                                       BlockMerger.outName + "_" + i.toString() + ".fasta");
@@ -405,8 +432,9 @@ public class BlockMerger {
                     }
                     writeFastaHeader(writer, speciesHeader.toString());
 
+                    // write the contents of each block for each species
                     for (AlignmentBlock block : current) {
-                        // write the contents of each block for each species
+                        // get the raw sequence and fill it up with N as needed
                         AlignmentBlock.Sequence seq = block.sequences.get(
                                 species);
                         if (!seq.isGap) {
