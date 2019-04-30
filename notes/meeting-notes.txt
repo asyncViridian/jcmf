@@ -8,6 +8,8 @@ Requirement and length enforcement
 Collect stats
     - From the mergeblocks:
         - Gap% or N% statistics tracking
+            - Partially implemented.
+            - There are complications from including the rightmost interval area in the resulting block, but that portion isn't counted as part of the block sequence length.
         - % of each block from each source block
     - From the scripts or in post-processing:
         - Runtime stats
