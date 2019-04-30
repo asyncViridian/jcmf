@@ -10,6 +10,8 @@ import static cmf.utilities.*;
 import java.io.IOException;
 import java.nio.file.*;
 import java.util.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
@@ -196,11 +198,28 @@ public class cmfinder {
             }
 
             if (jo.optBoolean("justGetCmfinderCommand")) {
-                //to do
-            }
+                //just output in screen
+                String cmfinder_cmd = bin_path + "/"
+                        + cmfinderBaseExe + " "
+                        + cmfinder_inf11Flags + " "
+                        + cand_weight_option;
+                System.out.println("-justGetCmfinderCommand:" + cmfinder_cmd);
+                //exit                
+            } else {
+                //check motifList file
+                if ((!jo.optString("motifList").equals(null))
+                        && (!jo.optString("motifList").isEmpty())) {
+                    if (!findFile(bin_path, jo.optString("motifList"))
+                            .equals(jo.optString("motifList"))) {
+                        throw new MyException(jo.optString("motifList") + " file is not existing!");
+                    }
+                }
 
+            }
         } catch (JSONException | IOException ex) {
             System.out.println(ex);
+        } catch (MyException ex) {
+            Logger.getLogger(cmfinder.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
