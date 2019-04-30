@@ -77,7 +77,7 @@ public class BlockMerger {
      * will still allow the resulting block to be output.
      */
     private static int MIN_OUTPUT_LENGTH;
-    private static int MIN_OUTPUT_LENGTH_DEFAULT = 20;
+    private static int MIN_OUTPUT_LENGTH_DEFAULT = 10;
     /**
      * The source MAF file with all alignment blocks we want to merge.
      */
@@ -354,6 +354,8 @@ public class BlockMerger {
 
                 // Filter:
                 // check output against sequence length bounds
+                // TODO: perhaps generalize to allow other human assemblies?
+                // TODO: possibly integrate too-short blocks into other sections
                 AlignmentBlock.Sequence firstCheckSeqLen =
                         current.getFirst().sequences.get(
                                 "hg38");

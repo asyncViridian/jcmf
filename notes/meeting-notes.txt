@@ -2,13 +2,18 @@
 Requirement and length enforcement
     - By default: require human to be included
     - Possibly also preference mouse DNA to be included? Unsure.
-    - Implemented!
+    - Implemented! Also lowered minimum default length to 10?
+        - I see a lot of consecutive tiny merges.
+        - Perhaps bunch those merges up into other result blocks???
 Collect stats
-    - This should be done via the scripts or in post-processing.
-    - Runtime stats
-    - CMFinder covariance model has a score / correlate with rna score and pair score?
-    - "motifs over which blocks" / merge effectiveness
-    - motif overlaps score / motifs showing up in multiple blocks that are the same thing?
+    - From the mergeblocks:
+        - Gap% or N% statistics tracking
+        - % of each block from each source block
+    - From the scripts or in post-processing:
+        - Runtime stats
+        - CMFinder covariance model has a score / correlate with rna score and pair score?
+        - "motifs over which blocks" / merge effectiveness
+        - motif overlaps score / motifs showing up in multiple blocks that are the same thing?
 Run on data in background
     - all of the different regions of interest.
     - be sure to version these results very very clearly...
