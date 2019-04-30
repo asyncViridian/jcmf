@@ -2,9 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3da6e499-81fb-4a08-856f-3dc0c5fe102e" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/blockmerge/BlockGapStatistics.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/blockmerge/BlockMerger.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/blockmerge/BlockMerger.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/blockmerge/BlockGapStatistics.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/blockmerge/BlockGapStatistics.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -18,11 +16,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/blockmerge/BlockMerger.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="507">
-              <caret line="488" column="52" selection-start-line="488" selection-start-column="52" selection-end-line="488" selection-end-column="52" />
+            <state relative-caret-position="377">
+              <caret line="475" selection-start-line="475" selection-end-line="475" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#3531#9424#1" />
@@ -36,11 +34,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/blockmerge/BlockGapStatistics.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="396">
-              <caret line="22" column="65" selection-start-line="22" selection-start-column="65" selection-end-line="22" selection-end-column="65" />
+            <state relative-caret-position="375">
+              <caret line="22" column="68" lean-forward="true" selection-start-line="22" selection-start-column="68" selection-end-line="22" selection-end-column="68" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#540#541#0" expanded="true" />
@@ -164,8 +162,8 @@
         <option value="$PROJECT_DIR$/src/blockmerge/util/MAFReader.java" />
         <option value="$PROJECT_DIR$/test/blockmerge/BlockMergerTest.java" />
         <option value="$PROJECT_DIR$/src/blockmerge/util/AlignmentBlock.java" />
-        <option value="$PROJECT_DIR$/src/blockmerge/BlockGapStatistics.java" />
         <option value="$PROJECT_DIR$/src/blockmerge/BlockMerger.java" />
+        <option value="$PROJECT_DIR$/src/blockmerge/BlockGapStatistics.java" />
       </list>
     </option>
   </component>
@@ -197,6 +195,11 @@
               <item name="jcmf" type="b2602c69:ProjectViewProjectNode" />
               <item name="jcmf" type="462c0819:PsiDirectoryNode" />
               <item name="data" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="jcmf" type="b2602c69:ProjectViewProjectNode" />
+              <item name="jcmf" type="462c0819:PsiDirectoryNode" />
+              <item name="output" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="jcmf" type="b2602c69:ProjectViewProjectNode" />
@@ -414,7 +417,7 @@
       <workItem from="1555475167172" duration="15567000" />
       <workItem from="1556075861033" duration="11843000" />
       <workItem from="1556385381294" duration="50000" />
-      <workItem from="1556596946328" duration="6884000" />
+      <workItem from="1556596946328" duration="8021000" />
     </task>
     <servers />
   </component>
@@ -451,13 +454,13 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="95325000" />
+    <option name="totallyTimeSpent" value="96462000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-9" y="-9" width="1698" height="1020" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.4944356" visible="true" weight="0.12469438" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.4944356" visible="true" weight="0.12469438" />
       <window_info id="Structure" order="1" sideWeight="0.5055644" side_tool="true" weight="0.12469438" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -466,7 +469,7 @@
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.3295325" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.28278223" />
+      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.28278223" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.3876853" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -491,12 +494,56 @@
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
   </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint type="java-line">
+          <url>file://$PROJECT_DIR$/src/blockmerge/BlockGapStatistics.java</url>
+          <line>36</line>
+          <properties>
+            <option name="count-filter" value="200" />
+            <option name="count-filter-enabled" value="true" />
+          </properties>
+          <option name="timeStamp" value="8" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <condition expression="seqLength.equals(BigInteger.valueOf(13145)) || ((new BigDecimal(gapLength))                                       .multiply(BigDecimal.valueOf(100))                                       .divide(new BigDecimal(seqLength),                                               RoundingMode.HALF_EVEN).equals(BigDecimal.valueOf(1212)))" language="JAVA" />
+          <url>file://$PROJECT_DIR$/src/blockmerge/BlockGapStatistics.java</url>
+          <line>31</line>
+          <properties />
+          <option name="timeStamp" value="10" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
   <component name="antWorkspaceConfiguration">
     <option name="IS_AUTOSCROLL_TO_SOURCE" value="false" />
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="debuggerHistoryManager">
+    <expressions id="breakpointCondition">
+      <expression>
+        <expression-string>seqLength.equals(BigInteger.valueOf(13145)) || ((new BigDecimal(gapLength))                                       .multiply(BigDecimal.valueOf(100))                                       .divide(new BigDecimal(seqLength),                                               RoundingMode.HALF_EVEN).equals(BigDecimal.valueOf(1212)))</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>seqLength.equals(BigInteger.valueOf(13145))</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+    </expressions>
     <expressions id="evaluateExpression">
+      <expression>
+        <expression-string>(new BigDecimal(gapLength))                                       .multiply(BigDecimal.valueOf(100))                                       .divide(new BigDecimal(seqLength),                                               RoundingMode.CEILING)</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>(new BigDecimal(gapLength))                                       .divide(new BigDecimal(seqLength),                                               RoundingMode.CEILING)</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
       <expression>
         <expression-string>line.getOptionValue(&quot;numBlocksPerOutput&quot;)</expression-string>
         <language-id>JAVA</language-id>
@@ -699,22 +746,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/blockmerge/BlockGapStatistics.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="396">
-          <caret line="22" column="65" selection-start-line="22" selection-start-column="65" selection-end-line="22" selection-end-column="65" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#540#541#0" expanded="true" />
-            <element signature="e#564#565#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/blockmerge/BlockMerger.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="507">
-          <caret line="488" column="52" selection-start-line="488" selection-start-column="52" selection-end-line="488" selection-end-column="52" />
+        <state relative-caret-position="377">
+          <caret line="475" selection-start-line="475" selection-end-line="475" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#3531#9424#1" />
@@ -723,6 +758,21 @@
             <element signature="method#repeat#0;class#BlockMerger#0" />
             <element signature="method#writeFastaHeader#0;class#BlockMerger#0" />
             <element signature="method#writeFastaContent#0;class#BlockMerger#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/output/gapStatistics.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/blockmerge/BlockGapStatistics.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="375">
+          <caret line="22" column="68" lean-forward="true" selection-start-line="22" selection-start-column="68" selection-end-line="22" selection-end-column="68" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#540#541#0" expanded="true" />
+            <element signature="e#564#565#0" expanded="true" />
           </folding>
         </state>
       </provider>
