@@ -451,6 +451,8 @@ public class BlockMerger {
                     writeFastaHeader(writer, speciesHeader.toString());
 
                     // write the contents of each block for each species
+                    int numBlock = 1;
+                    boolean lastBlockWasGap = false;
                     for (AlignmentBlock block : current) {
                         // get the raw sequence and fill it up with N as needed
                         AlignmentBlock.Sequence seq = block.sequences.get(
@@ -458,18 +460,24 @@ public class BlockMerger {
                         if (!seq.isGap) {
                             // if we have contents write the contents directly
                             writeFastaContent(writer, seq.contents);
-                            if (!seq.right.length.equals(BigInteger.ZERO)) {
+                            if (!seq.left.length.equals(
+                                    BigInteger.ZERO) && numBlock != 1 && !lastBlockWasGap) {
                                 // if there is nonzero amount of context
                                 // bases (to the right)
+                                // But we do not want to include gaps that are
+                                // not in the "internals" of the merged area
                                 writeFastaContent(writer, repeat("N",
-                                                                 seq.right.length));
-                                gapLength = gapLength.add(seq.right.length);
+                                                                 seq.left.length));
+                                gapLength = gapLength.add(seq.left.length);
                             }
+                            lastBlockWasGap = false;
                         } else {
                             // if this is gap (unknown reference?) fill with Ns
                             writeFastaContent(writer, repeat("N", seq.size));
                             gapLength = gapLength.add(seq.size);
+                            lastBlockWasGap = true;
                         }
+                        numBlock++;
                     }
                     writer.write("\n");
                     // write the stats for this sequence to tracker

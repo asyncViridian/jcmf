@@ -22,12 +22,6 @@ public class BlockGapStatistics {
 
     public void addGap(BigInteger seqLength, BigInteger gapLength) {
         // ignore cases where gap is greater than sequence length
-        // TODO also there are other cases where gap is at the very end
-        // TODO and therefore erroneously included. Figure this bug out.
-        if (gapLength.compareTo(seqLength) > 0) {
-            // TODO I might want to take a different approach here...
-            return;
-        }
         // Add to the dataset.
         this.lengthToGaps.add(seqLength,
                               (new BigDecimal(gapLength))

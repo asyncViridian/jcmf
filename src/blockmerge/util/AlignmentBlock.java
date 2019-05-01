@@ -320,6 +320,10 @@ public class AlignmentBlock {
                 this.length = length;
             }
 
+            public String toString() {
+                return type.toString() + " " + length.toString();
+            }
+
             @Override
             public boolean equals(Object o) {
                 if (!(o instanceof AdjacentDetail)) {
