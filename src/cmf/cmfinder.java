@@ -94,9 +94,36 @@ public class cmfinder {
     static String saveTimerFlag = "";
     static String saveTimer03Flag = "";
 
+    HashMap<String, Seq> unaligned_seqs = read_fasta(seqForExpectationMaximization);
+
+    //usage for aligments: try_merge
+    static HashMap<String, Alignment> alignments = new HashMap<>();
+
+    //SEQ setting in main method
+    static String SEQ;
+    static String seqForExpectationMaximization = SEQ;
+    static String outFileSuffix;
+    static String dummyCmfileParamForCmfinder = "";
+
     static {
         try {
             jo = read_json_file("./src/cmf/cmfinder_param.json");
+
+            if ((!jo.optString("emSeq").isEmpty())
+                    && (!jo.optString("emSeq").equals(null))) {
+                seqForExpectationMaximization = jo.optString("emSeq").toString();
+            }
+
+            if ((jo.optString("outFileSuffix=s").isEmpty())
+                    || (jo.optString("outFileSuffix=s").equals(null))) {
+                outFileSuffix = "";
+            }
+
+            if (jo.optBoolean("useOldCmfinder")) {
+                cmfinderBaseExe = "cmfinder";
+                dummyCmfileParamForCmfinder = SEQ + ".temp.cm";
+            }
+
             int cpu = jo.getInt("cpu");
             cpu = jo.optBoolean("allCpus") ? -1 : cpu;
             if (cpu != 0) {
@@ -209,28 +236,17 @@ public class cmfinder {
                 //check motifList file
                 if ((!jo.optString("motifList").equals(null))
                         && (!jo.optString("motifList").isEmpty())) {
-                    if (!findFile(bin_path, jo.optString("motifList"))
-                            .equals(jo.optString("motifList"))) {
-                        throw new MyException(jo.optString("motifList") + " file is not existing!");
-                    }
+                    //check file existing otherwise IOException 
+                    findFile(bin_path, jo.optString("motifList"));
                 }
+                if (jo.optBoolean("copyCmfinderRunsFromLog")) {
 
+                }
             }
         } catch (JSONException | IOException ex) {
             System.out.println(ex);
-        } catch (MyException ex) {
-            Logger.getLogger(cmfinder.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-
-    HashMap<String, Seq> unaligned_seqs = read_fasta(seqForExpectationMaximization);
-
-    //usage for aligments: try_merge
-    static HashMap<String, Alignment> alignments = new HashMap<>();
-
-    //SEQ setting in main method
-    static String SEQ;
-    static String seqForExpectationMaximization = SEQ;
 
     //read json file
     public static JSONObject read_json_file(String file_name) throws JSONException, IOException {

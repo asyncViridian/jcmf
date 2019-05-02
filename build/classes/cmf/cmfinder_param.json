@@ -2,7 +2,7 @@
     "version": false,
     "h": false,
     "v": false,
-    "w": null,
+    "w=s": null,
     "c": 40,
     "minspan1": 30,
     "maxspan1": 100,
@@ -18,8 +18,8 @@
     "likeold": false,
     "useOldCmfinder": false,
     "simpleMotifsAlreadyDone": false,
-    "justGetCmfinderCommand": false,
-    "copyCmfinderRunsFromLog": null,
+    "justGetCmfinderCommand": true,
+    "copyCmfinderRunsFromLog": true,
     "amaa": false,
     "motifList": null,
     "minCandScoreInFinal": 0,
@@ -77,12 +77,12 @@
                 "ElfN <n>": 200,
                 "EgfN <n>": 200
             },
-    "commaSepSummarizeFlags=s": {
-        "summarize": null,
+    "commaSepSummarizeFlags": {
+        "summarize": true,
         "summarize-gsc": null,
         "summarize-save-msa <f>": null
     },
-    "commaSepCandfFlags=s": {
+    "commaSepCandfFlags": {
         "c": null,
         "o <f>": null,
         "m": null,
