@@ -248,6 +248,7 @@ public class cmfinder {
                     String dir = Paths.get(SEQ).toAbsolutePath().getParent().toString();
                     System.out.println("dir=" + dir);
                     int gotCmfinderCmd = 0;
+                    //findFile("/home/cmdata", jo.optString("copyCmfinderRunsFromLog"));
                 }
             }
         } catch (JSONException | IOException ex) {
