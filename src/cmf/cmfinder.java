@@ -240,7 +240,14 @@ public class cmfinder {
                     findFile(bin_path, jo.optString("motifList"));
                 }
                 if (jo.optBoolean("copyCmfinderRunsFromLog")) {
-
+                    /* below find the SEQ's folder                   
+                    my $dir=$SEQ;
+                    $dir =~ s/\/[^\/]+$//g;
+                    print "dir=$dir\n";                    
+                     */
+                    String dir = Paths.get(SEQ).toAbsolutePath().getParent().toString();
+                    System.out.println("dir=" + dir);
+                    int gotCmfinderCmd = 0;
                 }
             }
         } catch (JSONException | IOException ex) {
