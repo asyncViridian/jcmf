@@ -15,6 +15,7 @@ import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 import org.json.*;
 
 public class cmfinder {
@@ -248,7 +249,36 @@ public class cmfinder {
                     String dir = Paths.get(SEQ).toAbsolutePath().getParent().toString();
                     System.out.println("dir=" + dir);
                     int gotCmfinderCmd = 0;
-                    //findFile("/home/cmdata", jo.optString("copyCmfinderRunsFromLog"));
+                    findFile(bin_path, jo.optString("copyCmfinderRunsFromLog"));
+
+                    Pattern p1 = Pattern.compile("^\\S*cmfinder(|_inf11)\\s");
+                    Pattern p2 = Pattern.compile("-a\\s(\\S+)\\s");
+                    Pattern p3 = Pattern.compile("-o\\s(\\S+)\\s");
+                    Pattern p4 = Pattern.compile("[.]cm[.]");
+
+                    try (Stream<String> stream = Files.lines(Paths.get(SEQ))) {
+                        stream.forEach(line -> {
+                            //System.out.println(line);
+                            Matcher m1 = p1.matcher(line);
+                            if (m1.find()) {
+                                String version = m1.group(0);
+                                String inputMsa;
+                                String inputFasta;
+                                String outputFileBase;
+                                Matcher m2 = p2.matcher(line);
+                                if (m2.find()) {
+                                    inputMsa = m2.group(0);
+                                } else {
+                                    try {
+                                        throw new MyException("debug: p2 no match, exit.");
+                                    } catch (MyException ex) {
+                                        Logger.getLogger(cmfinder.class.getName()).log(Level.SEVERE, null, ex);
+                                    }
+                                }
+                            }
+
+                        });
+                    }
                 }
             }
         } catch (JSONException | IOException ex) {

@@ -19,7 +19,7 @@
     "useOldCmfinder": false,
     "simpleMotifsAlreadyDone": false,
     "justGetCmfinderCommand": true,
-    "copyCmfinderRunsFromLog": "runs.log",
+    "copyCmfinderRunsFromLog": null,
     "amaa": false,
     "motifList": null,
     "minCandScoreInFinal": 0,
