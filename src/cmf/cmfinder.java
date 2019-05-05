@@ -7,6 +7,7 @@ package cmf;
 import static cmf.Io.*;
 import cmf.utilities.*;
 import static cmf.utilities.*;
+import java.io.File;
 import java.io.IOException;
 import java.nio.file.*;
 import java.util.*;
@@ -72,7 +73,7 @@ public class cmfinder {
     double n;
     boolean skipClustalw = jo.getBoolean("skipClustalw");
     boolean likeold;
-    public boolean useOldCmfinder = jo.getBoolean("useOldCmfinder");
+    static boolean useOldCmfinder; // set in the static block or main method
     boolean simpleMotifsAlreadyDone;
     boolean justGetCmfinderCommand;
     String copyCmfinderRunsFromLog;
@@ -109,6 +110,8 @@ public class cmfinder {
     static {
         try {
             jo = read_json_file("./src/cmf/cmfinder_param.json");
+
+            useOldCmfinder = jo.optBoolean("useOldCmfinder");
 
             if ((!jo.optString("emSeq").isEmpty())
                     && (!jo.optString("emSeq").equals(null))) {
@@ -248,38 +251,98 @@ public class cmfinder {
                      */
                     String dir = Paths.get(SEQ).toAbsolutePath().getParent().toString();
                     System.out.println("dir=" + dir);
-                    int gotCmfinderCmd = 0;
+                    //int gotCmfinderCmd = 0;  this indicate is stupid, remove
                     findFile(bin_path, jo.optString("copyCmfinderRunsFromLog"));
 
-                    Pattern p1 = Pattern.compile("^\\S*cmfinder(|_inf11)\\s");
-                    Pattern p2 = Pattern.compile("-a\\s(\\S+)\\s");
-                    Pattern p3 = Pattern.compile("-o\\s(\\S+)\\s");
+                    Pattern p_cmfinder = Pattern.compile("^\\S*cmfinder(|_inf11)\\s");
+                    Pattern p_a = Pattern.compile("-a\\s(\\S+)\\s"); // get -a arhument \s is space
+                    Pattern p_o = Pattern.compile("-o\\s(\\S+)\\s"); //get output filename
                     Pattern p4 = Pattern.compile("[.]cm[.]");
 
                     try (Stream<String> stream = Files.lines(Paths.get(SEQ))) {
                         stream.forEach(line -> {
                             //System.out.println(line);
-                            Matcher m1 = p1.matcher(line);
+                            Matcher m1 = p_cmfinder.matcher(line);
                             if (m1.find()) {
                                 String version = m1.group(0);
-                                String inputMsa;
-                                String inputFasta;
-                                String outputFileBase;
-                                Matcher m2 = p2.matcher(line);
+                                String inputMsa = "";
+                                String inputFasta = "";
+                                String outputFileBase = "";
+                                Matcher m2 = p_a.matcher(line);
                                 if (m2.find()) {
                                     inputMsa = m2.group(0);
                                 } else {
                                     try {
                                         throw new MyException("debug: p2 no match, exit.");
                                     } catch (MyException ex) {
-                                        Logger.getLogger(cmfinder.class.getName()).log(Level.SEVERE, null, ex);
+                                        System.err.println(ex);
                                     }
                                 }
+                                Matcher m3 = p_o.matcher(line);
+                                if (m3.find()) {
+                                    //get filename part only
+                                    outputFileBase = new File(m3.group(0)).getName();
+                                } else {
+                                    try {
+                                        throw new MyException("debug: p2 no match, exit.");
+                                    } catch (MyException ex) {
+                                        System.err.println(ex);
+                                    }
+                                }
+                                String[] paceSepList = line.split("\\s+");
+                                String cm = paceSepList[paceSepList.length - 1]; //get last element of array
+                                if (Pattern.compile("[.]cm[.]").matcher(cm).find()) {
+                                    if (version.equals("_inf11")) {
+                                        try {
+                                            throw new MyException("cmfinder_inf11 should not have cmfile");
+                                        } catch (MyException ex) {
+                                            System.err.println(ex);
+                                        }
+                                    }
+                                    inputFasta = cm;
+                                } else {
+                                    if (version.length() == 0) {
+                                        try {
+                                            throw new MyException("cmfinder (0.3) should have cmfile");
+                                        } catch (MyException ex) {
+                                            Logger.getLogger(cmfinder.class.getName()).log(Level.SEVERE, null, ex);
+                                        }
+                                    }
+                                    inputFasta = cm;
+                                }
+                                System.out.println("ORIGINAL CMD:" + line);
+                                if (!fileExists(inputMsa)) {
+                                    System.out.println("\t" + "SKIPPING: input msa " + inputMsa
+                                            + " doesn't exist, so I assume it isn't good, and anyway it'd be a hassle to run.");
+                                } else {
+                                    String output_motif_file = bin_path + "/" + cmfinderBaseExe;
+                                    String[] cmd = {output_motif_file,
+                                        cmfinder_inf11Flags, cand_weight_option,
+                                        "-o " + dir + "/" + outputFileBase,
+                                        "-a " + inputMsa, inputFasta};
+                                    try {
+                                        RunCmfinder(cmd, output_motif_file);
+                                    } catch (MyException ex) {
+                                        Logger.getLogger(cmfinder.class.getName()).log(Level.SEVERE, null, ex);
+                                    }
+                                    //gotCmfinderCmd = 1;  //lamdba can't change variable
+                                }
+                            } else {
+                                try {
+                                    throw new MyException("didn't find any cmfinder commands");
+                                } catch (MyException ex) {
+                                    Logger.getLogger(cmfinder.class.getName()).log(Level.SEVERE, null, ex);
+                                }
                             }
-
                         });
                     }
-                }
+                    try {
+                        //need end whole program here
+                        throw new MyException("copyCmfinderRunsFromLog executed.");
+                    } catch (MyException ex) {
+                        Logger.getLogger(cmfinder.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                } // copyCmfinderRunsFromLog end
             }
         } catch (JSONException | IOException ex) {
             System.out.println(ex);
@@ -1127,7 +1190,7 @@ public class cmfinder {
         return new String[]{prefix, suffix1, suffix2};
     }
 
-    public boolean RunCmfinder(String[] cmd, String output_motif_file) throws MyException {
+    public static boolean RunCmfinder(String[] cmd, String output_motif_file) throws MyException {
         if (output_motif_file == null || output_motif_file.isEmpty()) {
             throw new MyException("must pass output_motif_file");
         }

@@ -36,6 +36,15 @@ public class utilities {
         return f;
     }
 
+    public static boolean fileExists(String filePathString) {
+        boolean r = false;
+        File f = new File(filePathString);
+        if (f.exists() && !f.isDirectory()) {
+            r = true;
+        }
+        return r;
+    }
+
     //note filename should give full path
     public static void deleteFile(String filename) {
         Path fileToDeletePath = Paths.get(filename);
