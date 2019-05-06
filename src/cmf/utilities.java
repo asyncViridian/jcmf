@@ -115,4 +115,9 @@ public class utilities {
         return new cmdOut(out, res, exitCode);
     }
 
+    public static int checkCPU() {
+        int processors = Runtime.getRuntime().availableProcessors();
+        return processors;
+    }
+
 }

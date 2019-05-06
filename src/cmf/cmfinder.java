@@ -106,6 +106,7 @@ public class cmfinder {
     static String seqForExpectationMaximization = SEQ;
     static String outFileSuffix;
     static String dummyCmfileParamForCmfinder = "";
+    static String tempFileListFileName = SEQ + ".file-list";
 
     static {
         try {
@@ -114,12 +115,12 @@ public class cmfinder {
             useOldCmfinder = jo.optBoolean("useOldCmfinder");
 
             if ((!jo.optString("emSeq").isEmpty())
-                    && (!jo.optString("emSeq").equals(null))) {
+                      && (!jo.optString("emSeq").equals(null))) {
                 seqForExpectationMaximization = jo.optString("emSeq").toString();
             }
 
             if ((jo.optString("outFileSuffix=s").isEmpty())
-                    || (jo.optString("outFileSuffix=s").equals(null))) {
+                      || (jo.optString("outFileSuffix=s").equals(null))) {
                 outFileSuffix = "";
             }
 
@@ -162,11 +163,11 @@ public class cmfinder {
                 if (!value.equals("null") && !value.equals("false")) {
                     //check if key has <x> part ?
                     cmfinder_inf11Flags
-                            = cmfinder_inf11Flags
-                            + ((cmfinder_inf11Flags != null && !cmfinder_inf11Flags.isEmpty()) ? " " : "")
-                            + ((key.indexOf("<") > 1 ? "--" + key.substring(0, key.indexOf("<") - 1) : "--" + key)
-                            + " "
-                            + value);
+                              = cmfinder_inf11Flags
+                              + ((cmfinder_inf11Flags != null && !cmfinder_inf11Flags.isEmpty()) ? " " : "")
+                              + ((key.indexOf("<") > 1 ? "--" + key.substring(0, key.indexOf("<") - 1) : "--" + key)
+                              + " "
+                              + value);
                 }
             }
             if (jo.optBoolean("columnOnlyBasePairProbs")) {
@@ -186,11 +187,11 @@ public class cmfinder {
                 if (!value.equals("null") && !value.equals("false")) {
                     //check if key has <x> part ?
                     summarizeFlagsStr
-                            = summarizeFlagsStr
-                            + ((summarizeFlagsStr != null && !summarizeFlagsStr.isEmpty()) ? " " : "")
-                            + ((key.indexOf("<") > 1 ? "--" + key.substring(0, key.indexOf("<") - 1) : "--" + key)
-                            + " "
-                            + value);
+                              = summarizeFlagsStr
+                              + ((summarizeFlagsStr != null && !summarizeFlagsStr.isEmpty()) ? " " : "")
+                              + ((key.indexOf("<") > 1 ? "--" + key.substring(0, key.indexOf("<") - 1) : "--" + key)
+                              + " "
+                              + value);
                 }
             }
             System.out.println(summarizeFlagsStr);
@@ -202,17 +203,17 @@ public class cmfinder {
                 if (!value.equals("null") && !value.equals("false")) {
                     //check if key has <x> part ?
                     candfExtraFlags
-                            = candfExtraFlags
-                            + ((candfExtraFlags != null && !candfExtraFlags.isEmpty()) ? " " : "")
-                            + ((key.indexOf("<") > 1 ? "--" + key.substring(0, key.indexOf("<") - 1) : "--" + key)
-                            + " "
-                            + value);
+                              = candfExtraFlags
+                              + ((candfExtraFlags != null && !candfExtraFlags.isEmpty()) ? " " : "")
+                              + ((key.indexOf("<") > 1 ? "--" + key.substring(0, key.indexOf("<") - 1) : "--" + key)
+                              + " "
+                              + value);
                 }
             }
             System.out.println(candfExtraFlags);
 
             cand_weight_option = (jo.optString("w=s").equals(null))
-                    ? cand_weight_option : jo.optString("w=s");
+                      ? cand_weight_option : jo.optString("w=s");
             System.out.println(cand_weight_option);
             if (!cand_weight_option.equals("")) {
                 cand_weight_option = "-w " + cand_weight_option;
@@ -220,7 +221,7 @@ public class cmfinder {
 
             //saveTimer is a file, such as "./src/cmf/test"
             if (!jo.optString("saveTimer").equals(null)
-                    && !jo.optString("saveTimer").equals("")) {
+                      && !jo.optString("saveTimer").equals("")) {
                 System.out.println(jo.optString("saveTimer"));
                 //delete file first
                 deleteFile(jo.optString("saveTimer"));
@@ -231,125 +232,144 @@ public class cmfinder {
             if (jo.optBoolean("justGetCmfinderCommand")) {
                 //just output in screen
                 String cmfinder_cmd = bin_path + "/"
-                        + cmfinderBaseExe + " "
-                        + cmfinder_inf11Flags + " "
-                        + cand_weight_option;
+                          + cmfinderBaseExe + " "
+                          + cmfinder_inf11Flags + " "
+                          + cand_weight_option;
                 System.out.println("-justGetCmfinderCommand:" + cmfinder_cmd);
-                //exit                
-            } else {
-                //check motifList file
-                if ((!jo.optString("motifList").equals(null))
-                        && (!jo.optString("motifList").isEmpty())) {
-                    //check file existing otherwise IOException 
-                    findFile(bin_path, jo.optString("motifList"));
+                //exit
+                try {
+                    throw new MyException("Exit due to justGetCmfinderCommand setting.");
+                } catch (MyException ex) {
+                    Logger.getLogger(cmfinder.class.getName()).log(Level.SEVERE, null, ex);
                 }
-                if (jo.optBoolean("copyCmfinderRunsFromLog")) {
-                    /* below find the SEQ's folder                   
+            }
+            //check motifList file
+            if ((!jo.optString("motifList").equals(null))
+                      && (!jo.optString("motifList").isEmpty())) {
+                //check file existing otherwise IOException 
+                findFile(bin_path, jo.optString("motifList"));
+            }
+            if (jo.optBoolean("copyCmfinderRunsFromLog")) {
+                /* below find the SEQ's folder                   
                     my $dir=$SEQ;
                     $dir =~ s/\/[^\/]+$//g;
                     print "dir=$dir\n";                    
-                     */
-                    String dir = Paths.get(SEQ).toAbsolutePath().getParent().toString();
-                    System.out.println("dir=" + dir);
-                    //int gotCmfinderCmd = 0;  this indicate is stupid, remove
-                    findFile(bin_path, jo.optString("copyCmfinderRunsFromLog"));
+                 */
+                String dir = Paths.get(SEQ).toAbsolutePath().getParent().toString();
+                System.out.println("dir=" + dir);
+                //int gotCmfinderCmd = 0;  this indicate is stupid, remove
+                findFile(bin_path, jo.optString("copyCmfinderRunsFromLog"));
 
-                    Pattern p_cmfinder = Pattern.compile("^\\S*cmfinder(|_inf11)\\s");
-                    Pattern p_a = Pattern.compile("-a\\s(\\S+)\\s"); // get -a arhument \s is space
-                    Pattern p_o = Pattern.compile("-o\\s(\\S+)\\s"); //get output filename
-                    Pattern p4 = Pattern.compile("[.]cm[.]");
+                Pattern p_cmfinder = Pattern.compile("^\\S*cmfinder(|_inf11)\\s");
+                Pattern p_a = Pattern.compile("-a\\s(\\S+)\\s"); // get -a arhument \s is space
+                Pattern p_o = Pattern.compile("-o\\s(\\S+)\\s"); //get output filename
+                Pattern p4 = Pattern.compile("[.]cm[.]");
 
-                    try (Stream<String> stream = Files.lines(Paths.get(SEQ))) {
-                        stream.forEach(line -> {
-                            //System.out.println(line);
-                            Matcher m1 = p_cmfinder.matcher(line);
-                            if (m1.find()) {
-                                String version = m1.group(0);
-                                String inputMsa = "";
-                                String inputFasta = "";
-                                String outputFileBase = "";
-                                Matcher m2 = p_a.matcher(line);
-                                if (m2.find()) {
-                                    inputMsa = m2.group(0);
-                                } else {
+                try (Stream<String> stream = Files.lines(Paths.get(SEQ))) {
+                    stream.forEach(line -> {
+                        //System.out.println(line);
+                        Matcher m1 = p_cmfinder.matcher(line);
+                        if (m1.find()) {
+                            String version = m1.group(0);
+                            String inputMsa = "";
+                            String inputFasta = "";
+                            String outputFileBase = "";
+                            Matcher m2 = p_a.matcher(line);
+                            if (m2.find()) {
+                                inputMsa = m2.group(0);
+                            } else {
+                                try {
+                                    throw new MyException("debug: p2 no match, exit.");
+                                } catch (MyException ex) {
+                                    System.err.println(ex);
+                                }
+                            }
+                            Matcher m3 = p_o.matcher(line);
+                            if (m3.find()) {
+                                //get filename part only
+                                outputFileBase = new File(m3.group(0)).getName();
+                            } else {
+                                try {
+                                    throw new MyException("debug: p2 no match, exit.");
+                                } catch (MyException ex) {
+                                    System.err.println(ex);
+                                }
+                            }
+                            String[] paceSepList = line.split("\\s+");
+                            String cm = paceSepList[paceSepList.length - 1]; //get last element of array
+                            if (Pattern.compile("[.]cm[.]").matcher(cm).find()) {
+                                if (version.equals("_inf11")) {
                                     try {
-                                        throw new MyException("debug: p2 no match, exit.");
+                                        throw new MyException("cmfinder_inf11 should not have cmfile");
                                     } catch (MyException ex) {
                                         System.err.println(ex);
                                     }
                                 }
-                                Matcher m3 = p_o.matcher(line);
-                                if (m3.find()) {
-                                    //get filename part only
-                                    outputFileBase = new File(m3.group(0)).getName();
-                                } else {
+                                inputFasta = cm;
+                            } else {
+                                if (version.length() == 0) {
                                     try {
-                                        throw new MyException("debug: p2 no match, exit.");
-                                    } catch (MyException ex) {
-                                        System.err.println(ex);
-                                    }
-                                }
-                                String[] paceSepList = line.split("\\s+");
-                                String cm = paceSepList[paceSepList.length - 1]; //get last element of array
-                                if (Pattern.compile("[.]cm[.]").matcher(cm).find()) {
-                                    if (version.equals("_inf11")) {
-                                        try {
-                                            throw new MyException("cmfinder_inf11 should not have cmfile");
-                                        } catch (MyException ex) {
-                                            System.err.println(ex);
-                                        }
-                                    }
-                                    inputFasta = cm;
-                                } else {
-                                    if (version.length() == 0) {
-                                        try {
-                                            throw new MyException("cmfinder (0.3) should have cmfile");
-                                        } catch (MyException ex) {
-                                            Logger.getLogger(cmfinder.class.getName()).log(Level.SEVERE, null, ex);
-                                        }
-                                    }
-                                    inputFasta = cm;
-                                }
-                                System.out.println("ORIGINAL CMD:" + line);
-                                if (!fileExists(inputMsa)) {
-                                    System.out.println("\t" + "SKIPPING: input msa " + inputMsa
-                                            + " doesn't exist, so I assume it isn't good, and anyway it'd be a hassle to run.");
-                                } else {
-                                    String output_motif_file = bin_path + "/" + cmfinderBaseExe;
-                                    String[] cmd = {output_motif_file,
-                                        cmfinder_inf11Flags, cand_weight_option,
-                                        "-o " + dir + "/" + outputFileBase,
-                                        "-a " + inputMsa, inputFasta};
-                                    try {
-                                        RunCmfinder(cmd, output_motif_file);
+                                        throw new MyException("cmfinder (0.3) should have cmfile");
                                     } catch (MyException ex) {
                                         Logger.getLogger(cmfinder.class.getName()).log(Level.SEVERE, null, ex);
                                     }
-                                    //gotCmfinderCmd = 1;  //lamdba can't change variable
                                 }
+                                inputFasta = cm;
+                            }
+                            System.out.println("ORIGINAL CMD:" + line);
+                            if (!fileExists(inputMsa)) {
+                                System.out.println("\t" + "SKIPPING: input msa " + inputMsa
+                                          + " doesn't exist, so I assume it isn't good, and anyway it'd be a hassle to run.");
                             } else {
+                                String output_motif_file = bin_path + "/" + cmfinderBaseExe;
+                                String[] cmd = {output_motif_file,
+                                    cmfinder_inf11Flags, cand_weight_option,
+                                    "-o " + dir + "/" + outputFileBase,
+                                    "-a " + inputMsa, inputFasta};
                                 try {
-                                    throw new MyException("didn't find any cmfinder commands");
+                                    RunCmfinder(cmd, output_motif_file);
                                 } catch (MyException ex) {
                                     Logger.getLogger(cmfinder.class.getName()).log(Level.SEVERE, null, ex);
                                 }
+                                //gotCmfinderCmd = 1;  //lamdba can't change variable
                             }
-                        });
-                    }
-                    try {
-                        //need end whole program here
-                        throw new MyException("copyCmfinderRunsFromLog executed.");
-                    } catch (MyException ex) {
-                        Logger.getLogger(cmfinder.class.getName()).log(Level.SEVERE, null, ex);
-                    }
-                } // copyCmfinderRunsFromLog end
+                        } else {
+                            try {
+                                throw new MyException("didn't find any cmfinder commands");
+                            } catch (MyException ex) {
+                                Logger.getLogger(cmfinder.class.getName()).log(Level.SEVERE, null, ex);
+                            }
+                        }
+                    });
+                }
+                try {
+                    //need end whole program here
+                    throw new MyException("Exit due to copyCmfinderRunsFromLog.");
+                } catch (MyException ex) {
+                    Logger.getLogger(cmfinder.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            } // copyCmfinderRunsFromLog end
+
+            if (!jo.getBoolean("simpleMotifsAlreadyDone")) {
+                int runCandsParallel = 0;
+                if (jo.getInt("cpu") >= 2
+                          || jo.getBoolean("candsParallel")
+                          || jo.getBoolean("allCpus")
+                          || checkCPU() >= 2) {
+                    runCandsParallel = 1;
+                }
+                ArrayList<String> candsJobs = new ArrayList<>();
+                SINGLE = jo.getInt("s1=i");
+                if (SINGLE > 0) {
+                    //to do
+                }
             }
         } catch (JSONException | IOException ex) {
             System.out.println(ex);
         }
     }
 
-    //read json file
+//read json file
     public static JSONObject read_json_file(String file_name) throws JSONException, IOException {
         Path p = Paths.get(file_name);
         //System.out.println(p.toAbsolutePath().toString());
@@ -471,19 +491,19 @@ public class cmfinder {
 
         if (motif1 == null) {
             return new Merge_Motif_Output(
-                    motif2.getStart(),
-                    motif2.getEnd(),
-                    "", "", "", "",
-                    motif2.getAlignSeq(),
-                    motif2.getAlignSs());
+                      motif2.getStart(),
+                      motif2.getEnd(),
+                      "", "", "", "",
+                      motif2.getAlignSeq(),
+                      motif2.getAlignSs());
         }
         if (motif2 == null) {
             return new Merge_Motif_Output(
-                    motif1.getStart(),
-                    motif1.getEnd(),
-                    "", "", "", "",
-                    motif1.getAlignSeq(),
-                    motif1.getAlignSs());
+                      motif1.getStart(),
+                      motif1.getEnd(),
+                      "", "", "", "",
+                      motif1.getAlignSeq(),
+                      motif1.getAlignSs());
         }
 
         // Two motifs can't be merged.    
@@ -590,10 +610,10 @@ public class cmfinder {
     }
 
     public Alignment merge_alignment(
-            Alignment alignment1,
-            Alignment alignment2,
-            HashMap<String, Seq> seqs,
-            String out) throws MyException {
+              Alignment alignment1,
+              Alignment alignment2,
+              HashMap<String, Seq> seqs,
+              String out) throws MyException {
 
         HashMap<String, AlignSeq> align1 = alignment1.getSeqs();
         HashMap<String, AlignSeq> align2 = alignment2.getSeqs();
@@ -654,10 +674,10 @@ public class cmfinder {
             if (!align2.containsKey(entry.getKey())) {
                 weight = align1.get(entry.getKey()).getWeight();
                 Merge_Motif_Output mm = merge_motif(
-                        align1.get(entry.getKey()),
-                        null,
-                        seqs.get(entry.getKey()).getSeq(),
-                        olap_own
+                          align1.get(entry.getKey()),
+                          null,
+                          seqs.get(entry.getKey()).getSeq(),
+                          olap_own
                 );
                 start = mm.getStart();
                 end = mm.getEnd();
@@ -670,10 +690,10 @@ public class cmfinder {
             } else if (!align1.containsKey(entry.getKey())) {
                 weight = align2.get(entry.getKey()).getWeight();
                 Merge_Motif_Output mm = merge_motif(
-                        null,
-                        align2.get(entry.getKey()),
-                        seqs.get(entry.getKey()).getSeq(),
-                        olap_own
+                          null,
+                          align2.get(entry.getKey()),
+                          seqs.get(entry.getKey()).getSeq(),
+                          olap_own
                 );
                 start = mm.getStart();
                 end = mm.getEnd();
@@ -685,12 +705,12 @@ public class cmfinder {
                 ss2 = mm.getSs2();
             } else {
                 weight = align2.get(entry.getKey()).getWeight()
-                        + align1.get(entry.getKey()).getWeight();
+                          + align1.get(entry.getKey()).getWeight();
                 Merge_Motif_Output mm = merge_motif(
-                        align1.get(entry.getKey()),
-                        align2.get(entry.getKey()),
-                        seqs.get(entry.getKey()).getSeq(),
-                        olap_own
+                          align1.get(entry.getKey()),
+                          align2.get(entry.getKey()),
+                          seqs.get(entry.getKey()).getSeq(),
+                          olap_own
                 );
                 start = mm.getStart();
                 end = mm.getEnd();
@@ -704,7 +724,7 @@ public class cmfinder {
 
             if (start >= 0 && end >= 0) {
                 Merge_Motif_Output mm = new Merge_Motif_Output(
-                        start, end, seq1, ss1, gap_seq, gap_ss, seq2, ss2
+                          start, end, seq1, ss1, gap_seq, gap_ss, seq2, ss2
                 );
                 mm.setWeight(weight / 2.0d);
                 motif_overlap.put(entry.getKey(), mm);
@@ -739,11 +759,11 @@ public class cmfinder {
                 String gap = motif_overlap.get(entry.getKey()).getGapSeq();
                 if (gap.length() > 0) {
                     Files.write(p_out,
-                            (">" + entry.getKey() + System.lineSeparator()).getBytes(),
-                            StandardOpenOption.APPEND);
+                              (">" + entry.getKey() + System.lineSeparator()).getBytes(),
+                              StandardOpenOption.APPEND);
                     Files.write(p_out,
-                            (gap + System.lineSeparator()).getBytes(),
-                            StandardOpenOption.APPEND);
+                              (gap + System.lineSeparator()).getBytes(),
+                              StandardOpenOption.APPEND);
                     gap_count++;
                 }
             }
@@ -809,9 +829,9 @@ public class cmfinder {
             gap_seq = pad_string(entry.getValue().getGapSeq(), max_gap_len, ".", 1);
             gap_ss = pad_string(entry.getValue().getGapSs(), max_gap_len, ".", 1);
             align_seq = pad_string(entry.getValue().getSeq1(), max_m1_len, ".", 1)
-                    + gap_seq + pad_string(entry.getValue().getSeq2(), max_m2_len, ".", 1);
+                      + gap_seq + pad_string(entry.getValue().getSeq2(), max_m2_len, ".", 1);
             align_ss = pad_string(entry.getValue().getSs1(), max_m1_len, ".", 1)
-                    + gap_ss + pad_string(entry.getValue().getSs2(), max_m2_len, ".", 1);
+                      + gap_ss + pad_string(entry.getValue().getSs2(), max_m2_len, ".", 1);
             if (align1.containsKey(entry.getKey())) {
                 score1 = align1.get(entry.getKey()).getScore();
             }
@@ -823,12 +843,12 @@ public class cmfinder {
             score = score1 + score2 - remove_gap(gap_seq).length();
             weight = entry.getValue().getWeight();
             desc = String.format("%3d", start)
-                    + ".." + String.format("%3d", end) + "\t"
-                    + String.format("%.3f", score);
+                      + ".." + String.format("%3d", end) + "\t"
+                      + String.format("%.3f", score);
 
             merged_motif.put(entry.getKey(),
-                    new AlignSeq(entry.getKey(), ids.get(entry.getKey()),
-                            start, end, desc, score, weight, align_seq, align_ss));
+                      new AlignSeq(entry.getKey(), ids.get(entry.getKey()),
+                                start, end, desc, score, weight, align_seq, align_ss));
         }
 
         //final return value
@@ -836,7 +856,7 @@ public class cmfinder {
     }
 
     public void CombMotif(String cand_weight_option, String seq_file, ArrayList<String> motifFilesRef)
-            throws MyException {
+              throws MyException {
 
         ArrayList<String> align_files = motifFilesRef;
         ArrayList<String> all_files = align_files;
@@ -868,19 +888,19 @@ public class cmfinder {
         //add crete a reverse sort merge_motif_reverse
 
         HashMap<String, MergeMotif> merge_motif_reverse_sorted
-                = merge_motif.entrySet().stream()
-                        .sorted(Map.Entry.comparingByValue(
-                                Comparator.comparingDouble(MergeMotif::getWeight)
-                                        .reversed()))
-                        .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue,
-                                (oldValue, newValue) -> oldValue, LinkedHashMap::new));
+                  = merge_motif.entrySet().stream()
+                            .sorted(Map.Entry.comparingByValue(
+                                      Comparator.comparingDouble(MergeMotif::getWeight)
+                                                .reversed()))
+                            .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue,
+                                      (oldValue, newValue) -> oldValue, LinkedHashMap::new));
 
         while (merge_motif.size() > 0) {
             if (verbose) {
                 System.out.println("entering for my \\$id, with list:");
                 //print key value based on object's weight reverse sorted
                 merge_motif_reverse_sorted.entrySet().stream()
-                        .forEachOrdered(e -> System.out.println(e.getKey()));
+                          .forEachOrdered(e -> System.out.println(e.getKey()));
             }
             for (Map.Entry<String, MergeMotif> entry : merge_motif_reverse_sorted.entrySet()) {
                 //ake motifs whose combination has the biggest weight first
@@ -894,7 +914,7 @@ public class cmfinder {
                 if (processed.containsKey(entry.getKey())) {
                     if (verbose) {
                         System.out.println("while keys merge_motif NEXT : exists \\$processed{"
-                                + entry.getKey() + "}");
+                                  + entry.getKey() + "}");
                     }
                     continue;
                 }
@@ -913,9 +933,9 @@ public class cmfinder {
                         //# ??  apparently each motif can only appear in one merging?
                         if (verbose) {
                             System.out.println("while keys merge_motif NEXT : exists \\$merged_files{"
-                                    + f1 + "}=" + (merged_files.containsKey(f1) ? "true" : "false")
-                                    + " || exists \\$merged_files{" + f2 + "}="
-                                    + (merged_files.containsKey(f2) ? "true" : "false"));
+                                      + f1 + "}=" + (merged_files.containsKey(f1) ? "true" : "false")
+                                      + " || exists \\$merged_files{" + f2 + "}="
+                                      + (merged_files.containsKey(f2) ? "true" : "false"));
                         }
                         continue;
                     }
@@ -923,7 +943,7 @@ public class cmfinder {
                         double m_gap = m.getGap();
                         if (verbose) {
                             System.out.println("while keys merge_motif NEXT : \\$m->gap > \\$comb_max_gap :"
-                                    + m_gap + ">" + comb_max_gap);
+                                      + m_gap + ">" + comb_max_gap);
                         }
                         continue;
                     }
@@ -940,25 +960,25 @@ public class cmfinder {
                     if (found != 0) {
                         if (verbose) {
                             System.out.println("while keys merge_motif NEXT : not found.  all_files = "
-                                    + String.join(" ", all_files));
+                                      + String.join(" ", all_files));
                         }
                         continue;  //# file has already been made
                     }
 
                     System.out.println("( near merge_motif: "
-                            + entry.getKey() + ", " + m.getNum_seq() + ", \t" + f1 + "\t" + f2 + "\t,"
-                            + m.getWeight() + ",t" + m.getGap() + ",\t" + m.getOverlap());
+                              + entry.getKey() + ", " + m.getNum_seq() + ", \t" + f1 + "\t" + f2 + "\t,"
+                              + m.getWeight() + ",t" + m.getGap() + ",\t" + m.getOverlap());
 
                     // this used to be a call to the merge_motif.pl script
                     if (output_more_like_old_cmfinder_pl) {
                         if (verbose) {
                             System.out.println(bin_path + "/merge_motif.pl " + SEQ
-                                    + " " + f1 + " " + f2 + " " + f + ".temp");
+                                      + " " + f1 + " " + f2 + " " + f + ".temp");
                         }
                     } else {
                         if (verbose) {
                             System.out.println("call to merge_motif "
-                                    + f1 + " " + f2 + " " + f + ".temp");
+                                      + f1 + " " + f2 + " " + f + ".temp");
                         }
 
                         if (!alignments.containsKey(f1) || !alignments.containsKey(f2)) {
@@ -967,7 +987,7 @@ public class cmfinder {
 
                         String f_temp = f + ".temp";
                         Alignment new_alignment
-                                = merge_alignment(alignments.get(f1), alignments.get(f2), unaligned_seqs, f_temp);
+                                  = merge_alignment(alignments.get(f1), alignments.get(f2), unaligned_seqs, f_temp);
                         if (new_alignment != null) {
                             if (!skipClustalw) {
                                 throw new MyException("unexpected");
@@ -977,9 +997,9 @@ public class cmfinder {
                                     String cmfile = seq_file;
                                     cmfile = cmfile.replace(".motif.", ".cm.");  //$cmfile =~ s/[.]motif[.]/.cm./g;
                                     System.out.println(bin_path + "/cmfinder      -o "
-                                            + f + " -a " + f_temp + " " + seq_file + " " + cmfile);
+                                              + f + " -a " + f_temp + " " + seq_file + " " + cmfile);
                                     System.out.println("FATAL: Alignment file "
-                                            + f_temp + " could not be opened for reading");
+                                              + f_temp + " could not be opened for reading");
                                     System.out.println("while keys merge_motif NEXT : !-s " + f);
                                 }
                             } else {
@@ -1008,7 +1028,7 @@ public class cmfinder {
     }
 
     public static HashMap<String, MergeMotif> try_merge(String f1, String f2, HashMap<String, MergeMotif> merge_motif_ref)
-            throws MyException {
+              throws MyException {
         if (merge_motif_ref == null) { //perl !defined not isEmpty()
             throw new MyException("merge_motif_ref Hashmap is empty");
         }
@@ -1053,7 +1073,7 @@ public class cmfinder {
 
             //we only look for motifs on the forward strand
             if ((motif1.getStart() > motif1.getEnd())
-                    || (motif2.getStart() > motif2.getEnd())) {
+                      || (motif2.getStart() > motif2.getEnd())) {
                 throw new MyException("motif start is bigger than end unexpected");
             }
 
@@ -1069,7 +1089,7 @@ public class cmfinder {
                     int overlap = motif2.getEnd() - motif1.getStart();
                     if (overlap > -comb_max_gap) {
                         if (((len1 - overlap < 25) || (len2 - overlap < 25))
-                                && ((overlap > 0.9 * len1) || (overlap > 0.9 * len2))) {
+                                  && ((overlap > 0.9 * len1) || (overlap > 0.9 * len2))) {
                             //the motif instances almost entirely overlap (have up leave at most 25 nucs 
                             //and 10% of each instance un-overlapped
                             num_overlap += motif1.getWeight() * motif2.getWeight();
@@ -1092,7 +1112,7 @@ public class cmfinder {
                     int overlap = motif1.getEnd() - motif2.getStart();
                     if (overlap > -comb_max_gap) {
                         if (((len1 - overlap < 25) || (len2 - overlap < 25))
-                                && ((overlap > 0.9 * len1) || overlap > 0.9 * len2)) {
+                                  && ((overlap > 0.9 * len1) || overlap > 0.9 * len2)) {
                             num_overlap += motif1.getWeight() * motif2.getWeight();
                         } else {
                             start1 += (motif1.getWeight() + motif2.getWeight()) / 2;
@@ -1118,7 +1138,7 @@ public class cmfinder {
         if (num_overlap > start1 && num_overlap > start2) {
             if (verbose) {
                 System.out.println("num_overlap>start1 && num_overlap>start2 :"
-                        + num_overlap + ">" + start1 + " && " + num_overlap + ">" + start2);
+                          + num_overlap + ">" + start1 + " && " + num_overlap + ">" + start2);
             }
             return null;
         }
@@ -1135,16 +1155,16 @@ public class cmfinder {
 
             //	#motif1 is before motif2
             merge_motif_ref.put(index,
-                    new MergeMotif(
-                            f1,
-                            f2,
-                            start1,
-                            start1_score,
-                            gap1 / start1,
-                            overlap1 / start1,
-                            start1_score - gap1 / 2 - overlap1));
+                      new MergeMotif(
+                                f1,
+                                f2,
+                                start1,
+                                start1_score,
+                                gap1 / start1,
+                                overlap1 / start1,
+                                start1_score - gap1 / 2 - overlap1));
             System.out.println("accept id=" + index + ":"
-                    + f1 + "-" + f2 + ":" + start1_score + " " + gap1 / 2 + " " + overlap1 + " " + start1
+                      + f1 + "-" + f2 + ":" + start1_score + " " + gap1 / 2 + " " + overlap1 + " " + start1
             );
         } else { //# this 'else' case mirrors the 'if' case
             if (start2 < comb_min_overlap) {
@@ -1155,17 +1175,17 @@ public class cmfinder {
             }
             //#motif2 is before motif1
             merge_motif_ref.put(index,
-                    new MergeMotif(
-                            f2,
-                            f1,
-                            start2,
-                            start2_score,
-                            gap2 / start2,
-                            overlap2 / start2,
-                            start2_score - gap2 / 2 - overlap2)
+                      new MergeMotif(
+                                f2,
+                                f1,
+                                start2,
+                                start2_score,
+                                gap2 / start2,
+                                overlap2 / start2,
+                                start2_score - gap2 / 2 - overlap2)
             );
             System.out.println("taccept id=" + index + ":"
-                    + f2 + "-" + f1 + ":" + start2_score + " " + gap2 / 2 + " " + overlap2 + " " + start2);
+                      + f2 + "-" + f1 + ":" + start2_score + " " + gap2 / 2 + " " + overlap2 + " " + start2);
         }
 
         return merge_motif_ref;
@@ -1263,77 +1283,77 @@ public class cmfinder {
 
     public static void print_help() {
         String help_content = "CMFINDER [options] SEQ\n"
-                + "Options:\n"
-                + "    -c <number>      \n"
-                + "     The maximum number of candidates in each sequence. Default 40. No bigger than 100.\n"
-                + "    -m <number>      \n"
-                + "     The minimum length of candidates. Default 30\n"
-                + "    -M <number>      \n"
-                + "     The maximum length of candidates. Default 100\n"
-                + "    -f <number>      \n"
-                + "     The fraction of the sequences expected to contain the motif. Default 0.80\n"
-                + "    -s1 <number>     \n"
-                + "     The max number of output single stem-loop motifs\n"
-                + "    -s2 <number>    \n"
-                + "     The max number of output double stem-loop motifs    \n"
-                + "    -minspan1 <number>\n"
-                + "     minimum span of a candidate sub-sequence in the heuristics to come up with an initial alignment for single-hairpin (h1) motifs\n"
-                + "    -maxspan1 <number>\n"
-                + "     like -minspan1, but maximum\n"
-                + "    -minspan2 <number>\n"
-                + "     like -minspan1, but for double-hairpin (h2) motifs\n"
-                + "    -maxspan2 <number>\n"
-                + "     like -minspan2, but maximal\n"
-                + "    -combine         \n"
-                + "     Combine the output motifs. Default False\n"
-                + "    -motifList <file> \n"
-                + "     Produce a list of motifs generated, one motif per line.\n"
-                + "    -o <number>\n"
-                + "     Minimum overlap for combining motifs\n"
-                + "    -n <number>      \n"
-                + "     Minimum number of sequences (weighted) for combining motifs\n"
-                + "    -emSeq <file>\n"
-                + "     Use the sequences in this fasta file for the expectation maximization step (i.e., the C executable cmfinder), but not for the earlier steps related to finding candidate motifs.  The reason for this distinction is that it is somewhat easier to add weighting to the cmfinder program, than the various canda, candf, cands and align programs.\n"
-                + "    -likeold         \n"
-                + "     Behave as much as possible like the old CMfinder, e.g., passing --enone, --p56 and --degen-rand to cmfinder_inf11.  It's not possible to produce identical results to CMfinder 0.3, but these flags make it more similar.\n"
-                + "    -fragmentary\n"
-                + "     Pass --fragmentary for cmfinder\n"
-                + "    -amaa            \n"
-                + "     Pass --amaa to cmfinder (align max align accuracy)\n"
-                + "    -useOldCmfinder  \n"
-                + "     Run the old cmfinder executable, mainly to test whether we get different results because of this perl script, or the cmfinder_inf11 executable.\n"
-                + "    -skipClustalw    \n"
-                + "     Do not run clustalw, like older installations lacking this program.\n"
-                + "    -justGetCmfinderCommand    \n"
-                + "     Print the command to run for the cmfinder executable, with appropriate partial flags.  This can be used to realign an existing .sto file, for example.\n"
-                + "    -copyCmfinderRunsFromLog <log-file> \n"
-                + "     For debugging.  Reads a log file that contains cmfinder commands, and re-runs them with new CMfinder.\n"
-                + "    -commaSepEmFlags x<flags>\n"
-                + "     List of flags and arguments to pass to the EM-step cmfinder exe.  There's an 'x' at the beginning of the flags, so that perl doesn't interpret the flags as flags for it.  It's comma-separated where on the command line it would be space separated.  I think commas are safe, and mean that I don't have to worry about quoting stuff.  e.g., -commaSepEmFlags x--fragmentary,--filter-non-frag,--filter-non-frag-pad,10 would pass this to the cmfinder program: \"--fragmentary --filter-non-frag --filter-non-frag-pad 10\", i.e., just replace commas with spaces.\n"
-                + "    -commaSepSummarizeFlags x<flags>\n"
-                + "     Flags to pass to the --summarize command.  Same syntax as for --commaSepEmFlags\n"
-                + "    -commaSepCandfFlags x<flags>\n"
-                + "     Flags to pass to the candf command.  Same syntax as for --commaSepEmFlags\n"
-                + "    -minCandScoreInFinal <number>    \n"
-                + "     Pass --min-cand-score-in-final <number> to cmfinder.  WARNING: there's a difference between using this flag (where even intermediate motifs will avoid these hits) and taking the low-scoring instances out of the final alignments (which might be combinations of motifs in which the sequence would have been lower-scoring).\n"
-                + "    -filterNonFrag\n"
-                + "     Pass --filter-non-frag to cmfinder\n"
-                + "    -columnOnlyBasePairProbs\n"
-                + "     Pass --column-only-base-pair-probs to cmfinder\n"
-                + "    -saveTimer <file>\n"
-                + "     create tab-delimited <file> containing timing stats on various sub-processes of this script.  the first tab-delimited field is the description of the sub-process, the second field is the total CPU time (user+sys) and the third field is the wall-clock time.  Sub-processes can occur in multiple lines if they are run multiple timers, so the caller should add them.  Due to my laziness, the time of the clustalw program (if used) is not counted.\n"
-                + "    -cpu <num>\n"
-                + "     use <num> CPUs for functionality that can use multi-CPUs (currently only the internal cmsearch commands in cmfinder04)\n"
-                + "    -allCpus\n"
-                + "     equivalent to -cpu X , where X is the number of available processors.\n"
-                + "    -candsParallel\n"
-                + "     run the two cands jobs in parallel, even if -cpu 1\n"
-                + "    -outFileSuffix <string>\n"
-                + "     add <string> to the output file names.  this is useful if you want to run the script in multiple ways in the same directory.\n"
-                + "    -h               \n"
-                + "     Show this list\n"
-                + "    -version\n"
-                + "     Show package version\n";
+                  + "Options:\n"
+                  + "    -c <number>      \n"
+                  + "     The maximum number of candidates in each sequence. Default 40. No bigger than 100.\n"
+                  + "    -m <number>      \n"
+                  + "     The minimum length of candidates. Default 30\n"
+                  + "    -M <number>      \n"
+                  + "     The maximum length of candidates. Default 100\n"
+                  + "    -f <number>      \n"
+                  + "     The fraction of the sequences expected to contain the motif. Default 0.80\n"
+                  + "    -s1 <number>     \n"
+                  + "     The max number of output single stem-loop motifs\n"
+                  + "    -s2 <number>    \n"
+                  + "     The max number of output double stem-loop motifs    \n"
+                  + "    -minspan1 <number>\n"
+                  + "     minimum span of a candidate sub-sequence in the heuristics to come up with an initial alignment for single-hairpin (h1) motifs\n"
+                  + "    -maxspan1 <number>\n"
+                  + "     like -minspan1, but maximum\n"
+                  + "    -minspan2 <number>\n"
+                  + "     like -minspan1, but for double-hairpin (h2) motifs\n"
+                  + "    -maxspan2 <number>\n"
+                  + "     like -minspan2, but maximal\n"
+                  + "    -combine         \n"
+                  + "     Combine the output motifs. Default False\n"
+                  + "    -motifList <file> \n"
+                  + "     Produce a list of motifs generated, one motif per line.\n"
+                  + "    -o <number>\n"
+                  + "     Minimum overlap for combining motifs\n"
+                  + "    -n <number>      \n"
+                  + "     Minimum number of sequences (weighted) for combining motifs\n"
+                  + "    -emSeq <file>\n"
+                  + "     Use the sequences in this fasta file for the expectation maximization step (i.e., the C executable cmfinder), but not for the earlier steps related to finding candidate motifs.  The reason for this distinction is that it is somewhat easier to add weighting to the cmfinder program, than the various canda, candf, cands and align programs.\n"
+                  + "    -likeold         \n"
+                  + "     Behave as much as possible like the old CMfinder, e.g., passing --enone, --p56 and --degen-rand to cmfinder_inf11.  It's not possible to produce identical results to CMfinder 0.3, but these flags make it more similar.\n"
+                  + "    -fragmentary\n"
+                  + "     Pass --fragmentary for cmfinder\n"
+                  + "    -amaa            \n"
+                  + "     Pass --amaa to cmfinder (align max align accuracy)\n"
+                  + "    -useOldCmfinder  \n"
+                  + "     Run the old cmfinder executable, mainly to test whether we get different results because of this perl script, or the cmfinder_inf11 executable.\n"
+                  + "    -skipClustalw    \n"
+                  + "     Do not run clustalw, like older installations lacking this program.\n"
+                  + "    -justGetCmfinderCommand    \n"
+                  + "     Print the command to run for the cmfinder executable, with appropriate partial flags.  This can be used to realign an existing .sto file, for example.\n"
+                  + "    -copyCmfinderRunsFromLog <log-file> \n"
+                  + "     For debugging.  Reads a log file that contains cmfinder commands, and re-runs them with new CMfinder.\n"
+                  + "    -commaSepEmFlags x<flags>\n"
+                  + "     List of flags and arguments to pass to the EM-step cmfinder exe.  There's an 'x' at the beginning of the flags, so that perl doesn't interpret the flags as flags for it.  It's comma-separated where on the command line it would be space separated.  I think commas are safe, and mean that I don't have to worry about quoting stuff.  e.g., -commaSepEmFlags x--fragmentary,--filter-non-frag,--filter-non-frag-pad,10 would pass this to the cmfinder program: \"--fragmentary --filter-non-frag --filter-non-frag-pad 10\", i.e., just replace commas with spaces.\n"
+                  + "    -commaSepSummarizeFlags x<flags>\n"
+                  + "     Flags to pass to the --summarize command.  Same syntax as for --commaSepEmFlags\n"
+                  + "    -commaSepCandfFlags x<flags>\n"
+                  + "     Flags to pass to the candf command.  Same syntax as for --commaSepEmFlags\n"
+                  + "    -minCandScoreInFinal <number>    \n"
+                  + "     Pass --min-cand-score-in-final <number> to cmfinder.  WARNING: there's a difference between using this flag (where even intermediate motifs will avoid these hits) and taking the low-scoring instances out of the final alignments (which might be combinations of motifs in which the sequence would have been lower-scoring).\n"
+                  + "    -filterNonFrag\n"
+                  + "     Pass --filter-non-frag to cmfinder\n"
+                  + "    -columnOnlyBasePairProbs\n"
+                  + "     Pass --column-only-base-pair-probs to cmfinder\n"
+                  + "    -saveTimer <file>\n"
+                  + "     create tab-delimited <file> containing timing stats on various sub-processes of this script.  the first tab-delimited field is the description of the sub-process, the second field is the total CPU time (user+sys) and the third field is the wall-clock time.  Sub-processes can occur in multiple lines if they are run multiple timers, so the caller should add them.  Due to my laziness, the time of the clustalw program (if used) is not counted.\n"
+                  + "    -cpu <num>\n"
+                  + "     use <num> CPUs for functionality that can use multi-CPUs (currently only the internal cmsearch commands in cmfinder04)\n"
+                  + "    -allCpus\n"
+                  + "     equivalent to -cpu X , where X is the number of available processors.\n"
+                  + "    -candsParallel\n"
+                  + "     run the two cands jobs in parallel, even if -cpu 1\n"
+                  + "    -outFileSuffix <string>\n"
+                  + "     add <string> to the output file names.  this is useful if you want to run the script in multiple ways in the same directory.\n"
+                  + "    -h               \n"
+                  + "     Show this list\n"
+                  + "    -version\n"
+                  + "     Show package version\n";
         System.err.println(help_content);
     }
 
