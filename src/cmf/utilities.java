@@ -57,7 +57,7 @@ public class utilities {
     }
 
     //return value is good to decide if the next command should be executed or not
-    public static synchronized cmdOut runCmd(String[] args, int timeout) {
+    public static cmdOut runCmd(String[] args, int timeout) {
         String ret = Arrays.stream(args).collect(joining(" ")) + "executing";
         boolean exitVal = true;
         ArrayList<String> out = new ArrayList<>();
@@ -84,7 +84,7 @@ public class utilities {
         return new cmdOut(out, exitVal);
     }
 
-    public static synchronized cmdOut runCmd(String[] args) {
+    public static cmdOut runCmd(String[] args) {
         String ret = Arrays.stream(args).collect(joining(" ")) + "executing";
         int exitCode = 0;
         boolean res = true;

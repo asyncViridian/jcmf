@@ -358,11 +358,31 @@ public class cmfinder {
                           || checkCPU() >= 2) {
                     runCandsParallel = 1;
                 }
-                ArrayList<String> candsJobs = new ArrayList<>();
+                TreeMap<String, String[]> candsJobs = new TreeMap<>();
                 SINGLE = jo.getInt("s1=i");
                 if (SINGLE > 0) {
-                    //to do
+                    candsJobs.put("candf",
+                              new String[]{bin_path + "/candf", candfExtraFlags, saveTimer03Flag, " -c " + CAND,
+                                  " -o " + SEQ + ".cand.h1" + outFileSuffix, " -M " + MAXSPAN1, " -m " + MINSPAN1,
+                                  " -s 1 ", " -S 1 ", SEQ});
+                    candsJobs.put("cands",
+                              new String[]{bin_path + "/cands", saveTimer03Flag,
+                                  " -l " + tempFileListFileName + ".single" + outFileSuffix,
+                                  " -n " + SINGLE, " -f " + FRACTION, SEQ, SEQ + ".cand.h1" + outFileSuffix});
                 }
+                if (DOUBLE > 0) {
+                    candsJobs.put("candf",
+                              new String[]{bin_path + "/candf", candfExtraFlags, saveTimer03Flag, " -c " + CAND,
+                                  " -o " + SEQ + ".cand.h2" + outFileSuffix, " -M " + MAXSPAN2, " -m " + MINSPAN2,
+                                  " -s 2 ", " -S 2 ", SEQ});
+                    candsJobs.put("cands",
+                              new String[]{bin_path + "/cands", saveTimer03Flag,
+                                  " -l " + tempFileListFileName + ".single" + outFileSuffix,
+                                  " -n " + DOUBLE, " -f " + FRACTION, SEQ, SEQ + ".cand.h2" + outFileSuffix});
+                }
+               
+                //java 8: ExecutorService
+                
             }
         } catch (JSONException | IOException ex) {
             System.out.println(ex);
