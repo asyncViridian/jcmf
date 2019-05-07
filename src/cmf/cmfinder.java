@@ -11,6 +11,7 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.*;
 import java.util.*;
+import java.util.concurrent.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.regex.Matcher;
@@ -380,12 +381,38 @@ public class cmfinder {
                                   " -l " + tempFileListFileName + ".single" + outFileSuffix,
                                   " -n " + DOUBLE, " -f " + FRACTION, SEQ, SEQ + ".cand.h2" + outFileSuffix});
                 }
-               
+
                 //java 8: ExecutorService
+                ExecutorService executor = Executors.newFixedThreadPool(2);
+                List<Callable<cmdOut>> callables
+                          = //   remove below hard coded from map, using map to stream                       
+                          //                                    = Arrays.asList(
+                          //                                    () -> runCmd(candsJobs.get("candf")),
+                          //                                    () -> runCmd(candsJobs.get("cands"))
+                          //                          );
+                          candsJobs.entrySet().stream()
+                                    .map(e -> (Callable<cmdOut>) (() -> runCmd(e.getValue())))
+                                    .collect(Collectors.toList());
+
+                executor.invokeAll(callables)
+                          .stream()
+                          .map(future -> {
+                              try {
+                                  return future.get();
+                              } catch (Exception e) {
+                                  throw new IllegalStateException(e);
+                              }
+                          })
+                          .forEach(System.out::println);
                 
+                executor.shutdown();
+                //to do
+
             }
         } catch (JSONException | IOException ex) {
             System.out.println(ex);
+        } catch (InterruptedException ex) {
+            Logger.getLogger(cmfinder.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
