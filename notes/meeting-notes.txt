@@ -1,3 +1,17 @@
+2019-05-02
+possibly change merge style:
+    - minimum merge block length threshold and add blocks until it hits that
+    - shift on percentage overlap
+genome browser file formats -> visualize?
+    - like the track format for alignment blocks.
+    - gff, bed similar formats.
+    - see how overlapping regions shows up - could visualize with overlapping results and non-overlapping
+could re-process long regions that look funny with more strict cmfinder parameters?
+could set up a web interface
+find link to browser interface for paper results and compare those
+(not now) rna structure visualization
+
+===============================================================================
 2019-04-25
 Requirement and length enforcement
     - By default: require human to be included
@@ -10,6 +24,7 @@ Collect stats
         - Gap% or N% statistics tracking
             - Partially implemented.
             - There are complications from including the rightmost interval area in the resulting block, but that portion isn't counted as part of the block sequence length.
+            - I have fixed this (as well as discovered another bug and fixed that): now only the 4 gap-spaces in between each merged block are included, and NOT the gaps to the leftmost or rightmost block. Also I no longer duplicate gap alignment blocks.
         - % of each block from each source block
     - From the scripts or in post-processing:
         - Runtime stats

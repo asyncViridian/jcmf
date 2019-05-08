@@ -1,0 +1,29 @@
+RNA Motifs Process Notes
+
+===============================================================================
+
+Regions of interest:
+    chr1:149,844,498-149,849,024 -
+        genome.ucsc.edu/cgi-bin/hgTracks?db=hg38&lastVirtModeType=default&lastVirtModeExtraState=&virtModeType=default&virtMode=0&nonVirtPosition=&position=chr1%3A149844498-149849024&hgsid=725072751_CDa4000ZfjAIuAaUC6vmqIGOqYhD
+    chr5:140,072,857-140,108,630 -
+        http://genome.ucsc.edu/cgi-bin/hgTracks?db=hg38&lastVirtModeType=default&lastVirtModeExtraState=&virtModeType=default&virtMode=0&nonVirtPosition=&position=chr5%3A140072857%2D140108630&hgsid=725074713_Dmj4c3zZn3vT3NSJGrQjYZVLzsbs
+    chr12:62,602,752-62,622,213 +
+        http://genome.ucsc.edu/cgi-bin/hgTracks?db=hg38&lastVirtModeType=default&lastVirtModeExtraState=&virtModeType=default&virtMode=0&nonVirtPosition=&position=chr12%3A62602752%2D62622213&hgsid=725072751_CDa4000ZfjAIuAaUC6vmqIGOqYhD
+    chr2:218,255,319-218,257,366 +
+        http://genome.ucsc.edu/cgi-bin/hgTracks?db=hg38&lastVirtModeType=default&lastVirtModeExtraState=&virtModeType=default&virtMode=0&nonVirtPosition=&position=chr2%3A218255319%2D218257366&hgsid=725074751_HUEhL9EESes7V284Qvcyo3fLpb4j
+
+===============================================================================
+
+Downloading the MAF files for alignment blocks using the UCSC browser:
+01. Navigate to the UCSC genome browser. Any of the URLs in the "Regions of Interest" should work, or otherwise select the region of interest.
+02. In the header bar, click Tools > Table Browser.
+03. Configure: group:"Comparative Genomics", track:"Conservation", table:"Multiz Align (multiz100way)", region:position, output-format:MAF
+04. Optionally, name the output file to save it directly to disk, or send output to some other web interface.
+
+===============================================================================
+
+Generating the merged alignment block sequences:
+This process creates a set of FASTA files, each of which is a set of input sequences consisting of multiple alignment blocks merged together. The sequences have their gap characters removed, and Ns are inserted for actual gaps between alignment blocks that must be bridged.
+
+Run blockmerge, and pass the MAF file as "input filename".
+    run blockmerge without arguments to get a description of the usage.
