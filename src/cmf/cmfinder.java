@@ -5,7 +5,6 @@ package cmf;
  * cmfinder04.pl
  */
 import static cmf.Io.*;
-import cmf.utilities.*;
 import static cmf.utilities.*;
 import java.io.File;
 import java.io.IOException;
@@ -51,36 +50,10 @@ public class cmfinder {
     static String motifList;
     static int minCandScoreInFinal = 0; // be more like old cmfinder for now
     static String emSeq;
+    static boolean skipClustalw;
+    static boolean useOldCmfinder; // set in the static block or main method
 
     //getOptions parameters from json file
-    boolean version;
-    boolean h;
-    boolean v;
-    String w;
-    int c;
-    int minspan1;
-    int maxspan1;
-    int minspan2;
-    int maxspan2;
-    double f;
-    int s1;
-    int s2;
-    boolean combine;
-    int o;
-    double n;
-    static boolean skipClustalw ;
-    boolean likeold;
-    static boolean useOldCmfinder; // set in the static block or main method
-    boolean justGetCmfinderCommand;
-    String copyCmfinderRunsFromLog;
-    boolean amaa;
-    boolean filterNonFrag;
-    boolean fragmentary;
-    //flags
-    boolean commaSepEmFlags_degen_rand;
-    String commaSepEmFlags_degen_keep;
-    boolean commaSepEmFlags_fragmentary;
-
     static JSONObject jo;
 
     static ArrayList<String> cmfinder_inf11FlagsList = new ArrayList<String>();
@@ -92,7 +65,7 @@ public class cmfinder {
     static String saveTimerFlag = "";
     static String saveTimer03Flag = "";
 
-    static HashMap<String, Seq> unaligned_seqs ;
+    static HashMap<String, Seq> unaligned_seqs;
 
     //usage for aligments: try_merge
     static HashMap<String, Alignment> alignments = new HashMap<>();
@@ -103,10 +76,11 @@ public class cmfinder {
     static String outFileSuffix;
     static String dummyCmfileParamForCmfinder = "";
     static String tempFileListFileName = SEQ + ".file-list";
+    
     static ArrayList<String> cands = new ArrayList();
 
     static {
-        
+
         unaligned_seqs = read_fasta(seqForExpectationMaximization);
         try {
             jo = read_json_file("./src/cmf/cmfinder_param.json");
