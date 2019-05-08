@@ -11,7 +11,7 @@
     "f": 0.8,
     "s1=i": 5,
     "s2=i": 5,
-    "combine": 0,
+    "combine": false,
     "o": 2,
     "n": 2.5,
     "skipClustalw": false,

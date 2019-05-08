@@ -36,13 +36,9 @@ public class cmfinder {
     static int DOUBLE = 5;
     static boolean verbose = true;
     static int help = 0;
-    static int COMBINE = 0;
+    static boolean COMBINE = false;
     static String cand_weight_option = "";
     static String cmfinderBaseExe = "cmfinder04";
-    // ($likeold,$skipClustalw,$useOldCmfinder,$simpleMotifsAlreadyDone,$justGetCmfinderCommand,
-    // $copyCmfinderRunsFromLog,$amaa,$version,$filterNonFrag,$fragmentary,$commaSepEmFlags,
-    // $commaSepSummarizeFlags,$commaSepCandfFlags,$saveTimer,$allCpus,$cpu,$candsParallel,$outFileSuffix,
-    // $columnOnlyBasePairProbs);
     static boolean emulate_apparent_bug_in_resolve_overlap = false;
 
     //parameters from comb_motif.pl
@@ -52,7 +48,7 @@ public class cmfinder {
     static double comb_min_num = 2.5;
     static int comb_max_len = 200;
     static boolean output_more_like_old_cmfinder_pl = false; //perl using 0, debug flag
-    static ArrayList<String> motifList;
+    static String motifList;
     static int minCandScoreInFinal = 0; // be more like old cmfinder for now
     static String emSeq;
 
@@ -69,13 +65,12 @@ public class cmfinder {
     double f;
     int s1;
     int s2;
-    int combine;
+    boolean combine;
     int o;
     double n;
-    boolean skipClustalw = jo.getBoolean("skipClustalw");
+    static boolean skipClustalw ;
     boolean likeold;
     static boolean useOldCmfinder; // set in the static block or main method
-    boolean simpleMotifsAlreadyDone;
     boolean justGetCmfinderCommand;
     String copyCmfinderRunsFromLog;
     boolean amaa;
@@ -97,7 +92,7 @@ public class cmfinder {
     static String saveTimerFlag = "";
     static String saveTimer03Flag = "";
 
-    HashMap<String, Seq> unaligned_seqs = read_fasta(seqForExpectationMaximization);
+    static HashMap<String, Seq> unaligned_seqs ;
 
     //usage for aligments: try_merge
     static HashMap<String, Alignment> alignments = new HashMap<>();
@@ -111,10 +106,15 @@ public class cmfinder {
     static ArrayList<String> cands = new ArrayList();
 
     static {
+        
+        unaligned_seqs = read_fasta(seqForExpectationMaximization);
         try {
             jo = read_json_file("./src/cmf/cmfinder_param.json");
 
             useOldCmfinder = jo.optBoolean("useOldCmfinder");
+            motifList = jo.optString("motifList");
+            COMBINE = jo.getBoolean("combine");
+            skipClustalw = jo.getBoolean("skipClustalw");
 
             if ((!jo.optString("emSeq").isEmpty())
                       && (!jo.optString("emSeq").equals(null))) {
@@ -245,12 +245,12 @@ public class cmfinder {
                     Logger.getLogger(cmfinder.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
-            //check motifList file
-            if ((!jo.optString("motifList").equals(null))
-                      && (!jo.optString("motifList").isEmpty())) {
+            //check motifList file, slight different from perl
+            if ((!motifList.equals(null)) && (!motifList.isEmpty())) {
                 //check file existing otherwise IOException 
-                findFile(bin_path, jo.optString("motifList"));
+                findFile(bin_path, motifList);
             }
+
             if (jo.optBoolean("copyCmfinderRunsFromLog")) {
                 /* below find the SEQ's folder                   
                     my $dir=$SEQ;
@@ -429,11 +429,56 @@ public class cmfinder {
                 cands.add(tempFileListFileName + ".single" + outFileSuffix);
                 cands.add(tempFileListFileName + ".double" + outFileSuffix);
             }
+
+            ArrayList<String> motifFiles = new ArrayList();
+            for (String cand : cands) {
+                String pattern = SEQ + "(\\.\\d)?\\.cand.*\\_\\d+$";
+                Pattern p = Pattern.compile(pattern);
+                Matcher m = p.matcher(cand);
+                if (m.find()) {
+                    String pref = m.group(0);
+                    String align = cand;
+                    align = align.replace("cand", "align");
+                    String motif = cand;
+                    motif = motif.replace("cand", "motif");
+                    if (jo.getBoolean("simpleMotifsAlreadyDone")) {
+                        // perl logic error?
+                        /*
+                        if (-e $motif) {push @motifFiles,$motif;  }
+                         */
+                        if (motif.isEmpty()) {
+                            motifFiles.add(motif);
+                        }
+                    } else {
+                        String[] cmd1 = {bin_path + "/canda", saveTimer03Flag, cand, SEQ, align};
+                        runCmd(cmd1);
+                        String[] cmd2 = {bin_path + "/" + cmfinderBaseExe,
+                            saveTimerFlag, cmfinder_inf11Flags, cand_weight_option,
+                            "-o " + motif, "-a " + align,
+                            seqForExpectationMaximization, dummyCmfileParamForCmfinder};
+                        if (RunCmfinder(cmd2, motif)) {
+                            //produced acceptable output
+                            motifFiles.add(motif);
+                            if ((!motifList.equals(null)) && (!motifList.isEmpty())) {
+                                System.out.println("motifList=" + motif);
+                            }
+                        } else {
+                            // oh well, nothing acceptable
+                        }
+                    }
+                } else {
+                    throw new MyException("weird cand file name " + cand);
+                }
+            }
+
+            //combine
+            if (COMBINE) {
+                CombMotif(cand_weight_option, seqForExpectationMaximization, motifFiles);
+            }
+
             //to do
-        } catch (JSONException | IOException ex) {
+        } catch (InterruptedException | MyException | JSONException | IOException ex) {
             System.out.println(ex);
-        } catch (InterruptedException ex) {
-            Logger.getLogger(cmfinder.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -459,48 +504,7 @@ public class cmfinder {
         return list;
     }
 
-    // get parameter by read jo oject;
-    //    public void parse_param(JSONObject jo) {
-    //        version = jo.optBoolean("version");
-    //        h = jo.optBoolean("h");
-    //        v = jo.optBoolean("v");
-    //        w = jo.optString("w");
-    //        c = jo.optInt("c");
-    //        minspan1 = jo.optInt("minspan1");
-    //        maxspan1 = jo.optInt("maxspan1");
-    //        minspan2 = jo.optInt("minspan2");
-    //        maxspan2 = jo.optInt("maxspan2");
-    //        f = jo.optDouble("f");
-    //        s1 = jo.optInt("s1");
-    //        s2 = jo.optInt("s2");
-    //        combine = jo.optInt("combine");
-    //        o = jo.optInt("o");
-    //        n = jo.optDouble("n");
-    //        skipClustalw = jo.optBoolean("skipClustalw");
-    //        likeold = jo.optBoolean("likeold");
-    //        useOldCmfinder = jo.optBoolean("useOldCmfinder");
-    //        simpleMotifsAlreadyDone = jo.optBoolean("simpleMotifsAlreadyDone");
-    //        justGetCmfinderCommand = jo.optBoolean("justGetCmfinderCommand");
-    //        copyCmfinderRunsFromLog = jo.optString("copyCmfinderRunsFromLog");
-    //        amaa = jo.optBoolean("amaa");
-    //        ArrayList<String> motifList = new ArrayList<String>();
-    //        JSONArray jsonArray = jo.optJSONArray("motifList");
-    //        if (jsonArray != null) {
-    //            int len = jsonArray.length();
-    //            for (int i = 0; i < len; i++) {
-    //                motifList.add(jsonArray.get(i).toString());
-    //            }
-    //        }
-    //        minCandScoreInFinal = jo.optInt("minCandScoreInFinal");
-    //        emSeq = jo.optString("emSeq");
-    //        filterNonFrag = jo.optBoolean("filterNonFrag");
-    //        fragmentary = jo.optBoolean("fragmentary");
-    //        // flags
-    //        commaSepEmFlags_degen_rand = jo.getJSONObject("commaSepEmFlags").optBoolean("degen-rand");
-    //        commaSepEmFlags_degen_keep = jo.getJSONObject("commaSepEmFlags").optString("degen_keep");
-    //        commaSepEmFlags_fragmentary = jo.optBoolean("fragmentary");
-    //    }
-    public int resolve_overlap(Alignment alignment1, Alignment alignment2) {
+    public static int resolve_overlap(Alignment alignment1, Alignment alignment2) {
 
         int cost1 = 0;
         int cost2 = 0;
@@ -566,7 +570,7 @@ public class cmfinder {
         return (cost1 < cost2) ? 1 : 2;
     }
 
-    public Merge_Motif_Output merge_motif(AlignSeq motif1, AlignSeq motif2, String whole_seq, int olap_own) {
+    public static Merge_Motif_Output merge_motif(AlignSeq motif1, AlignSeq motif2, String whole_seq, int olap_own) {
         //assume that $motif1 should be before $motif2;
         Merge_Motif_Output mm = new Merge_Motif_Output(0, 0, "", "", "", "", "", "");
 
@@ -690,7 +694,7 @@ public class cmfinder {
         return new Merge_Motif_Output(start, end, seq1, ss1, gap_seq, gap_ss, seq2, ss2);
     }
 
-    public Alignment merge_alignment(
+    public static Alignment merge_alignment(
               Alignment alignment1,
               Alignment alignment2,
               HashMap<String, Seq> seqs,
@@ -936,7 +940,7 @@ public class cmfinder {
         return new Alignment(merged_motif, alignment1.getFlags(), merged_ss_cons, merged_rf);
     }
 
-    public void CombMotif(String cand_weight_option, String seq_file, ArrayList<String> motifFilesRef)
+    public static void CombMotif(String cand_weight_option, String seq_file, ArrayList<String> motifFilesRef)
               throws MyException {
 
         ArrayList<String> align_files = motifFilesRef;
@@ -1325,7 +1329,7 @@ public class cmfinder {
     }
 
     // note we assume the file is in bin_path folder
-    public HashMap<String, String> RunSummarize(String file_name) throws MyException {
+    public static HashMap<String, String> RunSummarize(String file_name) throws MyException {
         String f = findFile(bin_path, file_name);
         if (false) {
             String[] cmd = {findFile(bin_path, "summarize"), f};
