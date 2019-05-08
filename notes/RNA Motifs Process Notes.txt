@@ -27,3 +27,311 @@ This process creates a set of FASTA files, each of which is a set of input seque
 
 Run blockmerge, and pass the MAF file as "input filename".
     run blockmerge without arguments to get a description of the usage.
+
+===============================================================================
+
+Generating the predicted motifs:
+There are 4 scripts in the scripts directory. 
+    TODO: These currently use hardcoded filepaths. I want to parameterize them later, for easier auto processing.
+The scripts:
+    01split.sh
+        This can be used to split a pseudo-FASTA file into many separate FASTA files along the pattern \n\n (split along empty lines). This "pseudo-FASTA" is the format that Galaxy's MAF->FASTA conversion tool outputs.
+        In the context of my current pipeline, this script is unused.
+    02align.sh
+        This script runs cmfinder with a set of arguments (listed within the script) on each of the FASTA files in the directory ./split relative to the current directory.
+        It produces a set of folders containing the appropriate sorted output.
+        TODO: update the pathing settings.
+    03score.sh
+        This script scores each of the motifs (individual results and merged results both) that 02align produces. It depends on the file structure that 02align produces, and outputs several more directories. The actual scoring information is within ./scores, while extra produced files are moved to ./other
+    04listscores.sh
+        This script lists all of the scores that 03score calculated in order from least to greatest.
+
+My workflow that I have used so far:
+01. Generate the FASTA files by whatever means is preferred. Place those files into ./split
+02. Run the command "./02align.sh && ./03score.sh &" and then "disown". This will run the appropriate motif-finding and scoring in the background, and then I can check for progress by checking the number of files or currently running processes.
+03. Optionally, run "./04listscores.sh" to get a very brief summary of the results. Or download the output and process that into track format to analyze.
+    TODO: work on the analysis portion
+
+===============================================================================
+
+Placeholder.
+
+===============================================================================
+===============================================================================
+      _                
+     | |               
+   __| | ___   ___ ___ 
+  / _` |/ _ \ / __/ __|
+ | (_| | (_) | (__\__ \
+  \__,_|\___/ \___|___/
+                       
+                       
+===============================================================================
+===============================================================================
+
+CMFINDER04.PL
+Options:
+    -c <number>
+     The maximum number of candidates in each sequence. Default 40. No bigger than 100.
+    -m <number>
+     The minimum length of candidates. Default 30
+        NOTE THIS DOES NOT ACTUALLY EXIST
+    -M <number>
+     The maximum length of candidates. Default 100
+        NOTE THIS DOES NOT ACTUALLY EXIST
+    -f <number>
+     The fraction of the sequences expected to contain the motif. Default 0.80
+    -s1 <number>
+     The max number of output single stem-loop motifs
+    -s2 <number>
+     The max number of output double stem-loop motifs
+    -minspan1 <number>
+     minimum span of a candidate sub-sequence in the heuristics to come up with an initial alignment for single-hairpin (h1) motifs
+    -maxspan1 <number>
+     like -minspan1, but maximum
+    -minspan2 <number>
+     like -minspan1, but for double-hairpin (h2) motifs
+    -maxspan2 <number>
+     like -minspan2, but maximal
+    -combine
+     Combine the output motifs. Default False
+    -motifList <file>
+     Produce a list of motifs generated, one motif per line.
+    -o <number>
+     Minimum overlap for combining motifs
+    -n <number>
+     Minimum number of sequences (weighted) for combining motifs
+    -emSeq <file>
+     Use the sequences in this fasta file for the expectation maximization step (i.e., the C executable cmfinder), but not for the earlier steps related to finding candidate motifs.  The reason for this distinction is that it is somewhat easier to add weighting to the cmfinder program, than the various canda, candf, cands and align programs.
+    -likeold
+     Behave as much as possible like the old CMfinder, e.g., passing --enone, --p56 and --degen-rand to cmfinder_inf11.  It's not possible to produce identical results to CMfinder 0.3, but these flags make it more similar.
+    -fragmentary
+     Pass --fragmentary for cmfinder
+    -amaa
+     Pass --amaa to cmfinder (align max align accuracy)
+    -useOldCmfinder
+     Run the old cmfinder executable, mainly to test whether we get different results because of this perl script, or the cmfinder_inf11 executable.
+    -skipClustalw
+     Do not run clustalw, like older installations lacking this program.
+    -justGetCmfinderCommand
+     Print the command to run for the cmfinder executable, with appropriate partial flags.  This can be used to realign an existing .sto file, for example.
+    -copyCmfinderRunsFromLog <log-file>
+     For debugging.  Reads a log file that contains cmfinder commands, and re-runs them with new CMfinder.
+    -commaSepEmFlags x<flags>
+     List of flags and arguments to pass to the EM-step cmfinder exe.  There's an 'x' at the beginning of the flags, so that perl doesn't interpret the flags as flags for it.  It's comma-separated where on the command line it would be space separated.  I think commas are safe, and mean that I don't have to worry about quoting stuff.  e.g., -commaSepEmFlags x--fragmentary,--filter-non-frag,--filter-non-frag-pad,10 would pass this to the cmfinder program: "--fragmentary --filter-non-frag --filter-non-frag-pad 10", i.e., just replace commas with spaces.
+    -commaSepSummarizeFlags x<flags>
+     Flags to pass to the --summarize command.  Same syntax as for --commaSepEmFlags
+    -commaSepCandfFlags x<flags>
+     Flags to pass to the candf command.  Same syntax as for --commaSepEmFlags
+    -minCandScoreInFinal <number>
+     Pass --min-cand-score-in-final <number> to cmfinder.  WARNING: there's a difference between using this flag (where even intermediate motifs will avoid these hits) and taking the low-scoring instances out of the final alignments (which might be combinations of motifs in which the sequence would have been lower-scoring).
+    -filterNonFrag
+     Pass --filter-non-frag to cmfinder
+    -columnOnlyBasePairProbs
+     Pass --column-only-base-pair-probs to cmfinder
+    -saveTimer <file>
+     create tab-delimited <file> containing timing stats on various sub-processes of this script.  the first tab-delimited field is the description of the sub-process, the second field is the total CPU time (user+sys) and the third field is the wall-clock time.  Sub-processes can occur in multiple lines if they are run multiple timers, so the caller should add them.  Due to my laziness, the time of the clustalw program (if used) is not counted.
+    -cpu <num>
+     use <num> CPUs for functionality that can use multi-CPUs (currently only the internal cmsearch commands in cmfinder04)
+    -allCpus
+     equivalent to -cpu X , where X is the number of available processors.
+    -candsParallel
+     run the two cands jobs in parallel, even if -cpu 1
+    -outFileSuffix <string>
+     add <string> to the output file names.  this is useful if you want to run the script in multiple ways in the same directory.
+    -h
+     Show this list
+    -version
+     Show package version
+
+===============================================================================
+
+CMFINDER04
+Usage: cmfinder04 [options] <input-sto-file>
+OR --summarize [options] <input-sto-file>
+
+Basic options:
+  -h        : show brief help on version and usage
+  -a <f>    : input alignment file (.sto)
+  -o <f>    : output alignment file (.sto)
+  --version : show version
+
+General cmfinder options:
+  --degen-rand                    : randomize degenerate nucs like CMfinder 0.3
+  --degen-keep                    : keep degenerate nucs and marginalize  [default]
+  --fragmentary                   : allow truncated hits (independent of --degen-X, unlike pscore)
+  --non-frag-avg-bppr             : ignore --fragmentary for calculating average base pair probs
+  --wgsc                          : use GSC alg to weight sequences for redundancy
+  --wpb                           : use PB alg to weight sequences for redundancy
+  --ints-like-03                  : use ints for mutual info and partition func, like CMfinder 0.3 did
+  --min-seq-weight <x>            : eliminate seqs from MSA whose TCM weight is below this value  [0.01]
+  --no-elim-iden-seq              : don't eliminate identical sequences as candidate members
+  --no-elim-iden-subseq           : don't eliminate identical sub-sequences of other sequences as candidate members
+  --allow-untested-code           : run code that was never exercized in tests; don't abort to allow testing
+  --min-cand-score-in-final <x>   : min cmsearch score to put a seq into the saved MSA.  [0]
+  --bg-score-size <n>             : create this many randomized seqs for each input seq to get background score, below which candi                                                         dates are rejected  [0]
+  --bg-score-evalue <x>           : try to get an EVD from --bg-score-size, and apply this E-value  [-1]
+  --bg-score-scan-thresh <x>      : bitscore threshold (-T in cmsearch) to use for scanning --bg-score-size data.  [0]
+  --bg-score-non-frag             : prevent --bg-score-size scans from using fragmentary modes -- force --nontrunc
+  --filter-non-frag               : first run cmsearch with --notrunc, then run normal cmsearch only on the hits from --notrunc
+  --filter-non-frag-pad <n>       : with --filter-non-frag, add this many nucs on 5' and 3' side of the non-frag hits  [20]
+  --max-degen-per-hit <n>         : eliminate hits with this many degen nucs or more
+  --max-degen-flanking-nucs <n>   : consider this many nucs beyond the 5' and 3' ends of each hit in counting degen nucs for --max                                                         -degen-per-hit
+  --bad-distal-pairs-to-loop      : shift non-canon pairs in distal part of stems to the terminal loop
+  --bad-distal-pairs-to-loop-only : just run the input msa (-a flag) thru --bad-distal-pairs-to-loop-test and save to output msa (                                                         -o flag)
+  --min-term-loop-nucs <n>        : only with --bad-distal-pairs-to-loop, move even good base pairs into loop if there are fewer t                                                         han this many nucs in term loop.  But leave it alone if bp is truncated (with --fragmentary)
+  --seed <n>                      : set random number generator's seed to <n>  [0]  (n>=0)
+  --evalue <x>                    : use this E-value in ScanCand, in addition to a threshold (note: implies running internal cmcal                                                         ibrate, which will be very slow)
+  --create-file-on-success <f>    : create this file, empty, upon successful completion of the program, for convenience elsewhere
+  --save-after-first-M-step       : for debugging.  program exits after saving the file
+  --save-in-progress              : for debugging, save MSA's as we processed
+  --timer-append <f>              : append timing stats to tab-delimited file
+
+options related to internal cmcalibrate/cmsearch:
+  --tailn <n> : pass --gtailn or --ltailn as appropriate to cmcalibrate (default: accept cmcalibrate's default)
+  --local     : local mode, i.e. don't pass -g to internal cmsearch
+  --noF4F5    : set --noF4 and --noF5 (env def) to avoid glocal hmm
+  --max       : pass --max to cmsearch (and skip calibrations in cmbuild)
+  --amaa      : use maximal-alignment accuracy in cmsearch, i.e. don't pass --acyk
+  --cpu <n>   : pass to internal cmsearch/cmcalibrate.  --cpu -1 means use all CPUs (default is --cpu 0, which is single-threaded)                                                           [0]  (n>=-1)
+
+options related to internal cmbuild:
+  --p56       : use the default prior from Infernal v0.56 through v1.0.2
+  --prior <f> : read priors from file <f>
+  --eent      : adjust eff seq # to achieve relative entropy target  [default]
+  --enone     : no effective seq # weighting: just use nseq
+  --EmN <n>   : number of sampled seqs to use for p7 local MSV calibration  [200]  (n>0)
+  --EvN <n>   : number of sampled seqs to use for p7 local Vit calibration  [200]  (n>0)
+  --ElfN <n>  : number of sampled seqs to use for p7 local Fwd calibration  [200]  (n>0)
+  --EgfN <n>  : number of sampled seqs to use for p7 glocal Fwd calibration  [200]  (n>0)
+
+options for --summarizea:
+  --summarize              : perform functionality like 'summarize' program.  commandline has the .sto file
+  --summarize-gsc          : use GSC alg weighting for --summarize
+  --summarize-save-msa <f> : save MSA used by --summarize, for debugging modifications on loading
+[jyzhou15@attu6 data]$ cmfinder04 -h
+Usage: cmfinder04 [options] <input-sto-file>
+OR --summarize [options] <input-sto-file>
+
+Basic options:
+  -h        : show brief help on version and usage
+  -a <f>    : input alignment file (.sto)
+  -o <f>    : output alignment file (.sto)
+  --version : show version
+
+General cmfinder options:
+  --degen-rand                    : randomize degenerate nucs like CMfinder 0.3
+  --degen-keep                    : keep degenerate nucs and marginalize  [default]
+  --fragmentary                   : allow truncated hits (independent of --degen-X, unlike pscore)
+  --non-frag-avg-bppr             : ignore --fragmentary for calculating average base pair probs
+  --wgsc                          : use GSC alg to weight sequences for redundancy
+  --wpb                           : use PB alg to weight sequences for redundancy
+  --ints-like-03                  : use ints for mutual info and partition func, like CMfinder 0.3 did
+  --min-seq-weight <x>            : eliminate seqs from MSA whose TCM weight is below this value  [0.01]
+  --no-elim-iden-seq              : don't eliminate identical sequences as candidate members
+  --no-elim-iden-subseq           : don't eliminate identical sub-sequences of other sequences as candidate members
+  --allow-untested-code           : run code that was never exercized in tests; don't abort to allow testing
+  --min-cand-score-in-final <x>   : min cmsearch score to put a seq into the saved MSA.  [0]
+  --bg-score-size <n>             : create this many randomized seqs for each input seq to get background score, below which candidates are rejected  [0]
+  --bg-score-evalue <x>           : try to get an EVD from --bg-score-size, and apply this E-value  [-1]
+  --bg-score-scan-thresh <x>      : bitscore threshold (-T in cmsearch) to use for scanning --bg-score-size data.  [0]
+  --bg-score-non-frag             : prevent --bg-score-size scans from using fragmentary modes -- force --nontrunc
+  --filter-non-frag               : first run cmsearch with --notrunc, then run normal cmsearch only on the hits from --notrunc
+  --filter-non-frag-pad <n>       : with --filter-non-frag, add this many nucs on 5' and 3' side of the non-frag hits  [20]
+  --max-degen-per-hit <n>         : eliminate hits with this many degen nucs or more
+  --max-degen-flanking-nucs <n>   : consider this many nucs beyond the 5' and 3' ends of each hit in counting degen nucs for --max-degen-per-hit
+  --bad-distal-pairs-to-loop      : shift non-canon pairs in distal part of stems to the terminal loop
+  --bad-distal-pairs-to-loop-only : just run the input msa (-a flag) thru --bad-distal-pairs-to-loop-test and save to output msa (-o flag)
+  --min-term-loop-nucs <n>        : only with --bad-distal-pairs-to-loop, move even good base pairs into loop if there are fewer than this many nucs in term loop.  But leave it alone if   bp is truncated (with --fragmentary)
+  --seed <n>                      : set random number generator's seed to <n>  [0]  (n>=0)
+  --evalue <x>                    : use this E-value in ScanCand, in addition to a threshold (note: implies running internal cmcalibrate, which will be very slow)
+  --create-file-on-success <f>    : create this file, empty, upon successful completion of the program, for convenience elsewhere
+  --save-after-first-M-step       : for debugging.  program exits after saving the file
+  --save-in-progress              : for debugging, save MSA's as we processed
+  --timer-append <f>              : append timing stats to tab-delimited file
+
+options related to internal cmcalibrate/cmsearch:
+  --tailn <n> : pass --gtailn or --ltailn as appropriate to cmcalibrate (default: accept cmcalibrate's default)
+  --local     : local mode, i.e. don't pass -g to internal cmsearch
+  --noF4F5    : set --noF4 and --noF5 (env def) to avoid glocal hmm
+  --max       : pass --max to cmsearch (and skip calibrations in cmbuild)
+  --amaa      : use maximal-alignment accuracy in cmsearch, i.e. don't pass --acyk
+  --cpu <n>   : pass to internal cmsearch/cmcalibrate.  --cpu -1 means use all CPUs (default is --cpu 0, which is single-threaded)  [0]  (n>=-1)
+
+options related to internal cmbuild:
+  --p56       : use the default prior from Infernal v0.56 through v1.0.2
+  --prior <f> : read priors from file <f>
+  --eent      : adjust eff seq # to achieve relative entropy target  [default]
+  --enone     : no effective seq # weighting: just use nseq
+  --EmN <n>   : number of sampled seqs to use for p7 local MSV calibration  [200]  (n>0)
+  --EvN <n>   : number of sampled seqs to use for p7 local Vit calibration  [200]  (n>0)
+  --ElfN <n>  : number of sampled seqs to use for p7 local Fwd calibration  [200]  (n>0)
+  --EgfN <n>  : number of sampled seqs to use for p7 glocal Fwd calibration  [200]  (n>0)
+
+options for --summarizea:
+  --summarize              : perform functionality like 'summarize' program.  commandline has the .sto file
+  --summarize-gsc          : use GSC alg weighting for --summarize
+  --summarize-save-msa <f> : save MSA used by --summarize, for debugging modifications on loading
+[jyzhou15@attu6 data]$ cmfinder04 -h
+Usage: cmfinder04 [options] <input-sto-file>
+OR --summarize [options] <input-sto-file>
+
+Basic options:
+  -h        : show brief help on version and usage
+  -a <f>    : input alignment file (.sto)
+  -o <f>    : output alignment file (.sto)
+  --version : show version
+
+General cmfinder options:
+  --degen-rand                    : randomize degenerate nucs like CMfinder 0.3
+  --degen-keep                    : keep degenerate nucs and marginalize  [default]
+  --fragmentary                   : allow truncated hits (independent of --degen-X, unlike pscore)
+  --non-frag-avg-bppr             : ignore --fragmentary for calculating average base pair probs
+  --wgsc                          : use GSC alg to weight sequences for redundancy
+  --wpb                           : use PB alg to weight sequences for redundancy
+  --ints-like-03                  : use ints for mutual info and partition func, like CMfinder 0.3 did
+  --min-seq-weight <x>            : eliminate seqs from MSA whose TCM weight is below this value  [0.01]
+  --no-elim-iden-seq              : don't eliminate identical sequences as candidate members
+  --no-elim-iden-subseq           : don't eliminate identical sub-sequences of other sequences as candidate members
+  --allow-untested-code           : run code that was never exercized in tests; don't abort to allow testing
+  --min-cand-score-in-final <x>   : min cmsearch score to put a seq into the saved MSA.  [0]
+  --bg-score-size <n>             : create this many randomized seqs for each input seq to get background score, below which candidates are rejected  [0]
+  --bg-score-evalue <x>           : try to get an EVD from --bg-score-size, and apply this E-value  [-1]
+  --bg-score-scan-thresh <x>      : bitscore threshold (-T in cmsearch) to use for scanning --bg-score-size data.  [0]
+  --bg-score-non-frag             : prevent --bg-score-size scans from using fragmentary modes -- force --nontrunc
+  --filter-non-frag               : first run cmsearch with --notrunc, then run normal cmsearch only on the hits from --notrunc
+  --filter-non-frag-pad <n>       : with --filter-non-frag, add this many nucs on 5' and 3' side of the non-frag hits  [20]
+  --max-degen-per-hit <n>         : eliminate hits with this many degen nucs or more
+  --max-degen-flanking-nucs <n>   : consider this many nucs beyond the 5' and 3' ends of each hit in counting degen nucs for --max-degen-per-hit
+  --bad-distal-pairs-to-loop      : shift non-canon pairs in distal part of stems to the terminal loop
+  --bad-distal-pairs-to-loop-only : just run the input msa (-a flag) thru --bad-distal-pairs-to-loop-test and save to output msa (-o flag)
+  --min-term-loop-nucs <n>        : only with --bad-distal-pairs-to-loop, move even good base pairs into loop if there are fewer than this many nucs in term loop.  But leave it alone if bp is truncated (with --fragmentary)
+  --seed <n>                      : set random number generator's seed to <n>  [0]  (n>=0)
+  --evalue <x>                    : use this E-value in ScanCand, in addition to a threshold (note: implies running internal cmcalibrate, which will be very slow)
+  --create-file-on-success <f>    : create this file, empty, upon successful completion of the program, for convenience elsewhere
+  --save-after-first-M-step       : for debugging.  program exits after saving the file
+  --save-in-progress              : for debugging, save MSA's as we processed
+  --timer-append <f>              : append timing stats to tab-delimited file
+
+options related to internal cmcalibrate/cmsearch:
+  --tailn <n> : pass --gtailn or --ltailn as appropriate to cmcalibrate (default: accept cmcalibrate's default)
+  --local     : local mode, i.e. don't pass -g to internal cmsearch
+  --noF4F5    : set --noF4 and --noF5 (env def) to avoid glocal hmm
+  --max       : pass --max to cmsearch (and skip calibrations in cmbuild)
+  --amaa      : use maximal-alignment accuracy in cmsearch, i.e. don't pass --acyk
+  --cpu <n>   : pass to internal cmsearch/cmcalibrate.  --cpu -1 means use all CPUs (default is --cpu 0, which is single-threaded)  [0]  (n>=-1)
+
+options related to internal cmbuild:
+  --p56       : use the default prior from Infernal v0.56 through v1.0.2
+  --prior <f> : read priors from file <f>
+  --eent      : adjust eff seq # to achieve relative entropy target  [default]
+  --enone     : no effective seq # weighting: just use nseq
+  --EmN <n>   : number of sampled seqs to use for p7 local MSV calibration  [200]  (n>0)
+  --EvN <n>   : number of sampled seqs to use for p7 local Vit calibration  [200]  (n>0)
+  --ElfN <n>  : number of sampled seqs to use for p7 local Fwd calibration  [200]  (n>0)
+  --EgfN <n>  : number of sampled seqs to use for p7 glocal Fwd calibration  [200]  (n>0)
+
+options for --summarizea:
+  --summarize              : perform functionality like 'summarize' program.  commandline has the .sto file
+  --summarize-gsc          : use GSC alg weighting for --summarize
+  --summarize-save-msa <f> : save MSA used by --summarize, for debugging modifications on loading
