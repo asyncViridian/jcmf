@@ -108,6 +108,7 @@ public class cmfinder {
     static String outFileSuffix;
     static String dummyCmfileParamForCmfinder = "";
     static String tempFileListFileName = SEQ + ".file-list";
+    static ArrayList<String> cands = new ArrayList();
 
     static {
         try {
@@ -359,8 +360,10 @@ public class cmfinder {
                           || checkCPU() >= 2) {
                     runCandsParallel = 1;
                 }
-                TreeMap<String, String[]> candsJobs = new TreeMap<>();
+
+                HashMap<String, String[]> candsJobs = new HashMap<>();
                 SINGLE = jo.getInt("s1=i");
+                DOUBLE = jo.getInt("s2=i");
                 if (SINGLE > 0) {
                     candsJobs.put("candf",
                               new String[]{bin_path + "/candf", candfExtraFlags, saveTimer03Flag, " -c " + CAND,
@@ -382,33 +385,51 @@ public class cmfinder {
                                   " -n " + DOUBLE, " -f " + FRACTION, SEQ, SEQ + ".cand.h2" + outFileSuffix});
                 }
 
-                //java 8: ExecutorService
-                ExecutorService executor = Executors.newFixedThreadPool(2);
-                List<Callable<cmdOut>> callables
-                          = //   remove below hard coded from map, using map to stream                       
-                          //                                    = Arrays.asList(
-                          //                                    () -> runCmd(candsJobs.get("candf")),
-                          //                                    () -> runCmd(candsJobs.get("cands"))
-                          //                          );
-                          candsJobs.entrySet().stream()
-                                    .map(e -> (Callable<cmdOut>) (() -> runCmd(e.getValue())))
-                                    .collect(Collectors.toList());
+                //java 8: ExecutorService's invokeAll()
+                if (runCandsParallel > 0) {
+                    System.out.println(
+                              "Parallel running "
+                              + candsJobs.keySet().stream().collect(Collectors.joining(", "))
+                    //join() will remove last delimiter, so no worry here
+                    );
+                    ExecutorService executor = Executors.newFixedThreadPool(checkCPU());
+                    List<Callable<cmdOut>> callables
+                              = //   remove below hard coded from map, using map to stream                       
+                              //                                    = Arrays.asList(
+                              //                                    () -> runCmd(candsJobs.get("candf")),
+                              //                                    () -> runCmd(candsJobs.get("cands"))
+                              //                          );
+                              candsJobs.entrySet().stream()
+                                        .map(e -> (Callable<cmdOut>) (() -> runCmd(e.getValue())))
+                                        .collect(Collectors.toList());
 
-                executor.invokeAll(callables)
-                          .stream()
-                          .map(future -> {
-                              try {
-                                  return future.get();
-                              } catch (Exception e) {
-                                  throw new IllegalStateException(e);
-                              }
-                          })
-                          .forEach(System.out::println);
-                
-                executor.shutdown();
-                //to do
+                    executor.invokeAll(callables)
+                              .stream()
+                              .map(future -> {
+                                  try {
+                                      return future.get();
+                                  } catch (Exception e) {
+                                      throw new IllegalStateException(e);
+                                  }
+                              })
+                              .forEach(System.out::println);
 
+                    executor.shutdown();
+                } else {
+                    System.out.println(
+                              "Serial running "
+                              + candsJobs.keySet().stream().collect(Collectors.joining(", "))
+                    //join() will remove last delimiter, so no worry here
+                    );
+                    //just run serially in stream
+                    candsJobs.entrySet()
+                              .stream().forEach(e -> runCmd(e.getValue()));
+                }
+                // need verify input arg is full path
+                cands.add(tempFileListFileName + ".single" + outFileSuffix);
+                cands.add(tempFileListFileName + ".double" + outFileSuffix);
             }
+            //to do
         } catch (JSONException | IOException ex) {
             System.out.println(ex);
         } catch (InterruptedException ex) {
@@ -416,13 +437,26 @@ public class cmfinder {
         }
     }
 
-//read json file
+    //read json file
     public static JSONObject read_json_file(String file_name) throws JSONException, IOException {
         Path p = Paths.get(file_name);
         //System.out.println(p.toAbsolutePath().toString());
         byte[] jsonByte = Files.readAllBytes(p.toAbsolutePath());
         JSONObject jsonObject = new JSONObject(new String(jsonByte));
         return jsonObject;
+    }
+
+    // arg: tempFileListFileName must with absolute path and file name
+    public static ArrayList<String> GetCandFiles(String tempFileListFileName) throws MyException, IOException {
+        ArrayList<String> list = new ArrayList();
+        Stream<String> stream;
+        if (!fileExists(tempFileListFileName)) {
+            throw new MyException("cannot open " + tempFileListFileName);
+        } else {
+            stream = Files.lines(Paths.get(tempFileListFileName));
+        }
+        stream.forEach(e -> list.add(e));
+        return list;
     }
 
     // get parameter by read jo oject;

@@ -119,5 +119,9 @@ public class utilities {
         int processors = Runtime.getRuntime().availableProcessors();
         return processors;
     }
+    
+    public static void main(String[] args) {
+        System.out.println(fileExists("/home/james/NetBeansProjects/cmfinder/bin/io.pl"));
+    }
 
 }
