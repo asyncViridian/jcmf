@@ -36,6 +36,15 @@ public class utilities {
         return f;
     }
 
+    public static boolean fileExists(String filePathString) {
+        boolean r = false;
+        File f = new File(filePathString);
+        if (f.exists() && !f.isDirectory()) {
+            r = true;
+        }
+        return r;
+    }
+
     //note filename should give full path
     public static void deleteFile(String filename) {
         Path fileToDeletePath = Paths.get(filename);
@@ -48,7 +57,7 @@ public class utilities {
     }
 
     //return value is good to decide if the next command should be executed or not
-    public static synchronized cmdOut runCmd(String[] args, int timeout) {
+    public static cmdOut runCmd(String[] args, int timeout) {
         String ret = Arrays.stream(args).collect(joining(" ")) + "executing";
         boolean exitVal = true;
         ArrayList<String> out = new ArrayList<>();
@@ -75,7 +84,7 @@ public class utilities {
         return new cmdOut(out, exitVal);
     }
 
-    public static synchronized cmdOut runCmd(String[] args) {
+    public static cmdOut runCmd(String[] args) {
         String ret = Arrays.stream(args).collect(joining(" ")) + "executing";
         int exitCode = 0;
         boolean res = true;
@@ -104,6 +113,15 @@ public class utilities {
         }
         System.out.println(ret);
         return new cmdOut(out, res, exitCode);
+    }
+
+    public static int checkCPU() {
+        int processors = Runtime.getRuntime().availableProcessors();
+        return processors;
+    }
+    
+    public static void main(String[] args) {
+        System.out.println(fileExists("/home/james/NetBeansProjects/cmfinder/bin/io.pl"));
     }
 
 }
