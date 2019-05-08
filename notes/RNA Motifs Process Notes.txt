@@ -59,15 +59,52 @@ Placeholder.
 
 ===============================================================================
 ===============================================================================
-      _                
-     | |               
-   __| | ___   ___ ___ 
-  / _` |/ _ \ / __/ __|
- | (_| | (_) | (__\__ \
-  \__,_|\___/ \___|___/
-                       
-
+                         
+  _  _ ___ __ _ __ _ ___ 
+ | || (_-</ _` / _` / -_)
+  \_,_/__/\__,_\__, \___|
+               |___/     
 ===============================================================================
+===============================================================================
+
+BLOCKMERGER.JAR
+
+> java -jar blockmerger.jar
+Parsing failed. Reason: Missing required options: s, o
+usage: BlockMerger [options] -s <filename> -o <fileprefix>
+ -base                           Use base-counting based merging (by
+                                 default BlockMerger uses block-based
+                                 merging).
+    --gapThreshold <arg>         Maximum gap length between two source
+                                 alignment blocks before they are
+                                 determined unmergeable. Defaults to 300
+    --maxOutputLength <arg>      Maximum length of the reference genome
+                                 section in a resulting block that will
+                                 still allow the resulting block to be
+                                 output.Defaults to 5000
+    --minNumSpecies <arg>        Minimum number of species that are
+                                 mergeable to include in each result
+                                 alignment block. Defaults to 5
+    --minOutputLength <arg>      Minimum length of the reference genome
+                                 section in a resulting block that will
+                                 still allow the resulting block to be
+                                 output.Defaults to 10
+    --numBasesIncrement <arg>    Number of bases to increment between each
+                                 output merged block (if using
+                                 base-counting merging). Defaults to 50
+    --numBasesPerOutput <arg>    Number of bases to include in each output
+                                 block (if using base-counting merging).
+                                 Defaults to 300
+    --numBlocksPerOutput <arg>   Number of source blocks to include in
+                                 each merged block (if using
+                                 block-counting merging). Defaults to 5
+ -o,--outName <arg>              Output FASTA files prefix
+ -od,--outDir <arg>              Directory to read input files from.
+                                 Defaults to current directory
+ -s,--srcName <arg>              Input MAF file
+ -sd,--srcDir <arg>              Directory to read input files from.
+                                 Defaults to current directory
+
 ===============================================================================
 
 CMFINDER04.PL

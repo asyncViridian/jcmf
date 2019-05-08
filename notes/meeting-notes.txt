@@ -5,11 +5,16 @@ possibly change merge style:
 genome browser file formats -> visualize?
     - like the track format for alignment blocks.
     - gff, bed similar formats.
+        - BED seems like it will work better: GFF requires reading frame data which is sort of a waste. BED seems to be more concise and adaptable, which is great for my purposes.
     - see how overlapping regions shows up - could visualize with overlapping results and non-overlapping
+    - http://genome.ucsc.edu/cgi-bin/hgCustom?hgsid=725072751_CDa4000ZfjAIuAaUC6vmqIGOqYhD
 could re-process long regions that look funny with more strict cmfinder parameters?
 could set up a web interface
+    - doesn't have to be fancy. just anything more convenient than filesystem navigation, because file systems aren't designed for looking at all this stuff.
+    - wow I'm starting to appreciate the value of quick data visualization
 find link to browser interface for paper results and compare those
 (not now) rna structure visualization
+    - maybe later.
 
 ===============================================================================
 2019-04-25
