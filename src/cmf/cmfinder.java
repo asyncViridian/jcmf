@@ -1433,5 +1433,6 @@ public class cmfinder {
         //        System.out.println("find it:" + findFile(bin_path, "clustalw"));
         //test my_strcmp
         //System.out.println(Arrays.toString(my_strcmp("abc.def.ghi", "abc.def.ghi")));
+        SEQ = "";
     }
 }
