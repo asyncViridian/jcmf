@@ -52,6 +52,7 @@ public class cmfinder {
     static String emSeq;
     static boolean skipClustalw;
     static boolean useOldCmfinder; // set in the static block or main method
+    static String outFileSuffix;
 
     //getOptions parameters from json file
     static JSONObject jo;
@@ -73,10 +74,9 @@ public class cmfinder {
     //SEQ setting in main method
     static String SEQ;
     static String seqForExpectationMaximization = SEQ;
-    static String outFileSuffix;
     static String dummyCmfileParamForCmfinder = "";
     static String tempFileListFileName = SEQ + ".file-list";
-    
+
     static ArrayList<String> cands = new ArrayList();
 
     static {
@@ -85,6 +85,7 @@ public class cmfinder {
         try {
             jo = read_json_file("./src/cmf/cmfinder_param.json");
 
+            //get some value
             useOldCmfinder = jo.optBoolean("useOldCmfinder");
             motifList = jo.optString("motifList");
             COMBINE = jo.getBoolean("combine");
@@ -95,9 +96,11 @@ public class cmfinder {
                 seqForExpectationMaximization = jo.optString("emSeq").toString();
             }
 
-            if ((jo.optString("outFileSuffix=s").isEmpty())
-                      || (jo.optString("outFileSuffix=s").equals(null))) {
+            //set value outFileSuffix
+            if ((outFileSuffix.isEmpty()) || (outFileSuffix.equals(null))) {
                 outFileSuffix = "";
+            } else {
+                outFileSuffix = jo.optString("outFileSuffix=s");
             }
 
             if (jo.optBoolean("useOldCmfinder")) {
@@ -1086,7 +1089,8 @@ public class cmfinder {
         }
     }
 
-    public static HashMap<String, MergeMotif> try_merge(String f1, String f2, HashMap<String, MergeMotif> merge_motif_ref)
+    public static HashMap<String, MergeMotif>
+              try_merge(String f1, String f2, HashMap<String, MergeMotif> merge_motif_ref)
               throws MyException {
         if (merge_motif_ref == null) { //perl !defined not isEmpty()
             throw new MyException("merge_motif_ref Hashmap is empty");
