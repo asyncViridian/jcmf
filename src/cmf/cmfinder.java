@@ -1309,7 +1309,7 @@ public class cmfinder {
     // note we assume the file is in bin_path folder
     public static HashMap<String, String> RunSummarize(String file_name) throws MyException {
         String f = findFile(bin_path, file_name);
-        if (false) {
+        if (false) {  // prel if(0)
             String[] cmd = {findFile(bin_path, "summarize"), f};
             System.out.println("Running " + String.join(" ", cmd));
             cmdOut exec1 = runCmd(cmd, 300);
