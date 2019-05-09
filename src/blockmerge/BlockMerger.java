@@ -1,7 +1,7 @@
 package blockmerge;
 
-import blockmerge.util.AlignmentBlock;
-import blockmerge.util.MAFReader;
+import util.AlignmentBlock;
+import util.MAFReader;
 import org.apache.commons.cli.*;
 
 import java.io.BufferedWriter;
