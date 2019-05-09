@@ -2,13 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3da6e499-81fb-4a08-856f-3dc0c5fe102e" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/artifacts/blockmerger_jar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/META-INF/MANIFEST.MF" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/artifacts/blockmerge_jar.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/artifacts/blockmerger_jar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/artifacts/blockmerger_jar.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/multiz100way_chr12_62602752-62622213.maf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/notes/RNA Motifs Process Notes.txt" beforeDir="false" afterPath="$PROJECT_DIR$/notes/RNA Motifs Process Notes.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/notes/meeting-notes.txt" beforeDir="false" afterPath="$PROJECT_DIR$/notes/meeting-notes.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/META-INF/MANIFEST.MF" beforeDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -25,8 +21,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/blockmerge/BlockMerger.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="9">
-              <caret line="407" column="35" selection-start-line="407" selection-start-column="35" selection-end-line="407" selection-end-column="35" />
+            <state relative-caret-position="423">
+              <caret line="101" column="40" lean-forward="true" selection-start-line="101" selection-start-column="40" selection-end-line="101" selection-end-column="40" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#3531#9424#1" />
@@ -203,13 +199,6 @@
               <item name="jcmf" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="blockmerge" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="jcmf" type="b2602c69:ProjectViewProjectNode" />
-              <item name="jcmf" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="blockmerge" type="462c0819:PsiDirectoryNode" />
-              <item name="util" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="jcmf" type="b2602c69:ProjectViewProjectNode" />
@@ -412,7 +401,7 @@
       <workItem from="1556596946328" duration="8643000" />
       <workItem from="1556743812992" duration="3066000" />
       <workItem from="1557295162545" duration="222000" />
-      <workItem from="1557346609707" duration="874000" />
+      <workItem from="1557346609707" duration="1806000" />
     </task>
     <servers />
   </component>
@@ -449,13 +438,13 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="101430000" />
+    <option name="totallyTimeSpent" value="102362000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-9" y="-9" width="1938" height="1050" extended-state="6" />
+    <frame x="-9" y="-9" width="1698" height="1020" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.4944356" visible="true" weight="0.14765458" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.4944356" visible="true" weight="0.1693154" />
       <window_info id="Structure" order="1" sideWeight="0.5055644" side_tool="true" weight="0.12469438" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -464,7 +453,7 @@
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.3295325" />
-      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.28224918" />
+      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.2919042" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.32839224" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -739,8 +728,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/blockmerge/BlockMerger.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="9">
-          <caret line="407" column="35" selection-start-line="407" selection-start-column="35" selection-end-line="407" selection-end-column="35" />
+        <state relative-caret-position="423">
+          <caret line="101" column="40" lean-forward="true" selection-start-line="101" selection-start-column="40" selection-end-line="101" selection-end-column="40" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#3531#9424#1" />
