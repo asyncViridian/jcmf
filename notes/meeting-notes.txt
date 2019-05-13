@@ -1,3 +1,14 @@
+2019-05-09
+Score histogram: distribution on pair-posterior, rna-posterior
+    - Wasn't there another score produced by cmfinder directly???
+Merge block difference: use length threshold instead of block # threshold
+Separate single-block motifs into a separate track
+Find a uniform score scaling that works on all four regions
+    - add a max(that score, 1000) in case something exceeds it :)
+Upload track data to webserver so it can be accessed more easily
+    - Add URLs for each hit found linked to extra information?
+
+===============================================================================
 2019-05-02
 possibly change merge style:
     - minimum merge block length threshold and add blocks until it hits that

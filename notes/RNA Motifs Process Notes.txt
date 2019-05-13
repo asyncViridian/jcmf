@@ -67,6 +67,16 @@ Placeholder.
 ===============================================================================
 ===============================================================================
 
+TRACKGENERATOR.JAR
+
+> java -jar trackgenerator.jar
+Parsing failed. Reason: Missing required options: s, o
+usage: TrackGenerator [options] -s <dirname> -o <filename>
+ -o,--outFile <arg>   Output BED filename (including extension)
+ -s,--srcDir <arg>    Input score files directory
+
+===============================================================================
+
 BLOCKMERGER.JAR
 
 > java -jar blockmerger.jar
@@ -108,6 +118,7 @@ usage: BlockMerger [options] -s <filename> -o <fileprefix>
 ===============================================================================
 
 CMFINDER04.PL
+
 Options:
     -c <number>
      The maximum number of candidates in each sequence. Default 40. No bigger than 100.
@@ -185,6 +196,7 @@ Options:
 ===============================================================================
 
 CMFINDER04
+
 Usage: cmfinder04 [options] <input-sto-file>
 OR --summarize [options] <input-sto-file>
 
