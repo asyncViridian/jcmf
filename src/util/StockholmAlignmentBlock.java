@@ -143,6 +143,38 @@ public class StockholmAlignmentBlock {
         return this.sources.get(s).chr;
     }
 
+    /**
+     * Returns true iff the motif in this scored Stockholm block is fully
+     * contained within a single alignment block for the given species.
+     *
+     * @param s species to check this for
+     * @return true iff the motif is fully contained in one alignment block,
+     * as determined by the name field of each sequence
+     */
+    public boolean motifInSingleBlock(String s) {
+        if (!this.sources.keySet().contains(s)) {
+            throw new IllegalArgumentException("species not in alignment");
+        }
+
+        Pair<BigInteger, BigInteger> adjI
+                = this.getInterval("hg38");
+        // TODO trim for excess whitespace within the actual alignment
+        // TODO if appropriate?
+        for (Pair<BigInteger, BigInteger> subI
+                : this.sources.get(s).indivSpans) {
+            // test if the start position is within this interval
+            if (adjI.getKey().compareTo(subI.getKey()) >= 0
+                    && adjI.getKey().compareTo(subI.getValue()) <= 0) {
+                // test if the end position is also within this interval
+                if (adjI.getValue().compareTo(subI.getKey()) >= 0
+                        && adjI.getValue().compareTo(subI.getValue()) <= 0) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
     private static class Source {
         /**
          * Species name (i.e. "hg38")

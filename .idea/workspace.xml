@@ -2,20 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3da6e499-81fb-4a08-856f-3dc0c5fe102e" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/util/StockholmAlignmentBlock.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/artifacts/trackgenerator_jar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/artifacts/trackgenerator_jar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/m100_chr12_62602752-62622213.maf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/m100_chr1_149844498-149849024.maf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/m100_chr2_218255319-218257366.maf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/m100_chr5_140072857-140108630.maf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/notes/RNA Motifs Process Notes.txt" beforeDir="false" afterPath="$PROJECT_DIR$/notes/RNA Motifs Process Notes.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/notes/meeting-notes.txt" beforeDir="false" afterPath="$PROJECT_DIR$/notes/meeting-notes.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/blockmerge/BlockMerger.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/blockmerge/BlockMerger.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/trackgenerate/TrackGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/trackgenerate/TrackGenerator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/util/AlignmentBlock.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/util/MAFAlignmentBlock.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/util/MAFReader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/util/MAFReader.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/util/StockholmAlignmentBlock.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/util/StockholmAlignmentBlock.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -44,11 +32,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/trackgenerate/TrackGenerator.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="285">
-              <caret line="82" column="54" selection-start-line="82" selection-start-column="54" selection-end-line="82" selection-end-column="54" />
+            <state relative-caret-position="749">
+              <caret line="125" column="51" lean-forward="true" selection-start-line="125" selection-start-column="51" selection-end-line="125" selection-end-column="51" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -56,11 +44,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/util/StockholmAlignmentBlock.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="268">
-              <caret line="125" column="7" selection-start-line="125" selection-start-column="7" selection-end-line="125" selection-end-column="7" />
+            <state relative-caret-position="290">
+              <caret line="161" column="31" selection-start-line="161" selection-start-column="31" selection-end-line="161" selection-end-column="31" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="method#containsSpecies#0;class#StockholmAlignmentBlock#0" />
@@ -143,8 +131,8 @@
         <option value="$PROJECT_DIR$/src/blockmerge/BlockGapStatistics.java" />
         <option value="$PROJECT_DIR$/src/blockmerge/BlockMerger.java" />
         <option value="$PROJECT_DIR$/src/util/StockholmReader.java" />
-        <option value="$PROJECT_DIR$/src/util/StockholmAlignmentBlock.java" />
         <option value="$PROJECT_DIR$/src/trackgenerate/TrackGenerator.java" />
+        <option value="$PROJECT_DIR$/src/util/StockholmAlignmentBlock.java" />
       </list>
     </option>
   </component>
@@ -293,7 +281,7 @@
     <configuration name="TrackGenerator" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="trackgenerate.TrackGenerator" />
       <module name="jcmf" />
-      <option name="PROGRAM_PARAMETERS" value="-s data -o output/test.bed" />
+      <option name="PROGRAM_PARAMETERS" value="-s notes/data/cmfinder/chr12/scores -o output/test.bed -os output/single.bed" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="trackgenerate.*" />
@@ -398,7 +386,7 @@
       <workItem from="1556743812992" duration="3066000" />
       <workItem from="1557295162545" duration="222000" />
       <workItem from="1557346609707" duration="9740000" />
-      <workItem from="1557716945863" duration="1917000" />
+      <workItem from="1557716945863" duration="5218000" />
     </task>
     <servers />
   </component>
@@ -435,7 +423,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="112213000" />
+    <option name="totallyTimeSpent" value="115514000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-9" y="-9" width="1698" height="1020" extended-state="6" />
@@ -451,7 +439,7 @@
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.3295325" />
       <window_info anchor="bottom" id="Run" order="2" weight="0.2919042" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.32839224" />
+      <window_info active="true" anchor="bottom" id="Debug" order="3" visible="true" weight="0.32839224" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
@@ -475,6 +463,23 @@
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
   </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/util/StockholmAlignmentBlock.java</url>
+          <line>158</line>
+          <properties />
+          <option name="timeStamp" value="4" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+    <watches-manager>
+      <configuration name="Application">
+        <watch expression="((Source)((HashMap.Node)((HashMap)this.sources).entrySet().toArray()[9]).getValue()).indivSpans" custom="util.StockholmAlignmentBlock.Source,java.util.HashMap.Node,java.util.HashMap" />
+      </configuration>
+    </watches-manager>
+  </component>
   <component name="antWorkspaceConfiguration">
     <option name="IS_AUTOSCROLL_TO_SOURCE" value="false" />
     <option name="FILTER_TARGETS" value="false" />
@@ -497,7 +502,20 @@
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
     </expressions>
+    <expressions id="setValue">
+      <expression>
+        <expression-string>BigInteger.valueOf(62602883L)</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+    </expressions>
     <expressions id="evaluateExpression">
+      <expression>
+        <expression-string>((Source)((HashMap.Node)((HashMap)this.sources).entrySet().toArray()[9]).getValue()).indivSpans</expression-string>
+        <language-id>JAVA</language-id>
+        <custom-info>util.StockholmAlignmentBlock.Source,java.util.HashMap.Node,java.util.HashMap</custom-info>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
       <expression>
         <expression-string>source.toFile().listFiles()</expression-string>
         <language-id>JAVA</language-id>
@@ -726,24 +744,24 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/util/StockholmAlignmentBlock.java">
+    <entry file="file://$PROJECT_DIR$/src/trackgenerate/TrackGenerator.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="268">
-          <caret line="125" column="7" selection-start-line="125" selection-start-column="7" selection-end-line="125" selection-end-column="7" />
+        <state relative-caret-position="749">
+          <caret line="125" column="51" lean-forward="true" selection-start-line="125" selection-start-column="51" selection-end-line="125" selection-end-column="51" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="method#containsSpecies#0;class#StockholmAlignmentBlock#0" />
-            <element signature="method#getInterval#0;class#StockholmAlignmentBlock#0" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/trackgenerate/TrackGenerator.java">
+    <entry file="file://$PROJECT_DIR$/src/util/StockholmAlignmentBlock.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="82" column="54" selection-start-line="82" selection-start-column="54" selection-end-line="82" selection-end-column="54" />
+        <state relative-caret-position="290">
+          <caret line="161" column="31" selection-start-line="161" selection-start-column="31" selection-end-line="161" selection-end-column="31" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="method#containsSpecies#0;class#StockholmAlignmentBlock#0" />
+            <element signature="method#getInterval#0;class#StockholmAlignmentBlock#0" />
           </folding>
         </state>
       </provider>

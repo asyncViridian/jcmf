@@ -64,7 +64,8 @@ public class TrackGenerator {
             System.err.println("Parsing failed. Reason: " + exp.getMessage());
             HelpFormatter formatter = new HelpFormatter();
             formatter.printHelp(
-                    "TrackGenerator [options] -s <dirname> -o <filename>",
+                    "TrackGenerator [options] -s <dirname> -o <filename> -os " +
+                            "<filename>",
                     options);
             return;
         }
@@ -77,10 +78,19 @@ public class TrackGenerator {
         Path outputSingle = Paths.get(TrackGenerator.outFileSingle);
         Files.deleteIfExists(outputSingle);
         Files.createFile(outputSingle);
+        BufferedWriter writerSingle = Files.newBufferedWriter(outputSingle);
 
-
-        // TODO write the header lines.
-        // TODO write header lines in bedDetail format
+        // write the header lines
+        // TODO set a more useful name field?
+        writer.write("track"
+                             + " name=" + "motifsFoundMultiBlock"
+                             + " type=" + "bedDetail"
+                             + "\n");
+        // TODO set a more useful name field for this one too?
+        writerSingle.write("track"
+                                   + " name=" + "motifsFoundSingleBlock"
+                                   + " type=" + "bedDetail"
+                                   + "\n");
 
         // read the given directory...
         Path source = Paths.get(TrackGenerator.srcDir);
@@ -108,21 +118,28 @@ public class TrackGenerator {
             // TODO set a better score filter and value guideline
             BigDecimal max = BigDecimal.valueOf(125L);
 
-            // TODO check for if it is in a single block
-            // add it to the BED
+            // construct the line that we will output for this motif
             Pair<BigInteger, BigInteger> interval
                     = block.getInterval("hg38");
             String chr = block.getChromosome("hg38");
             String name = f.getName();
             BigDecimal pairScore = block.pairScore;
-            writer.write(chr + "\t"
-                                 + interval.getKey() + "\t"
-                                 + interval.getValue() + "\t"
-                                 + name + "\t"
-                                 + pairScore.divide(max,
-                                                    RoundingMode.HALF_EVEN).multiply(
-                    BigDecimal.valueOf(1000)) + "\n");
+            String thingToWrite = chr + "\t"
+                    + interval.getKey() + "\t"
+                    + interval.getValue() + "\t"
+                    + name + "\t"
+                    + pairScore.divide(max, RoundingMode.HALF_EVEN)
+                    .multiply(BigDecimal.valueOf(1000)) + "\n";
+            // determine which BED track we want to output to
+            if (block.motifInSingleBlock("hg38")) {
+                // add it to the single-block BED
+                writerSingle.write(thingToWrite);
+            } else {
+                // add it to the multiblock BED
+                writer.write(thingToWrite);
+            }
         }
         writer.close();
+        writerSingle.close();
     }
 }
