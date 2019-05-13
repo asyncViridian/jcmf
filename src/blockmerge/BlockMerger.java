@@ -1,6 +1,6 @@
 package blockmerge;
 
-import util.AlignmentBlock;
+import util.MAFAlignmentBlock;
 import util.MAFReader;
 import org.apache.commons.cli.*;
 
@@ -302,10 +302,11 @@ public class BlockMerger {
         if (MERGE_TYPE == MergeType.BASES) {
             // TODO write base-based merging...
             throw new RuntimeException("not implemented yet");
+            // TODO write percentage/threshold size based merging...
         } else if (MERGE_TYPE == MergeType.BLOCKS) {
             // Create overall statistics trackers
             // Track gap content (N bases) in each merged block
-            // TODO make this filename argument-able
+            // TODO make this filename argument-able?
             Path gapStatsFile = Paths.get(BlockMerger.outDir,
                                           "gapStatistics" + ".png");
             Files.deleteIfExists(gapStatsFile);
@@ -313,7 +314,7 @@ public class BlockMerger {
             BlockGapStatistics gapStats = new BlockGapStatistics(
                     gapStatsFile);
 
-            LinkedList<AlignmentBlock> current = new LinkedList<>();
+            LinkedList<MAFAlignmentBlock> current = new LinkedList<>();
             BigInteger i = BigInteger.ONE;
             while (reader.hasNext()) {
                 // add the next block
@@ -332,9 +333,9 @@ public class BlockMerger {
                 List<String> speciesToMerge = new LinkedList<>();
                 for (String species : current.getFirst().getSpecies()) {
                     // initialize iterators through the blocks
-                    Iterator<AlignmentBlock> secondIt = current.iterator();
+                    Iterator<MAFAlignmentBlock> secondIt = current.iterator();
                     secondIt.next();
-                    Iterator<AlignmentBlock> firstIt = current.iterator();
+                    Iterator<MAFAlignmentBlock> firstIt = current.iterator();
                     // retrieve the list of species that can be included in
                     // this set of alignment blocks
                     boolean mergeable = true;
@@ -366,10 +367,10 @@ public class BlockMerger {
                 // check output against sequence length bounds
                 // TODO: perhaps generalize to allow other human assemblies?
                 // TODO: possibly integrate too-short blocks into other sections
-                AlignmentBlock.Sequence firstCheckSeqLen =
+                MAFAlignmentBlock.Sequence firstCheckSeqLen =
                         current.getFirst().sequences.get(
                                 "hg38");
-                AlignmentBlock.Sequence lastCheckSeqLen =
+                MAFAlignmentBlock.Sequence lastCheckSeqLen =
                         current.getLast().sequences.get(
                                 "hg38");
                 BigInteger humanSeqLen = lastCheckSeqLen.start.add(
@@ -401,10 +402,10 @@ public class BlockMerger {
 
                     // write each species sequence
                     // write the species and originating chromosome
-                    AlignmentBlock.Sequence first =
+                    MAFAlignmentBlock.Sequence first =
                             current.getFirst().sequences.get(
                                     species);
-                    AlignmentBlock.Sequence last =
+                    MAFAlignmentBlock.Sequence last =
                             current.getLast().sequences.get(
                                     species);
 
@@ -434,9 +435,9 @@ public class BlockMerger {
                     speciesHeader.append(last.start.add(last.size));
                     speciesHeader.append(":");
                     // write individual start and end coords for each block
-                    Iterator<AlignmentBlock> it = current.iterator();
-                    AlignmentBlock b = it.next();
-                    AlignmentBlock.Sequence s = b.sequences.get(species);
+                    Iterator<MAFAlignmentBlock> it = current.iterator();
+                    MAFAlignmentBlock b = it.next();
+                    MAFAlignmentBlock.Sequence s = b.sequences.get(species);
                     speciesHeader.append(s.start);
                     speciesHeader.append("-");
                     speciesHeader.append(s.start.add(s.size));
@@ -453,9 +454,9 @@ public class BlockMerger {
                     // write the contents of each block for each species
                     int numBlock = 1;
                     boolean lastBlockWasGap = false;
-                    for (AlignmentBlock block : current) {
+                    for (MAFAlignmentBlock block : current) {
                         // get the raw sequence and fill it up with N as needed
-                        AlignmentBlock.Sequence seq = block.sequences.get(
+                        MAFAlignmentBlock.Sequence seq = block.sequences.get(
                                 species);
                         if (!seq.isGap) {
                             // if we have contents write the contents directly
@@ -568,10 +569,10 @@ public class BlockMerger {
      * @param species the species to attempt to merge these two blocks for
      * @return true iff the two given blocks can merge for the given species
      */
-    private static boolean isMergeable(AlignmentBlock first,
-                                       AlignmentBlock second, String species) {
-        AlignmentBlock.Sequence firstSeq = first.sequences.get(species);
-        AlignmentBlock.Sequence secondSeq = second.sequences.get(species);
+    private static boolean isMergeable(MAFAlignmentBlock first,
+                                       MAFAlignmentBlock second, String species) {
+        MAFAlignmentBlock.Sequence firstSeq = first.sequences.get(species);
+        MAFAlignmentBlock.Sequence secondSeq = second.sequences.get(species);
 
         // test if the species is actually in both blocks
         if (firstSeq == null || secondSeq == null) {
@@ -606,7 +607,7 @@ public class BlockMerger {
 
         // test if the gap between them is too long:
         if (firstSeq.isGap && firstSeq.gapType.equals(
-                AlignmentBlock.Sequence.GapType.C)) {
+                MAFAlignmentBlock.Sequence.GapType.C)) {
             // if first is a gap sequence (with no bases in the section)
             // and it is too long to be included
             if (firstSeq.size.compareTo(

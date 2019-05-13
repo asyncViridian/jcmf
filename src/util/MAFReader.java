@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-public class MAFReader implements Iterator<AlignmentBlock> {
+public class MAFReader implements Iterator<MAFAlignmentBlock> {
     private String filepath;
     private String filename;
     private BufferedReader r;
@@ -32,7 +32,7 @@ public class MAFReader implements Iterator<AlignmentBlock> {
     }
 
     @Override
-    public AlignmentBlock next() {
+    public MAFAlignmentBlock next() {
         List<String> lines = new ArrayList<>();
         while (it.hasNext()) {
             String s = it.next();
@@ -42,7 +42,7 @@ public class MAFReader implements Iterator<AlignmentBlock> {
                 break;
             }
         }
-        AlignmentBlock result = new AlignmentBlock(lines);
+        MAFAlignmentBlock result = new MAFAlignmentBlock(lines);
         return result;
     }
 }

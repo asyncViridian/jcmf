@@ -4,7 +4,7 @@ import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.*;
 
-public class AlignmentBlock {
+public class MAFAlignmentBlock {
     /**
      * All sequences and gapped sections in the alignment block.
      */
@@ -19,12 +19,12 @@ public class AlignmentBlock {
     public BigDecimal score;
 
     /**
-     * Construct an AlignmentBlock from a set of Strings that comprise it,
+     * Construct an MAFAlignmentBlock from a set of Strings that comprise it,
      * starting from the first "a" line to the last "e" line
      *
      * @param lines
      */
-    public AlignmentBlock(List<String> lines) {
+    public MAFAlignmentBlock(List<String> lines) {
         for (int i = 0; i < lines.size(); i++) {
             String line = lines.get(i);
             if (line.indexOf("##") == 0) {
