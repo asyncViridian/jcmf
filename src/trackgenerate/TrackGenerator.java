@@ -110,8 +110,10 @@ public class TrackGenerator {
                 continue;
             }
 
+            BigDecimal score = block.rnaScore;
+
             // score filter
-            if (block.pairScore.compareTo(BigDecimal.valueOf(40L)) < 0) {
+            if (score.compareTo(BigDecimal.valueOf(40L)) < 0) {
                 continue;
             }
 
@@ -123,12 +125,11 @@ public class TrackGenerator {
                     = block.getInterval("hg38");
             String chr = block.getChromosome("hg38");
             String name = f.getName();
-            BigDecimal pairScore = block.pairScore;
             String thingToWrite = chr + "\t"
                     + interval.getKey() + "\t"
                     + interval.getValue() + "\t"
                     + name + "\t"
-                    + pairScore.divide(max, RoundingMode.HALF_EVEN)
+                    + score.divide(max, RoundingMode.HALF_EVEN)
                     .multiply(BigDecimal.valueOf(1000)) + "\n";
             // determine which BED track we want to output to
             if (block.motifInSingleBlock("hg38")) {

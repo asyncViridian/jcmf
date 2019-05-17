@@ -1,12 +1,23 @@
-2019-05-09
-Score histogram: distribution on pair-posterior, rna-posterior
-    - Wasn't there another score produced by cmfinder directly???
+2019-05-09 & 2019-05-16
+Collect statistics
+    - Score histogram: distribution on pair-posterior, rna-posterior
+        - Wasn't there another score produced by cmfinder directly???
+    - I already have the block length vs gap percentage graph
+        - Perhaps make that into a better format
+    - Graph number of blocks overlapped, perhaps. "Block boundaries" gap
+    - Graph the amount that alignment gaps comprise each motif found.
+    - Graph the species in each motif data, somehow.
 Merge block difference: use length threshold instead of block # threshold
+    - Length threshold: have a minimum block length and probably a fairly generous maximum block length. Perhaps shift based on percentage of block, not a constant?
+    - Generally you can't have a block that is too long for cmfinder to return good results, but I still want to get statistics on how much longer it takes to run a block of n length vs 2n length (or something like that)
 Separate single-block motifs into a separate track
+    - For chr12: using pairScore filters out all of the single-block hits, but rnaScore seems to have much higher scores overall and so contains several of these resutls.
 Find a uniform score scaling that works on all four regions
     - add a max(that score, 1000) in case something exceeds it :)
+        - done!
 Upload track data to webserver so it can be accessed more easily
-    - Add URLs for each hit found linked to extra information?
+    - Add URLs for each hit found linked to extra information
+    - Track hubs is how the previous CMfinder study displays their data. Look into setting that up, instead of solely generating a single BED/BEDdetail file.
 
 ===============================================================================
 2019-05-02
@@ -32,15 +43,15 @@ find link to browser interface for paper results and compare those
 Requirement and length enforcement
     - By default: require human to be included
     - Possibly also preference mouse DNA to be included? Unsure.
-    - Implemented! Also lowered minimum default length to 10?
-        - I see a lot of consecutive tiny merges.
+    - Implemented! Also lowered minimum default length to 10
+?        - I see a lot of consecutive tiny merges.
         - Perhaps bunch those merges up into other result blocks???
 Collect stats
     - From the mergeblocks:
         - Gap% or N% statistics tracking
             - Partially implemented.
             - There are complications from including the rightmost interval area in the resulting block, but that portion isn't counted as part of the block sequence length.
-            - I have fixed this (as well as discovered another bug and fixed that): now only the 4 gap-spaces in between each merged block are included, and NOT the gaps to the leftmost or rightmost block. Also I no longer duplicate gap alignment blocks.
+            - I have fixed this (as well as discovered another bug and fixed that): now only the gap-spaces in between each merged block are included, and NOT the gaps to the leftmost or rightmost block. Also I no longer duplicate gap alignment blocks.
         - % of each block from each source block
     - From the scripts or in post-processing:
         - Runtime stats
