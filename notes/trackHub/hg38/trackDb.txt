@@ -1,0 +1,11 @@
+track multiblock hits
+bigDataUrl test.bed
+shortLabel multiblock hits
+longLabel all multi-block CMfinder hits above (some rna score)
+type bigBed
+
+track singleblock hits
+bigDataUrl single.bed
+shortLabel single hits
+longLabel all single-block CMfinder hits above (some rna score)
+type bigBed

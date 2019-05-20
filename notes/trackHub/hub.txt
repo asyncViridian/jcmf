@@ -1,0 +1,6 @@
+hub blockmerge_cmfinder
+shortLabel Merged Blocks RNA
+longLabel Data from RNA motifs found by CMfinder using merged alignment blocks data
+genomesFile genomes.txt
+email jyzhou15@cs.washington.edu
+descriptionUrl 

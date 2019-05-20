@@ -195,7 +195,7 @@ public class BlockMerger {
                     Option.builder("od")
                             .longOpt("outDir")
                             .hasArg()
-                            .desc("Directory to read input files from. " +
+                            .desc("Directory to write output files to. " +
                                           "Defaults to "
                                           + (outDir_DEFAULT.equals(
                                     "") ? "current directory" :

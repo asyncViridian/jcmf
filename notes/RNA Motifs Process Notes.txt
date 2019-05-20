@@ -109,7 +109,7 @@ usage: BlockMerger [options] -s <filename> -o <fileprefix>
                                  each merged block (if using
                                  block-counting merging). Defaults to 5
  -o,--outName <arg>              Output FASTA files prefix
- -od,--outDir <arg>              Directory to read input files from.
+ -od,--outDir <arg>              Directory to write output files to.
                                  Defaults to current directory
  -s,--srcName <arg>              Input MAF file
  -sd,--srcDir <arg>              Directory to read input files from.
