@@ -40,7 +40,7 @@ for file in split/*.fasta; do
                 -allCpus \
                 -candsParallel \
                 -saveTimer "times/$file" \
-                "$file" >> log 2>&1
+                "$file"
                 #-likeold \ # Why does this return 0 results?
                 #-m $minCandLength \ # This is not a real arg...
                 #-M $maxCandLength \ # This is not a real arg...
