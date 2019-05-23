@@ -62,7 +62,13 @@ My workflow that I have used so far:
 ===============================================================================
 
 Generating the UCSC browser format track hub:
-TODO
+01. Turn BED file into bigBed file so it can be integrated into the track hub.
+    - reference http://genome.ucsc.edu/goldenPath/help/bigBed.html
+    01. Sort the BED file (needs to be sorted on chrom and then chromStart)
+        - use bedSort utility
+    02. Remove any "track" or "browser" line from the BED file
+    03. Convert the sorted BED file into a bigBed file
+        - use http://hgdownload.soe.ucsc.edu/goldenPath/hg38/bigZips/hg38.chrom.sizes as the chrom.sizes file
 
 ===============================================================================
 ===============================================================================
