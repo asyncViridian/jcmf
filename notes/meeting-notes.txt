@@ -2,6 +2,8 @@
 Collect statistics
     - Score histogram: distribution on pair-posterior, rna-posterior
         - Wasn't there another score produced by cmfinder directly???
+        - this is now output by trackgenerator as two histograms.
+            - It might be nice to log scale them or something
     - I already have the block length vs gap percentage graph
         - Perhaps make that into a better format
     - Graph number of blocks overlapped, perhaps. "Block boundaries" gap
