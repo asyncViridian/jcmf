@@ -27,6 +27,7 @@ Track hub generation
         - http://hgdownload.soe.ucsc.edu/admin/exe/linux.x86_64/
         - download some utilities from here
     - I've set up the basic structure of the hub. Still missing individual track element URLs for extra detail.
+    - http://students.washington.edu/jyzhou15/trackHub/hub.txt
 
 ===============================================================================
 2019-05-02

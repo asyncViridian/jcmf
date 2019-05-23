@@ -1,11 +1,11 @@
-track multiblock hits
-bigDataUrl motifs_multi.bb
+track multiblock_hits
+bigDataUrl motifs_multi.bigBed
 shortLabel multiblock hits
 longLabel all multi-block CMfinder hits above (some rna score)
 type bigBed
 
-track singleblock hits
-bigDataUrl motifs_single.bb
+track singleblock_hits
+bigDataUrl motifs_single.bigBed
 shortLabel single hits
 longLabel all single-block CMfinder hits above (some rna score)
 type bigBed
