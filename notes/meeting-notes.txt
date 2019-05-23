@@ -7,6 +7,7 @@ Collect statistics
     - I already have the block length vs gap percentage graph
         - Perhaps make that into a better format
     - Graph number of blocks overlapped, perhaps. "Block boundaries" gap
+        - Done.
     - Graph the amount that alignment gaps comprise each motif found.
     - Graph the species in each motif data, somehow.
 Merge block difference: use length threshold instead of block # threshold
