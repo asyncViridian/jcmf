@@ -11,13 +11,21 @@ Merge block difference: use length threshold instead of block # threshold
     - Length threshold: have a minimum block length and probably a fairly generous maximum block length. Perhaps shift based on percentage of block, not a constant?
     - Generally you can't have a block that is too long for cmfinder to return good results, but I still want to get statistics on how much longer it takes to run a block of n length vs 2n length (or something like that)
 Separate single-block motifs into a separate track
-    - For chr12: using pairScore filters out all of the single-block hits, but rnaScore seems to have much higher scores overall and so contains several of these resutls.
+    - For chr12: using pairScore filters out all of the single-block hits, but rnaScore seems to have much higher scores overall and so contains several of these results.
 Find a uniform score scaling that works on all four regions
-    - add a max(that score, 1000) in case something exceeds it :)
-        - done!
+    - Would it help to have some kind of log scale??? idk man
+Add a max(the found score score, 1000) in case something exceeds the score :)
+    - done!
 Upload track data to webserver so it can be accessed more easily
     - Add URLs for each hit found linked to extra information
     - Track hubs is how the previous CMfinder study displays their data. Look into setting that up, instead of solely generating a single BED/BEDdetail file.
+    - I have some notes about track hubs in the Process Notes file...
+    - Set this up manually for now. I want to automate this generation perhaps later but it doesn't quite seem worth the effort yet...
+    - Need to compile into BEDdetail format somehow.
+Track hub generation
+    - To convert into bigBed from bed format:
+        - http://hgdownload.soe.ucsc.edu/admin/exe/linux.x86_64/
+        - download some utilities from here
 
 ===============================================================================
 2019-05-02
@@ -278,6 +286,20 @@ pscore: find a phylogenetic tree, also might need a score matrix sort of thing
 - Try getting the block merging to work... Well see if there's working tools for it first
 
 ===============================================================================
+12/13
+Run cmfinder on standard block set and try to reproduce study results?
+Vary cmfinder parameters, learn what those do. (Can decrease speed in exchange for more sensitivity, since we are studying smaller regions)
+Figure out how to merge adjacent blocks (python code from previous students)
+Try running on attu?
+
+===============================================================================
+2018-11-28
+CRS = conserved rna structure
+Send prof interesting coordinates (in particular, places where captureseq found things but not listed in cmfinder)
+Also coordinates where there's other interesting things (i.e. the spike in regulatory traits)
+Locations with lots of repeats tend to be less reliable (hard to sequence, or maybe reinsert rna)
+DNAase: places where chromatin has opened up, related to transcriptional activity
+H3K27Ac: Histone modification, related to transcriptional activity
 
 here are a few of my colleague's candidates.  Coordinates are with respect to "GRCh38" (a genome build version number; I think this is the same as the data base in denmark that I sent earlier, but we should be careful).
     - Denmark uses hg38 : same build version number
@@ -339,3 +361,5 @@ ENSG00000261338  chr2  218255319 218257366 +
         Your query matches 0 CRSs. Click on the CRS identifiers to get their annotation.
     http://genome.ucsc.edu/cgi-bin/hgTracks?db=hg38&lastVirtModeType=default&lastVirtModeExtraState=&virtModeType=default&virtMode=0&nonVirtPosition=&position=chr2%3A218255319-218257366&hgsid=699931923_MnWU2n942ldNyqNw2Np7Y4gssrwS
 
+===============================================================================
+Coordinates of increased expression areas. Compare with vertebrate scan results. Maybe merge blocks from vertebrate scan and rerun cmfinder?
