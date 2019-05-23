@@ -2,7 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3da6e499-81fb-4a08-856f-3dc0c5fe102e" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/artifacts/trackgenerator_jar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/artifacts/trackgenerator_jar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/notes/sorted.bb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/notes/sorted.bed" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/notes/trackHub/hg38/single.bed" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/notes/trackHub/hg38/test.bed" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/trackgenerate/TrackGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/trackgenerate/TrackGenerator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/util/StockholmAlignmentBlock.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/util/StockholmAlignmentBlock.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -31,11 +37,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/trackgenerate/TrackGenerator.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="386">
-              <caret line="24" column="47" lean-forward="true" selection-start-line="24" selection-start-column="47" selection-end-line="24" selection-end-column="47" />
+            <state relative-caret-position="581">
+              <caret line="133" column="40" selection-start-line="133" selection-start-column="22" selection-end-line="133" selection-end-column="40" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -43,11 +49,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/util/StockholmAlignmentBlock.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="232">
-              <caret line="133" column="10" selection-start-line="133" selection-start-column="10" selection-end-line="133" selection-end-column="10" />
+            <state relative-caret-position="422">
+              <caret line="161" column="73" selection-start-line="161" selection-start-column="73" selection-end-line="161" selection-end-column="73" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="method#containsSpecies#0;class#StockholmAlignmentBlock#0" />
@@ -96,6 +102,7 @@
       <find>read input</find>
       <find>Pair&lt;</find>
       <find>filePrefix</find>
+      <find>in</find>
     </findStrings>
     <replaceStrings>
       <replace>assertEquals\((\2), (\1)\);</replace>
@@ -132,8 +139,8 @@
         <option value="$PROJECT_DIR$/src/blockmerge/BlockGapStatistics.java" />
         <option value="$PROJECT_DIR$/src/util/StockholmReader.java" />
         <option value="$PROJECT_DIR$/src/blockmerge/BlockMerger.java" />
-        <option value="$PROJECT_DIR$/src/util/StockholmAlignmentBlock.java" />
         <option value="$PROJECT_DIR$/src/trackgenerate/TrackGenerator.java" />
+        <option value="$PROJECT_DIR$/src/util/StockholmAlignmentBlock.java" />
       </list>
     </option>
   </component>
@@ -218,7 +225,7 @@
     <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1554926021811" />
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary" value="JUnit5" />
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5" value="" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/trackgenerate" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/lib/commons-lang3-3.9.jar!/" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="project.structure.last.edited" value="Artifacts" />
     <property name="project.structure.proportion" value="0.15" />
@@ -393,7 +400,7 @@
       <workItem from="1557986723549" duration="588000" />
       <workItem from="1558079984855" duration="1436000" />
       <workItem from="1558330697761" duration="2722000" />
-      <workItem from="1558592916285" duration="3561000" />
+      <workItem from="1558592916285" duration="4017000" />
     </task>
     <servers />
   </component>
@@ -430,7 +437,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="125056000" />
+    <option name="totallyTimeSpent" value="125512000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-9" y="-9" width="1698" height="1020" extended-state="6" />
@@ -741,23 +748,23 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/util/StockholmAlignmentBlock.java">
+    <entry file="file://$PROJECT_DIR$/src/trackgenerate/TrackGenerator.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="232">
-          <caret line="133" column="10" selection-start-line="133" selection-start-column="10" selection-end-line="133" selection-end-column="10" />
+        <state relative-caret-position="581">
+          <caret line="133" column="40" selection-start-line="133" selection-start-column="22" selection-end-line="133" selection-end-column="40" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="method#containsSpecies#0;class#StockholmAlignmentBlock#0" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/trackgenerate/TrackGenerator.java">
+    <entry file="file://$PROJECT_DIR$/src/util/StockholmAlignmentBlock.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="386">
-          <caret line="24" column="47" lean-forward="true" selection-start-line="24" selection-start-column="47" selection-end-line="24" selection-end-column="47" />
+        <state relative-caret-position="422">
+          <caret line="161" column="73" selection-start-line="161" selection-start-column="73" selection-end-line="161" selection-end-column="73" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="method#containsSpecies#0;class#StockholmAlignmentBlock#0" />
           </folding>
         </state>
       </provider>
@@ -768,7 +775,7 @@
       <state key="ArtifactsStructureConfigurable.UI">
         <settings>
           <artifact-editor />
-          <last-edited>blockmerger:jar</last-edited>
+          <last-edited>trackgenerator:jar</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>

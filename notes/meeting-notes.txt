@@ -26,6 +26,7 @@ Track hub generation
     - To convert into bigBed from bed format:
         - http://hgdownload.soe.ucsc.edu/admin/exe/linux.x86_64/
         - download some utilities from here
+    - I've set up the basic structure of the hub. Still missing individual track element URLs for extra detail.
 
 ===============================================================================
 2019-05-02

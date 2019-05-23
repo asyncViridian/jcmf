@@ -9,7 +9,7 @@
       <element id="extracted-dir" path="$PROJECT_DIR$/ext_lib/org.json-20161124.jar" path-in-jar="/" />
       <element id="extracted-dir" path="$PROJECT_DIR$/lib/commons-cli-1.4.jar" path-in-jar="/" />
       <element id="extracted-dir" path="$PROJECT_DIR$/lib/jfreechart-1.5.0.jar" path-in-jar="/" />
-      <element id="library" level="project" name="org.apache.commons:commons-lang3:3.9" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/lib/commons-lang3-3.9.jar" path-in-jar="/" />
     </root>
   </artifact>
 </component>

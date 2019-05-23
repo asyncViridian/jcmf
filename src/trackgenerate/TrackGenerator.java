@@ -18,6 +18,7 @@ public class TrackGenerator {
     private static Options options;
     private static String srcDir;
     private static String filePrefix;
+    private static Boolean writeHeader;
 
     public static void main(String[] args) throws IOException {
         // handle command-line argument processing :)
@@ -39,6 +40,11 @@ public class TrackGenerator {
                                           "extension)")
                             .required()
                             .build());
+            TrackGenerator.options.addOption(
+                    Option.builder("h")
+                            .longOpt("writeHeader")
+                            .desc("Include the header line")
+                            .build());
             // TODO add options??? do I even need more options???
         }
         // Parse the commandline arguments
@@ -49,6 +55,8 @@ public class TrackGenerator {
             TrackGenerator.srcDir = line.getOptionValue("s");
             // set the output filename
             TrackGenerator.filePrefix = line.getOptionValue("o");
+            // set the header line boolean
+            TrackGenerator.writeHeader = line.hasOption("h");
         } catch (ParseException exp) {
             // something went wrong
             System.err.println("Parsing failed. Reason: " + exp.getMessage());
@@ -70,16 +78,18 @@ public class TrackGenerator {
         BufferedWriter writerSingle = Files.newBufferedWriter(outputSingle);
 
         // write the header lines
-        // TODO set a more useful name field?
-        writer.write("track"
-                             + " name=" + "motifsFoundMultiBlock"
-                             + " type=" + "bedDetail"
-                             + "\n");
-        // TODO set a more useful name field for this one too?
-        writerSingle.write("track"
-                                   + " name=" + "motifsFoundSingleBlock"
-                                   + " type=" + "bedDetail"
-                                   + "\n");
+        if (writeHeader) {
+            // TODO set a more useful name field?
+            writer.write("track"
+                                 + " name=" + "motifsFoundMultiBlock"
+                                 + " type=" + "bedDetail"
+                                 + "\n");
+            // TODO set a more useful name field?
+            writerSingle.write("track"
+                                       + " name=" + "motifsFoundSingleBlock"
+                                       + " type=" + "bedDetail"
+                                       + "\n");
+        }
 
         // read the given directory...
         Path source = Paths.get(TrackGenerator.srcDir);

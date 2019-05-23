@@ -159,8 +159,7 @@ public class StockholmAlignmentBlock {
 
         Pair<BigInteger, BigInteger> adjI
                 = this.getInterval("hg38");
-        // TODO trim for excess whitespace within the actual alignment
-        // TODO if appropriate?
+        // TODO trim for excess whitespace within the actual alignment???
         for (Pair<BigInteger, BigInteger> subI
                 : this.sources.get(s).indivSpans) {
             // test if the start position is within this interval
