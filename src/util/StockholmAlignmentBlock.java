@@ -1,6 +1,7 @@
 package util;
 
-import javafx.util.Pair;
+import org.apache.commons.lang3.tuple.ImmutablePair;
+import org.apache.commons.lang3.tuple.Pair;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -76,7 +77,7 @@ public class StockholmAlignmentBlock {
                 String[] interval = parts[3].split("\\.\\.");
                 Source source = new Source(parts[1]);
                 result.sources.put(source.species, source);
-                result.intervals.put(source.species, new Pair<>(
+                result.intervals.put(source.species, new ImmutablePair<>(
                         BigInteger.valueOf(Integer.valueOf(interval[0])),
                         BigInteger.valueOf(Integer.valueOf(interval[1]))
                 ));
@@ -127,7 +128,7 @@ public class StockholmAlignmentBlock {
     public Pair<BigInteger, BigInteger> getInterval(String s) {
         Pair<BigInteger, BigInteger> within = this.intervals.get(s);
         Pair<BigInteger, BigInteger> outside = this.sources.get(s).totalSpan;
-        return new Pair<>(
+        return new ImmutablePair<>(
                 within.getKey().add(outside.getKey()),
                 within.getValue().add(outside.getKey())
         );
@@ -209,7 +210,7 @@ public class StockholmAlignmentBlock {
             chr = parts[1];
             strand = parts[2].equals("+");
             String[] fullInterval = parts[3].split("-");
-            totalSpan = new Pair<>(
+            totalSpan = new ImmutablePair<>(
                     BigInteger.valueOf(Integer.valueOf(fullInterval[0])),
                     BigInteger.valueOf(Integer.valueOf(fullInterval[1]))
             );
@@ -218,7 +219,7 @@ public class StockholmAlignmentBlock {
             for (int i = 0; i < allIntervals.length; i++) {
                 String[] interval = allIntervals[i].split("-");
                 indivSpans.add(
-                        new Pair<>(
+                        new ImmutablePair<>(
                                 BigInteger.valueOf(
                                         Integer.valueOf(interval[0])),
                                 BigInteger.valueOf(

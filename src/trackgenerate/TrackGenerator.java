@@ -1,7 +1,7 @@
 package trackgenerate;
 
-import javafx.util.Pair;
 import org.apache.commons.cli.*;
+import org.apache.commons.lang3.tuple.Pair;
 import util.StockholmAlignmentBlock;
 
 import java.io.BufferedWriter;
