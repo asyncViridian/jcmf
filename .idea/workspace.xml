@@ -2,13 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3da6e499-81fb-4a08-856f-3dc0c5fe102e" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/org_apache_commons_commons_lang3_3_9.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/artifacts/trackgenerator_jar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/artifacts/trackgenerator_jar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/jcmf.iml" beforeDir="false" afterPath="$PROJECT_DIR$/jcmf.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/notes/RNA Motifs Process Notes.txt" beforeDir="false" afterPath="$PROJECT_DIR$/notes/RNA Motifs Process Notes.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/trackgenerate/TrackGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/trackgenerate/TrackGenerator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/util/StockholmAlignmentBlock.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/util/StockholmAlignmentBlock.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -25,8 +19,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/blockmerge/BlockMerger.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="283">
-              <caret line="190" column="23" selection-start-line="190" selection-start-column="23" selection-end-line="190" selection-end-column="23" />
+            <state relative-caret-position="405">
+              <caret line="193" column="42" selection-start-line="193" selection-start-column="42" selection-end-line="193" selection-end-column="42" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="method#repeat#0;class#BlockMerger#0" />
@@ -40,8 +34,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/trackgenerate/TrackGenerator.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="351">
-              <caret line="114" column="27" lean-forward="true" selection-start-line="114" selection-start-column="27" selection-end-line="114" selection-end-column="27" />
+            <state relative-caret-position="386">
+              <caret line="24" column="47" lean-forward="true" selection-start-line="24" selection-start-column="47" selection-end-line="24" selection-end-column="47" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -52,8 +46,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/util/StockholmAlignmentBlock.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="250">
-              <caret line="134" column="5" lean-forward="true" selection-start-line="134" selection-start-column="5" selection-end-line="134" selection-end-column="5" />
+            <state relative-caret-position="232">
+              <caret line="133" column="10" selection-start-line="133" selection-start-column="10" selection-end-line="133" selection-end-column="10" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="method#containsSpecies#0;class#StockholmAlignmentBlock#0" />
@@ -101,6 +95,7 @@
       <find>writer.</find>
       <find>read input</find>
       <find>Pair&lt;</find>
+      <find>filePrefix</find>
     </findStrings>
     <replaceStrings>
       <replace>assertEquals\((\2), (\1)\);</replace>
@@ -137,8 +132,8 @@
         <option value="$PROJECT_DIR$/src/blockmerge/BlockGapStatistics.java" />
         <option value="$PROJECT_DIR$/src/util/StockholmReader.java" />
         <option value="$PROJECT_DIR$/src/blockmerge/BlockMerger.java" />
-        <option value="$PROJECT_DIR$/src/trackgenerate/TrackGenerator.java" />
         <option value="$PROJECT_DIR$/src/util/StockholmAlignmentBlock.java" />
+        <option value="$PROJECT_DIR$/src/trackgenerate/TrackGenerator.java" />
       </list>
     </option>
   </component>
@@ -398,7 +393,7 @@
       <workItem from="1557986723549" duration="588000" />
       <workItem from="1558079984855" duration="1436000" />
       <workItem from="1558330697761" duration="2722000" />
-      <workItem from="1558592916285" duration="2019000" />
+      <workItem from="1558592916285" duration="3561000" />
     </task>
     <servers />
   </component>
@@ -435,13 +430,13 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="123514000" />
+    <option name="totallyTimeSpent" value="125056000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-9" y="-9" width="1698" height="1020" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.4944356" visible="true" weight="0.23777506" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.4944356" visible="true" weight="0.23777506" />
       <window_info id="Structure" order="1" sideWeight="0.5055644" side_tool="true" weight="0.12469438" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -735,8 +730,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/blockmerge/BlockMerger.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="283">
-          <caret line="190" column="23" selection-start-line="190" selection-start-column="23" selection-end-line="190" selection-end-column="23" />
+        <state relative-caret-position="405">
+          <caret line="193" column="42" selection-start-line="193" selection-start-column="42" selection-end-line="193" selection-end-column="42" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="method#repeat#0;class#BlockMerger#0" />
@@ -748,8 +743,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/util/StockholmAlignmentBlock.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="250">
-          <caret line="134" column="5" lean-forward="true" selection-start-line="134" selection-start-column="5" selection-end-line="134" selection-end-column="5" />
+        <state relative-caret-position="232">
+          <caret line="133" column="10" selection-start-line="133" selection-start-column="10" selection-end-line="133" selection-end-column="10" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="method#containsSpecies#0;class#StockholmAlignmentBlock#0" />
@@ -759,8 +754,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/trackgenerate/TrackGenerator.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="351">
-          <caret line="114" column="27" lean-forward="true" selection-start-line="114" selection-start-column="27" selection-end-line="114" selection-end-column="27" />
+        <state relative-caret-position="386">
+          <caret line="24" column="47" lean-forward="true" selection-start-line="24" selection-start-column="47" selection-end-line="24" selection-end-column="47" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -773,7 +768,7 @@
       <state key="ArtifactsStructureConfigurable.UI">
         <settings>
           <artifact-editor />
-          <last-edited>trackgenerator:jar</last-edited>
+          <last-edited>blockmerger:jar</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>

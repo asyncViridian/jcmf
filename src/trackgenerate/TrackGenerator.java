@@ -17,8 +17,7 @@ import java.nio.file.Paths;
 public class TrackGenerator {
     private static Options options;
     private static String srcDir;
-    private static String outFile;
-    private static String outFileSingle;
+    private static String filePrefix;
 
     public static void main(String[] args) throws IOException {
         // handle command-line argument processing :)
@@ -34,17 +33,10 @@ public class TrackGenerator {
                             .build());
             TrackGenerator.options.addOption(
                     Option.builder("o")
-                            .longOpt("outFile")
+                            .longOpt("filePrefix")
                             .hasArg()
-                            .desc("Output BED filename (including extension)")
-                            .required()
-                            .build());
-            TrackGenerator.options.addOption(
-                    Option.builder("os")
-                            .longOpt("outFileSingle")
-                            .hasArg()
-                            .desc("Output BED filename for single-block " +
-                                          "motifs(including extension)")
+                            .desc("Output BED filename prefix (not including " +
+                                          "extension)")
                             .required()
                             .build());
             // TODO add options??? do I even need more options???
@@ -56,26 +48,23 @@ public class TrackGenerator {
             // set the src dirname
             TrackGenerator.srcDir = line.getOptionValue("s");
             // set the output filename
-            TrackGenerator.outFile = line.getOptionValue("o");
-            // set the single-block output filename
-            TrackGenerator.outFileSingle = line.getOptionValue("os");
+            TrackGenerator.filePrefix = line.getOptionValue("o");
         } catch (ParseException exp) {
             // something went wrong
             System.err.println("Parsing failed. Reason: " + exp.getMessage());
             HelpFormatter formatter = new HelpFormatter();
             formatter.printHelp(
-                    "TrackGenerator [options] -s <dirname> -o <filename> -os " +
-                            "<filename>",
+                    "TrackGenerator [options] -s <dirname> -o <filename>",
                     options);
             return;
         }
 
         // generate the output file
-        Path output = Paths.get(TrackGenerator.outFile);
+        Path output = Paths.get(TrackGenerator.filePrefix + "_multi.bed");
         Files.deleteIfExists(output);
         Files.createFile(output);
         BufferedWriter writer = Files.newBufferedWriter(output);
-        Path outputSingle = Paths.get(TrackGenerator.outFileSingle);
+        Path outputSingle = Paths.get(TrackGenerator.filePrefix + "_multi.bed");
         Files.deleteIfExists(outputSingle);
         Files.createFile(outputSingle);
         BufferedWriter writerSingle = Files.newBufferedWriter(outputSingle);
