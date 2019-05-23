@@ -13,35 +13,42 @@ import java.util.ArrayList;
 import java.util.Iterator;
 
 public class SimpleHistogram {
-    private ArrayList<Double> scores = new ArrayList<>();
+    private ArrayList<Double> values = new ArrayList<>();
     private String key;
+    private String xLabel;
+    private String yLabel;
     private Path output;
+private int numBins;
 
-    public SimpleHistogram(Path output, String key) {
+    public SimpleHistogram(Path output, String key, String xLabel,
+                           String yLabel, int numBins) {
         this.output = output;
         this.key = key;
+        this.xLabel = xLabel;
+        this.yLabel = yLabel;
+        this.numBins=numBins;
     }
 
-    public void addScore(BigDecimal score) {
-        scores.add(score.doubleValue());
+    public void addValue(BigDecimal score) {
+        values.add(score.doubleValue());
     }
 
     public void write() throws IOException {
         HistogramDataset dataset = new HistogramDataset();
         dataset.setType(HistogramType.RELATIVE_FREQUENCY);
-        double[] temp = new double[scores.size()];
-        Iterator<Double> it = scores.iterator();
+        double[] temp = new double[values.size()];
+        Iterator<Double> it = values.iterator();
         int i = 0;
         while (it.hasNext()) {
             temp[i] = it.next();
             i++;
         }
-        dataset.addSeries(key, temp, 20);
+        dataset.addSeries(key, temp, numBins);
 
         JFreeChart chart = ChartFactory.createHistogram(
                 null,
-                "Number of motifs",
-                "Score",
+                xLabel,
+                yLabel,
                 dataset);
         ChartUtils.saveChartAsPNG(this.output.toFile(), chart, 800, 600);
     }

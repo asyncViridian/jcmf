@@ -306,9 +306,9 @@ public class BlockMerger {
         } else if (MERGE_TYPE == MergeType.BLOCKS) {
             // Create overall statistics trackers
             // Track gap content (N bases) in each merged block
-            // TODO make this filename argument-able?
+            // TODO make this filename argument-able???
             Path gapStatsFile = Paths.get(BlockMerger.outDir,
-                                          "gapStatistics" + ".png");
+                                          "graph_gapStatistics" + ".png");
             Files.deleteIfExists(gapStatsFile);
             Files.createFile(gapStatsFile);
             BlockGapStatistics gapStats = new BlockGapStatistics(

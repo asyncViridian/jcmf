@@ -17,7 +17,7 @@ import java.nio.file.Paths;
 public class TrackGenerator {
     private static Options options;
     private static String srcDir;
-    private static String filePrefix;
+    private static String outputDirectory;
     private static Boolean writeHeader;
 
     public static void main(String[] args) throws IOException {
@@ -34,10 +34,9 @@ public class TrackGenerator {
                             .build());
             TrackGenerator.options.addOption(
                     Option.builder("o")
-                            .longOpt("filePrefix")
+                            .longOpt("outputDirectory")
                             .hasArg()
-                            .desc("Output BED filename prefix (not including " +
-                                          "extension)")
+                            .desc("Output directory")
                             .required()
                             .build());
             TrackGenerator.options.addOption(
@@ -54,7 +53,7 @@ public class TrackGenerator {
             // set the src dirname
             TrackGenerator.srcDir = line.getOptionValue("s");
             // set the output filename
-            TrackGenerator.filePrefix = line.getOptionValue("o");
+            TrackGenerator.outputDirectory = line.getOptionValue("o");
             // set the header line boolean
             TrackGenerator.writeHeader = line.hasOption("h");
         } catch (ParseException exp) {
@@ -67,15 +66,45 @@ public class TrackGenerator {
             return;
         }
 
-        // generate the output file
-        Path output = Paths.get(TrackGenerator.filePrefix + "_multi.bed");
+        // generate the output files
+        // the multiple-block motifs file
+        Path output = Paths.get(TrackGenerator.outputDirectory, "multi.bed");
         Files.deleteIfExists(output);
         Files.createFile(output);
         BufferedWriter writer = Files.newBufferedWriter(output);
-        Path outputSingle = Paths.get(TrackGenerator.filePrefix + "_multi.bed");
+        // the single-block motifs file
+        Path outputSingle = Paths.get(TrackGenerator.outputDirectory,
+                                      "single.bed");
         Files.deleteIfExists(outputSingle);
         Files.createFile(outputSingle);
         BufferedWriter writerSingle = Files.newBufferedWriter(outputSingle);
+        // histograms
+        Path rnaStatsFile = Paths.get(TrackGenerator.outputDirectory,
+                                      "graph_rnaScoreStats_prefilter" + ".png");
+        SimpleHistogram rnaScoreStats = new SimpleHistogram(
+                rnaStatsFile,
+                "",
+                "RNA posterior score",
+                "Number of motifs",
+                20);
+        Path pairStatsFile = Paths.get(TrackGenerator.outputDirectory,
+                                       "graph_pairScoreStats_prefilter" +
+                                               ".png");
+        SimpleHistogram pairScoreStats = new SimpleHistogram(
+                pairStatsFile,
+                "",
+                "Pair posterior score",
+                "Number of motifs",
+                20);
+        Path blockSpanFile = Paths.get(TrackGenerator.outputDirectory,
+                                       "graph_blockSpanStats_prefilter" +
+                                               ".png");
+        SimpleHistogram blockSpanStats = new SimpleHistogram(
+                blockSpanFile,
+                "",
+                "Number of blocks spanned",
+                "Number of motifs",
+                5);
 
         // write the header lines
         if (writeHeader) {
@@ -109,14 +138,21 @@ public class TrackGenerator {
                 continue;
             }
 
-            BigDecimal score = block.rnaScore;
+            BigDecimal pairScore = block.pairScore;
+            BigDecimal rnaScore = block.rnaScore;
+
+            // write the stats for this sequence to tracker
+            pairScoreStats.addValue(pairScore);
+            rnaScoreStats.addValue(rnaScore);
+            blockSpanStats.addValue(
+                    BigDecimal.valueOf(block.motifInNumBlocks("hg38")));
 
             // score filter
-            if (score.compareTo(BigDecimal.valueOf(40L)) < 0) {
+            if (rnaScore.compareTo(BigDecimal.valueOf(40L)) < 0) {
                 continue;
             }
 
-            // TODO set a better score filter and value guideline
+            // TODO set a better score filter and value guideline?
             BigDecimal max = BigDecimal.valueOf(125L);
 
             // construct the line that we will output for this motif
@@ -128,10 +164,10 @@ public class TrackGenerator {
                     + interval.getKey() + "\t"
                     + interval.getValue() + "\t"
                     + name + "\t"
-                    + score.divide(max, RoundingMode.HALF_EVEN)
+                    + rnaScore.divide(max, RoundingMode.HALF_EVEN)
                     .multiply(BigDecimal.valueOf(1000)) + "\n";
             // determine which BED track we want to output to
-            if (block.motifInSingleBlock("hg38")) {
+            if (block.motifInNumBlocks("hg38") == 1) {
                 // add it to the single-block BED
                 writerSingle.write(thingToWrite);
             } else {
@@ -141,5 +177,12 @@ public class TrackGenerator {
         }
         writer.close();
         writerSingle.close();
+        System.out.println("Wrote BED files");
+
+        // Output histograms
+        pairScoreStats.write();
+        rnaScoreStats.write();
+        blockSpanStats.write();
+        System.out.println("Wrote statistics graphs");
     }
 }
