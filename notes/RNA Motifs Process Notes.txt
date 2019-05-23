@@ -31,31 +31,38 @@ TODO: explanation of the functionality blockmerge provides
 
 ===============================================================================
 
-Generating the predicted motifs:
-There are 4 scripts in the scripts directory. 
-    TODO: These currently use hardcoded filepaths. I want to parameterize them later, for easier auto processing.
-The scripts:
-    01split.sh
-        This can be used to split a pseudo-FASTA file into many separate FASTA files along the pattern \n\n (split along empty lines). This "pseudo-FASTA" is the format that Galaxy's MAF->FASTA conversion tool outputs.
-        In the context of my current pipeline, this script is unused.
-    02align.sh
+Generating the predicted motifs and associated scores:
+There are some scripts in the scripts directory, as well as a template source_mafs and workingdirectory to reflect the structure of the filesystem I used when running these scripts.
+The executables:
+    blockmerger.jar
+        This jar executable generates the set of FASTA files representing all the "merged blocks" originally from the given MAF file.
+        It has a relatively complex set of arguments to specify source, destination, and various parameters (see below)
+    align.sh
         This script runs cmfinder with a set of arguments (listed within the script) on each of the FASTA files in the directory ./split relative to the current directory.
         It produces a set of folders containing the appropriate sorted output.
-        TODO: update the pathing settings.
-    03score.sh
-        This script scores each of the motifs (individual results and merged results both) that 02align produces. It depends on the file structure that 02align produces, and outputs several more directories. The actual scoring information is within ./scores, while extra produced files are moved to ./other
-    04listscores.sh
-        This script lists all of the scores that 03score calculated in order from least to greatest.
+    score.sh
+        Takes 1 argument: the path to newick phylogenetic tree
+        This script scores each of the motifs (individual results and merged results both) that align.sh produces. It depends on the file structure that align.sh produces, and outputs several more directories. The actual scoring information is within ./scores, while extra produced files are moved to ./other
+    listscores.sh
+        This script generates some files that list all of the scores that score.sh calculated in order from least to greatest.
+        TODO: update the script itself to not need an argument, instead using a relative file structure like the other 2 scripts
+    trackgenerator.jar
+        This jar executable generates a BED file track from a set of score files.
+        It has a relatively complex set of arguments to specify which score dir, as well as output files (see below)
+        TODO: update the arguments to specify the double and single track outputs?
+    runAll.sh
+        This script runs all of the previous executables in order, so that I don't have to do it manually. Requires a source MAF file and a directory to dump all of the split, results, score, etc. directories inside.
 
 My workflow that I have used so far:
-01. Generate the FASTA files by whatever means is preferred. Place those files into ./split
-02. Run the command "./02align.sh && ./03score.sh &" and then "disown". This will run the appropriate motif-finding and scoring in the background, and then I can check for progress by checking the number of files or currently running processes.
-03. Optionally, run "./04listscores.sh" to get a very brief summary of the results. Or download the output and process that into track format to analyze.
-    TODO: work on the analysis portion
+01. Download the MAF file
+02. Create the working directory (i.e. a directory named "q_chr01_5block-10to3000-allspecies")
+03. Run the runAll.sh script, like so (change out the parameters as appropriate, obviously):
+    ./runAll.sh q_chr01_5block-10to3000-allspecies/ source_mafs/chr5.maf
 
 ===============================================================================
 
-Placeholder.
+Generating the UCSC browser format track hub:
+TODO
 
 ===============================================================================
 ===============================================================================
