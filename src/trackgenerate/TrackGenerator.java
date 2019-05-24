@@ -165,7 +165,7 @@ public class TrackGenerator {
                     + interval.getValue() + "\t"
                     + name + "\t"
                     + rnaScore.divide(max, RoundingMode.HALF_EVEN)
-                    .multiply(BigDecimal.valueOf(1000)) + "\n";
+                    .multiply(BigDecimal.valueOf(1000)).intValue() + "\n";
             // determine which BED track we want to output to
             if (block.motifInNumBlocks("hg38") == 1) {
                 // add it to the single-block BED

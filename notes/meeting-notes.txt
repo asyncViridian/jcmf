@@ -1,15 +1,35 @@
+2019-05-23
+Merge block difference: use length threshold instead of block # threshold
+    - Length threshold: have a minimum block length and probably a fairly generous maximum block length. Perhaps shift based on percentage of block, not a constant?
+    - Generally you can't have a block that is too long for cmfinder to return good results, but I still want to get statistics on how much longer it takes to run a block of n length vs 2n length (or something like that)
+Collect statistics
+    - Average block size
+    - Average motif size
+    - Graph the amount that alignment gaps comprise each motif found.
+        - i.e. the amount of gap used in each motif body
+    - Graph the species in each motif data, somehow??
+Rework the track generation to NOT use a decimal for greyscale value (this is what was causing the bigBed issue)
+Improve BED track generation scoring:
+    - Find a uniform score scaling that works on all four regions? possibly?    
+    - Add a max(the found score score, 1000) in case something exceeds the score
+Upload track data to webserver so it can be accessed more easily
+    - Add URLs for each hit found linked to extra information
+    - http://students.washington.edu/jyzhou15/trackHub/hub.txt
+
+===============================================================================
 2019-05-09 & 2019-05-16
 Collect statistics
     - Score histogram: distribution on pair-posterior, rna-posterior
         - Wasn't there another score produced by cmfinder directly???
         - this is now output by trackgenerator as two histograms.
-            - It might be nice to log scale them or something
+            - It might be nice to log scale them or something. TODO
     - I already have the block length vs gap percentage graph
-        - Perhaps make that into a better format
+        - Perhaps make that into a better format???
     - Graph number of blocks overlapped, perhaps. "Block boundaries" gap
-        - Done.
+        - Done. Not sure how informational this is...
     - Graph the amount that alignment gaps comprise each motif found.
-    - Graph the species in each motif data, somehow.
+        - i.e. the amount of gap used in each motif body
+    - Graph the species in each motif data, somehow??
 Merge block difference: use length threshold instead of block # threshold
     - Length threshold: have a minimum block length and probably a fairly generous maximum block length. Perhaps shift based on percentage of block, not a constant?
     - Generally you can't have a block that is too long for cmfinder to return good results, but I still want to get statistics on how much longer it takes to run a block of n length vs 2n length (or something like that)
@@ -17,8 +37,7 @@ Separate single-block motifs into a separate track
     - For chr12: using pairScore filters out all of the single-block hits, but rnaScore seems to have much higher scores overall and so contains several of these results.
 Find a uniform score scaling that works on all four regions
     - Would it help to have some kind of log scale??? idk man
-Add a max(the found score score, 1000) in case something exceeds the score :)
-    - done!
+Add a max(the found score score, 1000) in case something exceeds the score
 Upload track data to webserver so it can be accessed more easily
     - Add URLs for each hit found linked to extra information
     - Track hubs is how the previous CMfinder study displays their data. Look into setting that up, instead of solely generating a single BED/BEDdetail file.

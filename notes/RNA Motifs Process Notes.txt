@@ -81,6 +81,7 @@ Generating the UCSC browser format track hub:
 ===============================================================================
 
 TRACKGENERATOR.JAR
+TODO update this
 
 > java -jar trackgenerator.jar
 Parsing failed. Reason: Missing required options: s, o
