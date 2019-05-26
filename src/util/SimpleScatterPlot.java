@@ -10,14 +10,14 @@ import java.io.IOException;
 import java.math.BigDecimal;
 import java.nio.file.Path;
 
-public class SimpleScatterplot {
+public class SimpleScatterPlot implements StatsGraph {
     private XYSeries dataset = new XYSeries("Gaps");
     private Path output;
     private String title;
     private String xAxisLabel;
     private String yAxisLabel;
 
-    public SimpleScatterplot(Path output, String title, String xAxisLabel,
+    public SimpleScatterPlot(Path output, String title, String xAxisLabel,
                              String yAxisLabel) {
         this.output = output;
         this.title = title;
@@ -30,6 +30,7 @@ public class SimpleScatterplot {
         this.dataset.add(seqLength, gapPercentage);
     }
 
+    @Override
     public void write() throws IOException {
         JFreeChart chart = ChartFactory.createScatterPlot(
                 this.title,

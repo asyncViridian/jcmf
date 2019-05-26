@@ -12,7 +12,7 @@ import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Iterator;
 
-public class SimpleHistogram {
+public class SimpleHistogram implements StatsGraph{
     private ArrayList<Double> values = new ArrayList<>();
     private String key;
     private String xLabel;
@@ -33,6 +33,7 @@ public class SimpleHistogram {
         values.add(score.doubleValue());
     }
 
+    @Override
     public void write() throws IOException {
         HistogramDataset dataset = new HistogramDataset();
         dataset.setType(HistogramType.RELATIVE_FREQUENCY);

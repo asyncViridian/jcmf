@@ -4,7 +4,7 @@ import util.MAFAlignmentBlock;
 import util.MAFReader;
 import util.SimpleHistogram;
 import org.apache.commons.cli.*;
-import util.SimpleScatterplot;
+import util.SimpleScatterPlot;
 
 import java.io.BufferedWriter;
 import java.io.IOException;
@@ -313,7 +313,7 @@ public class BlockMerger {
             Path gapStatsFile = Paths.get(BlockMerger.outDir,
                                           "graph_postfilter_gapStatistics" +
                                                   ".png");
-            SimpleScatterplot gapStats = new SimpleScatterplot(
+            SimpleScatterPlot gapStats = new SimpleScatterPlot(
                     gapStatsFile,
                     null,
                     "Merged sequence length",
