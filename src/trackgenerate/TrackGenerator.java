@@ -161,12 +161,17 @@ public class TrackGenerator {
                     = block.getInterval("hg38");
             String chr = block.getChromosome("hg38");
             String name = f.getName();
+            // set cap of the computed scaled score to 1000
+            BigDecimal score = rnaScore.divide(max, RoundingMode.HALF_EVEN)
+                    .multiply(BigDecimal.valueOf(1000));
+            if (score.compareTo(BigDecimal.valueOf(1000)) > 0) {
+                score = BigDecimal.valueOf(1000);
+            }
             String thingToWrite = chr + "\t"
                     + interval.getKey() + "\t"
                     + interval.getValue() + "\t"
                     + name + "\t"
-                    + rnaScore.divide(max, RoundingMode.HALF_EVEN)
-                    .multiply(BigDecimal.valueOf(1000)).intValue() + "\n";
+                    + score.intValue() + "\n";
             // determine which BED track we want to output to
             if (block.motifInNumBlocks("hg38") == 1) {
                 // add it to the single-block BED

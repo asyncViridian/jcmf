@@ -4,7 +4,8 @@
 # $1 = dir to work in
 # $2 = maf file to use
 
-exec > $1/log 2>&1
+# redirect stdout/stderr to log file
+exec &> $1/log.log
 set -x
 
 if [ "$#" -ne 2 ]; then

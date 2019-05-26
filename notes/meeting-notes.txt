@@ -4,11 +4,14 @@ Merge block difference: use length threshold instead of block # threshold
     - Generally you can't have a block that is too long for cmfinder to return good results, but I still want to get statistics on how much longer it takes to run a block of n length vs 2n length (or something like that)
 Collect statistics
     - Average block size
+        - Done! Added to the block merge code
     - Average motif size
     - Graph the amount that alignment gaps comprise each motif found.
         - i.e. the amount of gap used in each motif body
     - Graph the species in each motif data, somehow??
-Rework the track generation to NOT use a decimal for greyscale value (this is what was causing the bigBed issue)
+Rework the track generation to NOT use a decimal for greyscale value
+    - this is what was causing the bigBed issue
+    - Done!
 Improve BED track generation scoring:
     - Find a uniform score scaling that works on all four regions? possibly?    
     - Add a max(the found score score, 1000) in case something exceeds the score

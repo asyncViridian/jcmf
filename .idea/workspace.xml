@@ -2,9 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3da6e499-81fb-4a08-856f-3dc0c5fe102e" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/src/blockmerge/BlockMerger.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/blockmerge/BlockMerger.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/util/SimpleHistogram.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/util/SimpleHistogram.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/util/SimpleScatterPlot.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/util/SimpleScatterPlot.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/notes/meeting-notes.txt" beforeDir="false" afterPath="$PROJECT_DIR$/notes/meeting-notes.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/notes/scripts/blockmerger.jar" beforeDir="false" afterPath="$PROJECT_DIR$/notes/scripts/blockmerger.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/notes/scripts/runAll.sh" beforeDir="false" afterPath="$PROJECT_DIR$/notes/scripts/runAll.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/notes/scripts/trackgenerator.jar" beforeDir="false" afterPath="$PROJECT_DIR$/notes/scripts/trackgenerator.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/trackgenerate/TrackGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/trackgenerate/TrackGenerator.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -36,8 +38,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/trackgenerate/TrackGenerator.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="288">
-              <caret line="88" column="30" lean-forward="true" selection-start-line="88" selection-start-column="30" selection-end-line="88" selection-end-column="30" />
+            <state relative-caret-position="357">
+              <caret line="163" column="59" selection-start-line="163" selection-start-column="59" selection-end-line="163" selection-end-column="59" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -139,7 +141,6 @@
         <option value="$PROJECT_DIR$/src/util/StockholmAlignmentBlock.java" />
         <option value="$PROJECT_DIR$/src/trackgenerate/ScoreStatistics.java" />
         <option value="$PROJECT_DIR$/src/trackgenerate/SimpleHistogram.java" />
-        <option value="$PROJECT_DIR$/src/trackgenerate/TrackGenerator.java" />
         <option value="$PROJECT_DIR$/src/blockmerge/BlockGapStatistics.java" />
         <option value="$PROJECT_DIR$/src/blockmerge/SimpleScatterplot.java" />
         <option value="$PROJECT_DIR$/src/util/Statistics.java" />
@@ -148,6 +149,7 @@
         <option value="$PROJECT_DIR$/src/util/SimpleScatterPlot.java" />
         <option value="$PROJECT_DIR$/src/blockmerge/BlockMerger.java" />
         <option value="$PROJECT_DIR$/src/util/SimpleHistogram.java" />
+        <option value="$PROJECT_DIR$/src/trackgenerate/TrackGenerator.java" />
       </list>
     </option>
   </component>
@@ -408,7 +410,7 @@
       <workItem from="1558592916285" duration="8013000" />
       <workItem from="1558636975724" duration="4449000" />
       <workItem from="1558766553426" duration="3105000" />
-      <workItem from="1558908818860" duration="2229000" />
+      <workItem from="1558908818860" duration="2934000" />
     </task>
     <servers />
   </component>
@@ -445,7 +447,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="139291000" />
+    <option name="totallyTimeSpent" value="139996000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-9" y="-9" width="1698" height="1020" extended-state="6" />
@@ -786,8 +788,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/trackgenerate/TrackGenerator.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="288">
-          <caret line="88" column="30" lean-forward="true" selection-start-line="88" selection-start-column="30" selection-end-line="88" selection-end-column="30" />
+        <state relative-caret-position="357">
+          <caret line="163" column="59" selection-start-line="163" selection-start-column="59" selection-end-line="163" selection-end-column="59" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
