@@ -2,8 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3da6e499-81fb-4a08-856f-3dc0c5fe102e" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/blockmerge/BlockGapStatistics.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/blockmerge/SimpleScatterplot.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/blockmerge/BlockMerger.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/blockmerge/BlockMerger.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/trackgenerate/SimpleHistogram.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/util/SimpleHistogram.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/trackgenerate/TrackGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/trackgenerate/TrackGenerator.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -16,63 +19,80 @@
     <option name="isMigrated" value="true" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/blockmerge/BlockMerger.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="5310">
-              <caret line="484" column="48" selection-start-line="484" selection-start-column="48" selection-end-line="484" selection-end-column="48" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#3512#9405#1" />
-                <element signature="e#9517#12833#0" />
-                <element signature="e#12861#13204#0" />
-                <element signature="method#repeat#0;class#BlockMerger#0" />
-                <element signature="method#writeFastaHeader#0;class#BlockMerger#0" />
-                <element signature="method#writeFastaContent#0;class#BlockMerger#0" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/trackgenerate/TrackGenerator.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="558">
-              <caret line="45" column="33" selection-start-line="45" selection-start-column="33" selection-end-line="45" selection-end-column="33" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/trackgenerate/SimpleHistogram.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="594">
-              <caret line="45" column="44" selection-start-line="45" selection-start-column="44" selection-end-line="45" selection-end-column="44" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/util/StockholmAlignmentBlock.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2610">
-              <caret line="154" column="14" selection-start-line="154" selection-start-column="11" selection-end-line="154" selection-end-column="14" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="method#containsSpecies#0;class#StockholmAlignmentBlock#0" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <splitter split-orientation="horizontal" split-proportion="0.5">
+      <split-first>
+        <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+          <file pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/src/blockmerge/BlockMerger.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="391">
+                  <caret line="500" column="67" selection-start-line="500" selection-start-column="67" selection-end-line="500" selection-end-column="67" />
+                  <folding>
+                    <element signature="imports" expanded="true" />
+                    <element signature="method#repeat#0;class#BlockMerger#0" />
+                    <element signature="method#writeFastaHeader#0;class#BlockMerger#0" />
+                    <element signature="method#writeFastaContent#0;class#BlockMerger#0" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/trackgenerate/TrackGenerator.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="18">
+                  <caret line="82" column="36" selection-start-line="82" selection-start-column="36" selection-end-line="82" selection-end-column="36" />
+                  <folding>
+                    <element signature="imports" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/util/SimpleHistogram.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="162">
+                  <caret line="21" selection-start-line="21" selection-end-line="21" />
+                  <folding>
+                    <element signature="imports" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/util/StockholmAlignmentBlock.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="2610">
+                  <caret line="154" column="14" selection-start-line="154" selection-start-column="11" selection-end-line="154" selection-end-column="14" />
+                  <folding>
+                    <element signature="imports" expanded="true" />
+                    <element signature="method#containsSpecies#0;class#StockholmAlignmentBlock#0" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+        </leaf>
+      </split-first>
+      <split-second>
+        <leaf>
+          <file pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/src/blockmerge/SimpleScatterplot.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="181">
+                  <caret line="13" column="31" selection-start-line="13" selection-start-column="31" selection-end-line="13" selection-end-column="31" />
+                  <folding>
+                    <element signature="imports" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+        </leaf>
+      </split-second>
+    </splitter>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -114,6 +134,7 @@
       <find>filePrefix</find>
       <find>in</find>
       <find>num</find>
+      <find>simplescatter</find>
     </findStrings>
     <replaceStrings>
       <replace>assertEquals\((\2), (\1)\);</replace>
@@ -147,13 +168,15 @@
         <option value="$PROJECT_DIR$/src/blockmerge/util/MAFReader.java" />
         <option value="$PROJECT_DIR$/test/blockmerge/BlockMergerTest.java" />
         <option value="$PROJECT_DIR$/src/blockmerge/util/AlignmentBlock.java" />
-        <option value="$PROJECT_DIR$/src/blockmerge/BlockGapStatistics.java" />
         <option value="$PROJECT_DIR$/src/util/StockholmReader.java" />
-        <option value="$PROJECT_DIR$/src/blockmerge/BlockMerger.java" />
         <option value="$PROJECT_DIR$/src/util/StockholmAlignmentBlock.java" />
         <option value="$PROJECT_DIR$/src/trackgenerate/ScoreStatistics.java" />
         <option value="$PROJECT_DIR$/src/trackgenerate/SimpleHistogram.java" />
+        <option value="$PROJECT_DIR$/src/util/SimpleHistogram.java" />
         <option value="$PROJECT_DIR$/src/trackgenerate/TrackGenerator.java" />
+        <option value="$PROJECT_DIR$/src/blockmerge/BlockGapStatistics.java" />
+        <option value="$PROJECT_DIR$/src/blockmerge/BlockMerger.java" />
+        <option value="$PROJECT_DIR$/src/blockmerge/SimpleScatterplot.java" />
       </list>
     </option>
   </component>
@@ -163,7 +186,7 @@
       <select />
     </treeState>
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="width" value="1191" />
     <option name="height" value="1002" />
   </component>
@@ -172,6 +195,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="PackagesPane" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -221,8 +246,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -277,7 +300,7 @@
       <option name="PROGRAM_PARAMETERS" value="-sd data -s m100_chr12_62602752-62622213.maf -od output -o m100_chr12_62602752-62622213" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="blockmerge.*" />
+          <option name="PATTERN" value="util.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -304,7 +327,7 @@
       <option name="PROGRAM_PARAMETERS" value="-s notes/data/q_chr01_5block-10to3000-allspecies/scores -o output/" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="trackgenerate.*" />
+          <option name="PATTERN" value="util.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -316,7 +339,7 @@
       <module name="jcmf" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="blockmerge.*" />
+          <option name="PATTERN" value="util.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -332,7 +355,7 @@
       <module name="jcmf" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="blockmerge.*" />
+          <option name="PATTERN" value="util.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -413,7 +436,8 @@
       <workItem from="1558330697761" duration="2722000" />
       <workItem from="1558592916285" duration="8013000" />
       <workItem from="1558636975724" duration="4449000" />
-      <workItem from="1558766553426" duration="2613000" />
+      <workItem from="1558766553426" duration="3105000" />
+      <workItem from="1558908818860" duration="473000" />
     </task>
     <servers />
   </component>
@@ -450,14 +474,14 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="136570000" />
+    <option name="totallyTimeSpent" value="137535000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-9" y="-9" width="1698" height="1020" extended-state="7" />
+    <frame x="-9" y="-9" width="1698" height="1020" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.4914481" visible="true" weight="0.31968215" />
-      <window_info id="Structure" order="1" sideWeight="0.5085519" side_tool="true" visible="true" weight="0.31968215" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49030787" visible="true" weight="0.14547677" />
+      <window_info id="Structure" order="1" sideWeight="0.50969213" side_tool="true" visible="true" weight="0.14547677" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
       <window_info id="UI Designer" order="4" />
@@ -738,39 +762,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/blockmerge/BlockGapStatistics.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="126">
-          <caret line="7" lean-forward="true" selection-start-line="7" selection-end-line="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/blockmerge/BlockMerger.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="5310">
-          <caret line="484" column="48" selection-start-line="484" selection-start-column="48" selection-end-line="484" selection-end-column="48" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#3512#9405#1" />
-            <element signature="e#9517#12833#0" />
-            <element signature="e#12861#13204#0" />
-            <element signature="method#repeat#0;class#BlockMerger#0" />
-            <element signature="method#writeFastaHeader#0;class#BlockMerger#0" />
-            <element signature="method#writeFastaContent#0;class#BlockMerger#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/trackgenerate/SimpleHistogram.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="594">
-          <caret line="45" column="44" selection-start-line="45" selection-start-column="44" selection-end-line="45" selection-end-column="44" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/util/StockholmAlignmentBlock.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2610">
@@ -782,10 +773,43 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/util/SimpleHistogram.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="162">
+          <caret line="21" selection-start-line="21" selection-end-line="21" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/trackgenerate/TrackGenerator.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="558">
-          <caret line="45" column="33" selection-start-line="45" selection-start-column="33" selection-end-line="45" selection-end-column="33" />
+        <state relative-caret-position="18">
+          <caret line="82" column="36" selection-start-line="82" selection-start-column="36" selection-end-line="82" selection-end-column="36" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/blockmerge/BlockMerger.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="391">
+          <caret line="500" column="67" selection-start-line="500" selection-start-column="67" selection-end-line="500" selection-end-column="67" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="method#repeat#0;class#BlockMerger#0" />
+            <element signature="method#writeFastaHeader#0;class#BlockMerger#0" />
+            <element signature="method#writeFastaContent#0;class#BlockMerger#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/blockmerge/SimpleScatterplot.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="181">
+          <caret line="13" column="31" selection-start-line="13" selection-start-column="31" selection-end-line="13" selection-end-column="31" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

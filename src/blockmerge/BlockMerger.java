@@ -2,11 +2,15 @@ package blockmerge;
 
 import util.MAFAlignmentBlock;
 import util.MAFReader;
+import util.SimpleHistogram;
 import org.apache.commons.cli.*;
+import util.SimpleScatterplot;
 
 import java.io.BufferedWriter;
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.math.BigInteger;
+import java.math.RoundingMode;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -20,7 +24,6 @@ public class BlockMerger {
      * Options for the block merging
      */
     private static Options options;
-    // TODO switch to using the Options values instead of class-level variables.
 
     private static final boolean REMOVE_GAPS = true;
     private static final boolean REMOVE_NEWLINES = true;
@@ -308,17 +311,32 @@ public class BlockMerger {
             // Track gap content (N bases) in each merged block
             // TODO make this filename argument-able???
             Path gapStatsFile = Paths.get(BlockMerger.outDir,
-                                          "graph_gapStatistics" + ".png");
-            Files.deleteIfExists(gapStatsFile);
-            Files.createFile(gapStatsFile);
-            BlockGapStatistics gapStats = new BlockGapStatistics(
-                    gapStatsFile);
+                                          "graph_postfilter_gapStatistics" +
+                                                  ".png");
+            SimpleScatterplot gapStats = new SimpleScatterplot(
+                    gapStatsFile,
+                    null,
+                    "Merged sequence length",
+                    "Gaps percentage");
+            // histograms
+            Path blockLengthStatsFile = Paths.get(BlockMerger.outDir,
+                                                  "graph_prefilter_blockLengthStats" + ".png");
+            SimpleHistogram blockLengthStats = new SimpleHistogram(
+                    blockLengthStatsFile,
+                    "",
+                    "Block length",
+                    "% of blocks",
+                    20);
 
             LinkedList<MAFAlignmentBlock> current = new LinkedList<>();
             BigInteger i = BigInteger.ONE;
             while (reader.hasNext()) {
                 // add the next block
-                current.add(reader.next());
+                MAFAlignmentBlock nextBlock = reader.next();
+                // write block length statistics
+                blockLengthStats.addValue(
+                        new BigDecimal(nextBlock.sequences.get("hg38").size));
+                current.add(nextBlock);
                 if (current.size() < NUM_BLOCKS_PER_OUTPUT) {
                     // abort if we have too few blocks merged
                     continue;
@@ -482,7 +500,12 @@ public class BlockMerger {
                     }
                     writer.write("\n");
                     // write the stats for this sequence to tracker
-                    gapStats.addGap(seqLength, gapLength);
+                    // write the sequence length vs gap percentage
+                    gapStats.addValue(new BigDecimal(seqLength),
+                                      (new BigDecimal(gapLength))
+                                              .multiply(BigDecimal.valueOf(100))
+                                              .divide(new BigDecimal(seqLength),
+                                                      RoundingMode.HALF_EVEN));
                 }
                 // note that we have created a file
                 System.out.println("Wrote " + file.toString());
@@ -495,7 +518,8 @@ public class BlockMerger {
 
             // Output overall statistics
             gapStats.write();
-            System.out.println("Wrote gap statistics");
+            blockLengthStats.write();
+            System.out.println("Wrote statistics information");
         }
     }
 
@@ -570,7 +594,8 @@ public class BlockMerger {
      * @return true iff the two given blocks can merge for the given species
      */
     private static boolean isMergeable(MAFAlignmentBlock first,
-                                       MAFAlignmentBlock second, String species) {
+                                       MAFAlignmentBlock second,
+                                       String species) {
         MAFAlignmentBlock.Sequence firstSeq = first.sequences.get(species);
         MAFAlignmentBlock.Sequence secondSeq = second.sequences.get(species);
 

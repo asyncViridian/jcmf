@@ -1,4 +1,4 @@
-package trackgenerate;
+package util;
 
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartUtils;
@@ -18,7 +18,7 @@ public class SimpleHistogram {
     private String xLabel;
     private String yLabel;
     private Path output;
-private int numBins;
+    private int numBins;
 
     public SimpleHistogram(Path output, String key, String xLabel,
                            String yLabel, int numBins) {
@@ -26,7 +26,7 @@ private int numBins;
         this.key = key;
         this.xLabel = xLabel;
         this.yLabel = yLabel;
-        this.numBins=numBins;
+        this.numBins = numBins;
     }
 
     public void addValue(BigDecimal score) {

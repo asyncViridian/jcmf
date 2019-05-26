@@ -2,6 +2,7 @@ package trackgenerate;
 
 import org.apache.commons.cli.*;
 import org.apache.commons.lang3.tuple.Pair;
+import util.SimpleHistogram;
 import util.StockholmAlignmentBlock;
 
 import java.io.BufferedWriter;
@@ -80,30 +81,30 @@ public class TrackGenerator {
         BufferedWriter writerSingle = Files.newBufferedWriter(outputSingle);
         // histograms
         Path rnaStatsFile = Paths.get(TrackGenerator.outputDirectory,
-                                      "graph_rnaScoreStats_prefilter" + ".png");
+                                      "graph_prefilter_rnaScoreStats" + ".png");
         SimpleHistogram rnaScoreStats = new SimpleHistogram(
                 rnaStatsFile,
                 "",
                 "RNA posterior score",
-                "Number of motifs",
+                "% of motifs",
                 20);
         Path pairStatsFile = Paths.get(TrackGenerator.outputDirectory,
-                                       "graph_pairScoreStats_prefilter" +
+                                       "graph_prefilter_pairScoreStats" +
                                                ".png");
         SimpleHistogram pairScoreStats = new SimpleHistogram(
                 pairStatsFile,
                 "",
                 "Pair posterior score",
-                "Number of motifs",
+                "% of motifs",
                 20);
         Path blockSpanFile = Paths.get(TrackGenerator.outputDirectory,
-                                       "graph_blockSpanStats_prefilter" +
+                                       "graph_prefilter_blockSpanStats" +
                                                ".png");
         SimpleHistogram blockSpanStats = new SimpleHistogram(
                 blockSpanFile,
                 "",
                 "Number of blocks spanned",
-                "Number of motifs",
+                "% of motifs",
                 5);
 
         // write the header lines
