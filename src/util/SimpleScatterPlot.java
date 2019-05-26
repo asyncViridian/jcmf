@@ -17,7 +17,9 @@ public class SimpleScatterPlot implements StatsGraph {
     private String xAxisLabel;
     private String yAxisLabel;
 
-    public SimpleScatterPlot(Path output, String title, String xAxisLabel,
+    public SimpleScatterPlot(Path output,
+                             String title,
+                             String xAxisLabel,
                              String yAxisLabel) {
         this.output = output;
         this.title = title;
@@ -25,9 +27,9 @@ public class SimpleScatterPlot implements StatsGraph {
         this.yAxisLabel = yAxisLabel;
     }
 
-    public void addValue(BigDecimal seqLength, BigDecimal gapPercentage) {
+    public void addValue(BigDecimal xValue, BigDecimal yValue) {
         // Add to the dataset.
-        this.dataset.add(seqLength, gapPercentage);
+        this.dataset.add(xValue, yValue);
     }
 
     @Override

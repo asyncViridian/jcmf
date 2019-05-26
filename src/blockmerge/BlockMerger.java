@@ -516,10 +516,11 @@ public class BlockMerger {
                 writer.close();
             }
 
-            // Output overall statistics
+            // Output overall statistics graphics
             gapStats.write();
             blockLengthStats.write();
             System.out.println("Wrote statistics information");
+
         }
     }
 
