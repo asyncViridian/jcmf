@@ -2,11 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3da6e499-81fb-4a08-856f-3dc0c5fe102e" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/notes/meeting-notes.txt" beforeDir="false" afterPath="$PROJECT_DIR$/notes/meeting-notes.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/notes/scripts/blockmerger.jar" beforeDir="false" afterPath="$PROJECT_DIR$/notes/scripts/blockmerger.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/notes/scripts/runAll.sh" beforeDir="false" afterPath="$PROJECT_DIR$/notes/scripts/runAll.sh" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/notes/scripts/trackgenerator.jar" beforeDir="false" afterPath="$PROJECT_DIR$/notes/scripts/trackgenerator.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/trackgenerate/TrackGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/trackgenerate/TrackGenerator.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/trackgenerate/RefLineGenerator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/blockmerge/BlockMerger.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/blockmerge/BlockMerger.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -23,8 +21,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/blockmerge/BlockMerger.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="657">
-              <caret line="520" column="36" selection-start-line="520" selection-start-column="36" selection-end-line="520" selection-end-column="36" />
+            <state relative-caret-position="1041">
+              <caret line="504" lean-forward="true" selection-start-line="504" selection-end-line="504" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="method#repeat#0;class#BlockMerger#0" />
@@ -35,13 +33,27 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/trackgenerate/TrackGenerator.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="357">
-              <caret line="163" column="59" selection-start-line="163" selection-start-column="59" selection-end-line="163" selection-end-column="59" />
+            <state relative-caret-position="504">
+              <caret line="94" column="30" lean-forward="true" selection-start-line="94" selection-start-column="30" selection-end-line="94" selection-end-column="30" />
               <folding>
                 <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/trackgenerate/RefLineGenerator.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="162">
+              <caret line="9" column="27" lean-forward="true" selection-start-line="9" selection-start-column="27" selection-end-line="9" selection-end-column="27" />
+              <folding>
+                <element signature="e#822#1765#1" />
+                <element signature="e#1877#2260#0" />
+                <element signature="e#2288#2631#0" />
               </folding>
             </state>
           </provider>
@@ -67,14 +79,13 @@
       <list>
         <option value="FxmlFile" />
         <option value="JUnit5 Test Class" />
-        <option value="Class" />
         <option value="Interface" />
+        <option value="Class" />
       </list>
     </option>
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>assertEquals\((.*), (&quot;.*&quot;)\);</find>
       <find>write</find>
       <find>\\s</find>
       <find>S</find>
@@ -104,6 +115,7 @@
       <find>in</find>
       <find>num</find>
       <find>simplescatter</find>
+      <find>TrackGenerator</find>
     </findStrings>
     <replaceStrings>
       <replace>assertEquals\((\2), (\1)\);</replace>
@@ -147,9 +159,12 @@
         <option value="$PROJECT_DIR$/src/util/StatsGraph.java" />
         <option value="$PROJECT_DIR$/src/util/SimpleScatterplot.java" />
         <option value="$PROJECT_DIR$/src/util/SimpleScatterPlot.java" />
-        <option value="$PROJECT_DIR$/src/blockmerge/BlockMerger.java" />
         <option value="$PROJECT_DIR$/src/util/SimpleHistogram.java" />
+        <option value="$PROJECT_DIR$/src/trackgenerate/ReferenceGenerator.java" />
+        <option value="$PROJECT_DIR$/src/trackgenerate/ReferenceTrackGenerator.java" />
         <option value="$PROJECT_DIR$/src/trackgenerate/TrackGenerator.java" />
+        <option value="$PROJECT_DIR$/src/blockmerge/BlockMerger.java" />
+        <option value="$PROJECT_DIR$/src/trackgenerate/RefLineGenerator.java" />
       </list>
     </option>
   </component>
@@ -266,7 +281,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.TrackGenerator">
+  <component name="RunManager" selected="Application.RefLineGenerator">
     <configuration name="BlockMerger" type="Application" factoryName="Application" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="blockmerge.BlockMerger" />
       <module name="jcmf" />
@@ -287,6 +302,19 @@
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="util.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="RefLineGenerator" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="trackgenerate.RefLineGenerator" />
+      <module name="jcmf" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="trackgenerate.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -340,37 +368,21 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="perl_ioTest.testRemove_gap" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="jcmf" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="cmf.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="cmf" />
-      <option name="MAIN_CLASS_NAME" value="cmf.perl_ioTest" />
-      <option name="METHOD_NAME" value="testRemove_gap" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <list>
       <item itemvalue="Application.BlockMerger" />
       <item itemvalue="Application.MAFAlignmentBlock" />
       <item itemvalue="Application.TrackGenerator" />
       <item itemvalue="JUnit.BlockMergerTest.testRepeat" />
-      <item itemvalue="JUnit.perl_ioTest.testRemove_gap" />
       <item itemvalue="JUnit.BlockMergerTest.main" />
+      <item itemvalue="Application.RefLineGenerator" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.RefLineGenerator" />
         <item itemvalue="Application.TrackGenerator" />
         <item itemvalue="JUnit.BlockMergerTest.main" />
         <item itemvalue="JUnit.BlockMergerTest.testRepeat" />
         <item itemvalue="Application.MAFAlignmentBlock" />
-        <item itemvalue="JUnit.perl_ioTest.testRemove_gap" />
       </list>
     </recent_temporary>
   </component>
@@ -410,7 +422,7 @@
       <workItem from="1558592916285" duration="8013000" />
       <workItem from="1558636975724" duration="4449000" />
       <workItem from="1558766553426" duration="3105000" />
-      <workItem from="1558908818860" duration="2934000" />
+      <workItem from="1558908818860" duration="4017000" />
     </task>
     <servers />
   </component>
@@ -447,14 +459,14 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="139996000" />
+    <option name="totallyTimeSpent" value="141079000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-9" y="-9" width="1698" height="1020" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49030787" visible="true" weight="0.14547677" />
-      <window_info id="Structure" order="1" sideWeight="0.50969213" side_tool="true" visible="true" weight="0.14547677" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.489533" visible="true" weight="0.14547677" />
+      <window_info id="Structure" order="1" sideWeight="0.510467" side_tool="true" visible="true" weight="0.14547677" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
       <window_info id="UI Designer" order="4" />
@@ -462,7 +474,7 @@
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.3295325" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.2919042" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.2919042" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.32839224" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -753,19 +765,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/blockmerge/BlockMerger.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="657">
-          <caret line="520" column="36" selection-start-line="520" selection-start-column="36" selection-end-line="520" selection-end-column="36" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="method#repeat#0;class#BlockMerger#0" />
-            <element signature="method#writeFastaHeader#0;class#BlockMerger#0" />
-            <element signature="method#writeFastaContent#0;class#BlockMerger#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/util/SimpleHistogram.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="451">
@@ -788,10 +787,35 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/trackgenerate/TrackGenerator.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="163" column="59" selection-start-line="163" selection-start-column="59" selection-end-line="163" selection-end-column="59" />
+        <state relative-caret-position="504">
+          <caret line="94" column="30" lean-forward="true" selection-start-line="94" selection-start-column="30" selection-end-line="94" selection-end-column="30" />
           <folding>
             <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/blockmerge/BlockMerger.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1041">
+          <caret line="504" lean-forward="true" selection-start-line="504" selection-end-line="504" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="method#repeat#0;class#BlockMerger#0" />
+            <element signature="method#writeFastaHeader#0;class#BlockMerger#0" />
+            <element signature="method#writeFastaContent#0;class#BlockMerger#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/trackgenerate/RefLineGenerator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="162">
+          <caret line="9" column="27" lean-forward="true" selection-start-line="9" selection-start-column="27" selection-end-line="9" selection-end-column="27" />
+          <folding>
+            <element signature="e#822#1765#1" />
+            <element signature="e#1877#2260#0" />
+            <element signature="e#2288#2631#0" />
           </folding>
         </state>
       </provider>

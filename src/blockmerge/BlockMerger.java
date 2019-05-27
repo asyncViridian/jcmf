@@ -318,25 +318,12 @@ public class BlockMerger {
                     null,
                     "Merged sequence length",
                     "Gaps percentage");
-            // histograms
-            Path blockLengthStatsFile = Paths.get(BlockMerger.outDir,
-                                                  "graph_prefilter_blockLengthStats" + ".png");
-            SimpleHistogram blockLengthStats = new SimpleHistogram(
-                    blockLengthStatsFile,
-                    "",
-                    "Block length",
-                    "% of blocks",
-                    20);
 
             LinkedList<MAFAlignmentBlock> current = new LinkedList<>();
             BigInteger i = BigInteger.ONE;
             while (reader.hasNext()) {
                 // add the next block
-                MAFAlignmentBlock nextBlock = reader.next();
-                // write block length statistics
-                blockLengthStats.addValue(
-                        new BigDecimal(nextBlock.sequences.get("hg38").size));
-                current.add(nextBlock);
+                current.add(reader.next());
                 if (current.size() < NUM_BLOCKS_PER_OUTPUT) {
                     // abort if we have too few blocks merged
                     continue;
@@ -518,7 +505,6 @@ public class BlockMerger {
 
             // Output overall statistics graphics
             gapStats.write();
-            blockLengthStats.write();
             System.out.println("Wrote statistics information");
 
         }
