@@ -53,10 +53,7 @@ echo "GENERATING BED TRACKS"
 cd ..
 mkdir $1/tracks
 java -jar trackgenerator.jar -s $1/scores -o $1/tracks/
-for file in $1/tracks/*
-do
-  ./generateBigBed.sh file
-done
+java -jar reflinegenerator.jar -s $2 -o $1/tracks
 
 # TODO add track hub processing?
 

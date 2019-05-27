@@ -19,6 +19,9 @@ Upload track data to webserver so it can be accessed more easily
     - Add URLs for each hit found linked to extra information
     - http://students.washington.edu/jyzhou15/trackHub/hub.txt
 I added a reference track generator so that we can see reference alignment blocks!
+    - Why is quality score not displaying in the bigBed format????
+
+https://academic.oup.com/bioinformatics/article/26/17/2204/199001
 
 ===============================================================================
 2019-05-09 & 2019-05-16

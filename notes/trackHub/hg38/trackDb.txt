@@ -9,3 +9,9 @@ bigDataUrl single.bb
 shortLabel single hits
 longLabel all single-block CMfinder hits p>40
 type bigBed
+
+track reference_blocks
+bigDataUrl ref.bb
+shortLabel ref
+longLabel the reference for alignment blocks on hg38
+type bigBed
