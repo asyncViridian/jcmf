@@ -17,6 +17,7 @@ Improve BED track generation scoring:
     - Add a max(the found score score, 1000) in case something exceeds the score
 Upload track data to webserver so it can be accessed more easily
     - Add URLs for each hit found linked to extra information
+        - IN-PROGRESS RIGHT NOW. ***
     - http://students.washington.edu/jyzhou15/trackHub/hub.txt
 I added a reference track generator so that we can see reference alignment blocks!
     - Why is quality score not displaying in the bigBed format????
