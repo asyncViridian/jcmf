@@ -2,14 +2,17 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3da6e499-81fb-4a08-856f-3dc0c5fe102e" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/artifacts/reflinegenerator_jar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/manifests/reflinegenerator/META-INF/MANIFEST.MF" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/artifacts/blockmerger_jar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/artifacts/blockmerger_jar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/artifacts/reflinegenerator_jar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/artifacts/reflinegenerator_jar.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/artifacts/trackgenerator_jar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/artifacts/trackgenerator_jar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/notes/meeting-notes.txt" beforeDir="false" afterPath="$PROJECT_DIR$/notes/meeting-notes.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/blockmerge/META-INF/MANIFEST.MF" beforeDir="false" afterPath="$PROJECT_DIR$/manifests/blockmerger/META-INF/MANIFEST.MF" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/trackgenerate/META-INF/MANIFEST.MF" beforeDir="false" afterPath="$PROJECT_DIR$/manifests/trackgenerator/META-INF/MANIFEST.MF" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/notes/scripts/blockmerger.jar" beforeDir="false" afterPath="$PROJECT_DIR$/notes/scripts/blockmerger.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/notes/scripts/rerunTracksOnAllRegions.sh" beforeDir="false" afterPath="$PROJECT_DIR$/notes/scripts/rerunTracksOnAllRegions.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/notes/scripts/runAll.sh" beforeDir="false" afterPath="$PROJECT_DIR$/notes/scripts/runAll.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/notes/scripts/trackgenerator.jar" beforeDir="false" afterPath="$PROJECT_DIR$/notes/scripts/trackgenerator.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/notes/trackHub/hg38/multi.bb" beforeDir="false" afterPath="$PROJECT_DIR$/notes/trackHub/hg38/multi.bb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/notes/trackHub/hg38/single.bb" beforeDir="false" afterPath="$PROJECT_DIR$/notes/trackHub/hg38/single.bb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/notes/trackHub/hg38/trackDb.txt" beforeDir="false" afterPath="$PROJECT_DIR$/notes/trackHub/hg38/trackDb.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/trackgenerate/RefLineGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/trackgenerate/RefLineGenerator.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -43,7 +46,7 @@
         <entry file="file://$PROJECT_DIR$/src/trackgenerate/TrackGenerator.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="324">
-              <caret line="168" column="13" lean-forward="true" selection-start-line="158" selection-start-column="12" selection-end-line="168" selection-end-column="13" />
+              <caret line="168" column="13" selection-start-line="158" selection-start-column="12" selection-end-line="168" selection-end-column="13" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -54,8 +57,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/trackgenerate/RefLineGenerator.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="371">
-              <caret line="123" column="39" selection-start-line="123" selection-start-column="39" selection-end-line="123" selection-end-column="39" />
+            <state relative-caret-position="425">
+              <caret line="117" column="53" selection-start-line="117" selection-start-column="53" selection-end-line="117" selection-end-column="53" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#822#1765#1" />
@@ -306,6 +309,7 @@
     <configuration name="RefLineGenerator" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="trackgenerate.RefLineGenerator" />
       <module name="jcmf" />
+      <option name="PROGRAM_PARAMETERS" value="-s notes/data/source_mafs/m100_chr1_149844498-149849024.maf -o output" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="trackgenerate.*" />
@@ -366,9 +370,9 @@
       <item itemvalue="Application.BlockMerger" />
       <item itemvalue="Application.MAFAlignmentBlock" />
       <item itemvalue="Application.TrackGenerator" />
+      <item itemvalue="Application.RefLineGenerator" />
       <item itemvalue="JUnit.BlockMergerTest.testRepeat" />
       <item itemvalue="JUnit.BlockMergerTest.main" />
-      <item itemvalue="Application.RefLineGenerator" />
     </list>
     <recent_temporary>
       <list>
@@ -416,7 +420,7 @@
       <workItem from="1558592916285" duration="8013000" />
       <workItem from="1558636975724" duration="4449000" />
       <workItem from="1558766553426" duration="3105000" />
-      <workItem from="1558908818860" duration="4769000" />
+      <workItem from="1558908818860" duration="5625000" />
     </task>
     <servers />
   </component>
@@ -453,13 +457,13 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="141831000" />
+    <option name="totallyTimeSpent" value="142687000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-9" y="-9" width="1698" height="1020" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.489533" visible="true" weight="0.14547677" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.489533" visible="true" weight="0.14547677" />
       <window_info id="Structure" order="1" sideWeight="0.510467" side_tool="true" visible="true" weight="0.14547677" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -468,7 +472,7 @@
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.3295325" />
-      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.2919042" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.2919042" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.32839224" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -784,7 +788,7 @@
     <entry file="file://$PROJECT_DIR$/src/trackgenerate/TrackGenerator.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="324">
-          <caret line="168" column="13" lean-forward="true" selection-start-line="158" selection-start-column="12" selection-end-line="168" selection-end-column="13" />
+          <caret line="168" column="13" selection-start-line="158" selection-start-column="12" selection-end-line="168" selection-end-column="13" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -804,8 +808,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/trackgenerate/RefLineGenerator.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="371">
-          <caret line="123" column="39" selection-start-line="123" selection-start-column="39" selection-end-line="123" selection-end-column="39" />
+        <state relative-caret-position="425">
+          <caret line="117" column="53" selection-start-line="117" selection-start-column="53" selection-end-line="117" selection-end-column="53" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#822#1765#1" />
@@ -821,7 +825,7 @@
       <state key="ArtifactsStructureConfigurable.UI">
         <settings>
           <artifact-editor />
-          <last-edited>reflinegenerator:jar</last-edited>
+          <last-edited>blockmerger:jar</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>

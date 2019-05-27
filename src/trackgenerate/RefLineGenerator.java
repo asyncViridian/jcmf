@@ -115,7 +115,7 @@ public class RefLineGenerator {
             String chr = humanSeq.section;
             String name = "" + blockCounter;
             BigDecimal shade = BigDecimal.valueOf(
-                    (blockCounter % 2 == 0) ? 300 : 700);
+                    (blockCounter % 2 == 0) ? 250 : 400);
             String thingToWrite = chr + "\t"
                     + interval.getKey() + "\t"
                     + interval.getValue() + "\t"
