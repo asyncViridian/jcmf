@@ -4,7 +4,7 @@ Merge block difference: use length threshold instead of block # threshold
     - Generally you can't have a block that is too long for cmfinder to return good results, but I still want to get statistics on how much longer it takes to run a block of n length vs 2n length (or something like that)
 Collect statistics
     - Average block size
-        - Done! Added to the block merge code
+        - Done! Added to the reference track generator code
     - Average motif size
     - Graph the amount that alignment gaps comprise each motif found.
         - i.e. the amount of gap used in each motif body
@@ -18,6 +18,7 @@ Improve BED track generation scoring:
 Upload track data to webserver so it can be accessed more easily
     - Add URLs for each hit found linked to extra information
     - http://students.washington.edu/jyzhou15/trackHub/hub.txt
+I added a reference track generator so that we can see reference alignment blocks!
 
 ===============================================================================
 2019-05-09 & 2019-05-16

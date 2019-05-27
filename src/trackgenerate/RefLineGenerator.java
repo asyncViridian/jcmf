@@ -1,12 +1,17 @@
 package trackgenerate;
 
 import org.apache.commons.cli.*;
+import org.apache.commons.lang3.tuple.ImmutablePair;
+import org.apache.commons.lang3.tuple.Pair;
+import util.MAFAlignmentBlock;
 import util.MAFReader;
 import util.SimpleHistogram;
 
 import java.io.BufferedWriter;
 import java.io.IOException;
 import java.math.BigDecimal;
+import java.math.BigInteger;
+import java.math.RoundingMode;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -91,10 +96,32 @@ public class RefLineGenerator {
 
         // read the given MAF
         MAFReader reader = new MAFReader("", RefLineGenerator.srcMaf);
+        int blockCounter = 0;
         while (reader.hasNext()) {
+            // get the next block
+            blockCounter++;
+            MAFAlignmentBlock block = reader.next();
+            MAFAlignmentBlock.Sequence humanSeq = block.sequences.get("hg38");
+
             // write block length statistics for the next block
             blockLengthStats.addValue(
-                    new BigDecimal(reader.next().sequences.get("hg38").size));
+                    new BigDecimal(humanSeq.size));
+
+            // write the actual BED file line
+            // construct the line that we will output for this motif
+            Pair<BigInteger, BigInteger> interval = new ImmutablePair<>(
+                    humanSeq.start,
+                    humanSeq.start.add(humanSeq.size));
+            String chr = humanSeq.section;
+            String name = "" + blockCounter;
+            BigDecimal shade = BigDecimal.valueOf(
+                    (blockCounter % 2 == 0) ? 300 : 700);
+            String thingToWrite = chr + "\t"
+                    + interval.getKey() + "\t"
+                    + interval.getValue() + "\t"
+                    + name + "\t"
+                    + shade.intValue() + "\n";
+            writer.write(thingToWrite);
         }
 
         // output BED tracks
