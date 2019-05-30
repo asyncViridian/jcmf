@@ -2,19 +2,25 @@ track multiblock_hits
 bigDataUrl multi.bb
 shortLabel multiblock hits
 longLabel all multi-block CMfinder hits p>40
-type bigBed
+type bigBed 5 .
 spectrum on
+scoreMin 0
+scoreMax 1000
 
 track singleblock_hits
 bigDataUrl single.bb
 shortLabel single hits
 longLabel all single-block CMfinder hits p>40
-type bigBed
+type bigBed 5 .
 spectrum on
+scoreMin 0
+scoreMax 1000
 
 track reference_blocks
 bigDataUrl ref.bb
 shortLabel ref
 longLabel the reference for alignment blocks on hg38
-type bigBed
+type bigBed 5 .
 spectrum on
+scoreMin 0
+scoreMax 1000

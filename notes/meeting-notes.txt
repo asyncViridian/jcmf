@@ -1,7 +1,9 @@
 2019-05-23
 Things being actively worked on:
     - Fix the appearance of quality scores in bigbed format
-        - This seems to be a setting in the track db. Hopefully fixed now.
+        - This seems to be a setting in the track db.
+        - Fixed: Note that the "spectrum" setting in the track db file needs to be set to on.
+        - Furthermore, you NEED to have the filetype set to bigbed [number] of some sort.
     - Add detail to each block per line in the trackhub (beddetail?)
     - Implement alternate method of merging. Find a way to show and compare those results
     - Re-deploy scores after pscore from the latest set of arguments finishes running...
