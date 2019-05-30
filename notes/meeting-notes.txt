@@ -1,30 +1,23 @@
 2019-05-23
-Things being actively worked on:
-    - Fix the appearance of quality scores in bigbed format
-        - This seems to be a setting in the track db.
-        - Fixed: Note that the "spectrum" setting in the track db file needs to be set to on.
-        - Furthermore, you NEED to have the filetype set to bigbed [number] of some sort.
-    - Add detail to each block per line in the trackhub (beddetail?)
-        - What detail do we want?
-        - (Not now: Possibly visualize a potential folding of the DNA in the region)
-        - Score, sequence, alignment file.
-    - Implement alternate method of merging. Find a way to show and compare those results
-        - 
-    - Re-deploy scores after pscore from the latest set of arguments finishes running...
-        - Partition is almost done....
-    - Re-run the entire pipeline using previous rna scan parameters
-        - This has been started! The output goes into the "emuBigscan" directories.
-    - Work on the writeup:
-        - motivation: previous cmfinder/1-block motif searching
-        - method: merge, cmfinder, pscore
-        - results: trackhub, details
-        - discussion/impact: discussion of novelty, comparison with previous runs??, future steps
-        - references: need to collect those.
-    - Verification: compare? -> previous rna scan arguments. Ask Larry about this!
-
-Merge block difference: use length threshold instead of block # threshold
+Add detail to each block per line in the trackhub (beddetail?)
+    - What detail do we want?
+    - (Not now: Possibly visualize a potential folding of the DNA in the region)
+    - Score, sequence, alignment file.
+Implement alternate method of merging. Find a way to show and compare those results
+    - Merge block difference: use length threshold instead of block # threshold
     - Length threshold: have a minimum block length and probably a fairly generous maximum block length. Perhaps shift based on percentage of block, not a constant?
     - Generally you can't have a block that is too long for cmfinder to return good results, but I still want to get statistics on how much longer it takes to run a block of n length vs 2n length (or something like that)
+Re-deploy scores after pscore from the latest set of arguments finishes running...
+    - Partition is almost done....
+Re-run the entire pipeline using previous rna scan parameters
+    - This has been started! The output goes into the "emuBigscan" directories.
+Work on the writeup:
+    - motivation: previous cmfinder/1-block motif searching
+    - method: merge, cmfinder, pscore
+    - results: trackhub, details
+    - discussion/impact: discussion of novelty, comparison with previous runs??, future steps
+    - references: need to collect those.
+Verification: compare? -> previous rna scan arguments. Ask Larry about this!
 Collect statistics
     - Average block size
         - Done! Added to the reference track generator code
@@ -43,6 +36,10 @@ Upload track data to webserver so it can be accessed more easily
     - http://students.washington.edu/jyzhou15/trackHub/hub.txt
 I added a reference track generator so that we can see reference alignment blocks!
     - Why is quality score not displaying in the bigBed format????
+        - FIXED!!!
+        - This seems to be a setting in the track db.
+        - Note that the "spectrum" setting in the track db file needs to be set to on.
+        - Furthermore, you NEED to have the filetype set to bigbed [number] of some sort.
 
 https://academic.oup.com/bioinformatics/article/26/17/2204/199001
 
