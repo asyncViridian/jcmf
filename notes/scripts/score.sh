@@ -9,7 +9,7 @@ mkdir scores
 cd results
 for file in *
 do
-  RNAPhylo -t ../$1 "$file" > ../scores/"$file".score
+  RNAPhylo -t ../$1 --partition "$file" > ../scores/"$file".score
 done
 cd ..
 echo "Scoring done"

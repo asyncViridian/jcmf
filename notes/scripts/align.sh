@@ -1,14 +1,14 @@
 # Run CMFinder (log output in log file, wipe log file on each run)
 
 # Flag vars
-maxCandPerSeq=60 # pl-def 40
-fracSeqWMotif=0.70 # pl-def 0.8
-maxNumSingleS=20 # pl-def 5
-maxNumDoubleS=20 # pl-def 5
-minSpanSingle=20 # pl-def 30
-maxSpanSingle=150 # pl-def 100
-minSpanDouble=20 # pl-def 40
-maxSpanDouble=150 # pl-def 100
+maxCandPerSeq=40 # pl-def 40
+fracSeqWMotif=0.80 # pl-def 0.8
+maxNumSingleS=5 # pl-def 5
+maxNumDoubleS=5 # pl-def 5
+minSpanSingle=30 # pl-def 30
+maxSpanSingle=100 # pl-def 100
+minSpanDouble=40 # pl-def 40
+maxSpanDouble=100 # pl-def 100
 minCandLength=30 # Unused as an input flag for cmfinder.pl
 maxCandLength=150 # Unused as an input flag for cmfinder.pl
 
@@ -45,7 +45,7 @@ for file in split/*.fasta; do
                 #-m $minCandLength \ # This is not a real arg...
                 #-M $maxCandLength \ # This is not a real arg...
 done
-echo alignment done
+echo "alignment done"
 
 # Grab successfully found motifs from CMfinder and move them to results/*
 rm -r results
