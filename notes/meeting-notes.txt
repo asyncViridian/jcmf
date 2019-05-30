@@ -5,8 +5,13 @@ Things being actively worked on:
         - Fixed: Note that the "spectrum" setting in the track db file needs to be set to on.
         - Furthermore, you NEED to have the filetype set to bigbed [number] of some sort.
     - Add detail to each block per line in the trackhub (beddetail?)
+        - What detail do we want?
+        - (Not now: Possibly visualize a potential folding of the DNA in the region)
+        - Score, sequence, alignment file.
     - Implement alternate method of merging. Find a way to show and compare those results
+        - 
     - Re-deploy scores after pscore from the latest set of arguments finishes running...
+        - Partition is almost done....
     - Re-run the entire pipeline using previous rna scan parameters
         - This has been started! The output goes into the "emuBigscan" directories.
     - Work on the writeup:
