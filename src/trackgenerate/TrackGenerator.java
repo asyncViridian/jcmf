@@ -149,7 +149,7 @@ public class TrackGenerator {
                     BigDecimal.valueOf(block.motifInNumBlocks("hg38")));
 
             // score filter
-            if (rnaScore.compareTo(BigDecimal.valueOf(40L)) < 0) {
+            if (rnaScore.compareTo(BigDecimal.valueOf(50L)) < 0) {
                 continue;
             }
 

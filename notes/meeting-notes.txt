@@ -1,3 +1,24 @@
+2019-05-30
+Use pscore>50 threshold...
+finish rerunning cmfinder with old arguments
+    - and add those to the track hub so all comparable
+add score files to the track hub (so can view the actual motif found)
+upload graphs to FTP server
+
+Longer-term?
+    - filtering out overlapping blocks
+    - evaluating the pscore thresholds
+        - Simulate BS output with randomized/shuffled blocks
+
+Other:
+On personal statement:
+    - mention more detail about research skills
+    - own the fact that I'm not too clear in my research interests! exploration and depth. wide variety of interests.
+    - also, probably add a title to Justin's name, lol.
+my own notes:
+    - update cv to sound nicer...
+
+===============================================================================
 2019-05-23
 Add detail to each block per line in the trackhub (beddetail?)
     - What detail do we want?
