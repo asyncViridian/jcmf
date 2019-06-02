@@ -13,7 +13,7 @@ bigDataUrl bigscan_multi.bb
 shortLabel bigscan_multi
 longLabel bigscan-params multi-block hits rna-par>50
 type bigBed 5 .
-directUrl bigscan_src/%s_%s.txt
+directUrl http://students.washington.edu/jyzhou15/trackHub/hg38/bigscan_src/%s_%s.txt
 spectrum on
 visibility squish
 scoreMin 0
@@ -24,7 +24,7 @@ bigDataUrl bigscan_single.bb
 shortLabel bigscan_single
 longLabel bigscan-params single-block hits rna-par>50
 type bigBed 5 .
-directUrl bigscan_src/%s_%s.txt
+directUrl http://students.washington.edu/jyzhou15/trackHub/hg38/bigscan_src/%s_%s.txt
 spectrum on
 visibility squish
 scoreMin 0

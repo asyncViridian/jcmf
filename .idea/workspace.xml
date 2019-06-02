@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3da6e499-81fb-4a08-856f-3dc0c5fe102e" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/notes/meeting-notes.txt" beforeDir="false" afterPath="$PROJECT_DIR$/notes/meeting-notes.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/notes/trackHub/hg38/trackDb.txt" beforeDir="false" afterPath="$PROJECT_DIR$/notes/trackHub/hg38/trackDb.txt" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -35,7 +35,7 @@
         <entry file="file://$PROJECT_DIR$/src/trackgenerate/TrackGenerator.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="195">
-              <caret line="178" column="56" lean-forward="true" selection-start-line="178" selection-start-column="56" selection-end-line="178" selection-end-column="56" />
+              <caret line="178" column="56" selection-start-line="178" selection-start-column="56" selection-end-line="178" selection-end-column="56" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -157,7 +157,7 @@
       <select />
     </treeState>
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="width" value="1191" />
     <option name="height" value="1002" />
   </component>
@@ -408,7 +408,7 @@
       <workItem from="1558766553426" duration="3105000" />
       <workItem from="1558908818860" duration="6233000" />
       <workItem from="1559205501160" duration="596000" />
-      <workItem from="1559461486907" duration="1297000" />
+      <workItem from="1559461486907" duration="1893000" />
     </task>
     <servers />
   </component>
@@ -445,11 +445,10 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="145188000" />
+    <option name="totallyTimeSpent" value="145784000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-9" y="-9" width="1698" height="1020" extended-state="7" />
-    <editor active="true" />
+    <frame x="-9" y="-9" width="1698" height="1020" extended-state="6" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" sideWeight="0.48802736" visible="true" weight="0.14914425" />
       <window_info active="true" id="Structure" order="1" sideWeight="0.5119726" side_tool="true" visible="true" weight="0.14914425" />
@@ -797,7 +796,7 @@
     <entry file="file://$PROJECT_DIR$/src/trackgenerate/TrackGenerator.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="195">
-          <caret line="178" column="56" lean-forward="true" selection-start-line="178" selection-start-column="56" selection-end-line="178" selection-end-column="56" />
+          <caret line="178" column="56" selection-start-line="178" selection-start-column="56" selection-end-line="178" selection-end-column="56" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
