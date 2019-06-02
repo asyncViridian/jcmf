@@ -106,6 +106,15 @@ public class TrackGenerator {
                 "Number of blocks spanned",
                 "% of motifs",
                 5);
+        Path mergedBlockSizeFile = Paths.get(TrackGenerator.outputDirectory,
+                                             "graph_prefilter_mergedBlockSizeStats" +
+                                                     ".png");
+        SimpleHistogram mergedBlockSizeStats = new SimpleHistogram(
+                mergedBlockSizeFile,
+                "",
+                "Number of blocks",
+                "Size of merged blocks together",
+                20);
 
         // write the header lines
         if (writeHeader) {
@@ -147,6 +156,12 @@ public class TrackGenerator {
             rnaScoreStats.addValue(rnaScore);
             blockSpanStats.addValue(
                     BigDecimal.valueOf(block.motifInNumBlocks("hg38")));
+            Pair<BigInteger, BigInteger> interval
+                    = block.getInterval("hg38");
+            mergedBlockSizeStats.addValue(
+                    new BigDecimal(
+                            interval.getRight().subtract(interval.getRight()))
+            );
 
             // score filter
             if (rnaScore.compareTo(BigDecimal.valueOf(50L)) < 0) {
@@ -157,8 +172,6 @@ public class TrackGenerator {
             BigDecimal max = BigDecimal.valueOf(125L);
 
             // construct the line that we will output for this motif
-            Pair<BigInteger, BigInteger> interval
-                    = block.getInterval("hg38");
             String chr = block.getChromosome("hg38");
             String name = f.getName();
             // set cap of the computed scaled score to 1000
@@ -189,6 +202,7 @@ public class TrackGenerator {
         pairScoreStats.write();
         rnaScoreStats.write();
         blockSpanStats.write();
+        mergedBlockSizeStats.write();
         System.out.println("Wrote statistics graphs");
     }
 }

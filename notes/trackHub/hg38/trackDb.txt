@@ -1,7 +1,25 @@
+track bigscan_multiblock_hits
+bigDataUrl bigscan_multi.bb
+shortLabel bigscan_multi
+longLabel bigscan-params multi-block hits p>50
+type bigBed 5 .
+spectrum on
+scoreMin 0
+scoreMax 1000
+
+track bigscan_singleblock_hits
+bigDataUrl bigscan_single.bb
+shortLabel bigscan_single
+longLabel bigscan-params single-block hits p>50
+type bigBed 5 .
+spectrum on
+scoreMin 0
+scoreMax 1000
+
 track multiblock_hits
 bigDataUrl multi.bb
-shortLabel multiblock hits
-longLabel all multi-block CMfinder hits p>40
+shortLabel multi
+longLabel multi-block hits p>50
 type bigBed 5 .
 spectrum on
 scoreMin 0
@@ -9,8 +27,8 @@ scoreMax 1000
 
 track singleblock_hits
 bigDataUrl single.bb
-shortLabel single hits
-longLabel all single-block CMfinder hits p>40
+shortLabel single
+longLabel single-block hits p>50
 type bigBed 5 .
 spectrum on
 scoreMin 0
@@ -19,8 +37,9 @@ scoreMax 1000
 track reference_blocks
 bigDataUrl ref.bb
 shortLabel ref
-longLabel the reference for alignment blocks on hg38
+longLabel individual hg38 alignment blocks
 type bigBed 5 .
 spectrum on
 scoreMin 0
 scoreMax 1000
+
