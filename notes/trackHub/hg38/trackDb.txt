@@ -30,21 +30,23 @@ visibility squish
 scoreMin 0
 scoreMax 1000
 
-track multiblock_hits
-bigDataUrl multi.bb
-shortLabel multi
-longLabel multi-block hits rna-par>50
+track newparam_multiblock_hits
+bigDataUrl newparam_multi.bb
+shortLabel newparam_multi
+longLabel new parameter multi-block hits rna-par>50
 type bigBed 5 .
+directUrl http://students.washington.edu/jyzhou15/trackHub/hg38/newparam_src/%s_%s.txt
 spectrum on
 visibility squish
 scoreMin 0
 scoreMax 1000
 
-track singleblock_hits
-bigDataUrl single.bb
-shortLabel single
-longLabel single-block hits rna-par>50
+track newparam_singleblock_hits
+bigDataUrl newparam_single.bb
+shortLabel newparam_single
+longLabel new parameter single-block hits rna-par>50
 type bigBed 5 .
+directUrl http://students.washington.edu/jyzhou15/trackHub/hg38/newparam_src/%s_%s.txt
 spectrum on
 visibility squish
 scoreMin 0
