@@ -1,9 +1,12 @@
 2019-05-30
 Use pscore>50 threshold...
+    - Done! This has been changed in trackGenerator
 finish rerunning cmfinder with old arguments
     - and add those to the track hub so all comparable
 add score files to the track hub (so can view the actual motif found)
 upload graphs to FTP server
+    - Figure out if we want graphs per-region or for the overall data.
+    - Probably want some overall graphs for things like block length, scores...
 
 Longer-term?
     - filtering out overlapping blocks

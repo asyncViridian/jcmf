@@ -1,3 +1,12 @@
+track reference_blocks
+bigDataUrl ref.bb
+shortLabel ref
+longLabel individual hg38 alignment blocks
+type bigBed 5 .
+spectrum on
+scoreMin 0
+scoreMax 1000
+
 track bigscan_multiblock_hits
 bigDataUrl bigscan_multi.bb
 shortLabel bigscan_multi
@@ -33,13 +42,3 @@ type bigBed 5 .
 spectrum on
 scoreMin 0
 scoreMax 1000
-
-track reference_blocks
-bigDataUrl ref.bb
-shortLabel ref
-longLabel individual hg38 alignment blocks
-type bigBed 5 .
-spectrum on
-scoreMin 0
-scoreMax 1000
-
