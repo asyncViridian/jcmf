@@ -3,11 +3,16 @@ Use pscore>50 threshold...
     - Done! This has been changed in trackGenerator
 finish rerunning cmfinder with old arguments
     - and add those to the track hub so all comparable
-    - Done! 5-block run with old arguments has been added to the track hub, and is viewable
+    - Done!
+    - 5-block run with old arguments has been added to the track hub, and is viewable
+finish rerunning cmfinder with old arguments on 10-block merge
+    - Done!
 add score files to the track hub (so can view the actual motif found)
     - In-progress! I have added full support for the "old arguments" data and am currently uploading src for the "new arguments" output.
     - Add only the score files that pass the filter?
         - This saves a lot of space on my own laptop, but isn't super urgent as a general thing.
+        - I need to do this now. The vergil server is running out of disk quota...
+        - Done! The track-generating script automatically does this now.
 upload graphs to FTP server?
     - Figure out if we want graphs per-region or for the overall data.
     - Probably want some overall graphs for things like block length, scores...
