@@ -30,6 +30,28 @@ visibility squish
 scoreMin 0
 scoreMax 1000
 
+track bigscan10_multiblock_hits
+bigDataUrl bigscan10_multi.bb
+shortLabel bigscan10_multi
+longLabel bigscan-params multi-block hits with 10-block merges rna-par>50
+type bigBed 5 .
+directUrl http://students.washington.edu/jyzhou15/trackHub/hg38/bigscan10_src/%s_%s.txt
+spectrum on
+visibility squish
+scoreMin 0
+scoreMax 1000
+
+track bigscan10_singleblock_hits
+bigDataUrl bigscan_single.bb
+shortLabel bigscan_single
+longLabel bigscan-params single-block hits with 10-block merges rna-par>50
+type bigBed 5 .
+directUrl http://students.washington.edu/jyzhou15/trackHub/hg38/bigscan10_src/%s_%s.txt
+spectrum on
+visibility squish
+scoreMin 0
+scoreMax 1000
+
 track newparam_multiblock_hits
 bigDataUrl newparam_multi.bb
 shortLabel newparam_multi
