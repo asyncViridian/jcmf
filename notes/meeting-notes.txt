@@ -1,3 +1,29 @@
+2019-06-06
+Graphs:
+    - Fix the bug in the "merged block size stats" graph.
+    - Graph the species used for all the motifs (see bigscan paper for how they did it)
+    - Check the bigscan paper for other interesting graphs too...
+Track Hub:
+    - Possibly clean up the score file linking / parse it to look nicer.
+Implementation:
+    - Add "overall block limits" option to block-based merging-block
+        - sort of as a midway between block- and base- based merging
+Longer-term:
+    - filtering out overlapping blocks
+    - evaluating the pscore thresholds
+        - Simulate BS output with randomized/shuffled blocks
+
+Other:
+On personal statement:
+    - mention more detail about research skills
+    - own the fact that I'm not too clear in my research interests! exploration and depth. wide variety of interests.
+my own notes:
+    - update cv to sound nicer...
+
+Other TO-Do:
+    - Update the Process Notes file lol.
+
+===============================================================================
 2019-05-30
 Use pscore>50 threshold...
     - Done! This has been changed in trackGenerator
@@ -19,21 +45,13 @@ upload graphs to FTP server?
     - Figure out if we want graphs per-region or for the overall data.
     - Probably want some overall graphs for things like block length, scores...
     - Done! Currently is sorted by source run and not actually tied to the output for each block.
+    - Still need to come up with nicer graphs gaaaaaah. Sort through which graphs I am producing and then produce more helpful graphs :P
+    - There a bug in the "merged block size stats" graph. Fix this.....
 
 Longer-term?
     - filtering out overlapping blocks
     - evaluating the pscore thresholds
         - Simulate BS output with randomized/shuffled blocks
-
-Other TO-Do:
-    - Update the Process Notes file lol.
-
-Other:
-On personal statement:
-    - mention more detail about research skills
-    - own the fact that I'm not too clear in my research interests! exploration and depth. wide variety of interests.
-my own notes:
-    - update cv to sound nicer...
 
 ===============================================================================
 2019-05-23
