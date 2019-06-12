@@ -3,6 +3,7 @@ package trackgenerate;
 import org.apache.commons.cli.*;
 import org.apache.commons.lang3.tuple.Pair;
 import util.SimpleNumberHistogram;
+import util.SimpleStringBinHistogram;
 import util.StockholmAlignmentBlock;
 
 import java.io.BufferedWriter;
@@ -115,6 +116,15 @@ public class TrackGenerator {
                 "Number of blocks",
                 "Size of merged blocks together",
                 20);
+        Path motifSpeciesFile = Paths.get(TrackGenerator.outputDirectory,
+                                          "graph_postfilter_motifSpeciesStats" +
+                                                  ".png");
+        SimpleStringBinHistogram motifSpeciesStats =
+                new SimpleStringBinHistogram(
+                        motifSpeciesFile,
+                        "",
+                        "vertLabelTODOReplace" // TODO replace
+                );
 
         // write the header lines
         if (writeHeader) {
@@ -168,6 +178,11 @@ public class TrackGenerator {
                 continue;
             }
 
+            // Begin postfilter details
+            for (String species : block.getSpecies()) {
+                motifSpeciesStats.addValue(species);
+            }
+
             // TODO set a better score filter and value guideline?
             BigDecimal max = BigDecimal.valueOf(125L);
 
@@ -203,6 +218,7 @@ public class TrackGenerator {
         rnaScoreStats.write();
         blockSpanStats.write();
         mergedBlockSizeStats.write();
+        motifSpeciesStats.write();
         System.out.println("Wrote statistics graphs");
     }
 }

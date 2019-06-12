@@ -180,6 +180,10 @@ public class StockholmAlignmentBlock {
         return (end - start) + 1;
     }
 
+    public Collection<String> getSpecies() {
+        return Collections.unmodifiableCollection(this.sources.keySet());
+    }
+
     private static class Source {
         /**
          * Species name (i.e. "hg38")

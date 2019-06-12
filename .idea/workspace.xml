@@ -2,10 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3da6e499-81fb-4a08-856f-3dc0c5fe102e" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/notes/scripts/dataReadme" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/blockmerge/BlockMerger.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/blockmerge/BlockMerger.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/trackgenerate/RefLineGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/trackgenerate/RefLineGenerator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/util/SimpleHistogram.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/util/SimpleHistogram.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/util/SimpleStringBinHistogram.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/trackgenerate/TrackGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/trackgenerate/TrackGenerator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/util/StockholmAlignmentBlock.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/util/StockholmAlignmentBlock.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -34,11 +34,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/trackgenerate/TrackGenerator.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="342">
-              <caret line="92" column="14" selection-start-line="92" selection-start-column="14" selection-end-line="92" selection-end-column="14" />
+            <state relative-caret-position="693">
+              <caret line="220" column="34" selection-start-line="220" selection-start-column="34" selection-end-line="220" selection-end-column="34" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -46,11 +46,36 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/util/StockholmAlignmentBlock.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="675">
+              <caret line="183" column="38" lean-forward="true" selection-start-line="183" selection-start-column="38" selection-end-line="183" selection-end-column="38" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="method#containsSpecies#0;class#StockholmAlignmentBlock#0" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/util/SimpleNumberHistogram.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="288">
-              <caret line="16" column="34" selection-start-line="16" selection-start-column="34" selection-end-line="16" selection-end-column="34" />
+            <state relative-caret-position="306">
+              <caret line="17" column="16" lean-forward="true" selection-end-line="70" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/util/SimpleStringBinHistogram.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="639">
+              <caret line="57" column="25" selection-start-line="57" selection-start-column="25" selection-end-line="57" selection-end-column="25" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -148,7 +173,6 @@
         <option value="$PROJECT_DIR$/test/blockmerge/BlockMergerTest.java" />
         <option value="$PROJECT_DIR$/src/blockmerge/util/AlignmentBlock.java" />
         <option value="$PROJECT_DIR$/src/util/StockholmReader.java" />
-        <option value="$PROJECT_DIR$/src/util/StockholmAlignmentBlock.java" />
         <option value="$PROJECT_DIR$/src/trackgenerate/ScoreStatistics.java" />
         <option value="$PROJECT_DIR$/src/trackgenerate/SimpleHistogram.java" />
         <option value="$PROJECT_DIR$/src/blockmerge/BlockGapStatistics.java" />
@@ -161,9 +185,11 @@
         <option value="$PROJECT_DIR$/src/trackgenerate/ReferenceTrackGenerator.java" />
         <option value="$PROJECT_DIR$/src/blockmerge/BlockMerger.java" />
         <option value="$PROJECT_DIR$/src/trackgenerate/RefLineGenerator.java" />
-        <option value="$PROJECT_DIR$/src/trackgenerate/TrackGenerator.java" />
         <option value="$PROJECT_DIR$/src/util/SimpleHistogram.java" />
         <option value="$PROJECT_DIR$/src/util/SimpleNumberHistogram.java" />
+        <option value="$PROJECT_DIR$/src/util/SimpleStringBinHistogram.java" />
+        <option value="$PROJECT_DIR$/src/util/StockholmAlignmentBlock.java" />
+        <option value="$PROJECT_DIR$/src/trackgenerate/TrackGenerator.java" />
       </list>
     </option>
   </component>
@@ -426,7 +452,7 @@
       <workItem from="1559205501160" duration="596000" />
       <workItem from="1559461486907" duration="1893000" />
       <workItem from="1559779821846" duration="618000" />
-      <workItem from="1560329396617" duration="1383000" />
+      <workItem from="1560329396617" duration="2795000" />
     </task>
     <servers />
   </component>
@@ -463,7 +489,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="147785000" />
+    <option name="totallyTimeSpent" value="149197000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-9" y="-9" width="1938" height="1050" extended-state="6" />
@@ -768,17 +794,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/util/StockholmAlignmentBlock.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="265">
-          <caret line="130" column="31" lean-forward="true" selection-start-line="130" selection-start-column="31" selection-end-line="130" selection-end-column="31" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="method#containsSpecies#0;class#StockholmAlignmentBlock#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/blockmerge/BlockMerger.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="8820">
@@ -802,20 +817,41 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/trackgenerate/TrackGenerator.java">
+    <entry file="file://$PROJECT_DIR$/src/util/SimpleNumberHistogram.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="342">
-          <caret line="92" column="14" selection-start-line="92" selection-start-column="14" selection-end-line="92" selection-end-column="14" />
+        <state relative-caret-position="306">
+          <caret line="17" column="16" lean-forward="true" selection-end-line="70" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/util/SimpleNumberHistogram.java">
+    <entry file="file://$PROJECT_DIR$/src/util/SimpleStringBinHistogram.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="288">
-          <caret line="16" column="34" selection-start-line="16" selection-start-column="34" selection-end-line="16" selection-end-column="34" />
+        <state relative-caret-position="639">
+          <caret line="57" column="25" selection-start-line="57" selection-start-column="25" selection-end-line="57" selection-end-column="25" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/util/StockholmAlignmentBlock.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="675">
+          <caret line="183" column="38" lean-forward="true" selection-start-line="183" selection-start-column="38" selection-end-line="183" selection-end-column="38" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="method#containsSpecies#0;class#StockholmAlignmentBlock#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/trackgenerate/TrackGenerator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="693">
+          <caret line="220" column="34" selection-start-line="220" selection-start-column="34" selection-end-line="220" selection-end-column="34" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
