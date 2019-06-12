@@ -160,7 +160,7 @@ public class TrackGenerator {
                     = block.getInterval("hg38");
             mergedBlockSizeStats.addValue(
                     new BigDecimal(
-                            interval.getRight().subtract(interval.getRight()))
+                            interval.getRight().subtract(interval.getLeft()))
             );
 
             // score filter
