@@ -2,7 +2,7 @@ package trackgenerate;
 
 import org.apache.commons.cli.*;
 import org.apache.commons.lang3.tuple.Pair;
-import util.SimpleHistogram;
+import util.SimpleNumberHistogram;
 import util.StockholmAlignmentBlock;
 
 import java.io.BufferedWriter;
@@ -82,7 +82,7 @@ public class TrackGenerator {
         // histograms
         Path rnaStatsFile = Paths.get(TrackGenerator.outputDirectory,
                                       "graph_prefilter_rnaScoreStats" + ".png");
-        SimpleHistogram rnaScoreStats = new SimpleHistogram(
+        SimpleNumberHistogram rnaScoreStats = new SimpleNumberHistogram(
                 rnaStatsFile,
                 "",
                 "RNA posterior score",
@@ -91,7 +91,7 @@ public class TrackGenerator {
         Path pairStatsFile = Paths.get(TrackGenerator.outputDirectory,
                                        "graph_prefilter_pairScoreStats" +
                                                ".png");
-        SimpleHistogram pairScoreStats = new SimpleHistogram(
+        SimpleNumberHistogram pairScoreStats = new SimpleNumberHistogram(
                 pairStatsFile,
                 "",
                 "Pair posterior score",
@@ -100,7 +100,7 @@ public class TrackGenerator {
         Path blockSpanFile = Paths.get(TrackGenerator.outputDirectory,
                                        "graph_prefilter_blockSpanStats" +
                                                ".png");
-        SimpleHistogram blockSpanStats = new SimpleHistogram(
+        SimpleNumberHistogram blockSpanStats = new SimpleNumberHistogram(
                 blockSpanFile,
                 "",
                 "Number of blocks spanned",
@@ -109,7 +109,7 @@ public class TrackGenerator {
         Path mergedBlockSizeFile = Paths.get(TrackGenerator.outputDirectory,
                                              "graph_prefilter_mergedBlockSizeStats" +
                                                      ".png");
-        SimpleHistogram mergedBlockSizeStats = new SimpleHistogram(
+        SimpleNumberHistogram mergedBlockSizeStats = new SimpleNumberHistogram(
                 mergedBlockSizeFile,
                 "",
                 "Number of blocks",

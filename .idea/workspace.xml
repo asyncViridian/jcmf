@@ -2,8 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3da6e499-81fb-4a08-856f-3dc0c5fe102e" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/trackgenerate/TrackGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/trackgenerate/TrackGenerator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/notes/scripts/dataReadme" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/blockmerge/BlockMerger.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/blockmerge/BlockMerger.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/trackgenerate/RefLineGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/trackgenerate/RefLineGenerator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/util/SimpleHistogram.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/util/SimpleHistogram.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -21,7 +23,7 @@
         <entry file="file://$PROJECT_DIR$/src/blockmerge/BlockMerger.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="8820">
-              <caret line="506" column="20" selection-start-line="506" selection-start-column="20" selection-end-line="506" selection-end-column="20" />
+              <caret line="505" column="20" selection-start-line="505" selection-start-column="20" selection-end-line="505" selection-end-column="20" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="method#repeat#0;class#BlockMerger#0" />
@@ -32,11 +34,23 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/trackgenerate/TrackGenerator.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="324">
-              <caret line="161" column="35" lean-forward="true" selection-start-line="161" selection-start-column="35" selection-end-line="161" selection-end-column="35" />
+            <state relative-caret-position="342">
+              <caret line="92" column="14" selection-start-line="92" selection-start-column="14" selection-end-line="92" selection-end-column="14" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/util/SimpleNumberHistogram.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="288">
+              <caret line="16" column="34" selection-start-line="16" selection-start-column="34" selection-end-line="16" selection-end-column="34" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -48,7 +62,7 @@
         <entry file="file://$PROJECT_DIR$/src/trackgenerate/RefLineGenerator.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="1710">
-              <caret line="109" column="45" selection-start-line="109" selection-start-column="45" selection-end-line="109" selection-end-column="45" />
+              <caret line="108" column="45" selection-start-line="108" selection-start-column="45" selection-end-line="108" selection-end-column="45" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -143,12 +157,13 @@
         <option value="$PROJECT_DIR$/src/util/StatsGraph.java" />
         <option value="$PROJECT_DIR$/src/util/SimpleScatterplot.java" />
         <option value="$PROJECT_DIR$/src/util/SimpleScatterPlot.java" />
-        <option value="$PROJECT_DIR$/src/util/SimpleHistogram.java" />
         <option value="$PROJECT_DIR$/src/trackgenerate/ReferenceGenerator.java" />
         <option value="$PROJECT_DIR$/src/trackgenerate/ReferenceTrackGenerator.java" />
         <option value="$PROJECT_DIR$/src/blockmerge/BlockMerger.java" />
         <option value="$PROJECT_DIR$/src/trackgenerate/RefLineGenerator.java" />
         <option value="$PROJECT_DIR$/src/trackgenerate/TrackGenerator.java" />
+        <option value="$PROJECT_DIR$/src/util/SimpleHistogram.java" />
+        <option value="$PROJECT_DIR$/src/util/SimpleNumberHistogram.java" />
       </list>
     </option>
   </component>
@@ -158,7 +173,7 @@
       <select />
     </treeState>
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="width" value="1191" />
     <option name="height" value="1002" />
   </component>
@@ -411,7 +426,7 @@
       <workItem from="1559205501160" duration="596000" />
       <workItem from="1559461486907" duration="1893000" />
       <workItem from="1559779821846" duration="618000" />
-      <workItem from="1560329396617" duration="1262000" />
+      <workItem from="1560329396617" duration="1383000" />
     </task>
     <servers />
   </component>
@@ -448,14 +463,14 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="147664000" />
+    <option name="totallyTimeSpent" value="147785000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-9" y="-9" width="1938" height="1050" extended-state="7" />
+    <frame x="-9" y="-9" width="1938" height="1050" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.4862183" visible="true" weight="0.15245202" />
-      <window_info active="true" id="Structure" order="1" sideWeight="0.5137817" side_tool="true" visible="true" weight="0.15245202" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.4862183" visible="true" weight="0.15245202" />
+      <window_info id="Structure" order="1" sideWeight="0.5137817" side_tool="true" visible="true" weight="0.15245202" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
       <window_info id="UI Designer" order="4" />
@@ -743,16 +758,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/util/SimpleHistogram.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="451">
-          <caret line="54" column="43" lean-forward="true" selection-start-line="54" selection-start-column="43" selection-end-line="54" selection-end-column="43" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/util/SimpleScatterPlot.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="177">
@@ -777,7 +782,7 @@
     <entry file="file://$PROJECT_DIR$/src/blockmerge/BlockMerger.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="8820">
-          <caret line="506" column="20" selection-start-line="506" selection-start-column="20" selection-end-line="506" selection-end-column="20" />
+          <caret line="505" column="20" selection-start-line="505" selection-start-column="20" selection-end-line="505" selection-end-column="20" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="method#repeat#0;class#BlockMerger#0" />
@@ -790,7 +795,7 @@
     <entry file="file://$PROJECT_DIR$/src/trackgenerate/RefLineGenerator.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1710">
-          <caret line="109" column="45" selection-start-line="109" selection-start-column="45" selection-end-line="109" selection-end-column="45" />
+          <caret line="108" column="45" selection-start-line="108" selection-start-column="45" selection-end-line="108" selection-end-column="45" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -799,8 +804,18 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/trackgenerate/TrackGenerator.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="324">
-          <caret line="161" column="35" lean-forward="true" selection-start-line="161" selection-start-column="35" selection-end-line="161" selection-end-column="35" />
+        <state relative-caret-position="342">
+          <caret line="92" column="14" selection-start-line="92" selection-start-column="14" selection-end-line="92" selection-end-column="14" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/util/SimpleNumberHistogram.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="288">
+          <caret line="16" column="34" selection-start-line="16" selection-start-column="34" selection-end-line="16" selection-end-column="34" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

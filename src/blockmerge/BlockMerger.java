@@ -2,7 +2,6 @@ package blockmerge;
 
 import util.MAFAlignmentBlock;
 import util.MAFReader;
-import util.SimpleHistogram;
 import org.apache.commons.cli.*;
 import util.SimpleScatterPlot;
 

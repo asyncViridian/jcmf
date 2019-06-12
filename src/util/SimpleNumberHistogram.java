@@ -4,7 +4,6 @@ import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartUtils;
 import org.jfree.chart.JFreeChart;
 import org.jfree.chart.title.TextTitle;
-import org.jfree.chart.title.Title;
 import org.jfree.data.statistics.HistogramDataset;
 import org.jfree.data.statistics.HistogramType;
 
@@ -15,7 +14,7 @@ import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Iterator;
 
-public class SimpleHistogram implements StatsGraph {
+public class SimpleNumberHistogram implements StatsGraph {
     private ArrayList<BigDecimal> values = new ArrayList<>();
     private String key;
     private String xLabel;
@@ -23,11 +22,11 @@ public class SimpleHistogram implements StatsGraph {
     private Path output;
     private int numBins;
 
-    public SimpleHistogram(Path output,
-                           String key,
-                           String xLabel,
-                           String yLabel,
-                           int numBins) {
+    public SimpleNumberHistogram(Path output,
+                                 String key,
+                                 String xLabel,
+                                 String yLabel,
+                                 int numBins) {
         this.output = output;
         this.key = key;
         this.xLabel = xLabel;

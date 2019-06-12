@@ -5,13 +5,12 @@ import org.apache.commons.lang3.tuple.ImmutablePair;
 import org.apache.commons.lang3.tuple.Pair;
 import util.MAFAlignmentBlock;
 import util.MAFReader;
-import util.SimpleHistogram;
+import util.SimpleNumberHistogram;
 
 import java.io.BufferedWriter;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.math.BigInteger;
-import java.math.RoundingMode;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -78,7 +77,7 @@ public class RefLineGenerator {
         Path blockLengthStatsFile = Paths.get(RefLineGenerator.outDir,
                                               "graph_refBlockLengthStats" +
                                                       ".png");
-        SimpleHistogram blockLengthStats = new SimpleHistogram(
+        SimpleNumberHistogram blockLengthStats = new SimpleNumberHistogram(
                 blockLengthStatsFile,
                 "",
                 "Block length",
