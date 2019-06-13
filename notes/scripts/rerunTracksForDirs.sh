@@ -2,9 +2,12 @@
 # Outputs the resulting bigbed tracks into the temp dir
 # Example usage: ./rerunTracksOnAllRegions.sh q_chr*
 
+echo "Please enter unique identifier to prefix outputs with"
+read prefix
+
 echo "Re-generating temp directory"
-rm -r temp
-mkdir temp
+rm -r temp_$prefix
+mkdir temp_$prefix
 
 for dir in "$@"
 do
@@ -28,21 +31,21 @@ do
   cd $dir/tracks/
   for file in *.bed
   do
-    cat $file >> ../../temp/$file
+    cat $file >> ../../temp_$prefix/${prefix}_$file
   done
   cd ../..
   echo
 done
 
 echo "Generating bigBed for sum files"
-for file in temp/*.bed
+for file in temp_$prefix/*.bed
 do
   ./generateBigBed.sh $file
 done
 
 echo "Creating source references files"
 # Copying the source files to a temp dir
-mkdir temp/tempsrc
+mkdir temp_$prefix/tempsrc
 for dir in "$@"
 do
   echo "Copying over all source files for $dir"
@@ -59,13 +62,13 @@ do
   cd $dir/scores
   for file in *.score
   do
-    cp $file ../../temp/tempsrc/${file}_${chr}.txt
+    cp $file ../../temp_$prefix/tempsrc/${file}_${chr}.txt
   done
   cd ../..
 done
 # Grabbing only the source files that we actually want
-mkdir temp/src
-cd temp
+mkdir temp_$prefix/${prefix}_src
+cd temp_$prefix
 for file in *.bed
 do
   # Don't copy over source files for the reference sequence ._.
@@ -75,18 +78,18 @@ do
     do
       filename="${lineArray[3]}_${lineArray[0]}.txt"
       echo "Saving to src: $filename"
-      cp tempsrc/$filename src/$filename
+      cp tempsrc/$filename ${prefix}_src/$filename
     done < $file
   fi
 done
 cd ..
-rm -r temp/tempsrc
+rm -r temp_$prefix/tempsrc
 
 # Getting the PNG files for each source dir
-mkdir temp/graphics
+mkdir temp_$prefix/graphics
 for dir in "$@"
 do
   echo "Copying PNGs out of $dir"
-  mkdir temp/graphics/$dir
-  ./collectPNGs.sh $dir temp/graphics/$dir
+  mkdir temp_$prefix/graphics/$dir
+  ./collectPNGs.sh $dir temp_$prefix/graphics/$dir
 done
