@@ -6,13 +6,15 @@ import org.jfree.chart.JFreeChart;
 import org.jfree.chart.plot.PlotOrientation;
 import org.jfree.data.category.DefaultCategoryDataset;
 
+import java.awt.*;
 import java.io.IOException;
 import java.math.BigInteger;
 import java.nio.file.Path;
-import java.util.HashMap;
+import java.util.*;
+import java.util.List;
 
 public class SimpleBarChart implements StatsGraph {
-    private HashMap<String, BigInteger> values = new HashMap<>();
+    private Map<String, BigInteger> values = new HashMap<>();
     private String key;
     private String vertLabel;
     private Path output;
@@ -35,7 +37,11 @@ public class SimpleBarChart implements StatsGraph {
     @Override
     public void write() throws IOException {
         DefaultCategoryDataset dataset = new DefaultCategoryDataset();
-        for (String item : values.keySet()) {
+        List<Map.Entry<String, BigInteger>> list = new LinkedList<>(
+                values.entrySet());
+        list.sort(Comparator.comparing(Map.Entry::getValue));
+        for (Map.Entry<String, BigInteger> entry : list) {
+            String item = entry.getKey();
             dataset.addValue(
                     values.get(item),
                     "",
@@ -49,8 +55,13 @@ public class SimpleBarChart implements StatsGraph {
                 vertLabel,
                 dataset,
                 PlotOrientation.HORIZONTAL,
-                false,false,false
+                false, false, false
         );
-        ChartUtils.saveChartAsPNG(this.output.toFile(), chart, 800, 600);
+        chart.getCategoryPlot().getDomainAxis().setTickLabelFont(
+                new Font(null, Font.PLAIN, 10));
+        ChartUtils.saveChartAsPNG(this.output.toFile(),
+                                  chart,
+                                  800,
+                                  600);
     }
 }
