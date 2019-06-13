@@ -113,8 +113,8 @@ public class TrackGenerator {
         SimpleNumberHistogram mergedBlockSizeStats = new SimpleNumberHistogram(
                 mergedBlockSizeFile,
                 "",
-                "Number of blocks",
                 "Size of merged blocks together",
+                "Number of blocks",
                 20);
         Path motifSpeciesFile = Paths.get(TrackGenerator.outputDirectory,
                                           "graph_postfilter_motifSpeciesStats" +
