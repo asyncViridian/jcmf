@@ -3,6 +3,7 @@ package blockmerge;
 import util.MAFAlignmentBlock;
 import util.MAFReader;
 import org.apache.commons.cli.*;
+import util.SimpleNumberHistogram;
 import util.SimpleScatterPlot;
 
 import java.io.BufferedWriter;
@@ -73,7 +74,7 @@ public class BlockMerger {
      * will still allow the resulting block to be output.
      */
     private static int MAX_OUTPUT_LENGTH;
-    private static int MAX_OUTPUT_LENGTH_DEFAULT = 5000;
+    private static int MAX_OUTPUT_LENGTH_DEFAULT = 3000;
     /**
      * The minimum length of the reference genome in a resulting block that
      * will still allow the resulting block to be output.
@@ -105,9 +106,12 @@ public class BlockMerger {
         BlockMerger.options = new Options();
         {
             BlockMerger.options.addOption(
-                    Option.builder("base")
-                            .desc("Use base-counting based merging (by "
-                                          + "default BlockMerger uses "
+                    Option.builder("t")
+                            .longOpt("mergeType")
+                            .hasArg()
+                            .desc("'bases', 'blocks', or 'fillblocks' to " +
+                                          "determine the type of merge used " +
+                                          "(by default BlockMerger uses "
                                           + "block-based merging).")
                             .build());
             BlockMerger.options.addOption(
@@ -115,7 +119,6 @@ public class BlockMerger {
                             .longOpt("numBlocksPerOutput")
                             .hasArg()
                             .desc("Number of source blocks to include in each" +
-                                          " " +
                                           "merged block (if using " +
                                           "block-counting " +
                                           "merging). Defaults to " + NUM_BLOCKS_PER_OUTPUT_DEFAULT)
@@ -216,8 +219,15 @@ public class BlockMerger {
         try {
             CommandLine line = parser.parse(options, args);
             // set the merge type
-            if (line.hasOption("base")) {
-                BlockMerger.MERGE_TYPE = MergeType.BASES;
+            if (line.hasOption("t")) {
+                String value = line.getOptionValue("t");
+                if (value.toLowerCase().equals("bases")) {
+                    BlockMerger.MERGE_TYPE = MergeType.BASES;
+                } else if (value.toLowerCase().equals("fillblocks")) {
+                    BlockMerger.MERGE_TYPE = MergeType.FILLBLOCKS;
+                } else { //if (value.toLowerCase().equals("blocks"))
+                    BlockMerger.MERGE_TYPE = MergeType.BLOCKS;
+                }
             } else {
                 BlockMerger.MERGE_TYPE = MERGE_TYPE_DEFAULT;
             }
@@ -304,33 +314,73 @@ public class BlockMerger {
         if (MERGE_TYPE == MergeType.BASES) {
             // TODO write base-based merging...
             throw new RuntimeException("not implemented yet");
-            // TODO write percentage/threshold size based merging...
-        } else if (MERGE_TYPE == MergeType.BLOCKS) {
+        } else if (MERGE_TYPE == MergeType.BLOCKS || MERGE_TYPE == MergeType.FILLBLOCKS) {
+            // TODO implement fillblocks merging (block-shift based, but size
+            //  threshold)
             // Create overall statistics trackers
             // Track gap content (N bases) in each merged block
-            // TODO make this filename argument-able???
             Path gapStatsFile = Paths.get(BlockMerger.outDir,
-                                          "graph_postfilter_gapStatistics" +
+                                          "graph_merge_gapStatistics" +
                                                   ".png");
             SimpleScatterPlot gapStats = new SimpleScatterPlot(
                     gapStatsFile,
                     null,
                     "Merged sequence length",
                     "Gaps percentage");
+            // Track # of blocks used in each merge
+            Path numBlocksFile = Paths.get(BlockMerger.outDir,
+                                           "graph_merge_numBlocks" +
+                                                   ".png");
+            SimpleNumberHistogram numBlocksStats = new SimpleNumberHistogram(
+                    numBlocksFile,
+                    "",
+                    "Number of blocks in mergeblock",
+                    "% of mergeblocks",
+                    10);
 
             LinkedList<MAFAlignmentBlock> current = new LinkedList<>();
             BigInteger i = BigInteger.ONE;
             while (reader.hasNext()) {
-                // add the next block
-                current.add(reader.next());
-                if (current.size() < NUM_BLOCKS_PER_OUTPUT) {
+                // BLOCK-based merging rules:
+                if (MERGE_TYPE == MergeType.BLOCKS) {
+                    current.add(reader.next());
+                }
+                if ((MERGE_TYPE == MergeType.BLOCKS) &&
+                        current.size() < NUM_BLOCKS_PER_OUTPUT) {
                     // abort if we have too few blocks merged
                     continue;
                 }
                 // keep the set of working blocks small
                 // (we only write n blocks at a time)
-                if (current.size() > NUM_BLOCKS_PER_OUTPUT) {
+                if ((MERGE_TYPE == MergeType.BLOCKS) &&
+                        current.size() > NUM_BLOCKS_PER_OUTPUT) {
                     current.remove();
+                }
+                // FILLBLOCKS-based merging rules:
+                BigInteger blockLength =
+                        current.getLast().sequences.get("hg38").start
+                                .add(
+                                        current.getLast().sequences.get(
+                                                "hg38").size)
+                                .subtract(
+                                        current.getFirst().sequences.get(
+                                                "hg38").start
+                                );
+                // check lower bound
+                if ((MERGE_TYPE == MergeType.FILLBLOCKS) &&
+                        blockLength.compareTo(
+                                BigInteger.valueOf(MIN_OUTPUT_LENGTH)) < 0) {
+                    // need more blocks to hit minimum
+                    current.add(reader.next());
+                    continue;
+                }
+                // check upper bound
+                if ((MERGE_TYPE == MergeType.FILLBLOCKS) &&
+                        blockLength.compareTo(
+                                BigInteger.valueOf(MAX_OUTPUT_LENGTH)) > 0) {
+                    // need fewer blocks to reduce to maximum
+                    current.removeFirst();
+                    continue;
                 }
 
                 // find the set of mergeable species
@@ -355,22 +405,21 @@ public class BlockMerger {
                     }
                 }
 
-                // Filter:
+                // Standard Filter:
                 // checks the # of merged species threshold
                 if (speciesToMerge.size() < MIN_NUM_SPECIES) {
                     continue;
                 }
 
-                // Filter:
+                // Standard Filter:
                 // require that the merged species includes human
                 if (!speciesToMerge.contains("hg38")) {
                     continue;
                 }
 
-                // Filter:
+                // Standard Filter:
                 // check output against sequence length bounds
-                // TODO: perhaps generalize to allow other human assemblies?
-                // TODO: possibly integrate too-short blocks into other sections
+                // TODO: perhaps generalize to allow other human assemblies???
                 MAFAlignmentBlock.Sequence firstCheckSeqLen =
                         current.getFirst().sequences.get(
                                 "hg38");
@@ -492,6 +541,8 @@ public class BlockMerger {
                                               .multiply(BigDecimal.valueOf(100))
                                               .divide(new BigDecimal(seqLength),
                                                       RoundingMode.HALF_EVEN));
+                    // write the mergeblocksize statistic
+                    numBlocksStats.addValue(new BigDecimal(current.size()));
                 }
                 // note that we have created a file
                 System.out.println("Wrote " + file.toString());
@@ -504,6 +555,7 @@ public class BlockMerger {
 
             // Output overall statistics graphics
             gapStats.write();
+            numBlocksStats.write();
             System.out.println("Wrote statistics information");
 
         }
@@ -654,6 +706,6 @@ public class BlockMerger {
     }
 
     public enum MergeType {
-        BASES, BLOCKS
+        BASES, BLOCKS, FILLBLOCKS
     }
 }

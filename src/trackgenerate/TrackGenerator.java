@@ -274,10 +274,15 @@ public class TrackGenerator {
         System.out.println("Wrote BED files");
 
         // Output histograms
-        pairScorePreStats.write();
         rnaScorePreStats.write();
+        rnaScorePostStats.write();
+        pairScorePreStats.write();
+        pairScorePostStats.write();
         blockSpanPreStats.write();
+        blockSpanPostStats.write();
         mergedBlocksizePreStats.write();
+        mergedBlocksizePostStats.write();
+        motifSpeciesPreStats.write();
         motifSpeciesPostStats.write();
         System.out.println("Wrote statistics graphs");
     }

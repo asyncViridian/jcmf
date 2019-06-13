@@ -9,10 +9,13 @@ Graphs:
     - Additional: Add additional versions of each graph for both pre- and post- scorefilter
         - Done!
 Track Hub:
-    - Possibly clean up the score file linking / parse it to look nicer.
+    - Clean up the score file linking?
+    - Parse it to look nicer
+        - How can I make it look nicer?
 Implementation:
     - Add "overall block limits" option to block-based merging-block
         - sort of as a midway between block- and base- based merging
+        - Done in theory, have yet to test & debug.
 Longer-term?:
     - filtering out overlapping blocks
     - evaluating the pscore thresholds

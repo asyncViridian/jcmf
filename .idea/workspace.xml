@@ -2,6 +2,62 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3da6e499-81fb-4a08-856f-3dc0c5fe102e" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/notes/meeting-notes.txt" beforeDir="false" afterPath="$PROJECT_DIR$/notes/meeting-notes.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/notes/scripts/trackgenerator.jar" beforeDir="false" afterPath="$PROJECT_DIR$/notes/scripts/trackgenerator.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/notes/trackHub/graphics/q_chr01_10block-10to3000-allspecies/graph_prefilter_mergedBlockSizeStats.png" beforeDir="false" afterPath="$PROJECT_DIR$/notes/trackHub/graphics/q_chr01_10block-10to3000-allspecies/graph_prefilter_mergedBlockSizeStats.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/notes/trackHub/graphics/q_chr01_emuBigscan_5block-10to3000-allspecies/graph_postfilter_gapStatistics.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/notes/trackHub/graphics/q_chr01_emuBigscan_5block-10to3000-allspecies/graph_prefilter_blockSpanStats.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/notes/trackHub/graphics/q_chr01_emuBigscan_5block-10to3000-allspecies/graph_prefilter_mergedBlockSizeStats.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/notes/trackHub/graphics/q_chr01_emuBigscan_5block-10to3000-allspecies/graph_prefilter_pairScoreStats.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/notes/trackHub/graphics/q_chr01_emuBigscan_5block-10to3000-allspecies/graph_prefilter_rnaScoreStats.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/notes/trackHub/graphics/q_chr01_emuBigscan_5block-10to3000-allspecies/graph_refBlockLengthStats.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/notes/trackHub/graphics/q_chr01_newParams_5block-10to3000-allspecies/graph_postfilter_gapStatistics.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/notes/trackHub/graphics/q_chr01_newParams_5block-10to3000-allspecies/graph_prefilter_blockSpanStats.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/notes/trackHub/graphics/q_chr01_newParams_5block-10to3000-allspecies/graph_prefilter_mergedBlockSizeStats.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/notes/trackHub/graphics/q_chr01_newParams_5block-10to3000-allspecies/graph_prefilter_pairScoreStats.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/notes/trackHub/graphics/q_chr01_newParams_5block-10to3000-allspecies/graph_prefilter_rnaScoreStats.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/notes/trackHub/graphics/q_chr01_newParams_5block-10to3000-allspecies/graph_refBlockLengthStats.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/notes/trackHub/graphics/q_chr02_10block-10to3000-allspecies/graph_prefilter_mergedBlockSizeStats.png" beforeDir="false" afterPath="$PROJECT_DIR$/notes/trackHub/graphics/q_chr02_10block-10to3000-allspecies/graph_prefilter_mergedBlockSizeStats.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/notes/trackHub/graphics/q_chr02_emuBigscan_5block-10to3000-allspecies/graph_postfilter_gapStatistics.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/notes/trackHub/graphics/q_chr02_emuBigscan_5block-10to3000-allspecies/graph_prefilter_blockSpanStats.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/notes/trackHub/graphics/q_chr02_emuBigscan_5block-10to3000-allspecies/graph_prefilter_mergedBlockSizeStats.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/notes/trackHub/graphics/q_chr02_emuBigscan_5block-10to3000-allspecies/graph_prefilter_pairScoreStats.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/notes/trackHub/graphics/q_chr02_emuBigscan_5block-10to3000-allspecies/graph_prefilter_rnaScoreStats.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/notes/trackHub/graphics/q_chr02_emuBigscan_5block-10to3000-allspecies/graph_refBlockLengthStats.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/notes/trackHub/graphics/q_chr02_newParams_5block-10to3000-allspecies/graph_postfilter_gapStatistics.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/notes/trackHub/graphics/q_chr02_newParams_5block-10to3000-allspecies/graph_prefilter_blockSpanStats.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/notes/trackHub/graphics/q_chr02_newParams_5block-10to3000-allspecies/graph_prefilter_mergedBlockSizeStats.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/notes/trackHub/graphics/q_chr02_newParams_5block-10to3000-allspecies/graph_prefilter_pairScoreStats.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/notes/trackHub/graphics/q_chr02_newParams_5block-10to3000-allspecies/graph_prefilter_rnaScoreStats.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/notes/trackHub/graphics/q_chr02_newParams_5block-10to3000-allspecies/graph_refBlockLengthStats.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/notes/trackHub/graphics/q_chr05_10block-10to3000-allspecies/graph_prefilter_mergedBlockSizeStats.png" beforeDir="false" afterPath="$PROJECT_DIR$/notes/trackHub/graphics/q_chr05_10block-10to3000-allspecies/graph_prefilter_mergedBlockSizeStats.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/notes/trackHub/graphics/q_chr05_emuBigscan_5block-10to3000-allspecies/graph_postfilter_gapStatistics.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/notes/trackHub/graphics/q_chr05_emuBigscan_5block-10to3000-allspecies/graph_prefilter_blockSpanStats.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/notes/trackHub/graphics/q_chr05_emuBigscan_5block-10to3000-allspecies/graph_prefilter_mergedBlockSizeStats.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/notes/trackHub/graphics/q_chr05_emuBigscan_5block-10to3000-allspecies/graph_prefilter_pairScoreStats.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/notes/trackHub/graphics/q_chr05_emuBigscan_5block-10to3000-allspecies/graph_prefilter_rnaScoreStats.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/notes/trackHub/graphics/q_chr05_emuBigscan_5block-10to3000-allspecies/graph_refBlockLengthStats.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/notes/trackHub/graphics/q_chr05_newParams_5block-10to3000-allspecies/graph_postfilter_gapStatistics.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/notes/trackHub/graphics/q_chr05_newParams_5block-10to3000-allspecies/graph_prefilter_blockSpanStats.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/notes/trackHub/graphics/q_chr05_newParams_5block-10to3000-allspecies/graph_prefilter_mergedBlockSizeStats.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/notes/trackHub/graphics/q_chr05_newParams_5block-10to3000-allspecies/graph_prefilter_pairScoreStats.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/notes/trackHub/graphics/q_chr05_newParams_5block-10to3000-allspecies/graph_prefilter_rnaScoreStats.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/notes/trackHub/graphics/q_chr05_newParams_5block-10to3000-allspecies/graph_refBlockLengthStats.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/notes/trackHub/graphics/q_chr12_10block-10to3000-allspecies/graph_prefilter_mergedBlockSizeStats.png" beforeDir="false" afterPath="$PROJECT_DIR$/notes/trackHub/graphics/q_chr12_10block-10to3000-allspecies/graph_prefilter_mergedBlockSizeStats.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/notes/trackHub/graphics/q_chr12_emuBigscan_5block-10to3000-allspecies/graph_postfilter_gapStatistics.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/notes/trackHub/graphics/q_chr12_emuBigscan_5block-10to3000-allspecies/graph_prefilter_blockSpanStats.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/notes/trackHub/graphics/q_chr12_emuBigscan_5block-10to3000-allspecies/graph_prefilter_mergedBlockSizeStats.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/notes/trackHub/graphics/q_chr12_emuBigscan_5block-10to3000-allspecies/graph_prefilter_pairScoreStats.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/notes/trackHub/graphics/q_chr12_emuBigscan_5block-10to3000-allspecies/graph_prefilter_rnaScoreStats.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/notes/trackHub/graphics/q_chr12_emuBigscan_5block-10to3000-allspecies/graph_refBlockLengthStats.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/notes/trackHub/graphics/q_chr12_newParams_5block-10to3000-allspecies/graph_postfilter_gapStatistics.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/notes/trackHub/graphics/q_chr12_newParams_5block-10to3000-allspecies/graph_prefilter_blockSpanStats.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/notes/trackHub/graphics/q_chr12_newParams_5block-10to3000-allspecies/graph_prefilter_mergedBlockSizeStats.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/notes/trackHub/graphics/q_chr12_newParams_5block-10to3000-allspecies/graph_prefilter_pairScoreStats.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/notes/trackHub/graphics/q_chr12_newParams_5block-10to3000-allspecies/graph_prefilter_rnaScoreStats.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/notes/trackHub/graphics/q_chr12_newParams_5block-10to3000-allspecies/graph_refBlockLengthStats.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/blockmerge/BlockMerger.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/blockmerge/BlockMerger.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/trackgenerate/TrackGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/trackgenerate/TrackGenerator.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -16,13 +72,17 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/blockmerge/BlockMerger.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <caret line="505" column="20" selection-start-line="505" selection-start-column="20" selection-end-line="505" selection-end-column="20" />
+            <state relative-caret-position="351">
+              <caret line="73" column="57" lean-forward="true" selection-start-line="73" selection-start-column="57" selection-end-line="73" selection-end-column="57" />
               <folding>
                 <element signature="imports" expanded="true" />
+                <element signature="e#3522#9415#1" />
+                <element signature="e#9648#13366#0" />
+                <element signature="e#9781#10259#1" />
+                <element signature="e#12871#13214#0" />
                 <element signature="method#repeat#0;class#BlockMerger#0" />
                 <element signature="method#writeFastaHeader#0;class#BlockMerger#0" />
                 <element signature="method#writeFastaContent#0;class#BlockMerger#0" />
@@ -31,11 +91,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/trackgenerate/TrackGenerator.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="567">
-              <caret line="148" column="54" selection-start-line="148" selection-start-column="54" selection-end-line="148" selection-end-column="54" />
+            <state relative-caret-position="274">
+              <caret line="131" column="8" lean-forward="true" selection-start-line="131" selection-start-column="8" selection-end-line="136" selection-end-column="19" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -46,8 +106,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/trackgenerate/RefLineGenerator.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="789">
-              <caret line="108" column="45" selection-start-line="108" selection-start-column="45" selection-end-line="108" selection-end-column="45" />
+            <state relative-caret-position="213">
+              <caret line="76" column="14" selection-start-line="76" selection-start-column="14" selection-end-line="76" selection-end-column="14" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -81,9 +141,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>public static final</find>
-      <find>mafSrc</find>
-      <find>outputName</find>
       <find>outputDir</find>
       <find>isMergeable</find>
       <find>isMergeable`</find>
@@ -111,6 +168,9 @@
       <find>TODOrepla</find>
       <find>todore</find>
       <find>rnaScorePreStats</find>
+      <find>MergeType.Bl</find>
+      <find>gapStats</find>
+      <find>MAX_OUTPUT</find>
     </findStrings>
     <replaceStrings>
       <replace>assertEquals\((\2), (\1)\);</replace>
@@ -155,7 +215,6 @@
         <option value="$PROJECT_DIR$/src/util/SimpleScatterPlot.java" />
         <option value="$PROJECT_DIR$/src/trackgenerate/ReferenceGenerator.java" />
         <option value="$PROJECT_DIR$/src/trackgenerate/ReferenceTrackGenerator.java" />
-        <option value="$PROJECT_DIR$/src/blockmerge/BlockMerger.java" />
         <option value="$PROJECT_DIR$/src/trackgenerate/RefLineGenerator.java" />
         <option value="$PROJECT_DIR$/src/util/SimpleHistogram.java" />
         <option value="$PROJECT_DIR$/src/util/SimpleNumberHistogram.java" />
@@ -163,6 +222,7 @@
         <option value="$PROJECT_DIR$/src/util/SimpleStringBinHistogram.java" />
         <option value="$PROJECT_DIR$/src/util/SimpleBarChart.java" />
         <option value="$PROJECT_DIR$/src/trackgenerate/TrackGenerator.java" />
+        <option value="$PROJECT_DIR$/src/blockmerge/BlockMerger.java" />
       </list>
     </option>
   </component>
@@ -426,7 +486,7 @@
       <workItem from="1559461486907" duration="1893000" />
       <workItem from="1559779821846" duration="618000" />
       <workItem from="1560329396617" duration="3011000" />
-      <workItem from="1560412374544" duration="6905000" />
+      <workItem from="1560412374544" duration="10110000" />
     </task>
     <servers />
   </component>
@@ -463,13 +523,13 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="156318000" />
+    <option name="totallyTimeSpent" value="159523000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-9" y="-9" width="1698" height="1020" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.48460662" visible="true" weight="0.17665036" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.48460662" visible="true" weight="0.17665036" />
       <window_info id="Structure" order="1" sideWeight="0.5153934" side_tool="true" visible="true" weight="0.17665036" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -768,19 +828,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/blockmerge/BlockMerger.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret line="505" column="20" selection-start-line="505" selection-start-column="20" selection-end-line="505" selection-end-column="20" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="method#repeat#0;class#BlockMerger#0" />
-            <element signature="method#writeFastaHeader#0;class#BlockMerger#0" />
-            <element signature="method#writeFastaContent#0;class#BlockMerger#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/util/SimpleNumberHistogram.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="306">
@@ -802,16 +849,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/trackgenerate/RefLineGenerator.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="789">
-          <caret line="108" column="45" selection-start-line="108" selection-start-column="45" selection-end-line="108" selection-end-column="45" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/util/SimpleBarChart.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="429">
@@ -822,12 +859,39 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/trackgenerate/TrackGenerator.java">
+    <entry file="file://$PROJECT_DIR$/src/trackgenerate/RefLineGenerator.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="567">
-          <caret line="148" column="54" selection-start-line="148" selection-start-column="54" selection-end-line="148" selection-end-column="54" />
+        <state relative-caret-position="213">
+          <caret line="76" column="14" selection-start-line="76" selection-start-column="14" selection-end-line="76" selection-end-column="14" />
           <folding>
             <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/trackgenerate/TrackGenerator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="274">
+          <caret line="131" column="8" lean-forward="true" selection-start-line="131" selection-start-column="8" selection-end-line="136" selection-end-column="19" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/blockmerge/BlockMerger.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="351">
+          <caret line="73" column="57" lean-forward="true" selection-start-line="73" selection-start-column="57" selection-end-line="73" selection-end-column="57" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#3522#9415#1" />
+            <element signature="e#9648#13366#0" />
+            <element signature="e#9781#10259#1" />
+            <element signature="e#12871#13214#0" />
+            <element signature="method#repeat#0;class#BlockMerger#0" />
+            <element signature="method#writeFastaHeader#0;class#BlockMerger#0" />
+            <element signature="method#writeFastaContent#0;class#BlockMerger#0" />
           </folding>
         </state>
       </provider>
