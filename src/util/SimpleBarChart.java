@@ -3,6 +3,7 @@ package util;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartUtils;
 import org.jfree.chart.JFreeChart;
+import org.jfree.chart.plot.PlotOrientation;
 import org.jfree.data.category.DefaultCategoryDataset;
 
 import java.io.IOException;
@@ -37,16 +38,18 @@ public class SimpleBarChart implements StatsGraph {
         for (String item : values.keySet()) {
             dataset.addValue(
                     values.get(item),
-                    "rowkey_" + item,
+                    "",
                     item
             );
         }
 
         JFreeChart chart = ChartFactory.createBarChart(
                 null,
-                "categoryAxisLabel",
-                "valueAxisLabel",
-                dataset
+                "",
+                vertLabel,
+                dataset,
+                PlotOrientation.HORIZONTAL,
+                false,false,false
         );
         ChartUtils.saveChartAsPNG(this.output.toFile(), chart, 800, 600);
     }

@@ -68,13 +68,25 @@ mkdir temp/src
 cd temp
 for file in *.bed
 do
-  # Split each line of the bed files into array
-  while IFS=$'\t' read -r -a lineArray
-  do
-    filename="${lineArray[3]}_${lineArray[0]}.txt"
-    echo "Saving to src: $filename"
-    cp tempsrc/$filename src/$filename
-  done < $file
+  # Don't copy over source files for the reference sequence ._.
+  if [[ ! $file =~ "ref" ]]; then
+    # Split each line of the bed files into array
+    while IFS=$'\t' read -r -a lineArray
+    do
+      filename="${lineArray[3]}_${lineArray[0]}.txt"
+      echo "Saving to src: $filename"
+      cp tempsrc/$filename src/$filename
+    done < $file
+  fi
 done
 cd ..
 rm -r temp/tempsrc
+
+# Getting the PNG files for each source dir
+mkdir temp/graphics
+for dir in "$@"
+do
+  echo "Copying PNGs out of $dir"
+  mkdir temp/graphics/$dir
+  ./collectPNGs.sh $dir temp/graphics/$dir
+done

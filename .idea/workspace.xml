@@ -2,10 +2,26 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3da6e499-81fb-4a08-856f-3dc0c5fe102e" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/notes/meeting-notes.txt" beforeDir="false" afterPath="$PROJECT_DIR$/notes/meeting-notes.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/notes/scripts/blockmerger.jar" beforeDir="false" afterPath="$PROJECT_DIR$/notes/scripts/blockmerger.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/notes/scripts/reflinegenerator.jar" beforeDir="false" afterPath="$PROJECT_DIR$/notes/scripts/reflinegenerator.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/notes/scripts/rerunMergeOnAllRegions.sh" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/notes/scripts/rerunTracksForDirs.sh" beforeDir="false" afterPath="$PROJECT_DIR$/notes/scripts/rerunTracksForDirs.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/notes/scripts/rerunTracksOnAllRegions.sh" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/notes/scripts/trackgenerator.jar" beforeDir="false" afterPath="$PROJECT_DIR$/notes/scripts/trackgenerator.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/notes/trackHub/graphics/q_chr01_10block-10to3000-allspecies/graph_postfilter_gapStatistics.png" beforeDir="false" afterPath="$PROJECT_DIR$/notes/trackHub/graphics/q_chr01_10block-10to3000-allspecies/graph_postfilter_gapStatistics.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/notes/trackHub/graphics/q_chr01_10block-10to3000-allspecies/graph_prefilter_blockSpanStats.png" beforeDir="false" afterPath="$PROJECT_DIR$/notes/trackHub/graphics/q_chr01_10block-10to3000-allspecies/graph_prefilter_blockSpanStats.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/notes/trackHub/graphics/q_chr01_10block-10to3000-allspecies/graph_prefilter_mergedBlockSizeStats.png" beforeDir="false" afterPath="$PROJECT_DIR$/notes/trackHub/graphics/q_chr01_10block-10to3000-allspecies/graph_prefilter_mergedBlockSizeStats.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/notes/trackHub/graphics/q_chr01_10block-10to3000-allspecies/graph_prefilter_pairScoreStats.png" beforeDir="false" afterPath="$PROJECT_DIR$/notes/trackHub/graphics/q_chr01_10block-10to3000-allspecies/graph_prefilter_pairScoreStats.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/notes/trackHub/graphics/q_chr01_10block-10to3000-allspecies/graph_prefilter_rnaScoreStats.png" beforeDir="false" afterPath="$PROJECT_DIR$/notes/trackHub/graphics/q_chr01_10block-10to3000-allspecies/graph_prefilter_rnaScoreStats.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/notes/trackHub/graphics/q_chr02_10block-10to3000-allspecies/graph_postfilter_gapStatistics.png" beforeDir="false" afterPath="$PROJECT_DIR$/notes/trackHub/graphics/q_chr02_10block-10to3000-allspecies/graph_postfilter_gapStatistics.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/notes/trackHub/graphics/q_chr02_10block-10to3000-allspecies/graph_prefilter_mergedBlockSizeStats.png" beforeDir="false" afterPath="$PROJECT_DIR$/notes/trackHub/graphics/q_chr02_10block-10to3000-allspecies/graph_prefilter_mergedBlockSizeStats.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/notes/trackHub/graphics/q_chr05_10block-10to3000-allspecies/graph_postfilter_gapStatistics.png" beforeDir="false" afterPath="$PROJECT_DIR$/notes/trackHub/graphics/q_chr05_10block-10to3000-allspecies/graph_postfilter_gapStatistics.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/notes/trackHub/graphics/q_chr05_10block-10to3000-allspecies/graph_prefilter_mergedBlockSizeStats.png" beforeDir="false" afterPath="$PROJECT_DIR$/notes/trackHub/graphics/q_chr05_10block-10to3000-allspecies/graph_prefilter_mergedBlockSizeStats.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/notes/trackHub/graphics/q_chr12_10block-10to3000-allspecies/graph_postfilter_gapStatistics.png" beforeDir="false" afterPath="$PROJECT_DIR$/notes/trackHub/graphics/q_chr12_10block-10to3000-allspecies/graph_postfilter_gapStatistics.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/notes/trackHub/graphics/q_chr12_10block-10to3000-allspecies/graph_prefilter_mergedBlockSizeStats.png" beforeDir="false" afterPath="$PROJECT_DIR$/notes/trackHub/graphics/q_chr12_10block-10to3000-allspecies/graph_prefilter_mergedBlockSizeStats.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/notes/trackHub/hg38/bigscan10_multi.bb" beforeDir="false" afterPath="$PROJECT_DIR$/notes/trackHub/hg38/bigscan10_multi.bb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/trackgenerate/TrackGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/trackgenerate/TrackGenerator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/util/SimpleStringBinHistogram.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/util/SimpleBarChart.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/util/SimpleBarChart.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/util/SimpleBarChart.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -22,7 +38,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/blockmerge/BlockMerger.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="8820">
+            <state>
               <caret line="505" column="20" selection-start-line="505" selection-start-column="20" selection-end-line="505" selection-end-column="20" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -34,11 +50,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/trackgenerate/TrackGenerator.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="387">
-              <caret line="203" column="51" selection-start-line="203" selection-start-column="51" selection-end-line="203" selection-end-column="51" />
+            <state relative-caret-position="944">
+              <caret line="127" lean-forward="true" selection-start-line="127" selection-end-line="127" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -47,35 +63,10 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/util/StockholmAlignmentBlock.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="3132">
-              <caret line="183" column="38" selection-start-line="183" selection-start-column="38" selection-end-line="183" selection-end-column="38" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="method#containsSpecies#0;class#StockholmAlignmentBlock#0" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/util/SimpleNumberHistogram.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="90">
-              <caret line="17" column="16" selection-end-line="70" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/util/SimpleBarChart.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="126">
-              <caret line="19" column="37" lean-forward="true" selection-start-line="19" selection-start-column="37" selection-end-line="19" selection-end-column="37" />
+            <state relative-caret-position="447">
+              <caret line="38" column="29" lean-forward="true" selection-start-line="38" selection-start-column="29" selection-end-line="38" selection-end-column="29" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -109,9 +100,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>e latCha1.JH127196                805190 14264 +</find>
-      <find>'e</find>
-      <find>overlap</find>
       <find>print</find>
       <find>public static final</find>
       <find>mafSrc</find>
@@ -139,6 +127,9 @@
       <find>getInter</find>
       <find>blockl</find>
       <find>mergedblocksi</find>
+      <find>TODO</find>
+      <find>TODOrepla</find>
+      <find>todore</find>
     </findStrings>
     <replaceStrings>
       <replace>assertEquals\((\2), (\1)\);</replace>
@@ -188,8 +179,8 @@
         <option value="$PROJECT_DIR$/src/util/SimpleHistogram.java" />
         <option value="$PROJECT_DIR$/src/util/SimpleNumberHistogram.java" />
         <option value="$PROJECT_DIR$/src/util/StockholmAlignmentBlock.java" />
-        <option value="$PROJECT_DIR$/src/trackgenerate/TrackGenerator.java" />
         <option value="$PROJECT_DIR$/src/util/SimpleStringBinHistogram.java" />
+        <option value="$PROJECT_DIR$/src/trackgenerate/TrackGenerator.java" />
         <option value="$PROJECT_DIR$/src/util/SimpleBarChart.java" />
       </list>
     </option>
@@ -454,7 +445,7 @@
       <workItem from="1559461486907" duration="1893000" />
       <workItem from="1559779821846" duration="618000" />
       <workItem from="1560329396617" duration="3011000" />
-      <workItem from="1560412374544" duration="585000" />
+      <workItem from="1560412374544" duration="2989000" />
     </task>
     <servers />
   </component>
@@ -491,7 +482,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="149998000" />
+    <option name="totallyTimeSpent" value="152402000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-9" y="-9" width="1698" height="1020" extended-state="6" />
@@ -798,34 +789,13 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/blockmerge/BlockMerger.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="8820">
+        <state>
           <caret line="505" column="20" selection-start-line="505" selection-start-column="20" selection-end-line="505" selection-end-column="20" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="method#repeat#0;class#BlockMerger#0" />
             <element signature="method#writeFastaHeader#0;class#BlockMerger#0" />
             <element signature="method#writeFastaContent#0;class#BlockMerger#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/util/StockholmAlignmentBlock.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3132">
-          <caret line="183" column="38" selection-start-line="183" selection-start-column="38" selection-end-line="183" selection-end-column="38" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="method#containsSpecies#0;class#StockholmAlignmentBlock#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/util/SimpleNumberHistogram.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="17" column="16" selection-end-line="70" />
-          <folding>
-            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -840,20 +810,41 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/trackgenerate/TrackGenerator.java">
+    <entry file="file://$PROJECT_DIR$/src/util/SimpleNumberHistogram.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="387">
-          <caret line="203" column="51" selection-start-line="203" selection-start-column="51" selection-end-line="203" selection-end-column="51" />
+        <state relative-caret-position="306">
+          <caret line="17" column="16" selection-end-line="70" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/util/StockholmAlignmentBlock.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="675">
+          <caret line="183" column="38" selection-start-line="183" selection-start-column="38" selection-end-line="183" selection-end-column="38" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="method#containsSpecies#0;class#StockholmAlignmentBlock#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/util/SimpleBarChart.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="126">
-          <caret line="19" column="37" lean-forward="true" selection-start-line="19" selection-start-column="37" selection-end-line="19" selection-end-column="37" />
+        <state relative-caret-position="447">
+          <caret line="38" column="29" lean-forward="true" selection-start-line="38" selection-start-column="29" selection-end-line="38" selection-end-column="29" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/trackgenerate/TrackGenerator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="944">
+          <caret line="127" lean-forward="true" selection-start-line="127" selection-end-line="127" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

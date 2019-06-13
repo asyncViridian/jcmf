@@ -123,7 +123,7 @@ public class TrackGenerator {
                 new SimpleBarChart(
                         motifSpeciesFile,
                         "",
-                        "vertLabelTODOReplace" // TODO replace
+                        "Number of Motifs"
                 );
 
         // write the header lines

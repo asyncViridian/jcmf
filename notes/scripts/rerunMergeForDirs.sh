@@ -1,5 +1,5 @@
 # Re-generate the merged-block MAF files for all working directories passed in
-# Example usage: ./rerunMergeOnAllRegions.sh q_chr*
+# Example usage: ./rerunMergeForDirs.sh q_chr*
 
 for dir in "$@"
 do
