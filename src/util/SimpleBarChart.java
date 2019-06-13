@@ -1,34 +1,24 @@
 package util;
 
-import javafx.util.Pair;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartUtils;
 import org.jfree.chart.JFreeChart;
-import org.jfree.chart.title.TextTitle;
-import org.jfree.data.category.CategoryDataset;
 import org.jfree.data.category.DefaultCategoryDataset;
-import org.jfree.data.statistics.DefaultBoxAndWhiskerCategoryDataset;
-import org.jfree.data.statistics.HistogramDataset;
-import org.jfree.data.statistics.HistogramType;
 
 import java.io.IOException;
-import java.math.BigDecimal;
 import java.math.BigInteger;
-import java.math.RoundingMode;
 import java.nio.file.Path;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Iterator;
 
-public class SimpleStringBinHistogram implements StatsGraph {
+public class SimpleBarChart implements StatsGraph {
     private HashMap<String, BigInteger> values = new HashMap<>();
     private String key;
     private String vertLabel;
     private Path output;
 
-    public SimpleStringBinHistogram(Path output,
-                                    String key,
-                                    String vertLabel) {
+    public SimpleBarChart(Path output,
+                          String key,
+                          String vertLabel) {
         this.output = output;
         this.key = key;
         this.vertLabel = vertLabel;

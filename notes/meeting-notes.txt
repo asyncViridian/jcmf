@@ -1,6 +1,7 @@
 2019-06-06
 Graphs:
     - Fix the bug in the "merged block size stats" graph.
+        - should be fixed in theory?
     - Graph the species used for all the motifs (see bigscan paper for how they did it)
     - Check the bigscan paper for other interesting graphs too...
 Track Hub:
@@ -17,7 +18,7 @@ Work on the writeup:
     - method: merge, cmfinder, pscore
     - results: trackhub, details
     - discussion/impact: discussion of novelty, comparison with previous runs??, future steps
-    - references: need to collect those.
+    - references: need to collect those.z
 
 Other TO-Do:
     - Update the Process Notes file lol.

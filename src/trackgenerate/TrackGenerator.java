@@ -3,7 +3,7 @@ package trackgenerate;
 import org.apache.commons.cli.*;
 import org.apache.commons.lang3.tuple.Pair;
 import util.SimpleNumberHistogram;
-import util.SimpleStringBinHistogram;
+import util.SimpleBarChart;
 import util.StockholmAlignmentBlock;
 
 import java.io.BufferedWriter;
@@ -119,8 +119,8 @@ public class TrackGenerator {
         Path motifSpeciesFile = Paths.get(TrackGenerator.outputDirectory,
                                           "graph_postfilter_motifSpeciesStats" +
                                                   ".png");
-        SimpleStringBinHistogram motifSpeciesStats =
-                new SimpleStringBinHistogram(
+        SimpleBarChart motifSpeciesStats =
+                new SimpleBarChart(
                         motifSpeciesFile,
                         "",
                         "vertLabelTODOReplace" // TODO replace
