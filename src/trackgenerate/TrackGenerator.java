@@ -81,47 +81,95 @@ public class TrackGenerator {
         Files.createFile(outputSingle);
         BufferedWriter writerSingle = Files.newBufferedWriter(outputSingle);
         // histograms
-        Path rnaStatsFile = Paths.get(TrackGenerator.outputDirectory,
-                                      "graph_prefilter_rnaScoreStats" + ".png");
-        SimpleNumberHistogram rnaScoreStats = new SimpleNumberHistogram(
-                rnaStatsFile,
+        Path rnaScorePreFile = Paths.get(TrackGenerator.outputDirectory,
+                                         "graph_prefilter_rnaScoreStats" +
+                                                 ".png");
+        SimpleNumberHistogram rnaScorePreStats = new SimpleNumberHistogram(
+                rnaScorePreFile,
                 "",
                 "RNA posterior score",
                 "% of motifs",
                 20);
-        Path pairStatsFile = Paths.get(TrackGenerator.outputDirectory,
-                                       "graph_prefilter_pairScoreStats" +
-                                               ".png");
-        SimpleNumberHistogram pairScoreStats = new SimpleNumberHistogram(
-                pairStatsFile,
+        Path rnaScorePostFile = Paths.get(TrackGenerator.outputDirectory,
+                                          "graph_postfilter_rnaScoreStats" +
+                                                  ".png");
+        SimpleNumberHistogram rnaScorePostStats = new SimpleNumberHistogram(
+                rnaScorePostFile,
+                "",
+                "RNA posterior score",
+                "% of motifs",
+                20);
+        Path pairScorePreFile = Paths.get(TrackGenerator.outputDirectory,
+                                          "graph_prefilter_pairScoreStats" +
+                                                  ".png");
+        SimpleNumberHistogram pairScorePreStats = new SimpleNumberHistogram(
+                pairScorePreFile,
                 "",
                 "Pair posterior score",
                 "% of motifs",
                 20);
-        Path blockSpanFile = Paths.get(TrackGenerator.outputDirectory,
-                                       "graph_prefilter_blockSpanStats" +
-                                               ".png");
-        SimpleNumberHistogram blockSpanStats = new SimpleNumberHistogram(
-                blockSpanFile,
+        Path pairScorePostFile = Paths.get(TrackGenerator.outputDirectory,
+                                           "graph_postfilter_pairScoreStats" +
+                                                   ".png");
+        SimpleNumberHistogram pairScorePostStats = new SimpleNumberHistogram(
+                pairScorePostFile,
+                "",
+                "Pair posterior score",
+                "% of motifs",
+                20);
+        Path blockSpanPreFile = Paths.get(TrackGenerator.outputDirectory,
+                                          "graph_prefilter_blockSpanStats" +
+                                                  ".png");
+        SimpleNumberHistogram blockSpanPreStats = new SimpleNumberHistogram(
+                blockSpanPreFile,
                 "",
                 "Number of blocks spanned",
                 "% of motifs",
                 5);
-        Path mergedBlockSizeFile = Paths.get(TrackGenerator.outputDirectory,
-                                             "graph_prefilter_mergedBlockSizeStats" +
-                                                     ".png");
-        SimpleNumberHistogram mergedBlockSizeStats = new SimpleNumberHistogram(
-                mergedBlockSizeFile,
+        Path blockSpanPostFile = Paths.get(TrackGenerator.outputDirectory,
+                                           "graph_postfilter_blockSpanStats" +
+                                                   ".png");
+        SimpleNumberHistogram blockSpanPostStats = new SimpleNumberHistogram(
+                blockSpanPostFile,
+                "",
+                "Number of blocks spanned",
+                "% of motifs",
+                5);
+        Path mergedBlocksizePreFile = Paths.get(TrackGenerator.outputDirectory,
+                                                "graph_prefilter_mergedBlockSizeStats" +
+                                                        ".png");
+        SimpleNumberHistogram mergedBlocksizePreStats =
+                new SimpleNumberHistogram(
+                mergedBlocksizePreFile,
                 "",
                 "Size of merged blocks together",
                 "Number of blocks",
                 20);
-        Path motifSpeciesFile = Paths.get(TrackGenerator.outputDirectory,
-                                          "graph_postfilter_motifSpeciesStats" +
-                                                  ".png");
-        SimpleBarChart motifSpeciesStats =
+        Path mergedBlocksizePostFile = Paths.get(TrackGenerator.outputDirectory,
+                                                 "graph_postfilter_mergedBlockSizeStats" +
+                                                         ".png");
+        SimpleNumberHistogram mergedBlocksizePostStats =
+                new SimpleNumberHistogram(
+                mergedBlocksizePostFile,
+                "",
+                "Size of merged blocks together",
+                "Number of blocks",
+                20);
+        Path motifSpeciesPreFile = Paths.get(TrackGenerator.outputDirectory,
+                                             "graph_prefilter_motifSpeciesStats" +
+                                                     ".png");
+        SimpleBarChart motifSpeciesPreStats =
                 new SimpleBarChart(
-                        motifSpeciesFile,
+                        motifSpeciesPreFile,
+                        "",
+                        "Number of Motifs"
+                );
+        Path motifSpeciesPostFile = Paths.get(TrackGenerator.outputDirectory,
+                                              "graph_postfilter_motifSpeciesStats" +
+                                                      ".png");
+        SimpleBarChart motifSpeciesPostStats =
+                new SimpleBarChart(
+                        motifSpeciesPostFile,
                         "",
                         "Number of Motifs"
                 );
@@ -161,17 +209,20 @@ public class TrackGenerator {
             BigDecimal pairScore = block.pairScore;
             BigDecimal rnaScore = block.rnaScore;
 
-            // write the stats for this sequence to tracker
-            pairScoreStats.addValue(pairScore);
-            rnaScoreStats.addValue(rnaScore);
-            blockSpanStats.addValue(
+            //  Get prefilter stats
+            rnaScorePreStats.addValue(rnaScore);
+            pairScorePreStats.addValue(pairScore);
+            blockSpanPreStats.addValue(
                     BigDecimal.valueOf(block.motifInNumBlocks("hg38")));
             Pair<BigInteger, BigInteger> interval
                     = block.getInterval("hg38");
-            mergedBlockSizeStats.addValue(
+            mergedBlocksizePreStats.addValue(
                     new BigDecimal(
                             interval.getRight().subtract(interval.getLeft()))
             );
+            for (String species : block.getSpecies()) {
+                motifSpeciesPreStats.addValue(species);
+            }
 
             // score filter
             if (rnaScore.compareTo(BigDecimal.valueOf(50L)) < 0) {
@@ -179,8 +230,17 @@ public class TrackGenerator {
             }
 
             // Begin postfilter details
+            // Get postfilter stats
+            rnaScorePostStats.addValue(rnaScore);
+            pairScorePostStats.addValue(pairScore);
+            blockSpanPostStats.addValue(
+                    BigDecimal.valueOf(block.motifInNumBlocks("hg38")));
+            mergedBlocksizePostStats.addValue(
+                    new BigDecimal(
+                            interval.getRight().subtract(interval.getLeft()))
+            );
             for (String species : block.getSpecies()) {
-                motifSpeciesStats.addValue(species);
+                motifSpeciesPostStats.addValue(species);
             }
 
             // TODO set a better score filter and value guideline?
@@ -214,11 +274,11 @@ public class TrackGenerator {
         System.out.println("Wrote BED files");
 
         // Output histograms
-        pairScoreStats.write();
-        rnaScoreStats.write();
-        blockSpanStats.write();
-        mergedBlockSizeStats.write();
-        motifSpeciesStats.write();
+        pairScorePreStats.write();
+        rnaScorePreStats.write();
+        blockSpanPreStats.write();
+        mergedBlocksizePreStats.write();
+        motifSpeciesPostStats.write();
         System.out.println("Wrote statistics graphs");
     }
 }
