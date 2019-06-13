@@ -1,15 +1,19 @@
 2019-06-06
 Graphs:
     - Fix the bug in the "merged block size stats" graph.
-        - should be fixed in theory?
+        - Done!
     - Graph the species used for all the motifs (see bigscan paper for how they did it)
-    - Check the bigscan paper for other interesting graphs too...
+        - Done! This is sorted in order from least to most motifs per species.
+        - Sort of small font. Don't want to bother prettyifying it, augh
+    - Check the bigscan paper for other interesting graphs too...?
+    - Additional: Add additional versions of each graph for both pre- and post- scorefilter
+        - Done!
 Track Hub:
     - Possibly clean up the score file linking / parse it to look nicer.
 Implementation:
     - Add "overall block limits" option to block-based merging-block
         - sort of as a midway between block- and base- based merging
-Longer-term:
+Longer-term?:
     - filtering out overlapping blocks
     - evaluating the pscore thresholds
         - Simulate BS output with randomized/shuffled blocks
@@ -20,7 +24,7 @@ Work on the writeup:
     - discussion/impact: discussion of novelty, comparison with previous runs??, future steps
     - references: need to collect those.z
 
-Other TO-Do:
+Other To-Do:
     - Update the Process Notes file lol.
 
 ===============================================================================
