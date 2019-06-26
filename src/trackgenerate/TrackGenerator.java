@@ -135,25 +135,25 @@ public class TrackGenerator {
                 "Number of blocks spanned",
                 "% of motifs",
                 5);
-        Path mergedBlocksizePreFile = Paths.get(TrackGenerator.outputDirectory,
-                                                "graph_prefilter_mergedBlockSizeStats" +
+        Path sequenceLengthPreFile = Paths.get(TrackGenerator.outputDirectory,
+                                                "graph_prefilter_sequenceLengthStats" +
                                                         ".png");
-        SimpleNumberHistogram mergedBlocksizePreStats =
+        SimpleNumberHistogram sequenceLengthPreStats =
                 new SimpleNumberHistogram(
-                mergedBlocksizePreFile,
+                sequenceLengthPreFile,
                 "",
-                "Size of merged blocks together",
-                "Number of blocks",
+                "Length of merged sequence",
+                "% of motifs",
                 20);
-        Path mergedBlocksizePostFile = Paths.get(TrackGenerator.outputDirectory,
-                                                 "graph_postfilter_mergedBlockSizeStats" +
+        Path sequenceLengthPostFile = Paths.get(TrackGenerator.outputDirectory,
+                                                 "graph_postfilter_sequenceLengthStats" +
                                                          ".png");
-        SimpleNumberHistogram mergedBlocksizePostStats =
+        SimpleNumberHistogram sequenceLengthPostStats =
                 new SimpleNumberHistogram(
-                mergedBlocksizePostFile,
+                sequenceLengthPostFile,
                 "",
-                "Size of merged blocks together",
-                "Number of blocks",
+                "Length of merged sequence",
+                "% of motifs",
                 20);
         Path motifSpeciesPreFile = Paths.get(TrackGenerator.outputDirectory,
                                              "graph_prefilter_motifSpeciesStats" +
@@ -216,7 +216,7 @@ public class TrackGenerator {
                     BigDecimal.valueOf(block.motifInNumBlocks("hg38")));
             Pair<BigInteger, BigInteger> interval
                     = block.getInterval("hg38");
-            mergedBlocksizePreStats.addValue(
+            sequenceLengthPreStats.addValue(
                     new BigDecimal(
                             interval.getRight().subtract(interval.getLeft()))
             );
@@ -235,7 +235,7 @@ public class TrackGenerator {
             pairScorePostStats.addValue(pairScore);
             blockSpanPostStats.addValue(
                     BigDecimal.valueOf(block.motifInNumBlocks("hg38")));
-            mergedBlocksizePostStats.addValue(
+            sequenceLengthPostStats.addValue(
                     new BigDecimal(
                             interval.getRight().subtract(interval.getLeft()))
             );
@@ -280,8 +280,8 @@ public class TrackGenerator {
         pairScorePostStats.write();
         blockSpanPreStats.write();
         blockSpanPostStats.write();
-        mergedBlocksizePreStats.write();
-        mergedBlocksizePostStats.write();
+        sequenceLengthPreStats.write();
+        sequenceLengthPostStats.write();
         motifSpeciesPreStats.write();
         motifSpeciesPostStats.write();
         System.out.println("Wrote statistics graphs");

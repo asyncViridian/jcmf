@@ -326,7 +326,7 @@ public class BlockMerger {
                     gapStatsFile,
                     null,
                     "Merged sequence length",
-                    "Gaps percentage");
+                    "% gap length");
             // Track # of blocks used in each merge
             Path numBlocksFile = Paths.get(BlockMerger.outDir,
                                            "graph_merge_numBlocks" +
@@ -338,32 +338,32 @@ public class BlockMerger {
                     "% of mergeblocks",
                     10);
 
-            LinkedList<MAFAlignmentBlock> current = new LinkedList<>();
+            LinkedList<MAFAlignmentBlock> toMerge = new LinkedList<>();
             BigInteger i = BigInteger.ONE;
             while (reader.hasNext()) {
                 // BLOCK-based merging rules:
                 if (MERGE_TYPE == MergeType.BLOCKS) {
-                    current.add(reader.next());
+                    toMerge.add(reader.next());
                 }
                 if ((MERGE_TYPE == MergeType.BLOCKS) &&
-                        current.size() < NUM_BLOCKS_PER_OUTPUT) {
+                        toMerge.size() < NUM_BLOCKS_PER_OUTPUT) {
                     // abort if we have too few blocks merged
                     continue;
                 }
                 // keep the set of working blocks small
                 // (we only write n blocks at a time)
                 if ((MERGE_TYPE == MergeType.BLOCKS) &&
-                        current.size() > NUM_BLOCKS_PER_OUTPUT) {
-                    current.remove();
+                        toMerge.size() > NUM_BLOCKS_PER_OUTPUT) {
+                    toMerge.remove();
                 }
                 // FILLBLOCKS-based merging rules:
                 BigInteger blockLength =
-                        current.getLast().sequences.get("hg38").start
+                        toMerge.getLast().sequences.get("hg38").start
                                 .add(
-                                        current.getLast().sequences.get(
+                                        toMerge.getLast().sequences.get(
                                                 "hg38").size)
                                 .subtract(
-                                        current.getFirst().sequences.get(
+                                        toMerge.getFirst().sequences.get(
                                                 "hg38").start
                                 );
                 // check lower bound
@@ -371,7 +371,7 @@ public class BlockMerger {
                         blockLength.compareTo(
                                 BigInteger.valueOf(MIN_OUTPUT_LENGTH)) < 0) {
                     // need more blocks to hit minimum
-                    current.add(reader.next());
+                    toMerge.add(reader.next());
                     continue;
                 }
                 // check upper bound
@@ -379,17 +379,17 @@ public class BlockMerger {
                         blockLength.compareTo(
                                 BigInteger.valueOf(MAX_OUTPUT_LENGTH)) > 0) {
                     // need fewer blocks to reduce to maximum
-                    current.removeFirst();
+                    toMerge.removeFirst();
                     continue;
                 }
 
                 // find the set of mergeable species
                 List<String> speciesToMerge = new LinkedList<>();
-                for (String species : current.getFirst().getSpecies()) {
+                for (String species : toMerge.getFirst().getSpecies()) {
                     // initialize iterators through the blocks
-                    Iterator<MAFAlignmentBlock> secondIt = current.iterator();
+                    Iterator<MAFAlignmentBlock> secondIt = toMerge.iterator();
                     secondIt.next();
-                    Iterator<MAFAlignmentBlock> firstIt = current.iterator();
+                    Iterator<MAFAlignmentBlock> firstIt = toMerge.iterator();
                     // retrieve the list of species that can be included in
                     // this set of alignment blocks
                     boolean mergeable = true;
@@ -421,10 +421,10 @@ public class BlockMerger {
                 // check output against sequence length bounds
                 // TODO: perhaps generalize to allow other human assemblies???
                 MAFAlignmentBlock.Sequence firstCheckSeqLen =
-                        current.getFirst().sequences.get(
+                        toMerge.getFirst().sequences.get(
                                 "hg38");
                 MAFAlignmentBlock.Sequence lastCheckSeqLen =
-                        current.getLast().sequences.get(
+                        toMerge.getLast().sequences.get(
                                 "hg38");
                 BigInteger humanSeqLen = lastCheckSeqLen.start.add(
                         lastCheckSeqLen.size).subtract(firstCheckSeqLen.start);
@@ -456,10 +456,10 @@ public class BlockMerger {
                     // write each species sequence
                     // write the species and originating chromosome
                     MAFAlignmentBlock.Sequence first =
-                            current.getFirst().sequences.get(
+                            toMerge.getFirst().sequences.get(
                                     species);
                     MAFAlignmentBlock.Sequence last =
-                            current.getLast().sequences.get(
+                            toMerge.getLast().sequences.get(
                                     species);
 
                     seqLength = last.start.add(last.size).subtract(first.start);
@@ -488,7 +488,7 @@ public class BlockMerger {
                     speciesHeader.append(last.start.add(last.size));
                     speciesHeader.append(":");
                     // write individual start and end coords for each block
-                    Iterator<MAFAlignmentBlock> it = current.iterator();
+                    Iterator<MAFAlignmentBlock> it = toMerge.iterator();
                     MAFAlignmentBlock b = it.next();
                     MAFAlignmentBlock.Sequence s = b.sequences.get(species);
                     speciesHeader.append(s.start);
@@ -507,7 +507,7 @@ public class BlockMerger {
                     // write the contents of each block for each species
                     int numBlock = 1;
                     boolean lastBlockWasGap = false;
-                    for (MAFAlignmentBlock block : current) {
+                    for (MAFAlignmentBlock block : toMerge) {
                         // get the raw sequence and fill it up with N as needed
                         MAFAlignmentBlock.Sequence seq = block.sequences.get(
                                 species);
@@ -542,7 +542,7 @@ public class BlockMerger {
                                               .divide(new BigDecimal(seqLength),
                                                       RoundingMode.HALF_EVEN));
                     // write the mergeblocksize statistic
-                    numBlocksStats.addValue(new BigDecimal(current.size()));
+                    numBlocksStats.addValue(new BigDecimal(toMerge.size()));
                 }
                 // note that we have created a file
                 System.out.println("Wrote " + file.toString());
