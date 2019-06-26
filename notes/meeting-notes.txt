@@ -1,3 +1,24 @@
+2019-06-13
+Graphs:
+    - Scatterplot RNA-posterior against pair-posterior
+    - Overlap: simple coordinate check, check against different species
+Cross-scoring inputs?
+    - distinguishing between multiple motifs in the same region?
+    - distinguishing between motifis on different strands?
+Track Hub
+    - Clean up score file linking
+    - Parse the score file
+Implementation
+    - Make sure the block-length-limits option is working properly
+Stretch goals
+    - Filter out overlapping results (duplicate results)
+    - Evaluate whether the pscore threshold used is meaningful or not
+        - Can simulate BS output with randomized/shuffled blocks, then pick a meaningful threshold
+Writeup
+Misc
+    - Keep the Process Notes file updated...
+
+===============================================================================
 2019-06-06
 Graphs:
     - Fix the bug in the "merged block size stats" graph.
@@ -477,3 +498,39 @@ ENSG00000261338  chr2  218255319 218257366 +
 
 ===============================================================================
 Coordinates of increased expression areas. Compare with vertebrate scan results. Maybe merge blocks from vertebrate scan and rerun cmfinder?
+
+===============================================================================
+Background reading notes:
+ncRNA: RNA that doesn't make protein
+    - generally 1.2% is protein, but 90% is transcribed
+        - (how do we know if it makes protein?)
+    - made from other transcripts, so less features
+    - fold (i.e. in hairpins) in order to minimize energy (maybe other things optimized?)
+    - structure is not particularly better than random sequence folding
+        - except in microRNA
+        - so we can use conservation instead, to figure out which parts are important
+Limitations of "ncRNA genes"
+    - Secondary structure is possibly only partially conserved
+"pseudoknots"/structure = hairpins
+    - minimizes free energy
+Types of programs:
+    - Alignment
+        - Take advantage of a pre-existing sequence alignment
+        - Such as QRNA, AlifoldZ, RNAZ
+    - Fold-first
+        - Structural inserts, emphasis on structure first
+        - Use a sliding window?
+        - Such as pfold, EvoFold
+    - Joint
+        - Sankoff's Algorithm
+False discovery rate: the estimates are pretty high
+Other terms of interest:
+    - Fusion transcripts
+    - varying sizes? (???)
+    - RNA interference
+    - microRNA
+        - really short ncRNAs
+    - riboswitches
+        - a specific class of ncRNAs with similar function
+    - wobble pairs
+        - some RNA base pairs can switch out so it's not only A-U G-C but also G-U sometimes
