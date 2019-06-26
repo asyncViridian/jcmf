@@ -1,6 +1,11 @@
 # Re-generate the merged-block MAF files for all working directories passed in
 # Example usage: ./rerunMergeForDirs.sh q_chr*
 
+if [ "$#" -eq 0 ]; then
+    echo "Usage: ./rerunMergeForDirs [dirs to regen merge for]+"
+    exit 1
+fi
+
 for dir in "$@"
 do
   echo "Rerunning merge in $dir"
@@ -17,7 +22,7 @@ do
     maf="m100_chr12_62602752-62622213.maf"
   fi
   echo "Using MAF file $maf"
-  java -jar blockmerger.jar -s source_mafs/$maf -od $dir/split/ -o m
+  java -jar blockmerger.jar -s source_mafs/$maf -od $dir/split/ -o m #--numBlocksPerOutput 10
   echo
 done
 

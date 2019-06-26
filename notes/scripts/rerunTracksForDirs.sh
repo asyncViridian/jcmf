@@ -1,6 +1,11 @@
 # Re-generate the BED/detail tracks for all working directories passed in
 # Outputs the resulting bigbed tracks into the temp dir
-# Example usage: ./rerunTracksOnAllRegions.sh q_chr*
+# Example usage: ./rerunTracksForDirs.sh q_chr*
+
+if [ "$#" -eq 0 ]; then
+    echo "Usage: ./rerunTracksForDirs [dirs to regen tracks for]+"
+    exit 1
+fi
 
 echo "Please enter unique identifier to prefix outputs with"
 read prefix

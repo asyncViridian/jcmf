@@ -1,6 +1,7 @@
 2019-06-13
 Graphs:
     - Scatterplot RNA-posterior against pair-posterior
+        - Done in theory... Currently running
     - Overlap: simple coordinate check, check against different species
 Cross-scoring inputs?
     - distinguishing between multiple motifs in the same region?
