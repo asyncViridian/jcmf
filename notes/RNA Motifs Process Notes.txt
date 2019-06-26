@@ -71,7 +71,14 @@ Generating the UCSC browser format track hub:
     02. Remove any "track" or "browser" line from the BED file
     03. Convert the sorted BED file into a bigBed file
         - use http://hgdownload.soe.ucsc.edu/goldenPath/hg38/bigZips/hg38.chrom.sizes as the chrom.sizes file
-TODO: update this????
+
+I have written a script rerunTracksForDirs.sh that automatically handles these steps.
+Just run this set of commands:
+
+echo bigscan10 | ./rerunTracksForDirs.sh q*10block* &
+echo bigscan | ./rerunTracksForDirs.sh q*emuBigscan* &
+echo newparam | ./rerunTracksForDirs.sh q*newParams* &
+
 
 ===============================================================================
 ===============================================================================

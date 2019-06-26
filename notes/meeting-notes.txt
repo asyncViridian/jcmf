@@ -3,6 +3,7 @@ Graphs:
     - Scatterplot RNA-posterior against pair-posterior
         - Done in theory... Currently running
     - Overlap: simple coordinate check, check against different species
+    - Be able to generate graphs with statistics across ALL regions at the same time
 Cross-scoring inputs?
     - distinguishing between multiple motifs in the same region?
     - distinguishing between motifis on different strands?
