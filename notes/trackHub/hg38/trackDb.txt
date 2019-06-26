@@ -11,7 +11,7 @@ scoreMax 1000
 track bigscan_multiblock_hits
 bigDataUrl bigscan_multi.bb
 shortLabel bigscan_multi
-longLabel bigscan-params multi-block hits rna-par>50
+longLabel bigscan-params multi-block hits with 5-block merges rna-par>50
 type bigBed 5 .
 directUrl http://students.washington.edu/jyzhou15/trackHub/hg38/bigscan_src/%s_%s.txt
 spectrum on
@@ -22,7 +22,7 @@ scoreMax 1000
 track bigscan_singleblock_hits
 bigDataUrl bigscan_single.bb
 shortLabel bigscan_single
-longLabel bigscan-params single-block hits rna-par>50
+longLabel bigscan-params single-block hits with 5-block merges rna-par>50
 type bigBed 5 .
 directUrl http://students.washington.edu/jyzhou15/trackHub/hg38/bigscan_src/%s_%s.txt
 spectrum on
@@ -55,7 +55,7 @@ scoreMax 1000
 track newparam_multiblock_hits
 bigDataUrl newparam_multi.bb
 shortLabel newparam_multi
-longLabel new parameter multi-block hits rna-par>50
+longLabel new parameter multi-block hits with 5-block merges rna-par>50
 type bigBed 5 .
 directUrl http://students.washington.edu/jyzhou15/trackHub/hg38/newparam_src/%s_%s.txt
 spectrum on
@@ -66,7 +66,7 @@ scoreMax 1000
 track newparam_singleblock_hits
 bigDataUrl newparam_single.bb
 shortLabel newparam_single
-longLabel new parameter single-block hits rna-par>50
+longLabel new parameter single-block hits with 5-block merges rna-par>50
 type bigBed 5 .
 directUrl http://students.washington.edu/jyzhou15/trackHub/hg38/newparam_src/%s_%s.txt
 spectrum on
