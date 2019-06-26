@@ -315,8 +315,10 @@ public class BlockMerger {
             // TODO write base-based merging...
             throw new RuntimeException("not implemented yet");
         } else if (MERGE_TYPE == MergeType.BLOCKS || MERGE_TYPE == MergeType.FILLBLOCKS) {
-            // TODO implement fillblocks merging (block-shift based, but size
-            //  threshold)
+            // Case where merge style is any of the two below:
+            // Block-based merging (block-shift based, fixed number of blocks)
+            // Fillblocks merging (block-shift based, but size threshold)
+
             // Create overall statistics trackers
             // Track gap content (N bases) in each merged block
             Path gapStatsFile = Paths.get(BlockMerger.outDir,

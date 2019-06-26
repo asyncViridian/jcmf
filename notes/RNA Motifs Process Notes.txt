@@ -34,6 +34,7 @@ TODO: explanation of the functionality blockmerge provides
 Generating the predicted motifs and associated scores:
 There are some scripts in the scripts directory, as well as a template source_mafs and workingdirectory to reflect the structure of the filesystem I used when running these scripts.
 The executables:
+TODO: this needs to be updated, it is outdated.
     blockmerger.jar
         This jar executable generates the set of FASTA files representing all the "merged blocks" originally from the given MAF file.
         It has a relatively complex set of arguments to specify source, destination, and various parameters (see below)
@@ -58,6 +59,7 @@ My workflow that I have used so far:
 02. Create the working directory (i.e. a directory named "q_chr01_5block-10to3000-allspecies")
 03. Run the runAll.sh script, like so (change out the parameters as appropriate, obviously):
     ./runAll.sh q_chr01_5block-10to3000-allspecies/ source_mafs/chr5.maf
+TODO: this is outdated and needs to be updated
 
 ===============================================================================
 
@@ -69,6 +71,7 @@ Generating the UCSC browser format track hub:
     02. Remove any "track" or "browser" line from the BED file
     03. Convert the sorted BED file into a bigBed file
         - use http://hgdownload.soe.ucsc.edu/goldenPath/hg38/bigZips/hg38.chrom.sizes as the chrom.sizes file
+TODO: update this????
 
 ===============================================================================
 ===============================================================================
@@ -81,13 +84,24 @@ Generating the UCSC browser format track hub:
 ===============================================================================
 
 TRACKGENERATOR.JAR
-TODO update this
 
 > java -jar trackgenerator.jar
 Parsing failed. Reason: Missing required options: s, o
 usage: TrackGenerator [options] -s <dirname> -o <filename>
- -o,--outFile <arg>   Output BED filename (including extension)
- -s,--srcDir <arg>    Input score files directory
+ -h,--writeHeader             Include the header line
+ -o,--outputDirectory <arg>   Output directory
+ -s,--srcDir <arg>            Input score files directory
+
+===============================================================================
+
+REFLINEGENERATOR.JAR
+
+> java -jar reflinegenerator.jar
+Parsing failed. Reason: Missing required options: s, o
+usage: RefLineGenerator [options] -s <filename> -o <filename>
+ -h,--writeHeader    Include the header line
+ -o,--outDir <arg>   Output directory
+ -s,--srcMaf <arg>   Input MAF to make a reference for
 
 ===============================================================================
 
@@ -96,16 +110,13 @@ BLOCKMERGER.JAR
 > java -jar blockmerger.jar
 Parsing failed. Reason: Missing required options: s, o
 usage: BlockMerger [options] -s <filename> -o <fileprefix>
- -base                           Use base-counting based merging (by
-                                 default BlockMerger uses block-based
-                                 merging).
     --gapThreshold <arg>         Maximum gap length between two source
                                  alignment blocks before they are
                                  determined unmergeable. Defaults to 300
     --maxOutputLength <arg>      Maximum length of the reference genome
                                  section in a resulting block that will
                                  still allow the resulting block to be
-                                 output.Defaults to 5000
+                                 output.Defaults to 3000
     --minNumSpecies <arg>        Minimum number of species that are
                                  mergeable to include in each result
                                  alignment block. Defaults to 5
@@ -120,14 +131,18 @@ usage: BlockMerger [options] -s <filename> -o <fileprefix>
                                  block (if using base-counting merging).
                                  Defaults to 300
     --numBlocksPerOutput <arg>   Number of source blocks to include in
-                                 each merged block (if using
-                                 block-counting merging). Defaults to 5
+                                 eachmerged block (if using block-counting
+                                 merging). Defaults to 5
  -o,--outName <arg>              Output FASTA files prefix
  -od,--outDir <arg>              Directory to write output files to.
                                  Defaults to current directory
  -s,--srcName <arg>              Input MAF file
  -sd,--srcDir <arg>              Directory to read input files from.
                                  Defaults to current directory
+ -t,--mergeType <arg>            'bases', 'blocks', or 'fillblocks' to
+                                 determine the type of merge used (by
+                                 default BlockMerger uses block-based
+                                 merging).
 
 ===============================================================================
 
