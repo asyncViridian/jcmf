@@ -4,6 +4,7 @@ import org.apache.commons.cli.*;
 import org.apache.commons.lang3.tuple.Pair;
 import util.SimpleNumberHistogram;
 import util.SimpleBarChart;
+import util.SimpleScatterPlot;
 import util.StockholmAlignmentBlock;
 
 import java.io.BufferedWriter;
@@ -125,7 +126,7 @@ public class TrackGenerator {
                 "",
                 "Number of blocks spanned",
                 "% of motifs",
-                5);
+                10);
         Path blockSpanPostFile = Paths.get(TrackGenerator.outputDirectory,
                                            "graph_postfilter_blockSpanStats" +
                                                    ".png");
@@ -134,27 +135,27 @@ public class TrackGenerator {
                 "",
                 "Number of blocks spanned",
                 "% of motifs",
-                5);
+                10);
         Path sequenceLengthPreFile = Paths.get(TrackGenerator.outputDirectory,
-                                                "graph_prefilter_sequenceLengthStats" +
-                                                        ".png");
+                                               "graph_prefilter_sequenceLengthStats" +
+                                                       ".png");
         SimpleNumberHistogram sequenceLengthPreStats =
                 new SimpleNumberHistogram(
-                sequenceLengthPreFile,
-                "",
-                "Length of merged sequence",
-                "% of motifs",
-                20);
+                        sequenceLengthPreFile,
+                        "",
+                        "Length of merged sequence",
+                        "% of motifs",
+                        20);
         Path sequenceLengthPostFile = Paths.get(TrackGenerator.outputDirectory,
-                                                 "graph_postfilter_sequenceLengthStats" +
-                                                         ".png");
+                                                "graph_postfilter_sequenceLengthStats" +
+                                                        ".png");
         SimpleNumberHistogram sequenceLengthPostStats =
                 new SimpleNumberHistogram(
-                sequenceLengthPostFile,
-                "",
-                "Length of merged sequence",
-                "% of motifs",
-                20);
+                        sequenceLengthPostFile,
+                        "",
+                        "Length of merged sequence",
+                        "% of motifs",
+                        20);
         Path motifSpeciesPreFile = Paths.get(TrackGenerator.outputDirectory,
                                              "graph_prefilter_motifSpeciesStats" +
                                                      ".png");
@@ -172,6 +173,26 @@ public class TrackGenerator {
                         motifSpeciesPostFile,
                         "",
                         "Number of Motifs"
+                );
+        Path pairVsRnaScorePreFile = Paths.get(TrackGenerator.outputDirectory,
+                                               "graph_prefilter_pairVsRnaStats" +
+                                                       ".png");
+        SimpleScatterPlot pairVsRnaScorePreStats =
+                new SimpleScatterPlot(
+                        pairVsRnaScorePreFile,
+                        null,
+                        "RNA Posterior Score",
+                        "Pair Posterior Score"
+                );
+        Path pairVsRnaScorePostFile = Paths.get(TrackGenerator.outputDirectory,
+                                                "graph_postfilter_pairVsRnaStats" +
+                                                        ".png");
+        SimpleScatterPlot pairVsRnaScorePostStats =
+                new SimpleScatterPlot(
+                        pairVsRnaScorePostFile,
+                        null,
+                        "RNA Posterior Score",
+                        "Pair Posterior Score"
                 );
 
         // write the header lines
@@ -223,6 +244,7 @@ public class TrackGenerator {
             for (String species : block.getSpecies()) {
                 motifSpeciesPreStats.addValue(species);
             }
+            pairVsRnaScorePreStats.addValue(rnaScore, pairScore);
 
             // score filter
             if (rnaScore.compareTo(BigDecimal.valueOf(50L)) < 0) {
@@ -242,6 +264,7 @@ public class TrackGenerator {
             for (String species : block.getSpecies()) {
                 motifSpeciesPostStats.addValue(species);
             }
+            pairVsRnaScorePostStats.addValue(rnaScore, pairScore);
 
             // TODO set a better score filter and value guideline?
             BigDecimal max = BigDecimal.valueOf(125L);
@@ -284,6 +307,8 @@ public class TrackGenerator {
         sequenceLengthPostStats.write();
         motifSpeciesPreStats.write();
         motifSpeciesPostStats.write();
+        pairVsRnaScorePreStats.write();
+        pairVsRnaScorePostStats.write();
         System.out.println("Wrote statistics graphs");
     }
 }
