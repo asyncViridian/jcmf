@@ -22,11 +22,12 @@ public class ScoredStockholmAlignmentBlock {
                 ScoredStockholmAlignmentBlock.constructFromScore(
                         Paths.get("notes/misc/ss.score").toFile());
     }
-    private Map<String, Source> sources
+
+    public Map<String, Source> sources
             = new HashMap<>();
-    private Map<String, Pair<BigInteger, BigInteger>> intervals
+    public Map<String, Pair<BigInteger, BigInteger>> intervals
             = new HashMap<>();
-    private Map<String, BigDecimal> scores
+    public Map<String, BigDecimal> scores
             = new HashMap<>();
     public String SS_cons;
     public String RF;
@@ -218,36 +219,41 @@ public class ScoredStockholmAlignmentBlock {
         return Collections.unmodifiableCollection(this.sources.keySet());
     }
 
-    private static class Source {
+    public static class Source {
         /**
          * Species name (i.e. "hg38")
          */
-        String species;
+        public String species;
         /**
          * Chromosome name (i.e. "chr2")
          */
-        String chr;
+        public String chr;
         /**
          * True iff the strand is positive. (False iff negative.)
          */
-        boolean strand;
+        public boolean strand;
         /**
          * The total span of the source area.
          */
-        Pair<BigInteger, BigInteger> totalSpan;
+        public Pair<BigInteger, BigInteger> totalSpan;
         /**
          * The component spans of each alignment block that forms the source
          * area.
          */
-        List<Pair<BigInteger, BigInteger>> indivSpans;
+        public List<Pair<BigInteger, BigInteger>> indivSpans;
         /**
          * The base pairs of this specific source.
          */
-        String sequence = "";
+        public String sequence = "";
         /**
          * The alignment pattern of this specific source.
          */
-        String motif = "";
+        public String motif = "";
+
+        /**
+         * The original input line that was passed in (the long one)
+         */
+        public String inputLine;
 
         /**
          * Reads a BlockMerger-format header line into a Source object
@@ -255,6 +261,7 @@ public class ScoredStockholmAlignmentBlock {
          * @param line BlockMerger-formatted header line
          */
         public Source(String line) {
+            this.inputLine = line;
             String[] parts = line.split(":");
             species = parts[0];
             chr = parts[1];
