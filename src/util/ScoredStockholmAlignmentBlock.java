@@ -7,6 +7,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.math.BigDecimal;
 import java.math.BigInteger;
+import java.nio.file.Paths;
 import java.util.*;
 
 /**
@@ -16,6 +17,11 @@ import java.util.*;
  */
 // TODO generalise if possible????
 public class ScoredStockholmAlignmentBlock {
+    public static void main(String[] args) throws FileNotFoundException {
+        ScoredStockholmAlignmentBlock scoredStockholmAlignmentBlock =
+                ScoredStockholmAlignmentBlock.constructFromScore(
+                        Paths.get("notes/misc/ss.score").toFile());
+    }
     private Map<String, Source> sources
             = new HashMap<>();
     private Map<String, Pair<BigInteger, BigInteger>> intervals
