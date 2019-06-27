@@ -1,7 +1,27 @@
-2019-06-13
+2019-06-27
 TEMP NOTES TO SELF:
     - NEED TO RE-RUN ALL OF THE NEWPARAMS SCRIPTS, SINCE THE SETTINGS FILE WAS BROKEN
 
+Figure out how to generate a CM (covariance model) file
+    - Infernal: can install into ~/bin and add that to my own path
+    - Check the readme & makefile
+    - "Grouping together different locations/classes of results"
+    - Score one model against another model by scoring it on the sequence that the other model was found on (human or other sequence)
+        - Table: each motif in rows, each species in columns, score on all the species sequences for all the motifs
+        - this information is in the score-stockholm-file
+Align up the consensus structures (the hairpin sequence) in overlapping motifs to see if those are mostly fitting/minor conflicts/subset
+    - "Filter out overlapping results"
+Be able to generate graphs with statistics across ALL regions at the same time
+    - maybe serialize the graph data so it's usable later
+Overlap checking
+    - simple coordinate check?
+    - check against different species?
+Minor: change the format of the score-html to show individual block regions
+Writeup
+    - Probably can work on the Methods first...fd.saf.dsa
+
+===============================================================================
+2019-06-13
 Graphs:
     - Scatterplot RNA-posterior against pair-posterior
         - Done!
@@ -12,7 +32,8 @@ Graphs:
         - check against different species?
 Cross-scoring inputs (Scoring one input based on a different motif to check equality)
     - distinguishing between multiple motifs in the same region?
-    - distinguishing between motifis on different strands?
+    - distinguishing between motifs on different strands?
+    - How do I even cross-score? RNAPhylo doesn't seem to do this. Need to dig around in the file-formats & executables
 Track Hub
     - Clean up score file linking & parse the score file
         - Done!
@@ -26,8 +47,10 @@ Stretch goals
     - Evaluate whether the pscore threshold used is meaningful or not
         - Can simulate BS output with randomized/shuffled blocks, then pick a meaningful threshold
 Writeup
+    - Probably can work on the Methods first.
 Misc
     - Keep the Process Notes file updated...
+        - Haha, done for now.
 
 ===============================================================================
 2019-06-06
