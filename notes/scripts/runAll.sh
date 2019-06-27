@@ -3,9 +3,10 @@
 # Arguments
 # $1 = dir to work in
 # $2 = maf file to use
+# $3 = settings file to use
 
-if [ "$#" -ne 2 ]; then
-    echo "Usage: ./runAll.sh [working dir] [MAF alignment]"
+if [ "$#" -ne 3 ]; then
+    echo "Usage: ./runAll.sh [working dir] [MAF alignment] [settings file]"
     exit 1
 fi
 
@@ -24,28 +25,33 @@ touch $1/log.log
 exec >> $1/log.log
 exec 2>&1
 
+# Get variables from settings file
+echo "-=- GETTING SETTINGS VARIABLES"
+source $3
+echo "mergeArgs=\"${mergeArgs}\""
+
 # Split/merge the MAF file into the dir split
 echo ""
-echo "SPLITTING/MERGING MAF FILE"
-echo "" | ./rerunMergeForDirs.sh $1
+echo "-=- SPLITTING/MERGING MAF FILE"
+echo "${mergeArgs}" | ./rerunMergeForDirs.sh $1
 
 # cd into the working directory so that we can use the following scripts
 cd $1
 
 # Run CMFinder
 echo ""
-echo "RUNNING CMFINDER"
+echo "-=- RUNNING CMFINDER"
 ./../align.sh
 
 # Score with RNAPhylo
 echo ""
-echo "SCORING CMFINDER RESULTS"
+echo "-=- SCORING CMFINDER RESULTS"
 echo "The output for this script is written to the score files output."
 ./../score.sh ../multiz100tree.newick
 
 # Generate list of RNAPhylo scores for summary
 echo ""
-echo "GENERATING SCORE SUMMARIES"
+echo "-=- GENERATING SCORE SUMMARIES"
 echo "The output for this script is written to the listscores output."
 ./../listScores.sh ./
 
@@ -53,7 +59,7 @@ cd ..
 
 # Generate BED and then bigBed tracks for the found motifs
 echo ""
-echo "GENERATING BED TRACKS"
+echo "-=- GENERATING BED TRACKS"
 mkdir $1/tracks
 java -jar trackgenerator.jar -s $1/scores -o $1/tracks/
 java -jar reflinegenerator.jar -s $2 -o $1/tracks

@@ -83,6 +83,12 @@ echo bigscan10 | ./rerunTracksForDirs.sh q*emuBigscan_10block* &
 echo bigscan5 | ./rerunTracksForDirs.sh q*emuBigscan_5block* &
 echo newparam | ./rerunTracksForDirs.sh q*newParams* &
 
+===============================================================================
+
+To run the entire pipeline on all of the configurations:
+
+./runAll.sh q_chr01_emuBigscan_10block-10to3000-allspecies/ source_mafs/m100_chr1_149844498-149849024.maf settings/emuBigscan_10block-10to3000 &
+
 
 ===============================================================================
 ===============================================================================
