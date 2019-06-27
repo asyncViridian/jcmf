@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="3da6e499-81fb-4a08-856f-3dc0c5fe102e" name="Default Changelist" comment="" />
+    <list default="true" id="3da6e499-81fb-4a08-856f-3dc0c5fe102e" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/trackgenerate/PageGenerator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/notes/misc/ss.html" beforeDir="false" afterPath="$PROJECT_DIR$/notes/misc/ss.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/trackgenerate/TrackGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/trackgenerate/TrackGenerator.java" afterDir="false" />
+    </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -48,11 +52,26 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/trackgenerate/TrackGenerator.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="342">
-              <caret line="19" column="29" lean-forward="true" selection-start-line="19" selection-start-column="29" selection-end-line="19" selection-end-column="29" />
+            <state relative-caret-position="434">
+              <caret line="79" column="43" selection-start-line="79" selection-start-column="43" selection-end-line="79" selection-end-column="43" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#854#1797#1" />
+                <element signature="e#1909#2292#0" />
+                <element signature="e#2320#2663#0" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/trackgenerate/PageGenerator.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="213">
+              <caret line="25" column="37" selection-start-line="25" selection-start-column="37" selection-end-line="25" selection-end-column="37" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -170,11 +189,12 @@
         <option value="$PROJECT_DIR$/src/util/SimpleNumberHistogram.java" />
         <option value="$PROJECT_DIR$/src/util/SimpleStringBinHistogram.java" />
         <option value="$PROJECT_DIR$/src/util/SimpleBarChart.java" />
-        <option value="$PROJECT_DIR$/src/trackgenerate/TrackGenerator.java" />
         <option value="$PROJECT_DIR$/src/blockmerge/BlockMerger.java" />
         <option value="$PROJECT_DIR$/src/util/StockholmAlignmentBlock.java" />
         <option value="$APPLICATION_CONFIG_DIR$/scratches/scratch.java" />
         <option value="$PROJECT_DIR$/src/util/ScoredStockholmAlignmentBlock.java" />
+        <option value="$PROJECT_DIR$/src/trackgenerate/TrackGenerator.java" />
+        <option value="$PROJECT_DIR$/src/trackgenerate/PageGenerator.java" />
       </list>
     </option>
   </component>
@@ -184,7 +204,7 @@
       <select />
     </treeState>
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="width" value="1191" />
     <option name="height" value="1002" />
   </component>
@@ -425,7 +445,7 @@
       <workItem from="1559779821846" duration="618000" />
       <workItem from="1560329396617" duration="3011000" />
       <workItem from="1560412374544" duration="13288000" />
-      <workItem from="1561520353610" duration="14470000" />
+      <workItem from="1561520353610" duration="14735000" />
     </task>
     <servers />
   </component>
@@ -462,14 +482,14 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="177171000" />
+    <option name="totallyTimeSpent" value="177436000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-9" y="-9" width="1698" height="1020" extended-state="7" />
+    <frame x="-9" y="-9" width="1698" height="1020" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.48194945" visible="true" weight="0.15586796" />
-      <window_info id="Structure" order="1" sideWeight="0.51805055" side_tool="true" visible="true" weight="0.15586796" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.48232612" visible="true" weight="0.15586796" />
+      <window_info id="Structure" order="1" sideWeight="0.5176739" side_tool="true" visible="true" weight="0.15586796" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
       <window_info id="UI Designer" order="4" />
@@ -478,7 +498,7 @@
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.3295325" />
       <window_info anchor="bottom" id="Run" order="2" weight="0.22006841" />
-      <window_info active="true" anchor="bottom" id="Debug" order="3" visible="true" weight="0.36830103" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.36830103" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
@@ -832,8 +852,21 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/trackgenerate/TrackGenerator.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="342">
-          <caret line="19" column="29" lean-forward="true" selection-start-line="19" selection-start-column="29" selection-end-line="19" selection-end-column="29" />
+        <state relative-caret-position="434">
+          <caret line="79" column="43" selection-start-line="79" selection-start-column="43" selection-end-line="79" selection-end-column="43" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#854#1797#1" />
+            <element signature="e#1909#2292#0" />
+            <element signature="e#2320#2663#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/trackgenerate/PageGenerator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="213">
+          <caret line="25" column="37" selection-start-line="25" selection-start-column="37" selection-end-line="25" selection-end-column="37" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

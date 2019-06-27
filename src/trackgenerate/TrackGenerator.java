@@ -20,7 +20,7 @@ import java.nio.file.Paths;
 public class TrackGenerator {
     private static Options options;
     private static String srcDir;
-    private static String outputDirectory;
+    private static String outputDir;
     private static Boolean writeHeader;
 
     public static void main(String[] args) throws IOException {
@@ -37,7 +37,7 @@ public class TrackGenerator {
                             .build());
             TrackGenerator.options.addOption(
                     Option.builder("o")
-                            .longOpt("outputDirectory")
+                            .longOpt("outputDir")
                             .hasArg()
                             .desc("Output directory")
                             .required()
@@ -47,7 +47,6 @@ public class TrackGenerator {
                             .longOpt("writeHeader")
                             .desc("Include the header line")
                             .build());
-            // TODO add options??? do I even need more options???
         }
         // Parse the commandline arguments
         CommandLineParser parser = new DefaultParser();
@@ -56,7 +55,7 @@ public class TrackGenerator {
             // set the src dirname
             TrackGenerator.srcDir = line.getOptionValue("s");
             // set the output filename
-            TrackGenerator.outputDirectory = line.getOptionValue("o");
+            TrackGenerator.outputDir = line.getOptionValue("o");
             // set the header line boolean
             TrackGenerator.writeHeader = line.hasOption("h");
         } catch (ParseException exp) {
@@ -71,18 +70,18 @@ public class TrackGenerator {
 
         // generate the output files
         // the multiple-block motifs file
-        Path output = Paths.get(TrackGenerator.outputDirectory, "multi.bed");
+        Path output = Paths.get(TrackGenerator.outputDir, "multi.bed");
         Files.deleteIfExists(output);
         Files.createFile(output);
         BufferedWriter writer = Files.newBufferedWriter(output);
         // the single-block motifs file
-        Path outputSingle = Paths.get(TrackGenerator.outputDirectory,
+        Path outputSingle = Paths.get(TrackGenerator.outputDir,
                                       "single.bed");
         Files.deleteIfExists(outputSingle);
         Files.createFile(outputSingle);
         BufferedWriter writerSingle = Files.newBufferedWriter(outputSingle);
         // histograms
-        Path rnaScorePreFile = Paths.get(TrackGenerator.outputDirectory,
+        Path rnaScorePreFile = Paths.get(TrackGenerator.outputDir,
                                          "graph_prefilter_rnaScoreStats" +
                                                  ".png");
         SimpleNumberHistogram rnaScorePreStats = new SimpleNumberHistogram(
@@ -91,7 +90,7 @@ public class TrackGenerator {
                 "RNA posterior score",
                 "% of motifs",
                 20);
-        Path rnaScorePostFile = Paths.get(TrackGenerator.outputDirectory,
+        Path rnaScorePostFile = Paths.get(TrackGenerator.outputDir,
                                           "graph_postfilter_rnaScoreStats" +
                                                   ".png");
         SimpleNumberHistogram rnaScorePostStats = new SimpleNumberHistogram(
@@ -100,7 +99,7 @@ public class TrackGenerator {
                 "RNA posterior score",
                 "% of motifs",
                 20);
-        Path pairScorePreFile = Paths.get(TrackGenerator.outputDirectory,
+        Path pairScorePreFile = Paths.get(TrackGenerator.outputDir,
                                           "graph_prefilter_pairScoreStats" +
                                                   ".png");
         SimpleNumberHistogram pairScorePreStats = new SimpleNumberHistogram(
@@ -109,7 +108,7 @@ public class TrackGenerator {
                 "Pair posterior score",
                 "% of motifs",
                 20);
-        Path pairScorePostFile = Paths.get(TrackGenerator.outputDirectory,
+        Path pairScorePostFile = Paths.get(TrackGenerator.outputDir,
                                            "graph_postfilter_pairScoreStats" +
                                                    ".png");
         SimpleNumberHistogram pairScorePostStats = new SimpleNumberHistogram(
@@ -118,7 +117,7 @@ public class TrackGenerator {
                 "Pair posterior score",
                 "% of motifs",
                 20);
-        Path blockSpanPreFile = Paths.get(TrackGenerator.outputDirectory,
+        Path blockSpanPreFile = Paths.get(TrackGenerator.outputDir,
                                           "graph_prefilter_blockSpanStats" +
                                                   ".png");
         SimpleNumberHistogram blockSpanPreStats = new SimpleNumberHistogram(
@@ -127,7 +126,7 @@ public class TrackGenerator {
                 "Number of blocks spanned",
                 "% of motifs",
                 10);
-        Path blockSpanPostFile = Paths.get(TrackGenerator.outputDirectory,
+        Path blockSpanPostFile = Paths.get(TrackGenerator.outputDir,
                                            "graph_postfilter_blockSpanStats" +
                                                    ".png");
         SimpleNumberHistogram blockSpanPostStats = new SimpleNumberHistogram(
@@ -136,7 +135,7 @@ public class TrackGenerator {
                 "Number of blocks spanned",
                 "% of motifs",
                 10);
-        Path sequenceLengthPreFile = Paths.get(TrackGenerator.outputDirectory,
+        Path sequenceLengthPreFile = Paths.get(TrackGenerator.outputDir,
                                                "graph_prefilter_sequenceLengthStats" +
                                                        ".png");
         SimpleNumberHistogram sequenceLengthPreStats =
@@ -146,7 +145,7 @@ public class TrackGenerator {
                         "Length of merged sequence",
                         "% of motifs",
                         20);
-        Path sequenceLengthPostFile = Paths.get(TrackGenerator.outputDirectory,
+        Path sequenceLengthPostFile = Paths.get(TrackGenerator.outputDir,
                                                 "graph_postfilter_sequenceLengthStats" +
                                                         ".png");
         SimpleNumberHistogram sequenceLengthPostStats =
@@ -156,7 +155,7 @@ public class TrackGenerator {
                         "Length of merged sequence",
                         "% of motifs",
                         20);
-        Path motifSpeciesPreFile = Paths.get(TrackGenerator.outputDirectory,
+        Path motifSpeciesPreFile = Paths.get(TrackGenerator.outputDir,
                                              "graph_prefilter_motifSpeciesStats" +
                                                      ".png");
         SimpleBarChart motifSpeciesPreStats =
@@ -165,7 +164,7 @@ public class TrackGenerator {
                         "",
                         "Number of Motifs"
                 );
-        Path motifSpeciesPostFile = Paths.get(TrackGenerator.outputDirectory,
+        Path motifSpeciesPostFile = Paths.get(TrackGenerator.outputDir,
                                               "graph_postfilter_motifSpeciesStats" +
                                                       ".png");
         SimpleBarChart motifSpeciesPostStats =
@@ -174,7 +173,7 @@ public class TrackGenerator {
                         "",
                         "Number of Motifs"
                 );
-        Path pairVsRnaScorePreFile = Paths.get(TrackGenerator.outputDirectory,
+        Path pairVsRnaScorePreFile = Paths.get(TrackGenerator.outputDir,
                                                "graph_prefilter_pairVsRnaStats" +
                                                        ".png");
         SimpleScatterPlot pairVsRnaScorePreStats =
@@ -184,7 +183,7 @@ public class TrackGenerator {
                         "RNA Posterior Score",
                         "Pair Posterior Score"
                 );
-        Path pairVsRnaScorePostFile = Paths.get(TrackGenerator.outputDirectory,
+        Path pairVsRnaScorePostFile = Paths.get(TrackGenerator.outputDir,
                                                 "graph_postfilter_pairVsRnaStats" +
                                                         ".png");
         SimpleScatterPlot pairVsRnaScorePostStats =
