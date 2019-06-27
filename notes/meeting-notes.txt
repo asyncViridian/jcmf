@@ -1,8 +1,12 @@
 2019-06-13
+TEMP NOTES TO SELF:
+    - NEED TO RE-RUN ALL OF THE NEWPARAMS SCRIPTS, SINCE THE SETTINGS FILE WAS BROKEN
+
 Graphs:
     - Scatterplot RNA-posterior against pair-posterior
         - Done!
     - Be able to generate graphs with statistics across ALL regions at the same time
+        - Thoughts on this: maybe serialize the graph data so it's usable later?
     - Overlap: simple coordinate check, check against different species
 Cross-scoring inputs (Scoring one input based on a different motif to check equality)
     - distinguishing between multiple motifs in the same region?
@@ -13,6 +17,8 @@ Track Hub
 Implementation
     - Make sure the block-length-limits option is working properly
         - Possible bug: Single-block "merge" + sequence is an insert is not working
+        - Other than that, it looks mostly OK? I think?
+        - Currently running!!!
 Stretch goals
     - Filter out overlapping results (duplicate results)
     - Evaluate whether the pscore threshold used is meaningful or not
