@@ -1,10 +1,10 @@
 2019-06-13
 Graphs:
     - Scatterplot RNA-posterior against pair-posterior
-        - Done in theory... Currently running
-    - Overlap: simple coordinate check, check against different species
+        - Done!
     - Be able to generate graphs with statistics across ALL regions at the same time
-Cross-scoring inputs?
+    - Overlap: simple coordinate check, check against different species
+Cross-scoring inputs (Scoring one input based on a different motif to check equality)
     - distinguishing between multiple motifs in the same region?
     - distinguishing between motifis on different strands?
 Track Hub
@@ -12,6 +12,7 @@ Track Hub
     - Parse the score file
 Implementation
     - Make sure the block-length-limits option is working properly
+        - Possible bug: Single-block "merge" + sequence is an insert is not working
 Stretch goals
     - Filter out overlapping results (duplicate results)
     - Evaluate whether the pscore threshold used is meaningful or not

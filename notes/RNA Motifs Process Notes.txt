@@ -72,11 +72,15 @@ Generating the UCSC browser format track hub:
     03. Convert the sorted BED file into a bigBed file
         - use http://hgdownload.soe.ucsc.edu/goldenPath/hg38/bigZips/hg38.chrom.sizes as the chrom.sizes file
 
-I have written a script rerunTracksForDirs.sh that automatically handles these steps.
+===============================================================================
+
+I have written some scripts that automatically handle these steps.
 Just run this set of commands:
 
-echo bigscan10 | ./rerunTracksForDirs.sh q*10block* &
-echo bigscan | ./rerunTracksForDirs.sh q*emuBigscan* &
+echo "" | ./rerunMergeForDirs.sh q*5block* &
+echo "--numBlocksPerOutput 10" | ./rerunMergeForDirs.sh q*10block* &
+echo bigscan10 | ./rerunTracksForDirs.sh q*emuBigscan_10block* &
+echo bigscan5 | ./rerunTracksForDirs.sh q*emuBigscan_5block* &
 echo newparam | ./rerunTracksForDirs.sh q*newParams* &
 
 
@@ -123,14 +127,14 @@ usage: BlockMerger [options] -s <filename> -o <fileprefix>
     --maxOutputLength <arg>      Maximum length of the reference genome
                                  section in a resulting block that will
                                  still allow the resulting block to be
-                                 output.Defaults to 3000
+                                 output. Defaults to 3000
     --minNumSpecies <arg>        Minimum number of species that are
                                  mergeable to include in each result
                                  alignment block. Defaults to 5
     --minOutputLength <arg>      Minimum length of the reference genome
                                  section in a resulting block that will
                                  still allow the resulting block to be
-                                 output.Defaults to 10
+                                 output. Defaults to 10
     --numBasesIncrement <arg>    Number of bases to increment between each
                                  output merged block (if using
                                  base-counting merging). Defaults to 50
@@ -146,10 +150,13 @@ usage: BlockMerger [options] -s <filename> -o <fileprefix>
  -s,--srcName <arg>              Input MAF file
  -sd,--srcDir <arg>              Directory to read input files from.
                                  Defaults to current directory
- -t,--mergeType <arg>            'bases', 'blocks', or 'fillblocks' to
-                                 determine the type of merge used (by
-                                 default BlockMerger uses block-based
-                                 merging).
+ -t,--mergeType <arg>            'bases' (fixed number of bases per
+                                 merge), 'blocks' (fixed number of blocks
+                                 per merge), or 'fillblocks' (contiguous
+                                 blocks merged to within a range of merge
+                                 lenghs) to determine the type of merge
+                                 used (by default BlockMerger uses
+                                 block-based merging).
 
 ===============================================================================
 

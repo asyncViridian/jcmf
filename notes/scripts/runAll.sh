@@ -4,28 +4,30 @@
 # $1 = dir to work in
 # $2 = maf file to use
 
-# redirect stdout/stderr to log file
-exec &> $1/log.log
-set -x
-
 if [ "$#" -ne 2 ]; then
     echo "Usage: ./runAll.sh [working dir] [MAF alignment]"
     exit 1
 fi
 
+# Print a copy of each command to the terminal
+# set -x
+
+echo "Writing to $1/log.log"
+
 # Program
 
 # clear out the previous log
-rm $1/log
+rm $1/log.log
+touch $1/log.log
 
-# make the split directory to put fasta chunks in
-rm -r $1/split
-mkdir $1/split
+# redirect stdout/stderr to log file
+exec >> $1/log.log
+exec 2>&1
 
 # Split/merge the MAF file into the dir split
 echo ""
 echo "SPLITTING/MERGING MAF FILE"
-java -jar blockmerger.jar -s $2 -od $1/split -o m
+echo "" | ./rerunMergeForDirs.sh $1
 
 # cd into the working directory so that we can use the following scripts
 cd $1
@@ -47,13 +49,16 @@ echo "GENERATING SCORE SUMMARIES"
 echo "The output for this script is written to the listscores output."
 ./../listScores.sh ./
 
+cd ..
+
 # Generate BED and then bigBed tracks for the found motifs
 echo ""
 echo "GENERATING BED TRACKS"
-cd ..
 mkdir $1/tracks
 java -jar trackgenerator.jar -s $1/scores -o $1/tracks/
 java -jar reflinegenerator.jar -s $2 -o $1/tracks
 
-# TODO add track hub processing?
+# for track hub processing: 
+# need to run rerunTracksForDirs separately
+# to aggregate the results correctly
 
