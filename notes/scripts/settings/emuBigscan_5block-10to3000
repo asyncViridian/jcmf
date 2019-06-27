@@ -1,2 +1,12 @@
 mergeArgs="--numBlocksPerOutput 5"
 
+maxCandPerSeq=40
+fracSeqWMotif=0.80
+maxNumSingleS=5
+maxNumDoubleS=5
+minSpanSingle=30
+maxSpanSingle=100
+minSpanDouble=40
+maxSpanDouble=100
+minCandLength=30
+maxCandLength=150

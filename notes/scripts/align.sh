@@ -1,6 +1,7 @@
 # Run CMFinder (log output in log file, wipe log file on each run)
 
 # Flag vars
+# These are the bigscan arguments
 maxCandPerSeq=40 # pl-def 40
 fracSeqWMotif=0.80 # pl-def 0.8
 maxNumSingleS=5 # pl-def 5
@@ -11,6 +12,10 @@ minSpanDouble=40 # pl-def 40
 maxSpanDouble=100 # pl-def 100
 minCandLength=30 # Unused as an input flag for cmfinder.pl
 maxCandLength=150 # Unused as an input flag for cmfinder.pl
+
+echo "Using source $1"
+# Import different arguments if wanted
+source $1
 
 touch log
 rm log

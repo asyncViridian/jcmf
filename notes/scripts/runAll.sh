@@ -13,8 +13,6 @@ fi
 # Print a copy of each command to the terminal
 # set -x
 
-echo "Writing to $1/log.log"
-
 # Program
 
 # clear out the previous log
@@ -29,6 +27,16 @@ exec 2>&1
 echo "-=- GETTING SETTINGS VARIABLES"
 source $3
 echo "mergeArgs=\"${mergeArgs}\""
+echo "maxCandPerSeq=\"${maxCandPerSeq}\""
+echo "fracSeqWMotif=\"${fracSeqWMotif}\""
+echo "maxNumSingleS=\"${maxNumSingleS}\""
+echo "maxNumDoubleS=\"${maxNumDoubleS}\""
+echo "minSpanSingle=\"${minSpanSingle}\""
+echo "maxSpanSingle=\"${maxSpanSingle}\""
+echo "minSpanDouble=\"${minSpanDouble}\""
+echo "maxSpanDouble=\"${maxSpanDouble}\""
+echo "minCandLength=\"${minCandLength}\""
+echo "maxCandLength=\"${maxCandLength}\""
 
 # Split/merge the MAF file into the dir split
 echo ""
@@ -41,7 +49,7 @@ cd $1
 # Run CMFinder
 echo ""
 echo "-=- RUNNING CMFINDER"
-./../align.sh
+./../align.sh ../$3
 
 # Score with RNAPhylo
 echo ""
