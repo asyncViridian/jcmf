@@ -12,8 +12,8 @@ Cross-scoring inputs (Scoring one input based on a different motif to check equa
     - distinguishing between multiple motifs in the same region?
     - distinguishing between motifis on different strands?
 Track Hub
-    - Clean up score file linking
-    - Parse the score file
+    - Clean up score file linking & parse the score file
+        - Done! Just need to add it to the track-processing scripts
 Implementation
     - Make sure the block-length-limits option is working properly
         - Possible bug: Single-block "merge" + sequence is an insert is not working
