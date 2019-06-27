@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="3da6e499-81fb-4a08-856f-3dc0c5fe102e" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/notes/RNA Motifs Process Notes.txt" beforeDir="false" afterPath="$PROJECT_DIR$/notes/RNA Motifs Process Notes.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/blockmerge/BlockMerger.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/blockmerge/BlockMerger.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -18,13 +17,16 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/blockmerge/BlockMerger.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="197">
-              <caret line="320" lean-forward="true" selection-start-line="320" selection-end-line="320" />
+            <state relative-caret-position="161">
+              <caret line="543" column="35" selection-start-line="543" selection-start-column="35" selection-end-line="543" selection-end-column="35" />
               <folding>
                 <element signature="imports" expanded="true" />
+                <element signature="e#3557#9573#1" />
+                <element signature="e#9685#13406#0" />
+                <element signature="e#13434#13777#0" />
                 <element signature="method#repeat#0;class#BlockMerger#0" />
                 <element signature="method#writeFastaHeader#0;class#BlockMerger#0" />
                 <element signature="method#writeFastaContent#0;class#BlockMerger#0" />
@@ -33,11 +35,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/trackgenerate/TrackGenerator.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="573">
-              <caret line="304" column="35" selection-start-line="304" selection-start-column="35" selection-end-line="304" selection-end-column="35" />
+            <state relative-caret-position="456">
+              <caret line="268" column="66" selection-start-line="268" selection-start-column="66" selection-end-line="268" selection-end-column="66" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -71,9 +73,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>enum Gap</find>
-      <find>default</find>
-      <find>defaults</find>
       <find>header</find>
       <find>GAPS</find>
       <find>BlockMerger.</find>
@@ -95,12 +94,15 @@
       <find>todore</find>
       <find>rnaScorePreStats</find>
       <find>MergeType.Bl</find>
-      <find>gapStats</find>
       <find>MAX_OUTPUT</find>
       <find>size of</find>
       <find>merge</find>
       <find>numBlocksStats</find>
       <find>postfilter_blockspan</find>
+      <find>blockmerger uses</find>
+      <find>minOutput</find>
+      <find>maxOut</find>
+      <find>gapStats</find>
     </findStrings>
     <replaceStrings>
       <replace>assertEquals\((\2), (\1)\);</replace>
@@ -269,10 +271,11 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.RefLineGenerator">
+  <component name="RunManager" selected="Application.BlockMerger">
     <configuration name="BlockMerger" type="Application" factoryName="Application" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="blockmerge.BlockMerger" />
       <module name="jcmf" />
+      <option name="PROGRAM_PARAMETERS" value="-sd notes/data/source_mafs -s m100_chr12_62602752-62622213.maf -od output -o m -t fillblocks" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="util.*" />
@@ -299,6 +302,7 @@
     <configuration name="RefLineGenerator" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="trackgenerate.RefLineGenerator" />
       <module name="jcmf" />
+      <option name="PROGRAM_PARAMETERS" value="-s notes/data/q_chr01_5block-10to3000-allspecies/scores -o output/" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="trackgenerate.*" />
@@ -415,7 +419,7 @@
       <workItem from="1559779821846" duration="618000" />
       <workItem from="1560329396617" duration="3011000" />
       <workItem from="1560412374544" duration="13288000" />
-      <workItem from="1561520353610" duration="2442000" />
+      <workItem from="1561520353610" duration="8746000" />
     </task>
     <servers />
   </component>
@@ -452,14 +456,14 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="165143000" />
+    <option name="totallyTimeSpent" value="171447000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-9" y="-9" width="1698" height="1020" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.4820442" visible="true" weight="0.15586796" />
-      <window_info id="Structure" order="1" sideWeight="0.5179558" side_tool="true" visible="true" weight="0.15586796" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.48245615" visible="true" weight="0.15586796" />
+      <window_info id="Structure" order="1" sideWeight="0.51754385" side_tool="true" visible="true" weight="0.15586796" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
       <window_info id="UI Designer" order="4" />
@@ -467,8 +471,8 @@
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.3295325" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.17445838" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.32745314" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.22006841" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.36830103" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
@@ -496,16 +500,10 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/util/SimpleNumberHistogram.java</url>
-          <line>42</line>
+          <url>file://$PROJECT_DIR$/src/blockmerge/BlockMerger.java</url>
+          <line>578</line>
           <properties />
-          <option name="timeStamp" value="2" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/util/SimpleNumberHistogram.java</url>
-          <line>51</line>
-          <properties />
-          <option name="timeStamp" value="3" />
+          <option name="timeStamp" value="15" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
@@ -800,11 +798,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="411">
           <caret line="53" selection-start-line="53" selection-end-line="53" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1114#1115#0" expanded="true" />
-            <element signature="e#1147#1148#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -818,25 +811,28 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/blockmerge/BlockMerger.java">
+    <entry file="file://$PROJECT_DIR$/src/trackgenerate/TrackGenerator.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="197">
-          <caret line="320" lean-forward="true" selection-start-line="320" selection-end-line="320" />
+        <state relative-caret-position="456">
+          <caret line="268" column="66" selection-start-line="268" selection-start-column="66" selection-end-line="268" selection-end-column="66" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="method#repeat#0;class#BlockMerger#0" />
-            <element signature="method#writeFastaHeader#0;class#BlockMerger#0" />
-            <element signature="method#writeFastaContent#0;class#BlockMerger#0" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/trackgenerate/TrackGenerator.java">
+    <entry file="file://$PROJECT_DIR$/src/blockmerge/BlockMerger.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="573">
-          <caret line="304" column="35" selection-start-line="304" selection-start-column="35" selection-end-line="304" selection-end-column="35" />
+        <state relative-caret-position="161">
+          <caret line="543" column="35" selection-start-line="543" selection-start-column="35" selection-end-line="543" selection-end-column="35" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="e#3557#9573#1" />
+            <element signature="e#9685#13406#0" />
+            <element signature="e#13434#13777#0" />
+            <element signature="method#repeat#0;class#BlockMerger#0" />
+            <element signature="method#writeFastaHeader#0;class#BlockMerger#0" />
+            <element signature="method#writeFastaContent#0;class#BlockMerger#0" />
           </folding>
         </state>
       </provider>

@@ -109,8 +109,12 @@ public class BlockMerger {
                     Option.builder("t")
                             .longOpt("mergeType")
                             .hasArg()
-                            .desc("'bases', 'blocks', or 'fillblocks' to " +
-                                          "determine the type of merge used " +
+                            .desc("'bases' (fixed number of bases per merge)," +
+                                          " 'blocks' (fixed number of blocks " +
+                                          "per merge), or 'fillblocks' " +
+                                          "(contiguous blocks merged to " +
+                                          "within a range of merge lenghs) to" +
+                                          " determine the type of merge used " +
                                           "(by default BlockMerger uses "
                                           + "block-based merging).")
                             .build());
@@ -166,7 +170,7 @@ public class BlockMerger {
                             .desc("Maximum length of the reference genome " +
                                           "section in a resulting block that " +
                                           "will still allow the resulting " +
-                                          "block to be output." +
+                                          "block to be output. " +
                                           "Defaults to " + MAX_OUTPUT_LENGTH_DEFAULT)
                             .build());
             BlockMerger.options.addOption(
@@ -176,7 +180,7 @@ public class BlockMerger {
                             .desc("Minimum length of the reference genome " +
                                           "section in a resulting block that " +
                                           "will still allow the resulting " +
-                                          "block to be output." +
+                                          "block to be output. " +
                                           "Defaults to " + MIN_OUTPUT_LENGTH_DEFAULT)
                             .build());
             BlockMerger.options.addOption(
@@ -338,11 +342,14 @@ public class BlockMerger {
                     "",
                     "Number of blocks in mergeblock",
                     "% of mergeblocks",
-                    10);
+                    20);
 
             LinkedList<MAFAlignmentBlock> toMerge = new LinkedList<>();
             BigInteger i = BigInteger.ONE;
-            while (reader.hasNext()) {
+            while ((MERGE_TYPE == MergeType.BLOCKS) ?
+                    reader.hasNext() : // the condition if doing n-block merge
+                    i.equals(BigInteger.ONE) // condition if doing fillblock
+                            || toMerge.size() != 0) {
                 // BLOCK-based merging rules:
                 if (MERGE_TYPE == MergeType.BLOCKS) {
                     toMerge.add(reader.next());
@@ -360,28 +367,29 @@ public class BlockMerger {
                 }
                 // FILLBLOCKS-based merging rules:
                 BigInteger blockLength =
-                        toMerge.getLast().sequences.get("hg38").start
-                                .add(
-                                        toMerge.getLast().sequences.get(
-                                                "hg38").size)
-                                .subtract(
-                                        toMerge.getFirst().sequences.get(
-                                                "hg38").start
-                                );
-                // check lower bound
-                if ((MERGE_TYPE == MergeType.FILLBLOCKS) &&
-                        blockLength.compareTo(
-                                BigInteger.valueOf(MIN_OUTPUT_LENGTH)) < 0) {
-                    // need more blocks to hit minimum
-                    toMerge.add(reader.next());
-                    continue;
-                }
+                        (toMerge.size() == 0) ? BigInteger.ZERO :
+                                toMerge.getLast().sequences.get("hg38").start
+                                        .add(
+                                                toMerge.getLast().sequences.get(
+                                                        "hg38").size)
+                                        .subtract(
+                                                toMerge.getFirst().sequences.get(
+                                                        "hg38").start
+                                        );
                 // check upper bound
                 if ((MERGE_TYPE == MergeType.FILLBLOCKS) &&
                         blockLength.compareTo(
                                 BigInteger.valueOf(MAX_OUTPUT_LENGTH)) > 0) {
                     // need fewer blocks to reduce to maximum
                     toMerge.removeFirst();
+                    continue;
+                }
+                // check lower bound
+                if ((MERGE_TYPE == MergeType.FILLBLOCKS) &&
+                        blockLength.compareTo(
+                                BigInteger.valueOf(MIN_OUTPUT_LENGTH)) < 0) {
+                    // need more blocks to hit minimum
+                    toMerge.add(reader.next());
                     continue;
                 }
 
@@ -536,16 +544,17 @@ public class BlockMerger {
                         numBlock++;
                     }
                     writer.write("\n");
-                    // write the stats for this sequence to tracker
                     // write the sequence length vs gap percentage
+                    // (one point per species-sequence)
                     gapStats.addValue(new BigDecimal(seqLength),
                                       (new BigDecimal(gapLength))
                                               .multiply(BigDecimal.valueOf(100))
                                               .divide(new BigDecimal(seqLength),
                                                       RoundingMode.HALF_EVEN));
-                    // write the mergeblocksize statistic
-                    numBlocksStats.addValue(new BigDecimal(toMerge.size()));
                 }
+                // write the mergeblocksize statistic
+                // (one point per output file)
+                numBlocksStats.addValue(new BigDecimal(toMerge.size()));
                 // note that we have created a file
                 System.out.println("Wrote " + file.toString());
 
@@ -553,6 +562,17 @@ public class BlockMerger {
                 i = i.add(BigInteger.ONE);
 
                 writer.close();
+
+                // for fillblocks: shift forwards
+                if ((MERGE_TYPE == MergeType.FILLBLOCKS)) {
+                    if (reader.hasNext()) {
+                        // absorb the next block if possible
+                        toMerge.add(reader.next());
+                    } else {
+                        // otherwise leave the first one behind
+                        toMerge.removeFirst();
+                    }
+                }
             }
 
             // Output overall statistics graphics
