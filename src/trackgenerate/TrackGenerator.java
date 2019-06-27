@@ -5,7 +5,7 @@ import org.apache.commons.lang3.tuple.Pair;
 import util.SimpleNumberHistogram;
 import util.SimpleBarChart;
 import util.SimpleScatterPlot;
-import util.StockholmAlignmentBlock;
+import util.ScoredStockholmAlignmentBlock;
 
 import java.io.BufferedWriter;
 import java.io.File;
@@ -214,8 +214,8 @@ public class TrackGenerator {
         for (File f : source.toFile().listFiles()) {
             // for each file in the given directory,
             // check if it should be added to the BED and add it if necessary
-            StockholmAlignmentBlock block =
-                    StockholmAlignmentBlock.constructFromScore(f);
+            ScoredStockholmAlignmentBlock block =
+                    ScoredStockholmAlignmentBlock.constructFromScore(f);
 
             // something was malformatted?
             if (block == null) {
