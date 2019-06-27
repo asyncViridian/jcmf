@@ -18,34 +18,33 @@ public class PageGenerator {
     /**
      * Template string for the entire HTML.
      * <p>
-     * {0} = link to the file that is being html-ified
+     * {0} = filename that is being html-ified
      * <p>
-     * {1} = filename that is being html-ified
+     * {1} = Pair-posterior score
      * <p>
-     * {2} = Pair-posterior score
+     * {2} = RNA-posterior score
      * <p>
-     * {3} = RNA-posterior score
+     * {3} = Sequence data table HTML code (not including table-tag)
      * <p>
-     * {4} = Sequence data table HTML code (not including table-tag)
-     * <p>
-     * {5} = Alignment data table HTML code (not including table-tag)
+     * {4} = Alignment data table HTML code (not including table-tag)
      */
     private static final String HTML_TEMPLATE =
             "<!DOCTYPE html><html><head>" +
-                    "<title>{1}</title>" +
+                    "<title>{0}</title>" +
                     "</head><body style=\"font-family:monospace;\"><div " +
-                    "style=\"text-align:center;\">{1}<br/>" +
+                    "style=\"text-align:center;\">{0}<br/>" +
                     "<a href=\"{0}\">link to source score file</a>" +
                     "</div><hr/><div>" +
-                    "Total pair posterior {2}" +
+                    "Total pair posterior {1}" +
                     "<br/>" +
-                    "Total RNA posterior {3}" +
+                    "Total RNA posterior {2}" +
                     "</div><hr/><div>" +
                     "Sequence segments:" +
                     "<br/>" +
-                    "<table>{4}</table>" +
-                    "</div><hr/><div>Alignment:<br/>" +
-                    "<table><tr>{5}</tr></table>" +
+                    "<table>{3}</table>" +
+                    "</div><hr/><div>Alignment: (use shift-scroll to scroll " +
+                    "sideways)<br/>" +
+                    "<table><tr>{4}</tr></table>" +
                     "</div></body></html>";
 
     /**
@@ -183,7 +182,9 @@ public class PageGenerator {
             alignTableData.append("<br/>");
         }
         // add the consensus to the table
-        alignTableSpecies.append("CONSENSUS,RF<br/><br/>");
+        alignTableSpecies.append(
+                "<span style=\"font-weight:bold\">" +
+                        "CONSENSUS,RF</span><br/><br/>");
         // data column
         String SS_cons = block.SS_cons;
         String RF = block.RF;
@@ -195,8 +196,8 @@ public class PageGenerator {
                 throw new IllegalStateException("mismatched SS_CON, RF len");
             }
 
-            SSLine.append("<span style=\"color:");
-            RFLine.append("<span style=\"color:");
+            SSLine.append("<span style=\"font-weight:bold;color:");
+            RFLine.append("<span style=\"font-weight:bold;color:");
             if (light) {
                 SSLine.append("grey");
                 RFLine.append("grey");
@@ -241,7 +242,6 @@ public class PageGenerator {
                 MessageFormat.format(
                         PageGenerator.HTML_TEMPLATE,
                         file.getName(),
-                        PageGenerator.srcFile,
                         block.pairScore,
                         block.rnaScore,
                         srcTableContents.toString(),

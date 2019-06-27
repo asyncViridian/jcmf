@@ -2,9 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3da6e499-81fb-4a08-856f-3dc0c5fe102e" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/notes/misc/ss.html" beforeDir="false" afterPath="$PROJECT_DIR$/notes/misc/ss.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/artifacts/pagegenerator_jar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/manifests/pagegenerator/META-INF/MANIFEST.MF" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/notes/getJars.sh" beforeDir="false" afterPath="$PROJECT_DIR$/notes/getJars.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/notes/misc/ss.score.html" beforeDir="false" afterPath="$PROJECT_DIR$/notes/misc/ss.score.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/notes/scripts/blockmerger.jar" beforeDir="false" afterPath="$PROJECT_DIR$/notes/scripts/blockmerger.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/notes/scripts/reflinegenerator.jar" beforeDir="false" afterPath="$PROJECT_DIR$/notes/scripts/reflinegenerator.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/notes/scripts/trackgenerator.jar" beforeDir="false" afterPath="$PROJECT_DIR$/notes/scripts/trackgenerator.jar" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/trackgenerate/PageGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/trackgenerate/PageGenerator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/util/ScoredStockholmAlignmentBlock.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/util/ScoredStockholmAlignmentBlock.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -56,7 +62,7 @@
         <entry file="file://$PROJECT_DIR$/src/trackgenerate/TrackGenerator.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="375">
-              <caret line="294" column="29" lean-forward="true" selection-start-line="294" selection-start-column="29" selection-end-line="295" selection-end-column="46" />
+              <caret line="294" column="29" selection-start-line="294" selection-start-column="29" selection-end-line="295" selection-end-column="46" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#854#1797#1" />
@@ -70,12 +76,11 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/trackgenerate/PageGenerator.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="196">
-              <caret line="185" column="33" selection-start-line="185" selection-start-column="33" selection-end-line="185" selection-end-column="33" />
+            <state relative-caret-position="380">
+              <caret line="199" column="58" selection-start-line="199" selection-start-column="58" selection-end-line="199" selection-end-column="58" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#5129#6743#1" />
-                <element signature="e#7548#8881#1" />
               </folding>
             </state>
           </provider>
@@ -112,7 +117,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>GAPS</find>
       <find>BlockMerger.</find>
       <find>adjac</find>
       <find>class adja`</find>
@@ -142,6 +146,7 @@
       <find>gapStats</find>
       <find>Source</find>
       <find>TODO</find>
+      <find>Alignment:</find>
     </findStrings>
     <replaceStrings>
       <replace>assertEquals\((\2), (\1)\);</replace>
@@ -274,7 +279,7 @@
     <property name="com.intellij.ide.scratch.LRUPopupBuilder$1/New Scratch File" value="JAVA" />
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary" value="JUnit5" />
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5" value="" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/manifests/reflinegenerator" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/manifests/pagegenerator" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="project.structure.last.edited" value="Artifacts" />
     <property name="project.structure.proportion" value="0.15" />
@@ -445,7 +450,7 @@
       <workItem from="1559779821846" duration="618000" />
       <workItem from="1560329396617" duration="3011000" />
       <workItem from="1560412374544" duration="13288000" />
-      <workItem from="1561520353610" duration="18355000" />
+      <workItem from="1561520353610" duration="18837000" />
     </task>
     <servers />
   </component>
@@ -482,14 +487,14 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="181056000" />
+    <option name="totallyTimeSpent" value="181538000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-9" y="-9" width="1698" height="1020" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.48293298" visible="true" weight="0.15586796" />
-      <window_info id="Structure" order="1" sideWeight="0.517067" side_tool="true" visible="true" weight="0.15586796" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.48233488" visible="true" weight="0.15586796" />
+      <window_info id="Structure" order="1" sideWeight="0.51766515" side_tool="true" visible="true" weight="0.15586796" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
       <window_info id="UI Designer" order="4" />
@@ -497,8 +502,8 @@
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.3295325" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.2576967" />
-      <window_info active="true" anchor="bottom" id="Debug" order="3" visible="true" weight="0.09806158" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.2576967" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.36716077" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
@@ -853,7 +858,7 @@
     <entry file="file://$PROJECT_DIR$/src/trackgenerate/TrackGenerator.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="375">
-          <caret line="294" column="29" lean-forward="true" selection-start-line="294" selection-start-column="29" selection-end-line="295" selection-end-column="46" />
+          <caret line="294" column="29" selection-start-line="294" selection-start-column="29" selection-end-line="295" selection-end-column="46" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#854#1797#1" />
@@ -865,12 +870,11 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/trackgenerate/PageGenerator.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="196">
-          <caret line="185" column="33" selection-start-line="185" selection-start-column="33" selection-end-line="185" selection-end-column="33" />
+        <state relative-caret-position="380">
+          <caret line="199" column="58" selection-start-line="199" selection-start-column="58" selection-end-line="199" selection-end-column="58" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#5129#6743#1" />
-            <element signature="e#7548#8881#1" />
           </folding>
         </state>
       </provider>
@@ -881,7 +885,7 @@
       <state key="ArtifactsStructureConfigurable.UI">
         <settings>
           <artifact-editor />
-          <last-edited>blockmerger:jar</last-edited>
+          <last-edited>pagegenerator:jar</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>

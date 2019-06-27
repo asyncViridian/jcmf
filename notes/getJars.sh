@@ -7,3 +7,6 @@ echo "Copied reflinegenerator"
 cp ../out/artifacts/trackgenerator_jar/trackgenerator.jar scripts/
 echo "Copied trackgenerator"
 
+cp ../out/artifacts/pagegenerator_jar/pagegenerator.jar scripts/
+echo "Copied pagegenerator"
+
