@@ -1,6 +1,9 @@
 2019-06-27, 2019-07-04
 Things Done:
-    - update track hub with fillblock (75-400bp) results (IP)
+    - update track hub with fillblock (75-400bp) results
+Things Un-Done:
+    - did not change the format of the score-html to show individual block regions
+        - Not all of the block regions actually line up. (motifs obviously may not be in the same blocks.....)
 
 Figure out how to generate a CM (covariance model) file
     - Infernal: can install into ~/bin and add that to my own path
@@ -16,7 +19,6 @@ Be able to generate graphs with statistics across ALL regions at the same time
 Overlap checking
     - simple coordinate check?
     - check against different species?
-Minor: change the format of the score-html to show individual block regions
 Writeup
     - work on the Background!!!!!!!!!!!!!!!
 
