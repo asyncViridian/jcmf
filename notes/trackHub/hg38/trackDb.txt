@@ -52,6 +52,28 @@ visibility squish
 scoreMin 0
 scoreMax 1000
 
+track bigscanf_multiblock_hits
+bigDataUrl bigscanf_multi.bb
+shortLabel bigscanf_multi
+longLabel bigscan-params multi-block hits with fillblock (75-400 base) merges rna-par>50
+type bigBed 5 .
+directUrl http://students.washington.edu/jyzhou15/trackHub/hg38/bigscanf_src/%s_%s.txt.html
+spectrum on
+visibility squish
+scoreMin 0
+scoreMax 1000
+
+track bigscanf_singleblock_hits
+bigDataUrl bigscanf_single.bb
+shortLabel bigscanf_single
+longLabel bigscan-params single-block hits with fillblock (75-400 base) merges rna-par>50
+type bigBed 5 .
+directUrl http://students.washington.edu/jyzhou15/trackHub/hg38/bigscanf_src/%s_%s.txt.html
+spectrum on
+visibility squish
+scoreMin 0
+scoreMax 1000
+
 track newparam_multiblock_hits
 bigDataUrl newparam_multi.bb
 shortLabel newparam_multi

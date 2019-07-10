@@ -1,6 +1,6 @@
-2019-06-27
-TEMP NOTES TO SELF:
-    - NEED TO RE-RUN ALL OF THE NEWPARAMS SCRIPTS, SINCE THE SETTINGS FILE WAS BROKEN
+2019-06-27, 2019-07-04
+Things Done:
+    - update track hub with fillblock (75-400bp) results (IP)
 
 Figure out how to generate a CM (covariance model) file
     - Infernal: can install into ~/bin and add that to my own path
@@ -9,7 +9,7 @@ Figure out how to generate a CM (covariance model) file
     - Score one model against another model by scoring it on the sequence that the other model was found on (human or other sequence)
         - Table: each motif in rows, each species in columns, score on all the species sequences for all the motifs
         - this information is in the score-stockholm-file
-Align up the consensus structures (the hairpin sequence) in overlapping motifs to see if those are mostly fitting/minor conflicts/subset
+Align up the consensus structures (the hairpin2 sequence) in overlapping motifs to see if those are mostly fitting/minor conflicts/subset
     - "Filter out overlapping results"
 Be able to generate graphs with statistics across ALL regions at the same time
     - maybe serialize the graph data so it's usable later
@@ -18,7 +18,7 @@ Overlap checking
     - check against different species?
 Minor: change the format of the score-html to show individual block regions
 Writeup
-    - Probably can work on the Methods first...fd.saf.dsa
+    - work on the Background!!!!!!!!!!!!!!!
 
 ===============================================================================
 2019-06-13
@@ -162,7 +162,7 @@ I added a reference track generator so that we can see reference alignment block
 https://academic.oup.com/bioinformatics/article/26/17/2204/199001
 
 ===============================================================================
-2019-05-09 & 2019-05-16
+2019-05-09, 2019-05-16
 Collect statistics
     - Score histogram: distribution on pair-posterior, rna-posterior
         - Wasn't there another score produced by cmfinder directly???

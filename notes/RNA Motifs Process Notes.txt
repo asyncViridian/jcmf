@@ -102,11 +102,12 @@ Generating the UCSC browser format track hub (this is already handled by rerunTr
 I have written some scripts that automatically handle these steps.
 Just run this set of commands (modify as fitting for each set of working dir names, settings files):
 
-TODO: update this to include settings files
-echo "" | ./rerunMergeForDirs.sh q*5block* &
-echo "--numBlocksPerOutput 10" | ./rerunMergeForDirs.sh q*10block* &
+echo "-t blocks --numBlocksPerOutput 10" | ./rerunMergeForDirs.sh q*5block* &
+echo "-t blocks --numBlocksPerOutput 10" | ./rerunMergeForDirs.sh q*10block* &
+echo "-t fillblocks --minOutputLength 75 --maxOutputLength 400" | ./rerunMergeForDirs.sh q*fblock-75to400* &
 echo bigscan10 | ./rerunTracksForDirs.sh q*emuBigscan_10block* &
 echo bigscan5 | ./rerunTracksForDirs.sh q*emuBigscan_5block* &
+echo bigscanf | ./rerunTracksForDirs.sh q*emuBigscan_fblock* &
 echo newparam | ./rerunTracksForDirs.sh q*newParams* &
 
 ===============================================================================
