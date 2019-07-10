@@ -2,6 +2,7 @@
 Things Done:
     - update track hub with fillblock (75-400bp) results
     - update directory index page in graphics section of trackhub to make viewing easier (index.php)
+    - set up Infernal and am now able to run cmbuild to generate CM files for each result
 Things Un-Done:
     - did not change the format of the score-html to show individual block regions
         - Not all of the block regions actually line up. (motifs obviously may not be in the same blocks.....)
@@ -11,10 +12,13 @@ Figure out how to generate a CM (covariance model) file
     - Check the readme & makefile
     - "Grouping together different locations/classes of results"
     - Score one model against another model by scoring it on the sequence that the other model was found on (human or other sequence)
-        - Table: each motif in rows, each species in columns, score on all the species sequences for all the motifs
         - this information is in the score-stockholm-file
+    - Table output: each motif in rows, each species in columns, score on all the species sequences for all the motifs
+    - Grouping together CMs?
+        - cross-scoring to get distances between CMs, then SVD/K-means to group them
 Align up the consensus structures (the hairpin2 sequence) in overlapping motifs to see if those are mostly fitting/minor conflicts/subset
     - "Filter out overlapping results"
+    - can eyeball this. just adjust the lengths.
 Be able to generate graphs with statistics across ALL regions at the same time
     - maybe serialize the graph data so it's usable later
 Overlap checking
@@ -22,6 +26,10 @@ Overlap checking
     - check against different species?
 Writeup
     - work on the Background!!!!!!!!!!!!!!!
+
+What is "Partition Function"?
+    - Some algorithms only use the top-scoring potential result in the process. This is non-partition.
+    - "Partition" takes the top n results and weights them accordingly, so it's "fuzzier" and more tolerant of errors.
 
 ===============================================================================
 2019-06-13
