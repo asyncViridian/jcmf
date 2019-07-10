@@ -1,6 +1,7 @@
 2019-06-27, 2019-07-04
 Things Done:
     - update track hub with fillblock (75-400bp) results
+    - update directory index page in graphics section of trackhub to make viewing easier (index.php)
 Things Un-Done:
     - did not change the format of the score-html to show individual block regions
         - Not all of the block regions actually line up. (motifs obviously may not be in the same blocks.....)

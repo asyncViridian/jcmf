@@ -1,0 +1,16 @@
+mergeArgs="\
+            -t fillblocks \
+            --minOutputLength 75 \
+            --maxOutputLength 400"
+
+maxCandPerSeq=40
+fracSeqWMotif=0.80
+maxNumSingleS=5
+maxNumDoubleS=5
+minSpanSingle=30
+maxSpanSingle=100
+minSpanDouble=40
+maxSpanDouble=100
+minCandLength=30
+maxCandLength=150
+

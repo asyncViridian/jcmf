@@ -6,8 +6,8 @@ if [ "$#" -eq 0 ]; then
     exit 1
 fi
 
-echo "Please enter addt arguments (by default, runs with no args)"
-read args
+echo "Please enter arguments to pass to merge (by default, no args)"
+read mergeArgs
 
 for dir in "$@"
 do
@@ -25,8 +25,8 @@ do
     maf="m100_chr12_62602752-62622213.maf"
   fi
   echo "Using MAF file $maf"
-  echo ">java -jar blockmerger.jar -s source_mafs/$maf -od $dir/split/ -o m ${args}"
-  java -jar blockmerger.jar -s source_mafs/$maf -od $dir/split/ -o m ${args}
+  echo ">java -jar blockmerger.jar -s source_mafs/$maf -od $dir/split/ -o m ${mergeArgs}"
+  java -jar blockmerger.jar -s source_mafs/$maf -od $dir/split/ -o m ${mergeArgs}
   echo
 done
 

@@ -10,10 +10,12 @@ fi
 echo "Please enter unique identifier to prefix outputs with"
 read prefix
 
+# Clear out an old temp directory
 echo "Re-generating temp directory"
 rm -r temp_$prefix
 mkdir temp_$prefix
 
+# Write the track files and merge them correctly
 for dir in "$@"
 do
   echo "Rerunning trackgenerate etc. in $dir"
@@ -42,6 +44,7 @@ do
   echo
 done
 
+# Convert to bigBed format
 echo "Generating bigBed for sum files"
 for file in temp_$prefix/*.bed
 do
@@ -97,4 +100,13 @@ do
   echo "Copying PNGs out of $dir"
   mkdir temp_$prefix/graphics/$dir
   ./collectPNGs.sh $dir temp_$prefix/graphics/$dir
+done
+
+# Create a more readable index for all the graphics directories
+cp utilities/index.php temp_$prefix/graphics/$dir/index.php
+
+# Generate the HTML for each source scorefile
+for file in temp_${prefix}/${prefix}_src/*.txt
+do
+  java -jar pagegenerator.jar -s ${file}
 done

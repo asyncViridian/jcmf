@@ -1,4 +1,6 @@
 # Run CMFinder (log output in log file, wipe log file on each run)
+# Arg1: A file with variable mappings matching those listed as "flag vars" below
+#       that determine the arguments passed into cmfinder04
 
 # Flag vars
 # These are the bigscan arguments
@@ -17,9 +19,6 @@ echo "Using source $1"
 # Import different arguments if wanted
 source $1
 
-touch log
-rm log
-touch log
 rm -r times
 mkdir times
 cd times
