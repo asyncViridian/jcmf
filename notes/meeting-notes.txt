@@ -3,8 +3,11 @@ Things Done:
     - update track hub with fillblock (75-400bp) results
     - update directory index page in graphics section of trackhub to make viewing easier (index.php)
     - set up Infernal and am now able to run cmbuild to generate CM files for each result
+    - Created a basic consensus comparison program that will display the consensus alignment for all results within a chr
 Things Un-Done:
+    - ConsensusOverlapCompare class should be renamed and the input parameters standardized for flexibility.
     - did not change the format of the score-html to show individual block regions
+        - This will probably stay not-done
         - Not all of the block regions actually line up. (motifs obviously may not be in the same blocks.....)
 
 Figure out how to generate a CM (covariance model) file
