@@ -12,7 +12,9 @@ Figure out how to generate a CM (covariance model) file
     - Check the readme & makefile
     - "Grouping together different locations/classes of results"
     - Score one model against another model by scoring it on the sequence that the other model was found on (human or other sequence)
-        - this information is in the score-stockholm-file
+        - this information is in the scored-stockholm-file, as well as the output result file from CMFinder.
+        - Use cmbuild to generate the CM file per-multi-sequence-alignment
+        - Use cmalign to generate an alignment for a CM file on a FASTA set of sequences.
     - Table output: each motif in rows, each species in columns, score on all the species sequences for all the motifs
     - Grouping together CMs?
         - cross-scoring to get distances between CMs, then SVD/K-means to group them
