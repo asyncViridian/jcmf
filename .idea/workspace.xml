@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3da6e499-81fb-4a08-856f-3dc0c5fe102e" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/crosscompare/ConsensusOverlapCompare.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -16,23 +17,20 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/trackgenerate/RefLineGenerator.java">
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/crosscompare/ConsensusOverlapCompare.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="789">
-              <caret line="76" column="14" selection-start-line="76" selection-start-column="14" selection-end-line="76" selection-end-column="14" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
+            <state relative-caret-position="216">
+              <caret line="12" column="27" lean-forward="true" selection-start-line="12" selection-start-column="27" selection-end-line="12" selection-end-column="27" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/trackgenerate/PageGenerator.java">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/trackgenerate/TrackGenerator.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="231">
-              <caret line="178" column="59" selection-start-line="178" selection-start-column="59" selection-end-line="178" selection-end-column="59" />
+            <state relative-caret-position="223">
+              <caret line="199" column="19" selection-start-line="199" selection-start-column="12" selection-end-line="199" selection-end-column="19" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -69,7 +67,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/util/SimpleScatterPlot.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="215">
+            <state relative-caret-position="162">
               <caret line="17" column="30" selection-start-line="17" selection-start-column="30" selection-end-line="17" selection-end-column="30" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -95,7 +93,6 @@
       <find>BlockMerger.</find>
       <find>adjac</find>
       <find>class adja`</find>
-      <find>writer.</find>
       <find>read input</find>
       <find>Pair&lt;</find>
       <find>filePrefix</find>
@@ -122,6 +119,7 @@
       <find>TODO</find>
       <find>Alignment:</find>
       <find>gapStats</find>
+      <find>writer.</find>
     </findStrings>
     <replaceStrings>
       <replace>assertEquals\((\2), (\1)\);</replace>
@@ -177,6 +175,7 @@
         <option value="$PROJECT_DIR$/src/trackgenerate/TrackGenerator.java" />
         <option value="$PROJECT_DIR$/src/util/ScoredStockholmAlignmentBlock.java" />
         <option value="$PROJECT_DIR$/src/trackgenerate/PageGenerator.java" />
+        <option value="$PROJECT_DIR$/src/crosscompare/ConsensusOverlapCompare.java" />
       </list>
     </option>
   </component>
@@ -288,7 +287,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.PageGenerator">
+  <component name="RunManager" selected="Application.ConsensusOverlapCompare">
     <configuration name="BlockMerger" type="Application" factoryName="Application" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="blockmerge.BlockMerger" />
       <module name="jcmf" />
@@ -296,6 +295,19 @@
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="util.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ConsensusOverlapCompare" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="crosscompare.ConsensusOverlapCompare" />
+      <module name="jcmf" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="crosscompare.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -344,20 +356,6 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="TrackGenerator" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="trackgenerate.TrackGenerator" />
-      <module name="jcmf" />
-      <option name="PROGRAM_PARAMETERS" value="-s notes/data/q_chr01_5block-10to3000-allspecies/scores -o output/" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="util.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="Scratch" type="Java Scratch" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Scratch" />
       <option name="SCRATCH_FILE_URL" value="file://$APPLICATION_CONFIG_DIR$/scratches/scratch.java" />
@@ -367,19 +365,19 @@
     </configuration>
     <list>
       <item itemvalue="Application.BlockMerger" />
-      <item itemvalue="Application.TrackGenerator" />
       <item itemvalue="Application.RefLineGenerator" />
       <item itemvalue="Application.ScoredStockholmAlignmentBlock" />
       <item itemvalue="Application.PageGenerator" />
       <item itemvalue="Java Scratch.Scratch" />
+      <item itemvalue="Application.ConsensusOverlapCompare" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.ConsensusOverlapCompare" />
         <item itemvalue="Application.PageGenerator" />
         <item itemvalue="Application.ScoredStockholmAlignmentBlock" />
         <item itemvalue="Java Scratch.Scratch" />
         <item itemvalue="Application.RefLineGenerator" />
-        <item itemvalue="Application.TrackGenerator" />
       </list>
     </recent_temporary>
   </component>
@@ -428,6 +426,7 @@
       <workItem from="1561520353610" duration="20143000" />
       <workItem from="1562787927961" duration="69000" />
       <workItem from="1562788639897" duration="266000" />
+      <workItem from="1562805389875" duration="4610000" />
     </task>
     <servers />
   </component>
@@ -464,13 +463,14 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="183805000" />
+    <option name="totallyTimeSpent" value="188415000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-9" y="-9" width="1698" height="1020" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.47890535" visible="true" weight="0.1393643" />
-      <window_info id="Structure" order="1" sideWeight="0.5210946" side_tool="true" visible="true" weight="0.1393643" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.47799698" visible="true" weight="0.14119804" />
+      <window_info id="Structure" order="1" sideWeight="0.52200305" side_tool="true" visible="true" weight="0.14119804" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
       <window_info id="UI Designer" order="4" />
@@ -478,7 +478,7 @@
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.3295325" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.2491731" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.24857469" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.36716077" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -761,16 +761,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/trackgenerate/PageGenerator.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="231">
-          <caret line="178" column="59" selection-start-line="178" selection-start-column="59" selection-end-line="178" selection-end-column="59" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/util/ScoredStockholmAlignmentBlock.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="686">
@@ -801,29 +791,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/trackgenerate/TrackGenerator.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="375">
-          <caret line="294" column="29" selection-start-line="294" selection-start-column="29" selection-end-line="295" selection-end-column="46" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#854#1797#1" />
-            <element signature="e#1909#2292#0" />
-            <element signature="e#2320#2663#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/trackgenerate/RefLineGenerator.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="789">
-          <caret line="76" column="14" selection-start-line="76" selection-start-column="14" selection-end-line="76" selection-end-column="14" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$APPLICATION_CONFIG_DIR$/scratches/scratch.java">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -846,11 +813,45 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/util/SimpleScatterPlot.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="215">
+        <state relative-caret-position="162">
           <caret line="17" column="30" selection-start-line="17" selection-start-column="30" selection-end-line="17" selection-end-column="30" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/trackgenerate/PageGenerator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="123">
+          <caret line="88" column="26" lean-forward="true" selection-start-line="88" selection-start-column="26" selection-end-line="88" selection-end-column="26" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/trackgenerate/RefLineGenerator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-54">
+          <caret line="12" column="28" lean-forward="true" selection-start-line="12" selection-start-column="28" selection-end-line="12" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/trackgenerate/TrackGenerator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="223">
+          <caret line="199" column="19" selection-start-line="199" selection-start-column="12" selection-end-line="199" selection-end-column="19" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/crosscompare/ConsensusOverlapCompare.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="216">
+          <caret line="12" column="27" lean-forward="true" selection-start-line="12" selection-start-column="27" selection-end-line="12" selection-end-column="27" />
         </state>
       </provider>
     </entry>
