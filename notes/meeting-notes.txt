@@ -1,3 +1,19 @@
+2019-07-11
+cross-scoring
+    - Try generating sequences from each of a pair of CMs A,B
+        - Find relative entropy between A,B (foreach sequence: find Ai and Bi probability of generating i. can calculate score)
+        - Runtime of this should be much faster than pscore/RNAPhylo
+    - Could test against Rfam
+Evaluate whether the pscore threshold used is meaningful or not
+    - Can simulate BS output with randomized/shuffled blocks, then pick a meaningful threshold]
+    - This might take a while
+Clean up the visualization
+    - See if we can remove gaps between overlaps
+Score against sequences included in phylogeny
+    - not a super priority but would be nice
+Outline out background & context
+
+===============================================================================
 2019-06-27, 2019-07-04
 Things Done:
     - update track hub with fillblock (75-400bp) results
@@ -5,7 +21,7 @@ Things Done:
     - set up Infernal and am now able to run cmbuild to generate CM files for each result
     - Created a basic consensus comparison program that will display the consensus alignment for all results within a chr
 Things Un-Done:
-    - ConsensusOverlapCompare class should be renamed and the input parameters standardized for flexibility.
+    - ConsensusOverlapCompare class still needs to be renamed and the input parameters standardized for flexibility.
     - did not change the format of the score-html to show individual block regions
         - This will probably stay not-done
         - Not all of the block regions actually line up. (motifs obviously may not be in the same blocks.....)
@@ -20,7 +36,7 @@ Figure out how to generate a CM (covariance model) file
         - Use cmalign to generate an alignment for a CM file on a FASTA set of sequences.
     - Table output: each motif in rows, each species in columns, score on all the species sequences for all the motifs
     - Grouping together CMs?
-        - cross-scoring to get distances between CMs, then SVD/K-means to group them
+        - cross-scoring to get distances between CMs, then SVD/K-means to group them???
 Align up the consensus structures (the hairpin2 sequence) in overlapping motifs to see if those are mostly fitting/minor conflicts/subset
     - "Filter out overlapping results"
     - can eyeball this. just adjust the lengths.

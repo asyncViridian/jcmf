@@ -1,6 +1,6 @@
 package crosscompare;
 
-import org.apache.commons.cli.Options;
+import org.apache.commons.cli.*;
 import util.ScoredStockholmAlignmentBlock;
 
 import java.io.BufferedWriter;
@@ -16,17 +16,75 @@ import java.util.Arrays;
 public class ConsensusOverlapCompare {
     private static Options options;
     private static String srcDir = "notes/trackHub/hg38/bigscanf_src";
-    private static String outputDir = "output";
+    private static String outputFile = "output/sorted_consensus_compare.html";
     private static String chr = "chr12";
     private static BigInteger startPoint = BigInteger.valueOf(62602730);
 
     public static void main(String[] args) throws IOException {
+        // handle command-line argument processing :)
+        // add all the arguments we need
+//        ConsensusOverlapCompare.options = new Options();
+//        {
+//            ConsensusOverlapCompare.options.addOption(
+//                    Option.builder("s")
+//                            .longOpt("srcDir")
+//                            .hasArg()
+//                            .desc("Input score files directory")
+//                            .required()
+//                            .build());
+//            ConsensusOverlapCompare.options.addOption(
+//                    Option.builder("o")
+//                            .longOpt("outputFile")
+//                            .hasArg()
+//                            .desc("Output filename")
+//                            .required()
+//                            .build());
+//            ConsensusOverlapCompare.options.addOption(
+//                    Option.builder("c")
+//                            .longOpt("chr")
+//                            .hasArg()
+//                            .desc("The chromosome to use")
+//                            .required()
+//                            .build());
+//            ConsensusOverlapCompare.options.addOption(
+//                    Option.builder("p")
+//                            .longOpt("position")
+//                            .hasArg()
+//                            .desc("The start position in the chr to use")
+//                            .required()
+//                            .build());
+//        }
+//        // Parse the commandline arguments
+//        CommandLineParser parser = new DefaultParser();
+//        try {
+//            CommandLine line = parser.parse(options, args);
+//            // set the src dirname
+//            ConsensusOverlapCompare.srcDir = line.getOptionValue("s");
+//            // set the output filename
+//            ConsensusOverlapCompare.outputFile = line.getOptionValue("o");
+//            // set the chr
+//            ConsensusOverlapCompare.chr = line.getOptionValue("c");
+//            // set the chr
+//            ConsensusOverlapCompare.startPoint = BigInteger.valueOf(
+//                    Long.valueOf(line.getOptionValue("p")));
+//        } catch (ParseException exp) {
+//            // something went wrong
+//            System.err.println("Parsing failed. Reason: " + exp.getMessage());
+//            HelpFormatter formatter = new HelpFormatter();
+//            formatter.printHelp(
+//                    "ConsensusOverlapCompare -s <dirname> -o " +
+//                            "<filename> -c <chromosome> -p <position>",
+//                    options);
+//            return;
+//        }
+        // Get the input & output files set up
         Path source = Paths.get(ConsensusOverlapCompare.srcDir);
-        Path output = Paths.get(ConsensusOverlapCompare.outputDir,
-                                "consensus_comparison.html");
+        Path output = Paths.get(ConsensusOverlapCompare.outputFile);
         Files.deleteIfExists(output);
         Files.createFile(output);
         BufferedWriter writer = Files.newBufferedWriter(output);
+
+        // Sort the files by blockgen number
         File[] sortedFiles = source.toFile().listFiles();
         Arrays.sort(sortedFiles,
                     (f1, f2) -> {
@@ -66,8 +124,10 @@ public class ConsensusOverlapCompare {
                         }
                     });
 
+        // Start writing the file
         writer.write("<html><body style=\"font-family:monospace;\">");
         writer.write("<table><tr>");
+        // Write the left column: filenames
         writer.write("<td><div style=\"overflow-x:auto;width:10vw;" +
                              "white-space:nowrap;\">");
         for (File f : sortedFiles) {
@@ -90,6 +150,7 @@ public class ConsensusOverlapCompare {
             writer.write("<br/>");
         }
         writer.write("</div></td>");
+        // Write the right column: consensus structure aligned
         writer.write("<td><div style=\"overflow-x:auto;width:85vw;" +
                              "white-space:nowrap;\">");
         for (File f : sortedFiles) {
@@ -108,8 +169,11 @@ public class ConsensusOverlapCompare {
                 continue;
             }
 
+            // insert spaces corresponding to the actual position where it
+            // starts
             for (int i = 0;
-                 hgsrc.totalSpan.getLeft().subtract(
+                 hgsrc.totalSpan.getLeft().add(
+                         block.intervals.get("hg38").getLeft()).subtract(
                          startPoint).compareTo(BigInteger.valueOf(i)) > 0;
                  i++) {
                 writer.write("&nbsp;");
