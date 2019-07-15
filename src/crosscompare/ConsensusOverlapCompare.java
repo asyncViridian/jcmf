@@ -15,68 +15,70 @@ import java.util.Arrays;
 
 public class ConsensusOverlapCompare {
     private static Options options;
-    private static String srcDir = "notes/trackHub/hg38/bigscanf_src";
-    private static String outputFile = "output/sorted_consensus_compare.html";
-    private static String chr = "chr12";
-    private static BigInteger startPoint = BigInteger.valueOf(62602730);
+    private static String srcDir;
+    private static String outputFile;
+    private static String chr;
+    private static BigInteger startPoint;
 
     public static void main(String[] args) throws IOException {
         // handle command-line argument processing :)
         // add all the arguments we need
-//        ConsensusOverlapCompare.options = new Options();
-//        {
-//            ConsensusOverlapCompare.options.addOption(
-//                    Option.builder("s")
-//                            .longOpt("srcDir")
-//                            .hasArg()
-//                            .desc("Input score files directory")
-//                            .required()
-//                            .build());
-//            ConsensusOverlapCompare.options.addOption(
-//                    Option.builder("o")
-//                            .longOpt("outputFile")
-//                            .hasArg()
-//                            .desc("Output filename")
-//                            .required()
-//                            .build());
-//            ConsensusOverlapCompare.options.addOption(
-//                    Option.builder("c")
-//                            .longOpt("chr")
-//                            .hasArg()
-//                            .desc("The chromosome to use")
-//                            .required()
-//                            .build());
-//            ConsensusOverlapCompare.options.addOption(
-//                    Option.builder("p")
-//                            .longOpt("position")
-//                            .hasArg()
-//                            .desc("The start position in the chr to use")
-//                            .required()
-//                            .build());
-//        }
-//        // Parse the commandline arguments
-//        CommandLineParser parser = new DefaultParser();
-//        try {
-//            CommandLine line = parser.parse(options, args);
-//            // set the src dirname
-//            ConsensusOverlapCompare.srcDir = line.getOptionValue("s");
-//            // set the output filename
-//            ConsensusOverlapCompare.outputFile = line.getOptionValue("o");
-//            // set the chr
-//            ConsensusOverlapCompare.chr = line.getOptionValue("c");
-//            // set the chr
-//            ConsensusOverlapCompare.startPoint = BigInteger.valueOf(
-//                    Long.valueOf(line.getOptionValue("p")));
-//        } catch (ParseException exp) {
-//            // something went wrong
-//            System.err.println("Parsing failed. Reason: " + exp.getMessage());
-//            HelpFormatter formatter = new HelpFormatter();
-//            formatter.printHelp(
-//                    "ConsensusOverlapCompare -s <dirname> -o " +
-//                            "<filename> -c <chromosome> -p <position>",
-//                    options);
-//            return;
-//        }
+        ConsensusOverlapCompare.options = new Options();
+        {
+            ConsensusOverlapCompare.options.addOption(
+                    Option.builder("s")
+                            .longOpt("srcDir")
+                            .hasArg()
+                            .desc("Input score files directory. Required.")
+                            .required()
+                            .build());
+            ConsensusOverlapCompare.options.addOption(
+                    Option.builder("o")
+                            .longOpt("outputFile")
+                            .hasArg()
+                            .desc("Output filename. Required.")
+                            .required()
+                            .build());
+            ConsensusOverlapCompare.options.addOption(
+                    Option.builder("c")
+                            .longOpt("chr")
+                            .hasArg()
+                            .desc("The chromosome name (of hg38) to use. " +
+                                          "Required.")
+                            .required()
+                            .build());
+            ConsensusOverlapCompare.options.addOption(
+                    Option.builder("p")
+                            .longOpt("position")
+                            .hasArg()
+                            .desc("The start position in the chr to use. " +
+                                          "Required.")
+                            .required()
+                            .build());
+        }
+        // Parse the commandline arguments
+        CommandLineParser parser = new DefaultParser();
+        try {
+            CommandLine line = parser.parse(options, args);
+            // set the src dirname
+            ConsensusOverlapCompare.srcDir = line.getOptionValue("s");
+            // set the output filename
+            ConsensusOverlapCompare.outputFile = line.getOptionValue("o");
+            // set the chr
+            ConsensusOverlapCompare.chr = line.getOptionValue("c");
+            // set the chr
+            ConsensusOverlapCompare.startPoint = BigInteger.valueOf(
+                    Long.valueOf(line.getOptionValue("p")));
+        } catch (ParseException exp) {
+            // something went wrong
+            System.err.println("Parsing failed. Reason: " + exp.getMessage());
+            HelpFormatter formatter = new HelpFormatter();
+            formatter.printHelp(
+                    "ConsensusOverlapCompare -s <dirname> -o " +
+                            "<filename> -c <chromosome> -p <position>",
+                    options);
+            return;
+        }
         // Get the input & output files set up
         Path source = Paths.get(ConsensusOverlapCompare.srcDir);
         Path output = Paths.get(ConsensusOverlapCompare.outputFile);
@@ -115,12 +117,21 @@ public class ConsensusOverlapCompare {
                         ScoredStockholmAlignmentBlock.Source hgsrc2 =
                                 block2.sources.get("hg38");
 
-                        int i = hgsrc1.totalSpan.getLeft().compareTo(
-                                hgsrc2.totalSpan.getLeft());
-                        if (i != 0) {
-                            return i;
+                        int startPos = hgsrc1.totalSpan.getLeft().
+                                add(block1.intervals.get("hg38").getLeft())
+                                .compareTo(hgsrc2.totalSpan.getLeft()
+                                                   .add(block2.intervals.get(
+                                                           "hg38").getLeft()));
+                        int seqCompare = block1.SS_cons.compareTo(
+                                block2.SS_cons);
+                        int fileCompare=f1.getName().compareTo(f2.getName());
+
+                        if (startPos != 0) {
+                            return startPos;
+                        } else if (seqCompare != 0) {
+                            return seqCompare;
                         } else {
-                            return block1.SS_cons.compareTo(block2.SS_cons);
+                            return fileCompare;
                         }
                     });
 
@@ -172,9 +183,11 @@ public class ConsensusOverlapCompare {
             // insert spaces corresponding to the actual position where it
             // starts
             for (int i = 0;
-                 hgsrc.totalSpan.getLeft().add(
-                         block.intervals.get("hg38").getLeft()).subtract(
-                         startPoint).compareTo(BigInteger.valueOf(i)) > 0;
+                 hgsrc.totalSpan.getLeft()
+                         .add(block.intervals.get("hg38").getLeft())
+                         .subtract(startPoint)
+                         .compareTo(
+                                 BigInteger.valueOf(i)) > 0;
                  i++) {
                 writer.write("&nbsp;");
             }
