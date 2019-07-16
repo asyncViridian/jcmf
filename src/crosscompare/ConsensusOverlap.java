@@ -3,7 +3,6 @@ package crosscompare;
 import org.apache.commons.cli.*;
 import org.apache.commons.lang3.tuple.ImmutablePair;
 import org.apache.commons.lang3.tuple.Pair;
-import sun.plugin.dom.exception.InvalidStateException;
 import util.ScoredStockholmAlignmentBlock;
 
 import java.io.BufferedWriter;
@@ -16,7 +15,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.*;
 
-public class ConsensusOverlapCompare {
+public class ConsensusOverlap {
     private static Options options;
     private static String srcDir;
     private static String outputFile;
@@ -27,23 +26,23 @@ public class ConsensusOverlapCompare {
     public static void main(String[] args) throws IOException {
         // handle command-line argument processing :)
         // add all the arguments we need
-        ConsensusOverlapCompare.options = new Options();
+        ConsensusOverlap.options = new Options();
         {
-            ConsensusOverlapCompare.options.addOption(
+            ConsensusOverlap.options.addOption(
                     Option.builder("s")
                             .longOpt("srcDir")
                             .hasArg()
                             .desc("Input score files directory. Required.")
                             .required()
                             .build());
-            ConsensusOverlapCompare.options.addOption(
+            ConsensusOverlap.options.addOption(
                     Option.builder("o")
                             .longOpt("outputFile")
                             .hasArg()
                             .desc("Output filename. Required.")
                             .required()
                             .build());
-            ConsensusOverlapCompare.options.addOption(
+            ConsensusOverlap.options.addOption(
                     Option.builder("c")
                             .longOpt("chr")
                             .hasArg()
@@ -51,13 +50,13 @@ public class ConsensusOverlapCompare {
                                           "Required.")
                             .required()
                             .build());
-            ConsensusOverlapCompare.options.addOption(
+            ConsensusOverlap.options.addOption(
                     Option.builder("l")
                             .longOpt("link")
                             .desc("Iff there should be a link to the details " +
                                           "page for a given motif entry.")
                             .build());
-            ConsensusOverlapCompare.options.addOption(
+            ConsensusOverlap.options.addOption(
                     Option.builder("pre")
                             .longOpt("linkPrefix")
                             .desc("The prefix of the relative link to use. " +
@@ -70,16 +69,16 @@ public class ConsensusOverlapCompare {
         try {
             CommandLine line = parser.parse(options, args);
             // set the src dirname
-            ConsensusOverlapCompare.srcDir = line.getOptionValue("s");
+            ConsensusOverlap.srcDir = line.getOptionValue("s");
             // set the output filename
-            ConsensusOverlapCompare.outputFile = line.getOptionValue("o");
+            ConsensusOverlap.outputFile = line.getOptionValue("o");
             // set the chr
-            ConsensusOverlapCompare.chr = line.getOptionValue("c");
+            ConsensusOverlap.chr = line.getOptionValue("c");
             // set whether to link
-            ConsensusOverlapCompare.link = line.hasOption("l");
+            ConsensusOverlap.link = line.hasOption("l");
             // set the link prefix
             if (line.hasOption("pre")) {
-                ConsensusOverlapCompare.relativeLinkPrefix
+                ConsensusOverlap.relativeLinkPrefix
                         = line.getOptionValue("pre");
             }
         } catch (ParseException exp) {
@@ -87,14 +86,14 @@ public class ConsensusOverlapCompare {
             System.err.println("Parsing failed. Reason: " + exp.getMessage());
             HelpFormatter formatter = new HelpFormatter();
             formatter.printHelp(
-                    "ConsensusOverlapCompare -s <dirname> -o " +
+                    "ConsensusOverlap -s <dirname> -o " +
                             "<filename> -c <chromosome> -p <position>",
                     options);
             return;
         }
         // Get the input & output files set up
-        Path source = Paths.get(ConsensusOverlapCompare.srcDir);
-        Path output = Paths.get(ConsensusOverlapCompare.outputFile);
+        Path source = Paths.get(ConsensusOverlap.srcDir);
+        Path output = Paths.get(ConsensusOverlap.outputFile);
         Files.deleteIfExists(output);
         Files.createFile(output);
         BufferedWriter writer = Files.newBufferedWriter(output);
@@ -105,7 +104,7 @@ public class ConsensusOverlapCompare {
         // just pick out the files that are not html files
         for (int i = 0; i < allFiles.length; i++) {
             if (!allFiles[i].getName().endsWith(".html")
-                    && allFiles[i].getName().contains(chr)) {
+                    && allFiles[i].getName().contains(chr + ".")) {
                 sortedFiles.add(allFiles[i]);
             }
         }
@@ -159,7 +158,7 @@ public class ConsensusOverlapCompare {
                 block = ScoredStockholmAlignmentBlock
                         .constructFromScore(sortedFiles.get(i));
             } catch (FileNotFoundException e) {
-                throw new InvalidStateException("file is now missing?");
+                throw new RuntimeException("file is now missing?");
             }
             ScoredStockholmAlignmentBlock.Source src =
                     block.sources.get("hg38");
@@ -202,7 +201,7 @@ public class ConsensusOverlapCompare {
         // Start writing the actual file
         writer.write("<html><body style=\"font-family:monospace;\">");
         writer.write("<p style=\"text-align:center;\">" +
-                             ConsensusOverlapCompare.chr + " motif clusters" +
+                             ConsensusOverlap.chr + " motif clusters" +
                              "</p>");
         for (Pair<List<File>, BigInteger> currentlyPrinting : motifGroupings) {
             // one table for each motif grouping
@@ -221,16 +220,16 @@ public class ConsensusOverlapCompare {
                         "hg38");
 
                 // skip nonmatching chr
-                if (!hgsrc.chr.equals(ConsensusOverlapCompare.chr)) {
+                if (!hgsrc.chr.equals(ConsensusOverlap.chr)) {
                     continue;
                 }
 
-                if (ConsensusOverlapCompare.link) {
+                if (ConsensusOverlap.link) {
                     writer.write("<a href=\""
-                                         + ConsensusOverlapCompare.relativeLinkPrefix + f.getName() + ".html\">");
+                                         + ConsensusOverlap.relativeLinkPrefix + f.getName() + ".html\">");
                 }
                 writer.write(f.getName());
-                if (ConsensusOverlapCompare.link) {
+                if (ConsensusOverlap.link) {
                     writer.write("</a>");
                 }
                 writer.write("<br/>");
@@ -246,7 +245,7 @@ public class ConsensusOverlapCompare {
                         "hg38");
 
                 // skip nonmatching chr
-                if (!hgsrc.chr.equals(ConsensusOverlapCompare.chr)) {
+                if (!hgsrc.chr.equals(ConsensusOverlap.chr)) {
                     continue;
                 }
 

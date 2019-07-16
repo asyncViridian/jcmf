@@ -10,3 +10,6 @@ echo "Copied trackgenerator"
 cp ../out/artifacts/pagegenerator_jar/pagegenerator.jar scripts/
 echo "Copied pagegenerator"
 
+cp ../out/artifacts/consensusoverlap_jar/consensusoverlap.jar scripts/
+echo "Copied consensusoverlap"
+
