@@ -20,10 +20,12 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/crosscompare/ConsensusOverlapCompare.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="357">
-              <caret line="104" column="53" selection-start-line="104" selection-start-column="53" selection-end-line="104" selection-end-column="53" />
+            <state relative-caret-position="324">
+              <caret line="224" column="29" lean-forward="true" selection-start-line="224" selection-start-column="29" selection-end-line="224" selection-end-column="29" />
               <folding>
                 <element signature="imports" expanded="true" />
+                <element signature="e#3819#6072#0" />
+                <element signature="e#6006#6859#1" />
               </folding>
             </state>
           </provider>
@@ -322,7 +324,7 @@
     <configuration name="ConsensusOverlapCompare" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="crosscompare.ConsensusOverlapCompare" />
       <module name="jcmf" />
-      <option name="PROGRAM_PARAMETERS" value="-c chr12 -o output/sorted_consensus_compare.html -s notes/trackHub/hg38/bigscanf_src" />
+      <option name="PROGRAM_PARAMETERS" value="-c chr12 -o output/sorted_consensus_compare.html -s notes/trackHub/hg38/bigscanf_src -l -pre bigscanf_src/" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="crosscompare.*" />
@@ -447,7 +449,7 @@
       <workItem from="1562805389875" duration="6412000" />
       <workItem from="1562878124026" duration="1393000" />
       <workItem from="1563163198758" duration="5003000" />
-      <workItem from="1563241455352" duration="8719000" />
+      <workItem from="1563241455352" duration="10206000" />
     </task>
     <servers />
   </component>
@@ -484,7 +486,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="205332000" />
+    <option name="totallyTimeSpent" value="206819000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-9" y="-9" width="1698" height="1020" extended-state="6" />
@@ -525,22 +527,6 @@
     <option name="version" value="1" />
   </component>
   <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/crosscompare/ConsensusOverlapCompare.java</url>
-          <line>183</line>
-          <properties />
-          <option name="timeStamp" value="15" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/crosscompare/ConsensusOverlapCompare.java</url>
-          <line>193</line>
-          <properties />
-          <option name="timeStamp" value="17" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
     <watches-manager>
       <configuration name="Application">
         <watch expression="writer.flush()" language="JAVA" />
@@ -884,10 +870,12 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/crosscompare/ConsensusOverlapCompare.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="104" column="53" selection-start-line="104" selection-start-column="53" selection-end-line="104" selection-end-column="53" />
+        <state relative-caret-position="324">
+          <caret line="224" column="29" lean-forward="true" selection-start-line="224" selection-start-column="29" selection-end-line="224" selection-end-column="29" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="e#3819#6072#0" />
+            <element signature="e#6006#6859#1" />
           </folding>
         </state>
       </provider>

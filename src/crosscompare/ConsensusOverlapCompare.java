@@ -21,6 +21,8 @@ public class ConsensusOverlapCompare {
     private static String srcDir;
     private static String outputFile;
     private static String chr;
+    private static Boolean link;
+    private static String relativeLinkPrefix = "";
 
     public static void main(String[] args) throws IOException {
         // handle command-line argument processing :)
@@ -49,6 +51,19 @@ public class ConsensusOverlapCompare {
                                           "Required.")
                             .required()
                             .build());
+            ConsensusOverlapCompare.options.addOption(
+                    Option.builder("l")
+                            .longOpt("link")
+                            .desc("Iff there should be a link to the details " +
+                                          "page for a given motif entry.")
+                            .build());
+            ConsensusOverlapCompare.options.addOption(
+                    Option.builder("pre")
+                            .longOpt("linkPrefix")
+                            .desc("The prefix of the relative link to use. " +
+                                          "Defaults to blank.")
+                            .hasArg()
+                            .build());
         }
         // Parse the commandline arguments
         CommandLineParser parser = new DefaultParser();
@@ -60,6 +75,13 @@ public class ConsensusOverlapCompare {
             ConsensusOverlapCompare.outputFile = line.getOptionValue("o");
             // set the chr
             ConsensusOverlapCompare.chr = line.getOptionValue("c");
+            // set whether to link
+            ConsensusOverlapCompare.link = line.hasOption("l");
+            // set the link prefix
+            if (line.hasOption("pre")) {
+                ConsensusOverlapCompare.relativeLinkPrefix
+                        = line.getOptionValue("pre");
+            }
         } catch (ParseException exp) {
             // something went wrong
             System.err.println("Parsing failed. Reason: " + exp.getMessage());
@@ -177,15 +199,19 @@ public class ConsensusOverlapCompare {
         );
         motifGroupings.add(pair);
 
-        // Start writing the file
+        // Start writing the actual file
         writer.write("<html><body style=\"font-family:monospace;\">");
+        writer.write("<p style=\"text-align:center;\">" +
+                             ConsensusOverlapCompare.chr + " motif clusters" +
+                             "</p>");
         for (Pair<List<File>, BigInteger> currentlyPrinting : motifGroupings) {
             // one table for each motif grouping
-            writer.write("<p>Motif group starting at "
+            writer.write("<hr>");
+            writer.write("<p>Motif cluster starting at "
                                  + currentlyPrinting.getRight() + "</p>");
 
             writer.write("<table><tr>");
-            // Write the left column: filenames
+            // Write the left column: filenames with links
             writer.write("<td><div style=\"overflow-x:auto;width:10vw;" +
                                  "white-space:nowrap;\">");
             for (File f : currentlyPrinting.getLeft()) {
@@ -199,7 +225,14 @@ public class ConsensusOverlapCompare {
                     continue;
                 }
 
+                if (ConsensusOverlapCompare.link) {
+                    writer.write("<a href=\""
+                                         + ConsensusOverlapCompare.relativeLinkPrefix + f.getName() + ".html\">");
+                }
                 writer.write(f.getName());
+                if (ConsensusOverlapCompare.link) {
+                    writer.write("</a>");
+                }
                 writer.write("<br/>");
             }
             writer.write("</div></td>");

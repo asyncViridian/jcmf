@@ -1,8 +1,8 @@
 2019-07-11
 Things Done:
-    - 
-Things In-Progress:
     - Cleaning up the consensus overlap visualization to remove extended gaps
+Things In-Progress:
+    - Adding proper linking to the consensus overlap visualization
 Things Not-Done:
 
 cross-scoring
