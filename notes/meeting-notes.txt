@@ -1,4 +1,10 @@
 2019-07-11
+Things Done:
+    - 
+Things In-Progress:
+    - Cleaning up the consensus overlap visualization to remove extended gaps
+Things Not-Done:
+
 cross-scoring
     - Try generating sequences from each of a pair of CMs A,B
         - Find relative entropy between A,B (foreach sequence: find Ai and Bi probability of generating i. can calculate score)

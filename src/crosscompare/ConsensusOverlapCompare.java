@@ -1,6 +1,9 @@
 package crosscompare;
 
 import org.apache.commons.cli.*;
+import org.apache.commons.lang3.tuple.ImmutablePair;
+import org.apache.commons.lang3.tuple.Pair;
+import sun.plugin.dom.exception.InvalidStateException;
 import util.ScoredStockholmAlignmentBlock;
 
 import java.io.BufferedWriter;
@@ -11,14 +14,13 @@ import java.math.BigInteger;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.Arrays;
+import java.util.*;
 
 public class ConsensusOverlapCompare {
     private static Options options;
     private static String srcDir;
     private static String outputFile;
     private static String chr;
-    private static BigInteger startPoint;
 
     public static void main(String[] args) throws IOException {
         // handle command-line argument processing :)
@@ -47,14 +49,6 @@ public class ConsensusOverlapCompare {
                                           "Required.")
                             .required()
                             .build());
-            ConsensusOverlapCompare.options.addOption(
-                    Option.builder("p")
-                            .longOpt("position")
-                            .hasArg()
-                            .desc("The start position in the chr to use. " +
-                                          "Required.")
-                            .required()
-                            .build());
         }
         // Parse the commandline arguments
         CommandLineParser parser = new DefaultParser();
@@ -66,9 +60,6 @@ public class ConsensusOverlapCompare {
             ConsensusOverlapCompare.outputFile = line.getOptionValue("o");
             // set the chr
             ConsensusOverlapCompare.chr = line.getOptionValue("c");
-            // set the chr
-            ConsensusOverlapCompare.startPoint = BigInteger.valueOf(
-                    Long.valueOf(line.getOptionValue("p")));
         } catch (ParseException exp) {
             // something went wrong
             System.err.println("Parsing failed. Reason: " + exp.getMessage());
@@ -86,116 +77,163 @@ public class ConsensusOverlapCompare {
         Files.createFile(output);
         BufferedWriter writer = Files.newBufferedWriter(output);
 
-        // Sort the files by blockgen number
-        File[] sortedFiles = source.toFile().listFiles();
-        Arrays.sort(sortedFiles,
-                    (f1, f2) -> {
-                        if (f1.getName().endsWith(
-                                ".html") && f2.getName().endsWith(".html")) {
-                            return 0;
-                        }
-                        if (f1.getName().endsWith(".html")) {
-                            return 1;
-                        }
-                        if (f2.getName().endsWith(".html")) {
-                            return -1;
-                        }
-                        ScoredStockholmAlignmentBlock block1 = null;
-                        ScoredStockholmAlignmentBlock block2 = null;
-                        try {
-                            block1 =
-                                    ScoredStockholmAlignmentBlock
-                                            .constructFromScore(f1);
-                            block2 =
-                                    ScoredStockholmAlignmentBlock
-                                            .constructFromScore(f2);
-                        } catch (FileNotFoundException e) {
-                            e.printStackTrace();
-                        }
-                        ScoredStockholmAlignmentBlock.Source hgsrc1 =
-                                block1.sources.get("hg38");
-                        ScoredStockholmAlignmentBlock.Source hgsrc2 =
-                                block2.sources.get("hg38");
+        // Sort the files by motif starting position
+        File[] allFiles = source.toFile().listFiles();
+        List<File> sortedFiles = new ArrayList<>();
+        // just pick out the files that are not html files
+        for (int i = 0; i < allFiles.length; i++) {
+            if (!allFiles[i].getName().endsWith(".html")
+                    && allFiles[i].getName().contains(chr)) {
+                sortedFiles.add(allFiles[i]);
+            }
+        }
+        // sort all the motif files
+        sortedFiles.sort(
+                (File f1, File f2) -> {
+                    ScoredStockholmAlignmentBlock block1 = null;
+                    ScoredStockholmAlignmentBlock block2 = null;
+                    try {
+                        block1 =
+                                ScoredStockholmAlignmentBlock
+                                        .constructFromScore(f1);
+                        block2 =
+                                ScoredStockholmAlignmentBlock
+                                        .constructFromScore(f2);
+                    } catch (FileNotFoundException e) {
+                        e.printStackTrace();
+                    }
+                    ScoredStockholmAlignmentBlock.Source hgsrc1 =
+                            block1.sources.get("hg38");
+                    ScoredStockholmAlignmentBlock.Source hgsrc2 =
+                            block2.sources.get("hg38");
 
-                        int startPos = hgsrc1.totalSpan.getLeft().
-                                add(block1.intervals.get("hg38").getLeft())
-                                .compareTo(hgsrc2.totalSpan.getLeft()
-                                                   .add(block2.intervals.get(
-                                                           "hg38").getLeft()));
-                        int seqCompare = block1.SS_cons.compareTo(
-                                block2.SS_cons);
-                        int fileCompare=f1.getName().compareTo(f2.getName());
+                    int startPos = hgsrc1.totalSpan.getLeft().
+                            add(block1.intervals.get("hg38").getLeft())
+                            .compareTo(hgsrc2.totalSpan.getLeft()
+                                               .add(block2.intervals.get(
+                                                       "hg38").getLeft()));
+                    int seqCompare = block1.SS_cons.compareTo(
+                            block2.SS_cons);
+                    int fileCompare = f1.getName().compareTo(f2.getName());
 
-                        if (startPos != 0) {
-                            return startPos;
-                        } else if (seqCompare != 0) {
-                            return seqCompare;
-                        } else {
-                            return fileCompare;
-                        }
-                    });
+                    if (startPos != 0) {
+                        return startPos;
+                    } else if (seqCompare != 0) {
+                        return seqCompare;
+                    } else {
+                        return fileCompare;
+                    }
+                });
+
+        // Group the files by overlapping motif structure
+        BigInteger groupStartPos = BigInteger.valueOf(0);
+        BigInteger groupEndPos = BigInteger.valueOf(0);
+        List<Pair<List<File>, BigInteger>> motifGroupings = new LinkedList<>();
+        List<File> currMotifGroup = new LinkedList<>();
+        for (int i = 0; i < sortedFiles.size(); i++) {
+            // read the actual file
+            ScoredStockholmAlignmentBlock block = null;
+            try {
+                block = ScoredStockholmAlignmentBlock
+                        .constructFromScore(sortedFiles.get(i));
+            } catch (FileNotFoundException e) {
+                throw new InvalidStateException("file is now missing?");
+            }
+            ScoredStockholmAlignmentBlock.Source src =
+                    block.sources.get("hg38");
+
+            // get position indexes
+            BigInteger startPos = src.totalSpan.getLeft()
+                    .add(block.intervals.get("hg38").getLeft());
+            BigInteger endPos = src.totalSpan.getLeft()
+                    .add(block.intervals.get("hg38").getRight());
+
+            // place it into a group or add a group to the list
+            if (startPos.compareTo(groupEndPos) > 0) {
+                // if the start of this motif is after the end of the last group
+                if (currMotifGroup.size() != 0) {
+                    // if there was a previous group, close it
+                    Pair<List<File>, BigInteger> pair = new ImmutablePair<>(
+                            currMotifGroup,
+                            groupStartPos
+                    );
+                    motifGroupings.add(pair);
+                }
+                // start a new group
+                groupStartPos = startPos;
+                currMotifGroup = new LinkedList<>();
+                currMotifGroup.add(sortedFiles.get(i));
+                groupEndPos = endPos;
+            } else {
+                // add this motif to the group
+                currMotifGroup.add(sortedFiles.get(i));
+                groupEndPos = groupEndPos.max(endPos);
+            }
+        }
+        // close the fencepost (finish off the last grouping)
+        Pair<List<File>, BigInteger> pair = new ImmutablePair<>(
+                currMotifGroup,
+                groupStartPos
+        );
+        motifGroupings.add(pair);
 
         // Start writing the file
         writer.write("<html><body style=\"font-family:monospace;\">");
-        writer.write("<table><tr>");
-        // Write the left column: filenames
-        writer.write("<td><div style=\"overflow-x:auto;width:10vw;" +
-                             "white-space:nowrap;\">");
-        for (File f : sortedFiles) {
-            // skip HTML files, we only want scored alignments
-            if (f.getName().endsWith(".html")) {
-                continue;
+        for (Pair<List<File>, BigInteger> currentlyPrinting : motifGroupings) {
+            // one table for each motif grouping
+            writer.write("<p>Motif group starting at "
+                                 + currentlyPrinting.getRight() + "</p>");
+
+            writer.write("<table><tr>");
+            // Write the left column: filenames
+            writer.write("<td><div style=\"overflow-x:auto;width:10vw;" +
+                                 "white-space:nowrap;\">");
+            for (File f : currentlyPrinting.getLeft()) {
+                ScoredStockholmAlignmentBlock block =
+                        ScoredStockholmAlignmentBlock.constructFromScore(f);
+                ScoredStockholmAlignmentBlock.Source hgsrc = block.sources.get(
+                        "hg38");
+
+                // skip nonmatching chr
+                if (!hgsrc.chr.equals(ConsensusOverlapCompare.chr)) {
+                    continue;
+                }
+
+                writer.write(f.getName());
+                writer.write("<br/>");
             }
+            writer.write("</div></td>");
+            // Write the right column: consensus structure aligned
+            writer.write("<td><div style=\"overflow-x:auto;width:85vw;" +
+                                 "white-space:nowrap;\">");
+            for (File f : currentlyPrinting.getLeft()) {
+                ScoredStockholmAlignmentBlock block =
+                        ScoredStockholmAlignmentBlock.constructFromScore(f);
+                ScoredStockholmAlignmentBlock.Source hgsrc = block.sources.get(
+                        "hg38");
 
-            ScoredStockholmAlignmentBlock block =
-                    ScoredStockholmAlignmentBlock.constructFromScore(f);
-            ScoredStockholmAlignmentBlock.Source hgsrc = block.sources.get(
-                    "hg38");
+                // skip nonmatching chr
+                if (!hgsrc.chr.equals(ConsensusOverlapCompare.chr)) {
+                    continue;
+                }
 
-            // skip nonmatching chr
-            if (!hgsrc.chr.equals(ConsensusOverlapCompare.chr)) {
-                continue;
+                // insert spaces corresponding to the actual position where it
+                // starts
+                for (int i = 0;
+                     hgsrc.totalSpan.getLeft()
+                             .add(block.intervals.get("hg38").getLeft())
+                             .subtract(currentlyPrinting.getRight())
+                             .compareTo(
+                                     BigInteger.valueOf(i)) > 0;
+                     i++) {
+                    writer.write("&nbsp;");
+                }
+                writer.write(block.SS_cons);
+                writer.write("<br/>");
             }
-
-            writer.write(f.getName());
-            writer.write("<br/>");
+            writer.write("</div></td>");
+            writer.write("</tr></table>");
         }
-        writer.write("</div></td>");
-        // Write the right column: consensus structure aligned
-        writer.write("<td><div style=\"overflow-x:auto;width:85vw;" +
-                             "white-space:nowrap;\">");
-        for (File f : sortedFiles) {
-            // skip HTML files, we only want scored alignments
-            if (f.getName().endsWith(".html")) {
-                continue;
-            }
-
-            ScoredStockholmAlignmentBlock block =
-                    ScoredStockholmAlignmentBlock.constructFromScore(f);
-            ScoredStockholmAlignmentBlock.Source hgsrc = block.sources.get(
-                    "hg38");
-
-            // skip nonmatching chr
-            if (!hgsrc.chr.equals(ConsensusOverlapCompare.chr)) {
-                continue;
-            }
-
-            // insert spaces corresponding to the actual position where it
-            // starts
-            for (int i = 0;
-                 hgsrc.totalSpan.getLeft()
-                         .add(block.intervals.get("hg38").getLeft())
-                         .subtract(startPoint)
-                         .compareTo(
-                                 BigInteger.valueOf(i)) > 0;
-                 i++) {
-                writer.write("&nbsp;");
-            }
-            writer.write(block.SS_cons);
-            writer.write("<br/>");
-        }
-        writer.write("</div></td>");
-        writer.write("</tr></table>");
         writer.write("</body></html>");
         writer.close();
     }

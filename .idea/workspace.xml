@@ -2,7 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3da6e499-81fb-4a08-856f-3dc0c5fe102e" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/notes/meeting-notes.txt" beforeDir="false" afterPath="$PROJECT_DIR$/notes/meeting-notes.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/crosscompare/ConsensusOverlapCompare.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/crosscompare/ConsensusOverlapCompare.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -19,8 +20,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/crosscompare/ConsensusOverlapCompare.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="257">
-              <caret line="106" column="65" selection-start-line="106" selection-start-column="65" selection-end-line="106" selection-end-column="65" />
+            <state relative-caret-position="357">
+              <caret line="104" column="53" selection-start-line="104" selection-start-column="53" selection-end-line="104" selection-end-column="53" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -31,8 +32,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/util/ScoredStockholmAlignmentBlock.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="360">
-              <caret line="28" column="25" selection-start-line="28" selection-start-column="18" selection-end-line="28" selection-end-column="25" />
+            <state relative-caret-position="-784">
+              <caret line="27" column="62" selection-start-line="27" selection-start-column="53" selection-end-line="27" selection-end-column="62" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#7008#7009#0" expanded="true" />
@@ -106,7 +107,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>BlockMerger.</find>
       <find>adjac</find>
       <find>class adja`</find>
       <find>read input</find>
@@ -136,6 +136,7 @@
       <find>gapStats</find>
       <find>writer.</find>
       <find>TrackGenerator</find>
+      <find>intervals</find>
     </findStrings>
     <replaceStrings>
       <replace>assertEquals\((\2), (\1)\);</replace>
@@ -321,7 +322,7 @@
     <configuration name="ConsensusOverlapCompare" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="crosscompare.ConsensusOverlapCompare" />
       <module name="jcmf" />
-      <option name="PROGRAM_PARAMETERS" value="-c chr12 -o output/sorted_consensus_compare.html -p 62602730 -s notes/trackHub/hg38/bigscanf_src" />
+      <option name="PROGRAM_PARAMETERS" value="-c chr12 -o output/sorted_consensus_compare.html -s notes/trackHub/hg38/bigscanf_src" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="crosscompare.*" />
@@ -446,7 +447,7 @@
       <workItem from="1562805389875" duration="6412000" />
       <workItem from="1562878124026" duration="1393000" />
       <workItem from="1563163198758" duration="5003000" />
-      <workItem from="1563241455352" duration="595000" />
+      <workItem from="1563241455352" duration="8719000" />
     </task>
     <servers />
   </component>
@@ -483,14 +484,14 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="197208000" />
+    <option name="totallyTimeSpent" value="205332000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-9" y="-9" width="1698" height="1020" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.47434434" visible="true" weight="0.16687042" />
-      <window_info id="Structure" order="1" sideWeight="0.5256556" side_tool="true" visible="true" weight="0.16687042" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.4743976" visible="true" weight="0.16687042" />
+      <window_info id="Structure" order="1" sideWeight="0.5256024" side_tool="true" visible="true" weight="0.16687042" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
       <window_info id="UI Designer" order="4" />
@@ -498,8 +499,8 @@
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.3295325" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.24287343" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.2576967" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.24287343" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.20068415" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
@@ -528,15 +529,21 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/crosscompare/ConsensusOverlapCompare.java</url>
-          <line>90</line>
+          <line>183</line>
           <properties />
-          <option name="timeStamp" value="2" />
+          <option name="timeStamp" value="15" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/crosscompare/ConsensusOverlapCompare.java</url>
+          <line>193</line>
+          <properties />
+          <option name="timeStamp" value="17" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
     <watches-manager>
       <configuration name="Application">
-        <watch expression="((Source)((HashMap.Node)((HashMap)this.sources).entrySet().toArray()[9]).getValue()).indivSpans" custom="util.StockholmAlignmentBlock.Source,java.util.HashMap.Node,java.util.HashMap" />
+        <watch expression="writer.flush()" language="JAVA" />
       </configuration>
     </watches-manager>
   </component>
@@ -571,6 +578,31 @@
     </expressions>
     <expressions id="evaluateExpression">
       <expression>
+        <expression-string>writer.flush()</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>writer.flush();</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>hgsrc.totalSpan.getLeft()                              .add(block.intervals.get(&quot;hg38&quot;).getLeft())                              .subtract(currentlyPrinting.getRight())</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>hgsrc.totalSpan.getLeft()                              .add(block.intervals.get(&quot;hg38&quot;).getLeft())</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>hgsrc.totalSpan.getLeft()</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
         <expression-string>System.out.println(result.RF);</expression-string>
         <language-id>JAVA</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
@@ -588,32 +620,6 @@
       </expression>
       <expression>
         <expression-string>new BigDecimal(toMerge.size())</expression-string>
-        <language-id>JAVA</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>toMerge.size()</expression-string>
-        <language-id>JAVA</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>((Source)((HashMap.Node)((HashMap)this.sources).entrySet().toArray()[9]).getValue()).indivSpans</expression-string>
-        <language-id>JAVA</language-id>
-        <custom-info>util.StockholmAlignmentBlock.Source,java.util.HashMap.Node,java.util.HashMap</custom-info>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>source.toFile().listFiles()</expression-string>
-        <language-id>JAVA</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>source.toFile()</expression-string>
-        <language-id>JAVA</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>source</expression-string>
         <language-id>JAVA</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
@@ -824,28 +830,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/crosscompare/ConsensusOverlapCompare.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="257">
-          <caret line="106" column="65" selection-start-line="106" selection-start-column="65" selection-end-line="106" selection-end-column="65" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/util/ScoredStockholmAlignmentBlock.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="360">
-          <caret line="28" column="25" selection-start-line="28" selection-start-column="18" selection-end-line="28" selection-end-column="25" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#7008#7009#0" expanded="true" />
-            <element signature="e#7054#7055#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/trackgenerate/TrackGenerator.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="180">
@@ -880,6 +864,28 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="162">
           <caret line="17" column="30" selection-start-line="17" selection-start-column="30" selection-end-line="17" selection-end-column="30" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/util/ScoredStockholmAlignmentBlock.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-784">
+          <caret line="27" column="62" selection-start-line="27" selection-start-column="53" selection-end-line="27" selection-end-column="62" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#7008#7009#0" expanded="true" />
+            <element signature="e#7054#7055#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/crosscompare/ConsensusOverlapCompare.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="357">
+          <caret line="104" column="53" selection-start-line="104" selection-start-column="53" selection-end-line="104" selection-end-column="53" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
