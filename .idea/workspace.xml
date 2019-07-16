@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3da6e499-81fb-4a08-856f-3dc0c5fe102e" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/src/crosscompare/ConsensusOverlapCompare.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/crosscompare/ConsensusOverlapCompare.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -20,7 +20,7 @@
         <entry file="file://$PROJECT_DIR$/src/crosscompare/ConsensusOverlapCompare.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="257">
-              <caret line="106" column="65" lean-forward="true" selection-start-line="106" selection-start-column="65" selection-end-line="106" selection-end-column="65" />
+              <caret line="106" column="65" selection-start-line="106" selection-start-column="65" selection-end-line="106" selection-end-column="65" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -445,7 +445,8 @@
       <workItem from="1562788639897" duration="266000" />
       <workItem from="1562805389875" duration="6412000" />
       <workItem from="1562878124026" duration="1393000" />
-      <workItem from="1563163198758" duration="4832000" />
+      <workItem from="1563163198758" duration="5003000" />
+      <workItem from="1563241455352" duration="595000" />
     </task>
     <servers />
   </component>
@@ -482,14 +483,14 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="196442000" />
+    <option name="totallyTimeSpent" value="197208000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-9" y="-9" width="1698" height="1020" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.4759036" visible="true" weight="0.16503668" />
-      <window_info id="Structure" order="1" sideWeight="0.52409637" side_tool="true" visible="true" weight="0.16503668" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.47434434" visible="true" weight="0.16687042" />
+      <window_info id="Structure" order="1" sideWeight="0.5256556" side_tool="true" visible="true" weight="0.16687042" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
       <window_info id="UI Designer" order="4" />
@@ -497,7 +498,7 @@
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.3295325" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.24287343" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.24287343" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.2576967" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -826,7 +827,7 @@
     <entry file="file://$PROJECT_DIR$/src/crosscompare/ConsensusOverlapCompare.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="257">
-          <caret line="106" column="65" lean-forward="true" selection-start-line="106" selection-start-column="65" selection-end-line="106" selection-end-column="65" />
+          <caret line="106" column="65" selection-start-line="106" selection-start-column="65" selection-end-line="106" selection-end-column="65" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
