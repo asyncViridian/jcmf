@@ -99,19 +99,6 @@ Generating the UCSC browser format track hub (this is already handled by rerunTr
 
 ===============================================================================
 
-I have written some scripts that automatically handle these steps.
-Just run this set of commands (modify as fitting for each set of working dir names, settings files):
-
-echo "-t blocks --numBlocksPerOutput 10" | ./rerunMergeForDirs.sh q*5block* &
-echo "-t blocks --numBlocksPerOutput 10" | ./rerunMergeForDirs.sh q*10block* &
-echo "-t fillblocks --minOutputLength 75 --maxOutputLength 400" | ./rerunMergeForDirs.sh q*fblock-75to400* &
-echo bigscan10 | ./rerunTracksForDirs.sh q*emuBigscan_10block* &
-echo bigscan5 | ./rerunTracksForDirs.sh q*emuBigscan_5block* &
-echo bigscanf | ./rerunTracksForDirs.sh q*emuBigscan_fblock* &
-echo newparam | ./rerunTracksForDirs.sh q*newParams* &
-
-===============================================================================
-
 To run the entire pipeline on all of the configurations:
 
 ./runAll.sh q_chr01_emuBigscan_fblock-75to400-allspecies/ source_mafs/m100_chr1_149844498-149849024.maf settings/emuBigscan_fblock-75to400 &
@@ -146,6 +133,37 @@ disown
 disown
 ./runAll.sh q_chr12_newParams_5block-10to3000-allspecies/ source_mafs/m100_chr12_62602752-62622213.maf settings/newParams_5block-10to3000 &
 disown
+
+echo "-t blocks --numBlocksPerOutput 10" | ./rerunMergeForDirs.sh q*5block* &
+echo "-t blocks --numBlocksPerOutput 10" | ./rerunMergeForDirs.sh q*10block* &
+echo "-t fillblocks --minOutputLength 75 --maxOutputLength 400" | ./rerunMergeForDirs.sh q*fblock-75to400* &
+echo bigscan10 | ./rerunTracksForDirs.sh q*emuBigscan_10block* &
+echo bigscan5 | ./rerunTracksForDirs.sh q*emuBigscan_5block* &
+echo bigscanf | ./rerunTracksForDirs.sh q*emuBigscan_fblock* &
+echo newparam | ./rerunTracksForDirs.sh q*newParams* &
+
+## IGNORE THE BELOW.
+
+java -jar consensusoverlap.jar -s ../trackHub/hg38/bigscanf_src -c chr1 -o ../trackHub/hg38/bigscanf_chr1.html -l -pre bigscanf_src/
+java -jar consensusoverlap.jar -s ../trackHub/hg38/bigscanf_src -c chr2 -o ../trackHub/hg38/bigscanf_chr2.html -l -pre bigscanf_src/
+java -jar consensusoverlap.jar -s ../trackHub/hg38/bigscanf_src -c chr5 -o ../trackHub/hg38/bigscanf_chr5.html -l -pre bigscanf_src/
+java -jar consensusoverlap.jar -s ../trackHub/hg38/bigscanf_src -c chr12 -o ../trackHub/hg38/bigscanf_chr12.html -l -pre bigscanf_src/
+
+java -jar consensusoverlap.jar -s ../trackHub/hg38/bigscan5_src -c chr1 -o ../trackHub/hg38/bigscan5_chr1.html -l -pre bigscan5_src/
+java -jar consensusoverlap.jar -s ../trackHub/hg38/bigscan5_src -c chr2 -o ../trackHub/hg38/bigscan5_chr2.html -l -pre bigscan5_src/
+java -jar consensusoverlap.jar -s ../trackHub/hg38/bigscan5_src -c chr5 -o ../trackHub/hg38/bigscan5_chr5.html -l -pre bigscan5_src/
+java -jar consensusoverlap.jar -s ../trackHub/hg38/bigscan5_src -c chr12 -o ../trackHub/hg38/bigscan5_chr12.html -l -pre bigscan5_src/
+
+java -jar consensusoverlap.jar -s ../trackHub/hg38/bigscan10_src -c chr1 -o ../trackHub/hg38/bigscan10_chr1.html -l -pre bigscan10_src/
+java -jar consensusoverlap.jar -s ../trackHub/hg38/bigscan10_src -c chr2 -o ../trackHub/hg38/bigscan10_chr2.html -l -pre bigscan10_src/
+java -jar consensusoverlap.jar -s ../trackHub/hg38/bigscan10_src -c chr5 -o ../trackHub/hg38/bigscan10_chr5.html -l -pre bigscan10_src/
+java -jar consensusoverlap.jar -s ../trackHub/hg38/bigscan10_src -c chr12 -o ../trackHub/hg38/bigscan10_chr12.html -l -pre bigscan10_src/
+
+java -jar consensusoverlap.jar -s ../trackHub/hg38/newparam_src -c chr1 -o ../trackHub/hg38/newparam_chr1.html -l -pre newparam_src/
+java -jar consensusoverlap.jar -s ../trackHub/hg38/newparam_src -c chr2 -o ../trackHub/hg38/newparam_chr2.html -l -pre newparam_src/
+java -jar consensusoverlap.jar -s ../trackHub/hg38/newparam_src -c chr5 -o ../trackHub/hg38/newparam_chr5.html -l -pre newparam_src/
+java -jar consensusoverlap.jar -s ../trackHub/hg38/newparam_src -c chr12 -o ../trackHub/hg38/newparam_chr12.html -l -pre newparam_src/
+
 
 ===============================================================================
 ===============================================================================
