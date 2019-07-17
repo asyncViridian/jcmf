@@ -2,9 +2,11 @@
 Things Done:
     - Cleaning up the consensus overlap visualization to remove extended gaps
     - Adding proper linking to the consensus overlap visualization
+    - Generating the full set of consensus overlap visualizations & link them to the hub
 Things In-Progress:
-    - Generating the full set of consensus overlap visualizations
+    - Write background and structure outline of thesis
 Things Not-Done:
+    - Add the auto-cross-compare to the scripts????
 
 cross-scoring
     - Try generating sequences from each of a pair of CMs A,B
