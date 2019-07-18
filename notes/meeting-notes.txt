@@ -1,10 +1,11 @@
 2019-07-11
 Things Done:
-    - Cleaning up the consensus overlap visualization to remove extended gaps
-    - Adding proper linking to the consensus overlap visualization
-    - Generating the full set of consensus overlap visualizations & link them to the hub
-    - Laying out my citations for thesis
-    - Write very rough outline of thesis
+    - Added the consensus overlap visualization to remove extended gaps
+    - Added proper linking to the consensus overlap visualizations
+    - Generated the full set of consensus overlap visualizations
+    - Linked overlap visualizations them to the hub
+    - Laid out my citations for thesis
+    - Wrote very rough outline of thesis
 Things In-Progress:
     - Figure out how to generate random sequence based on a CM
         - "De novo prediction" mentions RNA structure clustering
