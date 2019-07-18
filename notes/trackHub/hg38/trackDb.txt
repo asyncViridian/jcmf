@@ -1,4 +1,4 @@
-track reference_blocks
+track ref
 bigDataUrl ref.bb
 shortLabel ref
 longLabel individual hg38 alignment blocks
@@ -8,7 +8,7 @@ visibility dense
 scoreMin 0
 scoreMax 1000
 
-track bigscan5_multiblock_hits
+track bigscan5_multi
 bigDataUrl bigscan5_multi.bb
 shortLabel bigscan5_multi
 longLabel bigscan-params multi-block hits with 5-block merges rna-par>50
@@ -19,7 +19,7 @@ visibility squish
 scoreMin 0
 scoreMax 1000
 
-track bigscan5_singleblock_hits
+track bigscan5_single
 bigDataUrl bigscan5_single.bb
 shortLabel bigscan5_single
 longLabel bigscan-params single-block hits with 5-block merges rna-par>50
@@ -30,7 +30,7 @@ visibility squish
 scoreMin 0
 scoreMax 1000
 
-track bigscan10_multiblock_hits
+track bigscan10_multi
 bigDataUrl bigscan10_multi.bb
 shortLabel bigscan10_multi
 longLabel bigscan-params multi-block hits with 10-block merges rna-par>50
@@ -41,7 +41,7 @@ visibility squish
 scoreMin 0
 scoreMax 1000
 
-track bigscan10_singleblock_hits
+track bigscan10_single
 bigDataUrl bigscan10_single.bb
 shortLabel bigscan10_single
 longLabel bigscan-params single-block hits with 10-block merges rna-par>50
@@ -52,7 +52,7 @@ visibility squish
 scoreMin 0
 scoreMax 1000
 
-track bigscanf_multiblock_hits
+track bigscanf_multi
 bigDataUrl bigscanf_multi.bb
 shortLabel bigscanf_multi
 longLabel bigscan-params multi-block hits with fillblock (75-400 base) merges rna-par>50
@@ -63,7 +63,7 @@ visibility squish
 scoreMin 0
 scoreMax 1000
 
-track bigscanf_singleblock_hits
+track bigscanf_single
 bigDataUrl bigscanf_single.bb
 shortLabel bigscanf_single
 longLabel bigscan-params single-block hits with fillblock (75-400 base) merges rna-par>50
@@ -74,7 +74,7 @@ visibility squish
 scoreMin 0
 scoreMax 1000
 
-track newparam_multiblock_hits
+track newparam_multi
 bigDataUrl newparam_multi.bb
 shortLabel newparam_multi
 longLabel new parameter multi-block hits with 5-block merges rna-par>50
@@ -85,7 +85,7 @@ visibility squish
 scoreMin 0
 scoreMax 1000
 
-track newparam_singleblock_hits
+track newparam_single
 bigDataUrl newparam_single.bb
 shortLabel newparam_single
 longLabel new parameter single-block hits with 5-block merges rna-par>50
