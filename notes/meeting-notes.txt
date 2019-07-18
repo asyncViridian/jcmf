@@ -3,8 +3,15 @@ Things Done:
     - Cleaning up the consensus overlap visualization to remove extended gaps
     - Adding proper linking to the consensus overlap visualization
     - Generating the full set of consensus overlap visualizations & link them to the hub
+    - Laying out my citations for thesis
+    - Write very rough outline of thesis
 Things In-Progress:
-    - Write background and structure outline of thesis
+    - Figure out how to generate random sequence based on a CM
+        - "De novo prediction" mentions RNA structure clustering
+            - "Novel strategies are also emerging for post-clustering of predicted RNA structures..."
+    - Figure out how to generate "background sequence"
+        - "De novo prediction" mentions some algorithms that do this
+            - "Recent work has provided procedures that generate randomized multiple ..."
 Things Not-Done:
     - Add the auto-cross-compare to the scripts????
 
