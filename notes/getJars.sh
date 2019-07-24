@@ -1,15 +1,5 @@
-cp ../out/artifacts/blockmerger_jar/blockmerger.jar scripts/
-echo "Copied blockmerger"
-
-cp ../out/artifacts/reflinegenerator_jar/reflinegenerator.jar scripts/
-echo "Copied reflinegenerator"
-
-cp ../out/artifacts/trackgenerator_jar/trackgenerator.jar scripts/
-echo "Copied trackgenerator"
-
-cp ../out/artifacts/pagegenerator_jar/pagegenerator.jar scripts/
-echo "Copied pagegenerator"
-
-cp ../out/artifacts/consensusoverlap_jar/consensusoverlap.jar scripts/
-echo "Copied consensusoverlap"
-
+for file in ../out/artifacts/*_jar/*.jar
+do
+	echo "Copying from ${file} to scripts/$(basename ${file})"
+	cp ${file} scripts/$(basename ${file})
+done

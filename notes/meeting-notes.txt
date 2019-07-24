@@ -1,10 +1,34 @@
+2019-07-18
+Things done:
+Things IP:
+Things undone:
+
+cross-scoring
+    - Try generating sequences from each of a pair of CMs A,B
+        - Read the chapter about CMs in the book Prof. Ruzzo loaned me...
+            - btw the book is underneath my backpack
+        - Find relative entropy between A,B (foreach sequence: find Ai and Bi probability of generating i. can calculate score)
+        - Runtime of this should be much faster than pscore/RNAPhylo
+    - Could test against Rfam
+Evaluate whether the pscore threshold used is meaningful or not
+    - Can simulate BS output with randomized/shuffled blocks, then pick a meaningful threshold
+    - This might take a while
+Score against sequences included in phylogeny
+    - not a super priority but would be nice
+    - cmalign
+    - don't forget cmfinder itself outputs quality scores per-sequence
+Check boundaries where blocks cannot be merged & calculate statistics on that
+Check against Rfam
+
+===============================================================================
 2019-07-11
 Things Done:
-    - Cleaning up the consensus overlap visualization to remove extended gaps
-    - Adding proper linking to the consensus overlap visualization
-    - Generating the full set of consensus overlap visualizations & link them to the hub
-    - Laying out my citations for thesis
-    - Write very rough outline of thesis
+    - Added the consensus overlap visualization to remove extended gaps
+    - Added proper linking to the consensus overlap visualizations
+    - Generated the full set of consensus overlap visualizations
+    - Linked overlap visualizations them to the hub
+    - Laid out my citations for thesis
+    - Wrote very rough outline of thesis
 Things In-Progress:
     - Figure out how to generate random sequence based on a CM
         - "De novo prediction" mentions RNA structure clustering
@@ -21,12 +45,14 @@ cross-scoring
         - Runtime of this should be much faster than pscore/RNAPhylo
     - Could test against Rfam
 Evaluate whether the pscore threshold used is meaningful or not
-    - Can simulate BS output with randomized/shuffled blocks, then pick a meaningful threshold]
+    - Can simulate BS output with randomized/shuffled blocks, then pick a meaningful threshold
     - This might take a while
 Clean up the visualization
     - See if we can remove gaps between overlaps
 Score against sequences included in phylogeny
     - not a super priority but would be nice
+    - cmalign
+    - don't forget cmfinder itself outputs quality scores per-sequence asfds
 Outline out background & context
 
 ===============================================================================

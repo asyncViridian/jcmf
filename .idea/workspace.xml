@@ -381,9 +381,15 @@
     <list>
       <item itemvalue="Application.BlockMerger" />
       <item itemvalue="Application.ConsensusOverlap" />
+<<<<<<< HEAD
       <item itemvalue="Application.PageGenerator" />
       <item itemvalue="Application.RefLineGenerator" />
       <item itemvalue="Application.ScoredStockholmAlignmentBlock" />
+=======
+      <item itemvalue="Application.RefLineGenerator" />
+      <item itemvalue="Application.ScoredStockholmAlignmentBlock" />
+      <item itemvalue="Application.PageGenerator" />
+>>>>>>> 3cf961cdd239a08c5a3018446a75290e4ff036a4
       <item itemvalue="Java Scratch.Scratch" />
     </list>
     <recent_temporary>
