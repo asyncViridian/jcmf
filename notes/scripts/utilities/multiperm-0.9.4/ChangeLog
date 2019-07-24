@@ -1,0 +1,15 @@
+0.9.4
+	(SVN rev 16)
+	added --version
+					--- WLR 2010-10-10
+
+0.9.4a
+	(SVN rev 10)
+	Bugfix to deal with all-gap columns in input blocks
+	Added some comments
+					--- WLR 2010-09-21 
+
+0.9.3
+	(SVN rev 9)
+	Initial public release
+					--- PA 2008-11-04

@@ -1,0 +1,63 @@
+Multiperm
+=========
+21 September 2010
+04 November  2008
+
+
+STANDARD INSTALL
+================
+A standard install of multiperm is performed in the usual way:
+
+./configure
+make
+make install
+
+
+INSTALL OPTIONS
+===============
+
+To install multiperm in a non-standard directory, invoke configure with
+the --prefix option.
+
+To enable the use of the R statistical package for random number generation
+and statistical calculations, use configure's --enable-R option.
+
+To enable comparisons of multiperm with the rnazRandomizeAln.pl script from 
+the RNAz package, use configure's --enable-compRNAz option.
+
+
+OPTIONAL: INSTALLING THE R SHARED LIBARY
+========================================
+
+If you want to use R, use --enable-R with 'configure' as described above,
+and make sure that the R shared library can be found. Below is
+a description of how to build the R shared library.
+ 
+1) Download the latest source tarball from http://www.r-project.org
+   (currently, it's R-2.8.0.tar.gz).
+2) ./configure --enable-R-shlib
+3) make
+4) make install (this is optional)
+5) Make sure that the location of the R executable (e.g. .../R-2.8.0/bin) 
+   is part of your PATH, so that the multiperm build scripts can find it.
+6) Make sure that the location of the R shared libraries (e.g. ../R-2.8.0/lib)
+   is part of the default library path or in your LD_LIBRARY_PATH.
+
+
+OPTIONAL: INSTALL THE RNAz PACKAGE
+==================================
+
+The RNAz shuffling script is only used for comparison purposes 
+(using the -z option to multiperm). Use the --enable-compRNAz option
+for 'configure' as described above and do the following.
+
+1) Make sure that the location of the "rnazRandomizeAln.pl" script
+   (../share/RNAz/perl) is part of your PATH, so that the multiperm
+   build scripts can find it.
+
+
+BUG REPORTS
+===========
+
+Please email bug reports to the addresses listed in the AUTHORS file.
+

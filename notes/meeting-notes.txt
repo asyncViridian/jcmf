@@ -23,6 +23,7 @@ Evaluate whether the pscore threshold used is meaningful or not
             - https://academic.oup.com/bioinformatics/article/25/5/668/182627
             - Multiperm shuffling program
             - References shuffle-pair.pl
+            - Using this...
         - "Considerations in the identification of functional RNA structural elements in genomic alignments"
             - https://www.ncbi.nlm.nih.gov/pmc/articles/PMC1803800/
             - shuffle-pair.pl shuffling program
