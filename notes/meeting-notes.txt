@@ -3,8 +3,9 @@ Things done:
     - Figure out how to generate randomized pseudo-background sequences
         - multiperm takes in a single MAF file and can produce N shuffles of that file
         - a single shuffle of the MAF file = each individual block gets shuffled
+        - Start running a null evaluation run: q_chn directories
+        - Each directory contains the run for a single shuffle version of the original maf file.
 Things IP:
-    - Start running a null evaluation run
     - Write a shitty draft of the introduction & backgrounds sections
     - Generate sequences from CMs
 Things undone:
