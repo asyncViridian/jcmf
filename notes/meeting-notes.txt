@@ -1,8 +1,10 @@
 2019-07-18
 Things done:
+    - Figure out how to generate randomized pseudo-background sequences
+        - multiperm takes in a single MAF file and can produce N shuffles of that file
+        - a single shuffle of the MAF file = each individual block gets shuffled
 Things IP:
     - Write a shitty draft of the introduction & backgrounds sections
-    - Figure out how to generate randomized pseudo-background sequences
     - Generate sequences from CMs
 Things undone:
 
