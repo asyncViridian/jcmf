@@ -15,6 +15,17 @@ cross-scoring
 Evaluate whether the pscore threshold used is meaningful or not
     - Can simulate BS output with randomized/shuffled blocks, then pick a meaningful threshold
     - This might take a while
+    - Generating shuffled alignments
+        - "Dinucleotide controlled null models for comparative RNA gene prediction"
+            - https://www.ncbi.nlm.nih.gov/pmc/articles/PMC2453142/
+            - SISSIz shuffling program
+        - "Multiperm: shuffling multiple sequence alignments while approximately preserving dinucleotide frequencies"
+            - https://academic.oup.com/bioinformatics/article/25/5/668/182627
+            - Multiperm shuffling program
+            - References shuffle-pair.pl
+        - "Considerations in the identification of functional RNA structural elements in genomic alignments"
+            - https://www.ncbi.nlm.nih.gov/pmc/articles/PMC1803800/
+            - shuffle-pair.pl shuffling program
 Score against sequences included in phylogeny
     - not a super priority but would be nice
     - cmalign
