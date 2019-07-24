@@ -4,6 +4,7 @@ Things done:
         - multiperm takes in a single MAF file and can produce N shuffles of that file
         - a single shuffle of the MAF file = each individual block gets shuffled
 Things IP:
+    - Start running a null evaluation run
     - Write a shitty draft of the introduction & backgrounds sections
     - Generate sequences from CMs
 Things undone:
