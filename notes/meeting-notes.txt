@@ -1,12 +1,14 @@
 2019-07-18
 Things done:
 Things IP:
+    - Write a shitty draft of the introduction & backgrounds sections
+    - Figure out how to generate randomized pseudo-background sequences
+    - Generate sequences from CMs
 Things undone:
 
 cross-scoring
     - Try generating sequences from each of a pair of CMs A,B
         - Read the chapter about CMs in the book Prof. Ruzzo loaned me...
-            - btw the book is underneath my backpack
         - Find relative entropy between A,B (foreach sequence: find Ai and Bi probability of generating i. can calculate score)
         - Runtime of this should be much faster than pscore/RNAPhylo
     - Could test against Rfam
