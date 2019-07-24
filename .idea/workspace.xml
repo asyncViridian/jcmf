@@ -305,7 +305,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.ConsensusOverlapCompare">
+  <component name="RunManager" selected="Application.BlockMerger">
     <configuration name="BlockMerger" type="Application" factoryName="Application" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="blockmerge.BlockMerger" />
       <module name="jcmf" />
@@ -384,15 +384,14 @@
     </configuration>
     <list>
       <item itemvalue="Application.BlockMerger" />
+      <item itemvalue="Application.ConsensusOverlap" />
       <item itemvalue="Application.RefLineGenerator" />
       <item itemvalue="Application.ScoredStockholmAlignmentBlock" />
       <item itemvalue="Application.PageGenerator" />
-      <item itemvalue="Application.ConsensusOverlapCompare" />
       <item itemvalue="Java Scratch.Scratch" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.ConsensusOverlapCompare" />
         <item itemvalue="Application.PageGenerator" />
         <item itemvalue="Application.ScoredStockholmAlignmentBlock" />
         <item itemvalue="Java Scratch.Scratch" />
