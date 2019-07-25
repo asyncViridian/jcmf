@@ -5,9 +5,20 @@ Things done:
         - a single shuffle of the MAF file = each individual block gets shuffled
         - Start running a null evaluation run: q_chn directories
         - Each directory contains the run for a single shuffle version of the original maf file.
-Things IP:
-    - Write a shitty draft of the introduction & backgrounds sections
     - Generate sequences from CMs
+        - use cmbuild to generate the CMs from a MSA (multiple stockholm alignment)
+            - Generates a CM file format
+            - the CM file itself contains references to the source MSA
+        - use cmemit to generate sequence from a CM
+            - Outputs a FASTA file format to console, by default
+            - the name of each FASTA sequence line references the original MSA
+        - use cmalign to score alignment of a CM to a set of sequences FASTA
+            - Outputs a MSA file format to console, by default
+            - the output MSA file DOES NOT CONTAIN AN EXPLICIT SCORE
+                - how do I score it?
+Things IP:
+    - Write a "shitty version" of the introduction & backgrounds sections
+    - Figure out how to score cmalign output
 Things undone:
 
 cross-scoring
