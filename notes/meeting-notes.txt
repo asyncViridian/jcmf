@@ -5,20 +5,11 @@ Things done:
         - a single shuffle of the MAF file = each individual block gets shuffled
         - Start running a null evaluation run: q_chn directories
         - Each directory contains the run for a single shuffle version of the original maf file.
-    - Generate sequences from CMs
-        - use cmbuild to generate the CMs from a MSA (multiple stockholm alignment)
-            - Generates a CM file format
-            - the CM file itself contains references to the source MSA
-        - use cmemit to generate sequence from a CM
-            - Outputs a FASTA file format to console, by default
-            - the name of each FASTA sequence line references the original MSA
-        - use cmalign to score alignment of a CM to a set of sequences FASTA
-            - Outputs a MSA file format to console, by default
-            - the output MSA file DOES NOT CONTAIN AN EXPLICIT SCORE
-                - how do I score it?
+    - Generate sequences from CMs???? kinda???
 Things IP:
     - Write a "shitty version" of the introduction & backgrounds sections
-    - Figure out how to score cmalign output
+    - Figure out how to find relative entropy between two CMs
+        - Find p(emitting some given seq from some given CM)?
 Things undone:
 
 cross-scoring
@@ -27,6 +18,18 @@ cross-scoring
         - Find relative entropy between A,B (foreach sequence: find Ai and Bi probability of generating i. can calculate score)
         - Runtime of this should be much faster than pscore/RNAPhylo
         - THIS IS SUPPORTED BY INFERNAL: CMEMIT
+        - use cmbuild to generate the CMs from a MSA (multiple stockholm alignment)
+            - Generates a CM file format
+            - the CM file itself contains references to the source MSA
+        - use cmemit to generate sequence from a CM
+            - Outputs a FASTA file format to console, by default
+            - the name of each FASTA sequence line references the original MSA
+        - use cmalign to score alignment of a CM to a set of sequences FASTA
+            - Note the behavior of aligning to a set of sequences is different from aligning to an individual sequence
+            - Outputs a MSA file format to console, by default
+            - the output MSA file DOES NOT CONTAIN AN EXPLICIT SCORE
+                - how do I score it?
+        
     - Could test against Rfam
 Evaluate whether the pscore threshold used is meaningful or not
     - Can simulate BS output with randomized/shuffled blocks, then pick a meaningful threshold
