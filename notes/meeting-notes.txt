@@ -15,6 +15,7 @@ cross-scoring
         - Read the chapter about CMs in the book Prof. Ruzzo loaned me...
         - Find relative entropy between A,B (foreach sequence: find Ai and Bi probability of generating i. can calculate score)
         - Runtime of this should be much faster than pscore/RNAPhylo
+        - THIS IS SUPPORTED BY INFERNAL: CMEMIT
     - Could test against Rfam
 Evaluate whether the pscore threshold used is meaningful or not
     - Can simulate BS output with randomized/shuffled blocks, then pick a meaningful threshold
