@@ -7,6 +7,7 @@ Things IP:
     - Evaluate randomized-input results (significance threshold)
 Things undone:
 
+Motif clusters: there may be gaps in the human sequence in the alignment, which causes the cluster display to not be super accurate
 cross-scoring
     - Try generating sequences from each of a pair of CMs A,B
         - Book reference
@@ -24,6 +25,8 @@ cross-scoring
                 - how do I score it?
 Evaluate whether the pscore threshold used is meaningful or not
     - Generating shuffled alignments: using Multiperm
+        - use on the MERGED "maf" not the input MAF
+    - also try SSISz if Multiperm doesnt end up working out
 Score against sequences included in phylogeny
     - don't forget cmfinder itself outputs quality scores per-sequence
 Check boundaries where blocks cannot be merged & calculate statistics on that
