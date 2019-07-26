@@ -1,10 +1,11 @@
 2019-07-25
 Things done:
-Things IP:
+Things IP (in order of priority, top->down):
     - Write a "bad version" of the introduction & backgrounds sections
+    - Fix motif cluster display
+    - Evaluate randomized-input results (significance threshold)
     - Figure out how to find relative entropy between two CMs
         - Find p(emitting some given seq from some given CM)?
-    - Evaluate randomized-input results (significance threshold)
 Things undone:
 
 Motif clusters: there may be gaps in the human sequence in the alignment, which causes the cluster display to not be super accurate
