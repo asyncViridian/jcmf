@@ -41,7 +41,8 @@ echo "maxCandLength=\"${maxCandLength}\""
 # Split/merge the MAF file into the dir split
 echo ""
 echo "-=- SPLITTING/MERGING MAF FILE"
-echo "${mergeArgs}" | ./rerunMergeForDirs.sh $1
+mkdir $1/split
+java -jar blockmerger.jar -s $2 -od $1/split -o m ${mergeArgs}
 
 # cd into the working directory so that we can use the following scripts
 cd $1

@@ -109,6 +109,7 @@ public class ConsensusOverlap {
             }
         }
         // sort all the motif files
+        // sorted by beginning coordinate of consensus motif structure
         sortedFiles.sort(
                 (File f1, File f2) -> {
                     ScoredStockholmAlignmentBlock block1 = null;

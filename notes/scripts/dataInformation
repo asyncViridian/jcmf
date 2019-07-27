@@ -1,5 +1,5 @@
-q_chr*_newParams_5block-10to3000-allspecies
-	Settings in settings/newParams_5block-10to3000-allspecies
+q_chr*_newParams_5block-10to3000-all
+	Settings in settings/newParams_5block-10to3000-all
         Block-based merging (5 blocks)
         Length threshold is from 10 to 3000
         Includes all species
@@ -12,8 +12,8 @@ q_chr*_newParams_5block-10to3000-allspecies
                 maxSpanSingle 150
                 minSpanDouble 20
                 maxSpanDouble 150
-q_chr*_emuBigscan_5block-10to3000-allspecies
-	Settings in settings/emuBigscan_5block-10to3000-allspecies
+q_chr*_emuBigscan_5block-10to3000-all
+	Settings in settings/emuBigscan_5block-10to3000-all
         Block-based merging (5 blocks)
         Length threshold is from 10 to 3000
         Includes all species
@@ -26,8 +26,8 @@ q_chr*_emuBigscan_5block-10to3000-allspecies
                 maxSpanSingle 100
                 minSpanDouble 40
                 maxSpanDouble 100
-q_chr*_10block-10to3000-allspecies
-	Settings in settings/emuBigscan_10block-10to3000-allspecies
+q_chr*_10block-10to3000-all
+	Settings in settings/emuBigscan_10block-10to3000-all
         Block-based merging (10 blocks)
         Length threshold is from 10 to 3000
         Includes all species
