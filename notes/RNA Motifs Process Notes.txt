@@ -138,7 +138,7 @@ disown
 
 echo "-t blocks --numBlocksPerOutput 10" | ./rerunMergeForDirs.sh q*5block* &
 echo "-t blocks --numBlocksPerOutput 10" | ./rerunMergeForDirs.sh q*10block* &
-echo "-t fillblocks --minOutputLength 75 --maxOutputLength 400" | ./rerunMergeForDirs.sh q*fblock-75to400* &
+echo "-t fillblocks --minOutputLength 75 --maxOutputLength 400" | ./rerunMergeForDirs.sh q*fblock-75to400*
 echo bigscan10 | ./rerunTracksForDirs.sh q*emuBigscan_10block* &
 echo bigscan5 | ./rerunTracksForDirs.sh q*emuBigscan_5block* &
 echo bigscanf | ./rerunTracksForDirs.sh q*emuBigscan_fblock* &
