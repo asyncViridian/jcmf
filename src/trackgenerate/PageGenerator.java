@@ -72,7 +72,7 @@ public class PageGenerator {
      */
     private static final String ALIGN_DATA_TABLE_TEMPLATE =
             "<td>{0}</td>" +
-                    "<td><div style=\"overflow-x:auto;width:85vw;" +
+                    "<td><div style=\"overflow-x:scroll;width:85vw;" +
                     "white-space:nowrap;\">{1}</div></td>";
 
     public static void main(String[] args) throws IOException {
@@ -184,7 +184,8 @@ public class PageGenerator {
         // add the consensus to the table
         alignTableSpecies.append(
                 "<span style=\"font-weight:bold\">" +
-                        "CONSENSUS,RF</span><br/><br/>");
+                        "CONSENSUS</span><br/>" +
+                        "<span style=\"font-weight:bold\">RF</span><br/>");
         // data column
         String SS_cons = block.SS_cons;
         String RF = block.RF;

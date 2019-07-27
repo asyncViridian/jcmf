@@ -24,6 +24,7 @@ public class ConsensusOverlap {
     private static String relativeLinkPrefix = "";
 
     public static void main(String[] args) throws IOException {
+        long startTime = System.nanoTime();
         // handle command-line argument processing :)
         // add all the arguments we need
         ConsensusOverlap.options = new Options();
@@ -212,7 +213,7 @@ public class ConsensusOverlap {
 
             writer.write("<table><tr>");
             // Write the left column: filenames with links
-            writer.write("<td><div style=\"overflow-x:auto;width:10vw;" +
+            writer.write("<td><div style=\"overflow-x:scroll;width:10vw;" +
                                  "white-space:nowrap;\">");
             for (File f : currentlyPrinting.getLeft()) {
                 ScoredStockholmAlignmentBlock block =
@@ -225,6 +226,7 @@ public class ConsensusOverlap {
                     continue;
                 }
 
+                writer.write("<br/>");
                 if (ConsensusOverlap.link) {
                     writer.write("<a href=\""
                                          + ConsensusOverlap.relativeLinkPrefix + f.getName() + ".html\">");
@@ -237,7 +239,7 @@ public class ConsensusOverlap {
             }
             writer.write("</div></td>");
             // Write the right column: consensus structure aligned
-            writer.write("<td><div style=\"overflow-x:auto;width:85vw;" +
+            writer.write("<td><div style=\"overflow-x:scroll;width:85vw;" +
                                  "white-space:nowrap;\">");
             for (File f : currentlyPrinting.getLeft()) {
                 ScoredStockholmAlignmentBlock block =
@@ -261,6 +263,20 @@ public class ConsensusOverlap {
                      i++) {
                     writer.write("&nbsp;");
                 }
+                writer.write(block.sources.get("hg38").sequence);
+                writer.write("</br>");
+
+                // insert spaces corresponding to the actual position where it
+                // starts
+                for (int i = 0;
+                     hgsrc.totalSpan.getLeft()
+                             .add(block.intervals.get("hg38").getLeft())
+                             .subtract(currentlyPrinting.getRight())
+                             .compareTo(
+                                     BigInteger.valueOf(i)) > 0;
+                     i++) {
+                    writer.write("&nbsp;");
+                }
                 writer.write(block.SS_cons);
                 writer.write("<br/>");
             }
@@ -269,5 +285,8 @@ public class ConsensusOverlap {
         }
         writer.write("</body></html>");
         writer.close();
+
+        System.out.println("ConsensusOverlap finished running in "
+                                   + (System.nanoTime() - startTime) / 1000000 + "ms");
     }
 }

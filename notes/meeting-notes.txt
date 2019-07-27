@@ -1,5 +1,7 @@
 2019-07-25
 Things done:
+    - Cursory fix of the motif cluster display
+    - Revamped the track hub update script...
 Things IP (in order of priority, top->down):
     - Write a "bad version" of the introduction & backgrounds sections
     - Fix motif cluster display

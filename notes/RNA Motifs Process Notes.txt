@@ -138,34 +138,57 @@ disown
 
 echo "-t blocks --numBlocksPerOutput 10" | ./rerunMergeForDirs.sh q*5block* &
 echo "-t blocks --numBlocksPerOutput 10" | ./rerunMergeForDirs.sh q*10block* &
-echo "-t fillblocks --minOutputLength 75 --maxOutputLength 400" | ./rerunMergeForDirs.sh q*fblock-75to400*
+echo "-t fillblocks --minOutputLength 75 --maxOutputLength 400" | ./rerunMergeForDirs.sh q*fblock-75to400*&
+wait
+echo "Merge done"
 echo bigscan10 | ./rerunTracksForDirs.sh q*emuBigscan_10block* &
 echo bigscan5 | ./rerunTracksForDirs.sh q*emuBigscan_5block* &
 echo bigscanf | ./rerunTracksForDirs.sh q*emuBigscan_fblock* &
 echo newparam | ./rerunTracksForDirs.sh q*newParams* &
-
-## IGNORE THE BELOW FOR NOW
-
-java -jar consensusoverlap.jar -s ../trackHub/hg38/bigscanf_src -c chr1 -o ../trackHub/hg38/bigscanf_chr1.html -l -pre bigscanf_src/
-java -jar consensusoverlap.jar -s ../trackHub/hg38/bigscanf_src -c chr2 -o ../trackHub/hg38/bigscanf_chr2.html -l -pre bigscanf_src/
-java -jar consensusoverlap.jar -s ../trackHub/hg38/bigscanf_src -c chr5 -o ../trackHub/hg38/bigscanf_chr5.html -l -pre bigscanf_src/
-java -jar consensusoverlap.jar -s ../trackHub/hg38/bigscanf_src -c chr12 -o ../trackHub/hg38/bigscanf_chr12.html -l -pre bigscanf_src/
-
-java -jar consensusoverlap.jar -s ../trackHub/hg38/bigscan5_src -c chr1 -o ../trackHub/hg38/bigscan5_chr1.html -l -pre bigscan5_src/
-java -jar consensusoverlap.jar -s ../trackHub/hg38/bigscan5_src -c chr2 -o ../trackHub/hg38/bigscan5_chr2.html -l -pre bigscan5_src/
-java -jar consensusoverlap.jar -s ../trackHub/hg38/bigscan5_src -c chr5 -o ../trackHub/hg38/bigscan5_chr5.html -l -pre bigscan5_src/
-java -jar consensusoverlap.jar -s ../trackHub/hg38/bigscan5_src -c chr12 -o ../trackHub/hg38/bigscan5_chr12.html -l -pre bigscan5_src/
-
-java -jar consensusoverlap.jar -s ../trackHub/hg38/bigscan10_src -c chr1 -o ../trackHub/hg38/bigscan10_chr1.html -l -pre bigscan10_src/
-java -jar consensusoverlap.jar -s ../trackHub/hg38/bigscan10_src -c chr2 -o ../trackHub/hg38/bigscan10_chr2.html -l -pre bigscan10_src/
-java -jar consensusoverlap.jar -s ../trackHub/hg38/bigscan10_src -c chr5 -o ../trackHub/hg38/bigscan10_chr5.html -l -pre bigscan10_src/
-java -jar consensusoverlap.jar -s ../trackHub/hg38/bigscan10_src -c chr12 -o ../trackHub/hg38/bigscan10_chr12.html -l -pre bigscan10_src/
-
-java -jar consensusoverlap.jar -s ../trackHub/hg38/newparam_src -c chr1 -o ../trackHub/hg38/newparam_chr1.html -l -pre newparam_src/
-java -jar consensusoverlap.jar -s ../trackHub/hg38/newparam_src -c chr2 -o ../trackHub/hg38/newparam_chr2.html -l -pre newparam_src/
-java -jar consensusoverlap.jar -s ../trackHub/hg38/newparam_src -c chr5 -o ../trackHub/hg38/newparam_chr5.html -l -pre newparam_src/
-java -jar consensusoverlap.jar -s ../trackHub/hg38/newparam_src -c chr12 -o ../trackHub/hg38/newparam_chr12.html -l -pre newparam_src/
-
+wait
+echo "Trackgen done"
+java -jar consensusoverlap.jar -s temp_bigscanf/bigscanf_src -c chr1 -o temp_bigscanf/bigscanf_chr1.html -l -pre bigscanf_src/ &
+java -jar consensusoverlap.jar -s temp_bigscanf/bigscanf_src -c chr2 -o temp_bigscanf/bigscanf_chr2.html -l -pre bigscanf_src/ &
+java -jar consensusoverlap.jar -s temp_bigscanf/bigscanf_src -c chr5 -o temp_bigscanf/bigscanf_chr5.html -l -pre bigscanf_src/ &
+java -jar consensusoverlap.jar -s temp_bigscanf/bigscanf_src -c chr12 -o temp_bigscanf/bigscanf_chr12.html -l -pre bigscanf_src/ &
+java -jar consensusoverlap.jar -s temp_bigscan5/bigscan5_src -c chr1 -o temp_bigscan5/bigscan5_chr1.html -l -pre bigscan5_src/ &
+java -jar consensusoverlap.jar -s temp_bigscan5/bigscan5_src -c chr2 -o temp_bigscan5/bigscan5_chr2.html -l -pre bigscan5_src/ &
+java -jar consensusoverlap.jar -s temp_bigscan5/bigscan5_src -c chr5 -o temp_bigscan5/bigscan5_chr5.html -l -pre bigscan5_src/ &
+java -jar consensusoverlap.jar -s temp_bigscan5/bigscan5_src -c chr12 -o temp_bigscan5/bigscan5_chr12.html -l -pre bigscan5_src/ &
+java -jar consensusoverlap.jar -s temp_bigscan10/bigscan10_src -c chr1 -o temp_bigscan10/bigscan10_chr1.html -l -pre bigscan10_src/ &
+java -jar consensusoverlap.jar -s temp_bigscan10/bigscan10_src -c chr2 -o temp_bigscan10/bigscan10_chr2.html -l -pre bigscan10_src/ &
+java -jar consensusoverlap.jar -s temp_bigscan10/bigscan10_src -c chr5 -o temp_bigscan10/bigscan10_chr5.html -l -pre bigscan10_src/ &
+java -jar consensusoverlap.jar -s temp_bigscan10/bigscan10_src -c chr12 -o temp_bigscan10/bigscan10_chr12.html -l -pre bigscan10_src/ &
+java -jar consensusoverlap.jar -s temp_newparam/newparam_src -c chr1 -o temp_newparam/newparam_chr1.html -l -pre newparam_src/ &
+java -jar consensusoverlap.jar -s temp_newparam/newparam_src -c chr2 -o temp_newparam/newparam_chr2.html -l -pre newparam_src/ &
+java -jar consensusoverlap.jar -s temp_newparam/newparam_src -c chr5 -o temp_newparam/newparam_chr5.html -l -pre newparam_src/ &
+java -jar consensusoverlap.jar -s temp_newparam/newparam_src -c chr12 -o temp_newparam/newparam_chr12.html -l -pre newparam_src/ &
+wait
+echo "Overlap done"
+rm -r trackHubUpdate &
+rm temp_*/*_ref.b* &
+rm temp_*/*.bed &
+wait
+mkdir trackHubUpdate
+for file in temp_*/*.html
+do
+    mv ${file} trackHubUpdate/ &
+done
+for file in temp_*/*.bb
+do
+    mv ${file} trackHubUpdate/ &
+done
+for dir in temp_*/*_src
+do
+    mkdir trackHubUpdate/$(basename ${dir})
+    mv ${dir}/* trackHubUpdate/$(basename ${dir})/
+done
+mkdir trackHubUpdate/other_info
+for dir in temp_*/graphics/*/
+do
+    mkdir trackHubUpdate/other_info/$(basename ${dir})
+    mv ${dir}/* trackHubUpdate/other_info/$(basename ${dir})/
+done
 
 ===============================================================================
 ===============================================================================
