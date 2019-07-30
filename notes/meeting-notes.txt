@@ -5,11 +5,18 @@ Things done:
     - Write a first-draft of the introduction section
         - What do I need to cite?
 Things IP (in order of priority, top->down):
+    - Write a first-draft of the methods section for blockmerging
     - Fix motif cluster display
     - Evaluate randomized-input results (significance threshold)
+    - Write a first-draft of the results section for blockmerging
     - Figure out how to find relative entropy between two CMs
         - Find p(emitting some given seq from some given CM)?
 Things undone:
+Things to ask about:
+    - Ask about the "TODO" phrases scattered across my thesis draft document - these denote questions
+Other notes:
+    - Plan to present by the 7th. (Yes that leaves me with a week to work aaaaaaaaaaaaaaaaaaaaaaaaaaaaa)
+        - i schedule bad
 
 Motif clusters: there may be gaps in the human sequence in the alignment, which causes the cluster display to not be super accurate
 cross-scoring
