@@ -2,8 +2,9 @@
 Things done:
     - Cursory fix of the motif cluster display
     - Revamped the track hub update script...
+    - Write a first-draft of the introduction section
+        - What do I need to cite?
 Things IP (in order of priority, top->down):
-    - Write a "bad version" of the introduction & backgrounds sections
     - Fix motif cluster display
     - Evaluate randomized-input results (significance threshold)
     - Figure out how to find relative entropy between two CMs

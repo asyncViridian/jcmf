@@ -1048,18 +1048,12 @@
     <option name="isMigrated" value="true" />
   </component>
   <component name="FileEditorManager">
-    <leaf>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/crosscompare/ConsensusOverlap.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="188">
-              <caret line="227" selection-start-line="227" selection-end-line="227" />
-              <folding>
-                <element signature="e#921#2650#1" />
-                <element signature="e#2762#3415#0" />
-                <element signature="e#3443#3841#0" />
-                <element signature="e#6747#8484#1" />
-              </folding>
+              <caret line="230" selection-start-line="230" selection-end-line="230" />
             </state>
           </provider>
         </entry>
@@ -1067,7 +1061,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/trackgenerate/PageGenerator.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="292">
+            <state relative-caret-position="1105">
               <caret line="74" column="46" selection-start-line="74" selection-start-column="38" selection-end-line="74" selection-end-column="46" />
             </state>
           </provider>
@@ -1184,14 +1178,16 @@
     </treeState>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="width" value="1194" />
-    <option name="height" value="1005" />
+    <option name="width" value="1196" />
+    <option name="height" value="1007" />
   </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -1220,8 +1216,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
-      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -1453,10 +1447,10 @@
     <option name="totallyTimeSpent" value="211302000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-9" y="-9" width="1698" height="1020" extended-state="6" />
+    <frame x="-7" y="-7" width="1842" height="1002" extended-state="6" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.4718714" visible="true" weight="0.24969174" />
-      <window_info id="Structure" order="1" sideWeight="0.52812856" side_tool="true" visible="true" weight="0.17040358" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.4707233" visible="true" weight="0.25224215" />
+      <window_info id="Structure" order="1" sideWeight="0.52927667" side_tool="true" visible="true" weight="0.25224215" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
       <window_info id="UI Designer" order="4" />
@@ -1752,13 +1746,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/trackgenerate/PageGenerator.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="292">
-          <caret line="74" column="46" selection-start-line="74" selection-start-column="38" selection-end-line="74" selection-end-column="46" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/trackgenerate/RefLineGenerator.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-54">
@@ -1826,13 +1813,14 @@
     <entry file="file://$PROJECT_DIR$/src/crosscompare/ConsensusOverlap.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="188">
-          <caret line="227" selection-start-line="227" selection-end-line="227" />
-          <folding>
-            <element signature="e#921#2650#1" />
-            <element signature="e#2762#3415#0" />
-            <element signature="e#3443#3841#0" />
-            <element signature="e#6747#8484#1" />
-          </folding>
+          <caret line="230" selection-start-line="230" selection-end-line="230" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/trackgenerate/PageGenerator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1105">
+          <caret line="74" column="46" selection-start-line="74" selection-start-column="38" selection-end-line="74" selection-end-column="46" />
         </state>
       </provider>
     </entry>
