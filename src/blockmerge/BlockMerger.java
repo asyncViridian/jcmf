@@ -26,8 +26,10 @@ public class BlockMerger {
      */
     private static Options options;
 
+    /**
+     * Remove "-" characters in a FASTA-format file output.
+     */
     private static final boolean REMOVE_GAPS = true;
-    private static final boolean REMOVE_NEWLINES = true;
 
     /**
      * The type of block-merging to do.
@@ -493,7 +495,17 @@ public class BlockMerger {
                 Files.createFile(file);
                 BufferedWriter writer = Files.newBufferedWriter(file);
 
-                // write file lines to disk
+                // build the sequence lines for each individual species first
+                // TODO : move the assembly section up here so I can format the
+                //        MAF file properly later.
+
+                // write an overall file header if necessary
+                if (BlockMerger.outType == FileType.MAF) {
+                    // MAF header
+                    writer.write("##maf version=1 program=blockmerger.jar\n");
+                    writer.write("a \n");
+                }
+                // write file lines for each species to disk
                 for (String species : speciesToMerge) {
                     // Initialize to track info for gapStats
                     BigInteger seqLength = BigInteger.ZERO;
@@ -548,8 +560,7 @@ public class BlockMerger {
                         speciesHeader.append("-");
                         speciesHeader.append(s.start.add(s.size));
                     }
-                    // TODO: we have the species header at this point
-                    writeOutputHeader(writer, speciesHeader.toString());
+                    // we have the species header at this point
 
                     // build the contents of each block for each species
                     int numBlock = 1;
@@ -581,10 +592,55 @@ public class BlockMerger {
                         }
                         numBlock++;
                     }
-                    // TODO we have the assembled sequence including Ns and -
-                    //  at this point
-                    writeOutputContent(writer, sequence.toString());
-                    writer.write("\n");
+                    // we have the assembled sequence including Ns and -s here
+                    if (BlockMerger.outType == FileType.FASTA) {
+                        // Write a FASTA entry
+                        writer.write(">" + speciesHeader.toString() + "\n");
+                        String content = sequence.toString();
+                        if (REMOVE_GAPS) {
+                            content = content.replace("-", "");
+                        }
+                        writer.write(content);
+                        writer.write("\n");
+                    } else if (BlockMerger.outType == FileType.MAF) {
+                        // write a MAF entry
+                        // standard line begin
+                        writer.write("s ");
+                        // For MAF we ignore potential scaffold merges...
+                        // Species and chromosome
+                        String print = species + "." + first.section;
+                        writer.write(print + repeat(" ",
+                                                    BigInteger.valueOf(
+                                                            24 - print.length()))
+                                             + " ");
+                        // start position
+                        print = "" + first.start;
+                        writer.write(print + repeat(" ",
+                                                    BigInteger.valueOf(
+                                                            12 - print.length()))
+                                             + " ");
+                        // number of actual bases used (excluding dash)
+                        String degapped = sequence.toString()
+                                .replace("-", "");
+                        print = "" + degapped.length();
+                        writer.write(print + repeat(" ",
+                                                    BigInteger.valueOf(
+                                                            6 - print.length()))
+                                             + " ");
+                        // strand used
+                        writer.write((first.strand ? "+" : "-") + " ");
+                        // Still ignore scaffold merges
+                        // Total length of source sequence
+                        print = "" + first.srcSize;
+                        writer.write(print + repeat(" ",
+                                                    BigInteger.valueOf(
+                                                            14 - print.length()))
+                                             + " ");
+                        // The alignment sequence itself
+                        // TODO fix the alignment of this aufdhsafdk
+                        writer.write(sequence.toString());
+                        writer.write("\n");
+                    }
                     // write the sequence length vs gap percentage
                     // (one point per species-sequence)
                     gapStats.addValue(new BigDecimal(seqLength),
@@ -638,56 +694,6 @@ public class BlockMerger {
             builder.append(src);
         }
         return builder.toString();
-    }
-
-    /**
-     * Writes metadata about the sequence itself, as appropriate.
-     *
-     * @param writer Writer to use.
-     * @param header Content of the header to write.
-     * @throws IOException if something goes wrong with using writer
-     */
-    private static void writeOutputHeader(BufferedWriter writer, String header)
-            throws IOException {
-        if (writer == null) {
-            throw new IllegalArgumentException("null writer passed");
-        } else if (header == null) {
-            throw new IllegalArgumentException("null header passed");
-        }
-        if (BlockMerger.outType == FileType.FASTA) {
-            writer.write(">" + header + "\n");
-        } else if (BlockMerger.outType == FileType.MAF) {
-            // TODO
-        }
-    }
-
-    /**
-     * Writes the given content (sequence data) with the given writer. Note
-     * that this method will append newlines as determined by the variable
-     * REMOVE_NEWLINES.
-     *
-     * @param writer  Writer to use.
-     * @param content Content of the sequence to write.
-     * @throws IOException if something goes wrong with using writer
-     */
-    private static void writeOutputContent(BufferedWriter writer,
-                                           String content) throws IOException {
-        if (writer == null) {
-            throw new IllegalArgumentException("null writer passed");
-        } else if (content == null) {
-            throw new IllegalArgumentException("null header passed");
-        }
-        if (BlockMerger.outType == FileType.FASTA) {
-            if (REMOVE_GAPS) {
-                content = content.replace("-", "");
-            }
-            writer.write(content);
-            if (!REMOVE_NEWLINES) {
-                writer.write("\n");
-            }
-        } else if (BlockMerger.outType == FileType.MAF) {
-            // TODO
-        }
     }
 
     /**

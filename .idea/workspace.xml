@@ -2,9 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3da6e499-81fb-4a08-856f-3dc0c5fe102e" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/util/FileType.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/notes/meeting-notes.txt" beforeDir="false" afterPath="$PROJECT_DIR$/notes/meeting-notes.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/blockmerge/BlockMerger.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/blockmerge/BlockMerger.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -31,15 +28,14 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/blockmerge/BlockMerger.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="544">
-              <caret line="579" column="34" selection-start-line="579" selection-start-column="34" selection-end-line="579" selection-end-column="34" />
+            <state relative-caret-position="355">
+              <caret line="499" column="50" selection-start-line="499" selection-start-column="50" selection-end-line="499" selection-end-column="50" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#3557#9893#1" />
                 <element signature="e#10005#13726#0" />
                 <element signature="e#11854#11992#1" />
                 <element signature="e#13754#14097#0" />
-                <element signature="method#repeat#0;class#BlockMerger#0" />
               </folding>
             </state>
           </provider>
@@ -49,7 +45,7 @@
         <entry file="file://$PROJECT_DIR$/src/util/FileType.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="63">
-              <caret line="3" column="14" lean-forward="true" selection-start-line="3" selection-start-column="14" selection-end-line="3" selection-end-column="14" />
+              <caret line="3" column="14" selection-start-line="3" selection-start-column="14" selection-end-line="3" selection-end-column="14" />
             </state>
           </provider>
         </entry>
@@ -78,8 +74,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>in</find>
-      <find>num</find>
       <find>simplescatter</find>
       <find>getInter</find>
       <find>blockl</find>
@@ -108,6 +102,8 @@
       <find>-</find>
       <find>writeFas</find>
       <find>writeOutput</find>
+      <find>REMOVE_N</find>
+      <find>print =</find>
     </findStrings>
     <replaceStrings>
       <replace>assertEquals\((\2), (\1)\);</replace>
@@ -419,7 +415,7 @@
       <workItem from="1563163198758" duration="5003000" />
       <workItem from="1563241455352" duration="13305000" />
       <workItem from="1564532014895" duration="329000" />
-      <workItem from="1564547929106" duration="1383000" />
+      <workItem from="1564547929106" duration="6098000" />
     </task>
     <servers />
   </component>
@@ -456,14 +452,14 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="213014000" />
+    <option name="totallyTimeSpent" value="217729000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-9" y="-9" width="1698" height="1020" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.46783626" visible="true" weight="0.26078916" />
-      <window_info id="Structure" order="1" sideWeight="0.53216374" side_tool="true" visible="true" weight="0.26078916" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.46783626" visible="true" weight="0.26078916" />
+      <window_info active="true" id="Structure" order="1" sideWeight="0.53216374" side_tool="true" visible="true" weight="0.26078916" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
       <window_info id="UI Designer" order="4" />
@@ -824,21 +820,20 @@
     <entry file="file://$PROJECT_DIR$/src/util/FileType.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="63">
-          <caret line="3" column="14" lean-forward="true" selection-start-line="3" selection-start-column="14" selection-end-line="3" selection-end-column="14" />
+          <caret line="3" column="14" selection-start-line="3" selection-start-column="14" selection-end-line="3" selection-end-column="14" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/blockmerge/BlockMerger.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="544">
-          <caret line="579" column="34" selection-start-line="579" selection-start-column="34" selection-end-line="579" selection-end-column="34" />
+        <state relative-caret-position="355">
+          <caret line="499" column="50" selection-start-line="499" selection-start-column="50" selection-end-line="499" selection-end-column="50" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#3557#9893#1" />
             <element signature="e#10005#13726#0" />
             <element signature="e#11854#11992#1" />
             <element signature="e#13754#14097#0" />
-            <element signature="method#repeat#0;class#BlockMerger#0" />
           </folding>
         </state>
       </provider>
