@@ -31,7 +31,7 @@ public class BlockMerger {
     /**
      * The reference sequence to use.
      */
-    private static final String REF_SPECIES = "SPECA";
+    private static final String REF_SPECIES = "hg38";
 
     /**
      * The type of block-merging to do.

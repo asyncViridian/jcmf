@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3da6e499-81fb-4a08-856f-3dc0c5fe102e" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/notes/meeting-notes.txt" beforeDir="false" afterPath="$PROJECT_DIR$/notes/meeting-notes.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/blockmerge/BlockMerger.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/blockmerge/BlockMerger.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -28,8 +29,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/blockmerge/BlockMerger.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="252">
-              <caret line="33" column="52" selection-start-line="33" selection-start-column="52" selection-end-line="33" selection-end-column="52" />
+            <state relative-caret-position="99">
+              <caret line="26" column="7" lean-forward="true" selection-start-line="26" selection-start-column="7" selection-end-line="26" selection-end-column="7" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#3557#9893#1" />
@@ -243,13 +244,6 @@
               <item name="blockmerge" type="462c0819:PsiDirectoryNode" />
               <item name="data" type="462c0819:PsiDirectoryNode" />
             </path>
-            <path>
-              <item name="jcmf" type="b2602c69:ProjectViewProjectNode" />
-              <item name="jcmf" type="462c0819:PsiDirectoryNode" />
-              <item name="test" type="462c0819:PsiDirectoryNode" />
-              <item name="blockmerge" type="462c0819:PsiDirectoryNode" />
-              <item name="output" type="462c0819:PsiDirectoryNode" />
-            </path>
           </expand>
           <select />
         </subPane>
@@ -448,14 +442,11 @@
       <workItem from="1563163198758" duration="5003000" />
       <workItem from="1563241455352" duration="13305000" />
       <workItem from="1564532014895" duration="329000" />
-      <workItem from="1564547929106" duration="13638000" />
+      <workItem from="1564547929106" duration="13964000" />
     </task>
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="perl_ioTest_testMake_string - 2019.02.15 at 22h 39m 52s.xml">
-      <configuration name="perl_ioTest.testMake_string" configurationId="JUnit" />
-    </history-entry>
     <history-entry file="perl_ioTest_testPad_string - 2019.02.15 at 22h 43m 54s.xml">
       <configuration name="perl_ioTest.testPad_string" configurationId="JUnit" />
     </history-entry>
@@ -483,9 +474,12 @@
     <history-entry file="BlockMergerTest_main - 2019.07.31 at 14h 57m 32s.xml">
       <configuration name="BlockMergerTest.main" configurationId="JUnit" />
     </history-entry>
+    <history-entry file="BlockMergerTest_main - 2019.07.31 at 15h 01m 01s.xml">
+      <configuration name="BlockMergerTest.main" configurationId="JUnit" />
+    </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="225269000" />
+    <option name="totallyTimeSpent" value="225595000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-9" y="-9" width="1698" height="1020" extended-state="6" />
@@ -878,8 +872,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/blockmerge/BlockMerger.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="252">
-          <caret line="33" column="52" selection-start-line="33" selection-start-column="52" selection-end-line="33" selection-end-column="52" />
+        <state relative-caret-position="99">
+          <caret line="26" column="7" lean-forward="true" selection-start-line="26" selection-start-column="7" selection-end-line="26" selection-end-column="7" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#3557#9893#1" />

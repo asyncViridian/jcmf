@@ -5,8 +5,8 @@ Things done:
     - Write a first-draft of the introduction section
         - What do I need to cite?
     - Write a first-draft of the methods section for blockmerging
-Things IP (in order of priority, top->down):
     - Add MAF generation functionality to BlockMerger so that multiperm / SISSIz can use merged output directly
+Things IP (in order of priority, top->down):
     - Create randomized-input results
     - Fix motif cluster display
     - Evaluate randomized-input results (significance threshold)
