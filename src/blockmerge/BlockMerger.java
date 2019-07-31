@@ -28,6 +28,10 @@ public class BlockMerger {
      * Remove "-" characters in a FASTA-format file output.
      */
     private static final boolean REMOVE_GAPS = true;
+    /**
+     * The reference sequence to use.
+     */
+    private static final String REF_SPECIES = "hg38";
 
     /**
      * The type of block-merging to do.
@@ -400,13 +404,14 @@ public class BlockMerger {
                 // FILLBLOCKS-based merging rules:
                 BigInteger blockLength =
                         (toMerge.size() == 0) ? BigInteger.ZERO :
-                                toMerge.getLast().sequences.get("hg38").start
+                                toMerge.getLast().sequences.get(REF_SPECIES)
+                                        .start
                                         .add(
                                                 toMerge.getLast().sequences.get(
-                                                        "hg38").size)
+                                                        REF_SPECIES).size)
                                         .subtract(
                                                 toMerge.getFirst().sequences.get(
-                                                        "hg38").start
+                                                        REF_SPECIES).start
                                         );
                 // check upper bound
                 if ((MERGE_TYPE == MergeType.FILLBLOCKS) &&
@@ -455,7 +460,7 @@ public class BlockMerger {
 
                 // Standard Filter:
                 // require that the merged species includes human
-                if (!speciesToMerge.contains("hg38")) {
+                if (!speciesToMerge.contains(REF_SPECIES)) {
                     continue;
                 }
 
@@ -464,10 +469,10 @@ public class BlockMerger {
                 // TODO: perhaps generalize to allow other human assemblies???
                 MAFAlignmentBlock.Sequence firstCheckSeqLen =
                         toMerge.getFirst().sequences.get(
-                                "hg38");
+                                REF_SPECIES);
                 MAFAlignmentBlock.Sequence lastCheckSeqLen =
                         toMerge.getLast().sequences.get(
-                                "hg38");
+                                REF_SPECIES);
                 BigInteger humanSeqLen = lastCheckSeqLen.start.add(
                         lastCheckSeqLen.size).subtract(firstCheckSeqLen.start);
                 // check lower bound

@@ -235,7 +235,6 @@ usage: PageGenerator [options] -s <filename>
 BLOCKMERGER.JAR
 
 > java -jar blockmerger.jar
-Parsing failed. Reason: Missing required options: s, o
 usage: BlockMerger [options] -s <filename> -o <fileprefix>
     --gapThreshold <arg>         Maximum gap length between two source
                                  alignment blocks before they are
@@ -251,28 +250,24 @@ usage: BlockMerger [options] -s <filename> -o <fileprefix>
                                  section in a resulting block that will
                                  still allow the resulting block to be
                                  output. Defaults to 10
-    --numBasesIncrement <arg>    Number of bases to increment between each
-                                 output merged block (if using
-                                 base-counting merging). Defaults to 50
-    --numBasesPerOutput <arg>    Number of bases to include in each output
-                                 block (if using base-counting merging).
-                                 Defaults to 300
     --numBlocksPerOutput <arg>   Number of source blocks to include in
                                  eachmerged block (if using block-counting
                                  merging). Defaults to 5
- -o,--outName <arg>              Output FASTA files prefix
+ -o,--outName <arg>              Output file prefix
  -od,--outDir <arg>              Directory to write output files to.
                                  Defaults to current directory
+ -ot,--outType <arg>             'FASTA' to output FASTA file, 'MAF' to
+                                 output MAF file. Defaults to FASTA
+                                 format.
  -s,--srcName <arg>              Input MAF file
  -sd,--srcDir <arg>              Directory to read input files from.
                                  Defaults to current directory
- -t,--mergeType <arg>            'bases' (fixed number of bases per
-                                 merge), 'blocks' (fixed number of blocks
-                                 per merge), or 'fillblocks' (contiguous
-                                 blocks merged to within a range of merge
-                                 lenghs) to determine the type of merge
-                                 used (by default BlockMerger uses
-                                 block-based merging).
+ -t,--mergeType <arg>            'blocks' (fixed number of blocks per
+                                 merge) or 'fillblocks' (contiguous blocks
+                                 merged to within a range of merge lenghs)
+                                 to determine the type of merge used (by
+                                 default BlockMerger uses block-based
+                                 merging).
 
 ===============================================================================
 

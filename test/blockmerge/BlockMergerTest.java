@@ -36,7 +36,8 @@ class BlockMergerTest {
                                 "-sd", "test/blockmerge/data",
                                 "-s", filename + ".maf",
                                 "-od", "test/blockmerge/output",
-                                "-o", filename};
+                                "-o", filename,
+                                "-ot", "maf"};
                         try {
                             BlockMerger.main(args);
                         } catch (Exception e) {
