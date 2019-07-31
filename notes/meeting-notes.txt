@@ -7,9 +7,10 @@ Things done:
     - Write a first-draft of the methods section for blockmerging
     - Add MAF generation functionality to BlockMerger so that multiperm / SISSIz can use merged output directly
         - Confirmed that this does not affect the FASTA functionality - in fact, this fixes an earlier bug.
+    - Rerun results because something went wrong with settings earlier ... /)_-
 Things IP (in order of priority, top->down):
-    - Rerun results because something went wrong with settings earlier ...
     - Create randomized-input results
+        - Why is multiperm not even OUTPUTTING now?
     - Fix motif cluster display
     - Evaluate randomized-input results (significance threshold)
     - Write a first-draft of the methods section for pipeline

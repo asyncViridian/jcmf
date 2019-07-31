@@ -136,6 +136,10 @@ disown
 ./runAll.sh q_chr12_newParams_5block-10to3000-all/ source_mafs/m100_chr12_62602752-62622213.maf settings/newParams_5block-10to3000 &
 disown
 
+To run the entire null-model pipeline:
+
+TODO
+
 To collect results (wait until all the runAlls are done):
 
 echo "-t blocks --numBlocksPerOutput 10" | ./rerunMergeForDirs.sh q*5block* &
