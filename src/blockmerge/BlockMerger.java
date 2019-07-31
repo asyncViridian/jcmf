@@ -15,9 +15,7 @@ import java.math.RoundingMode;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.Iterator;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 
 public class BlockMerger {
 
@@ -496,22 +494,15 @@ public class BlockMerger {
                 BufferedWriter writer = Files.newBufferedWriter(file);
 
                 // build the sequence lines for each individual species first
-                // TODO : move the assembly section up here so I can format the
-                //        MAF file properly later.
-
-                // write an overall file header if necessary
-                if (BlockMerger.outType == FileType.MAF) {
-                    // MAF header
-                    writer.write("##maf version=1 program=blockmerger.jar\n");
-                    writer.write("a \n");
-                }
-                // write file lines for each species to disk
+                Map<String, StringBuilder> headers = new HashMap<>();
+                Map<String, StringBuilder> sequences = new HashMap<>();
+                Map<String, BigInteger> seqLengths = new HashMap<>();
+                Map<String, BigInteger> gapLengths = new HashMap<>();
+                // Generate the headers
                 for (String species : speciesToMerge) {
-                    // Initialize to track info for gapStats
+                    // track info for gapStats later
                     BigInteger seqLength = BigInteger.ZERO;
-                    BigInteger gapLength = BigInteger.ZERO;
 
-                    // write each species sequence
                     // write the species and originating chromosome
                     MAFAlignmentBlock.Sequence first =
                             toMerge.getFirst().sequences.get(
@@ -524,8 +515,9 @@ public class BlockMerger {
 
                     // if the merged sequence has a size of 0
                     if (seqLength.equals(BigInteger.ZERO)) {
-                        // don't even print it
-                        // skip this line of output
+                        headers.put(species, null);
+                        sequences.put(species, null);
+                        seqLengths.put(species, seqLength);
                         continue;
                     }
 
@@ -561,6 +553,13 @@ public class BlockMerger {
                         speciesHeader.append(s.start.add(s.size));
                     }
                     // we have the species header at this point
+                    headers.put(species, speciesHeader);
+                    seqLengths.put(species, seqLength);
+                }
+                // build the individual (aligned) full sequences
+                for (String species : speciesToMerge) {
+                    // track info for gapStats later
+                    BigInteger gapLength = BigInteger.ZERO;
 
                     // build the contents of each block for each species
                     int numBlock = 1;
@@ -592,7 +591,39 @@ public class BlockMerger {
                         }
                         numBlock++;
                     }
-                    // we have the assembled sequence including Ns and -s here
+
+                    // save our results
+                    gapLengths.put(species,gapLength);
+                    sequences.put(species, sequence);
+                }
+                // TODO : move the assembly section up here so I can format the
+                //        MAF file properly later.
+
+                // write an overall file header if necessary
+                if (BlockMerger.outType == FileType.MAF) {
+                    // MAF header
+                    writer.write("##maf version=1 program=blockmerger.jar\n");
+                    writer.write("a \n");
+                }
+                // write file lines for each species to disk
+                for (String species : speciesToMerge) {
+                    // Initialize to track info for gapStats
+                    BigInteger seqLength = seqLengths.get(species);
+
+                    // if the merged sequence has a size of 0
+                    if (seqLength.equals(BigInteger.ZERO)) {
+                        // don't even print it
+                        // skip this line of output
+                        continue;
+                    }
+
+                    // build the sequence name
+                    StringBuilder speciesHeader = headers.get(species);
+
+                    // build the contents of each block for each species
+                    StringBuilder sequence = sequences.get(species);
+
+                    // Write the file proper
                     if (BlockMerger.outType == FileType.FASTA) {
                         // Write a FASTA entry
                         writer.write(">" + speciesHeader.toString() + "\n");
@@ -603,6 +634,11 @@ public class BlockMerger {
                         writer.write(content);
                         writer.write("\n");
                     } else if (BlockMerger.outType == FileType.MAF) {
+                        // A source of canonical seq information...
+                        MAFAlignmentBlock.Sequence first =
+                                toMerge.getFirst().sequences.get(
+                                        species);
+
                         // write a MAF entry
                         // standard line begin
                         writer.write("s ");
@@ -637,16 +673,25 @@ public class BlockMerger {
                                                             14 - print.length()))
                                              + " ");
                         // The alignment sequence itself
-                        // TODO fix the alignment of this aufdhsafdk
                         writer.write(sequence.toString());
                         writer.write("\n");
                     }
+                }
+                // Plot to gapStats
+                for (String species : speciesToMerge) {
                     // write the sequence length vs gap percentage
-                    // (one point per species-sequence)
-                    gapStats.addValue(new BigDecimal(seqLength),
-                                      (new BigDecimal(gapLength))
+                    // (one point per species-sequence, excludes 0-length seq)
+                    if (seqLengths.get(species).equals(BigInteger.ZERO)) {
+                        continue;
+                    }
+                    BigDecimal seqLength = new BigDecimal(
+                            seqLengths.get(species));
+                    BigDecimal gapLength = new BigDecimal(
+                            gapLengths.get(species));
+                    gapStats.addValue(seqLength,
+                                      (gapLength)
                                               .multiply(BigDecimal.valueOf(100))
-                                              .divide(new BigDecimal(seqLength),
+                                              .divide(seqLength,
                                                       RoundingMode.HALF_EVEN));
                 }
                 // write the mergeblocksize statistic

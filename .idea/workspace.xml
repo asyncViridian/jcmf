@@ -28,14 +28,18 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/blockmerge/BlockMerger.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="355">
-              <caret line="499" column="50" selection-start-line="499" selection-start-column="50" selection-end-line="499" selection-end-column="50" />
+            <state relative-caret-position="605">
+              <caret line="589" column="44" lean-forward="true" selection-start-line="589" selection-start-column="44" selection-end-line="589" selection-end-column="44" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#3557#9893#1" />
                 <element signature="e#10005#13726#0" />
                 <element signature="e#11854#11992#1" />
                 <element signature="e#13754#14097#0" />
+                <element signature="e#23237#25958#1" />
+                <element signature="e#22941#23025#1" />
+                <element signature="e#22921#28329#1" />
+                <element signature="e#32132#32979#1" />
               </folding>
             </state>
           </provider>
@@ -415,7 +419,7 @@
       <workItem from="1563163198758" duration="5003000" />
       <workItem from="1563241455352" duration="13305000" />
       <workItem from="1564532014895" duration="329000" />
-      <workItem from="1564547929106" duration="6098000" />
+      <workItem from="1564547929106" duration="7359000" />
     </task>
     <servers />
   </component>
@@ -452,7 +456,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="217729000" />
+    <option name="totallyTimeSpent" value="218990000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-9" y="-9" width="1698" height="1020" extended-state="6" />
@@ -826,14 +830,18 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/blockmerge/BlockMerger.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="355">
-          <caret line="499" column="50" selection-start-line="499" selection-start-column="50" selection-end-line="499" selection-end-column="50" />
+        <state relative-caret-position="605">
+          <caret line="589" column="44" lean-forward="true" selection-start-line="589" selection-start-column="44" selection-end-line="589" selection-end-column="44" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#3557#9893#1" />
             <element signature="e#10005#13726#0" />
             <element signature="e#11854#11992#1" />
             <element signature="e#13754#14097#0" />
+            <element signature="e#23237#25958#1" />
+            <element signature="e#22941#23025#1" />
+            <element signature="e#22921#28329#1" />
+            <element signature="e#32132#32979#1" />
           </folding>
         </state>
       </provider>
