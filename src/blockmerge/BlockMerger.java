@@ -5,6 +5,7 @@ import util.MAFReader;
 import org.apache.commons.cli.*;
 import util.SimpleNumberHistogram;
 import util.SimpleScatterPlot;
+import util.FileType;
 
 import java.io.BufferedWriter;
 import java.io.IOException;
@@ -91,7 +92,7 @@ public class BlockMerger {
     private static String srcDir;
     private static final String srcDir_DEFAULT = "";
     /**
-     * The custom name part of the FASTA-format output files that we will write.
+     * The custom name part of the output files that we will write.
      */
     private static String outName;
     /**
@@ -99,6 +100,11 @@ public class BlockMerger {
      */
     private static String outDir;
     private static final String outDir_DEFAULT = "";
+    /**
+     * The file output format to use.
+     */
+    private static FileType outType;
+    private static final FileType outType_DEFAULT = FileType.FASTA;
 
     public static void main(String[] args) throws IOException {
         // handle command-line argument processing :)
@@ -109,9 +115,11 @@ public class BlockMerger {
                     Option.builder("t")
                             .longOpt("mergeType")
                             .hasArg()
-                            .desc("'bases' (fixed number of bases per merge)," +
-                                          " 'blocks' (fixed number of blocks " +
-                                          "per merge), or 'fillblocks' " +
+                            .desc("" +
+//                                          "'bases' (fixed number of bases
+//                                          per merge), " +
+                                          "'blocks' (fixed number of blocks " +
+                                          "per merge) or 'fillblocks' " +
                                           "(contiguous blocks merged to " +
                                           "within a range of merge lenghs) to" +
                                           " determine the type of merge used " +
@@ -127,24 +135,28 @@ public class BlockMerger {
                                           "block-counting " +
                                           "merging). Defaults to " + NUM_BLOCKS_PER_OUTPUT_DEFAULT)
                             .build());
-            BlockMerger.options.addOption(
-                    Option.builder()
-                            .longOpt("numBasesPerOutput")
-                            .hasArg()
-                            .desc("Number of bases to include in each "
-                                          + "output block (if using "
-                                          + "base-counting merging). " +
-                                          "Defaults to " + NUM_BASES_PER_OUTPUT_DEFAULT)
-                            .build());
-            BlockMerger.options.addOption(
-                    Option.builder()
-                            .longOpt("numBasesIncrement")
-                            .hasArg()
-                            .desc("Number of bases to increment between "
-                                          + "each output merged block (if" +
-                                          " using base-counting merging)." +
-                                          " Defaults to " + NUM_BASES_INCREMENT_DEFAULT)
-                            .build());
+//            BlockMerger.options.addOption(
+//                    Option.builder()
+//                            .longOpt("numBasesPerOutput")
+//                            .hasArg()
+//                            .desc("Number of bases to include " +
+//                                          "in each "
+//                                          + "output block (if using "
+//                                          + "base-counting merging). " +
+//                                          "Defaults to " +
+//                                          NUM_BASES_PER_OUTPUT_DEFAULT)
+//                            .build());
+//            BlockMerger.options.addOption(
+//                    Option.builder()
+//                            .longOpt("numBasesIncrement")
+//                            .hasArg()
+//                            .desc("Number of bases to " +
+//                                          "increment between "
+//                                          + "each output merged block (if" +
+//                                          " using base-counting merging)." +
+//                                          " Defaults to " +
+//                                          NUM_BASES_INCREMENT_DEFAULT)
+//                            .build());
             BlockMerger.options.addOption(
                     Option.builder()
                             .longOpt("gapThreshold")
@@ -214,8 +226,16 @@ public class BlockMerger {
                     Option.builder("o")
                             .longOpt("outName")
                             .hasArg()
-                            .desc("Output FASTA files prefix")
+                            .desc("Output file prefix")
                             .required()
+                            .build());
+            BlockMerger.options.addOption(
+                    Option.builder("ot")
+                            .longOpt("outType")
+                            .hasArg()
+                            .desc("'FASTA' to output FASTA file, " +
+                                          "'MAF' to output MAF file. " +
+                                          "Defaults to FASTA format.")
                             .build());
         }
         // Parse the commandline arguments
@@ -243,20 +263,21 @@ public class BlockMerger {
                 BlockMerger.NUM_BLOCKS_PER_OUTPUT =
                         NUM_BLOCKS_PER_OUTPUT_DEFAULT;
             }
-            // set the numBasesPerOutput
-            if (line.hasOption("numBasesPerOutput")) {
-                BlockMerger.NUM_BASES_PER_OUTPUT = Integer.valueOf(
-                        line.getOptionValue("numBasesPerOutput"));
-            } else {
-                BlockMerger.NUM_BASES_PER_OUTPUT = NUM_BASES_PER_OUTPUT_DEFAULT;
-            }
-            // set the numBasesIncrement
-            if (line.hasOption("numBasesIncrement")) {
-                BlockMerger.NUM_BASES_INCREMENT = Integer.valueOf(
-                        line.getOptionValue("numBasesIncrement"));
-            } else {
-                BlockMerger.NUM_BASES_INCREMENT = NUM_BASES_INCREMENT_DEFAULT;
-            }
+//            // set the numBasesPerOutput
+//            if (line.hasOption("numBasesPerOutput")) {
+//                BlockMerger.NUM_BASES_PER_OUTPUT = Integer.valueOf(
+//                        line.getOptionValue("numBasesPerOutput"));
+//            } else {
+//                BlockMerger.NUM_BASES_PER_OUTPUT =
+//                NUM_BASES_PER_OUTPUT_DEFAULT;
+//            }
+//            // set the numBasesIncrement
+//            if (line.hasOption("numBasesIncrement")) {
+//                BlockMerger.NUM_BASES_INCREMENT = Integer.valueOf(
+//                        line.getOptionValue("numBasesIncrement"));
+//            } else {
+//                BlockMerger.NUM_BASES_INCREMENT = NUM_BASES_INCREMENT_DEFAULT;
+//            }
             // set the gapThreshold
             if (line.hasOption("gapThreshold")) {
                 BlockMerger.GAP_THRESHOLD = Integer.valueOf(
@@ -301,6 +322,17 @@ public class BlockMerger {
             }
             // set the out fileprefix
             BlockMerger.outName = line.getOptionValue("o");
+            // set the out type
+            if (line.hasOption("ot")) {
+                String value = line.getOptionValue("ot");
+                if (value.toLowerCase().equals("fasta")) {
+                    BlockMerger.outType = FileType.FASTA;
+                } else { // if (value.toLowerCase().equals("maf")) {
+                    BlockMerger.outType = FileType.MAF;
+                }
+            } else {
+                BlockMerger.outType = BlockMerger.outType_DEFAULT;
+            }
         } catch (ParseException exp) {
             // something went wrong
             System.err.println("Parsing failed. Reason: " + exp.getMessage());
@@ -316,8 +348,8 @@ public class BlockMerger {
                                          BlockMerger.srcName);
 
         if (MERGE_TYPE == MergeType.BASES) {
-            // TODO write base-based merging...
-            throw new RuntimeException("not implemented yet");
+            // TODO write base-based merging...???
+            throw new RuntimeException("not implemented");
         } else if (MERGE_TYPE == MergeType.BLOCKS || MERGE_TYPE == MergeType.FILLBLOCKS) {
             // Case where merge style is any of the two below:
             // Block-based merging (block-shift based, fixed number of blocks)
@@ -450,14 +482,18 @@ public class BlockMerger {
                 }
 
                 // Write to disk!:
-                // create output FASTA file
+                // create output file
                 Path file = Paths.get(BlockMerger.outDir,
-                                      BlockMerger.outName + "_" + i.toString() + ".fasta");
+                                      BlockMerger.outName
+                                              + "_"
+                                              + i.toString()
+                                              + "."
+                                              + BlockMerger.outType.toString().toLowerCase());
                 Files.deleteIfExists(file);
                 Files.createFile(file);
                 BufferedWriter writer = Files.newBufferedWriter(file);
 
-                // write FASTA lines to disk
+                // write file lines to disk
                 for (String species : speciesToMerge) {
                     // Initialize to track info for gapStats
                     BigInteger seqLength = BigInteger.ZERO;
@@ -512,37 +548,42 @@ public class BlockMerger {
                         speciesHeader.append("-");
                         speciesHeader.append(s.start.add(s.size));
                     }
-                    writeFastaHeader(writer, speciesHeader.toString());
+                    // TODO: we have the species header at this point
+                    writeOutputHeader(writer, speciesHeader.toString());
 
-                    // write the contents of each block for each species
+                    // build the contents of each block for each species
                     int numBlock = 1;
                     boolean lastBlockWasGap = false;
+                    StringBuilder sequence = new StringBuilder();
                     for (MAFAlignmentBlock block : toMerge) {
                         // get the raw sequence and fill it up with N as needed
                         MAFAlignmentBlock.Sequence seq = block.sequences.get(
                                 species);
                         if (!seq.isGap) {
                             // if we have contents write the contents directly
-                            writeFastaContent(writer, seq.contents);
+                            sequence.append(seq.contents);
                             if (!seq.left.length.equals(
                                     BigInteger.ZERO) && numBlock != 1 && !lastBlockWasGap) {
                                 // if there is nonzero amount of context
                                 // bases (to the right)
                                 // But we do not want to include gaps that are
                                 // not in the "internals" of the merged area
-                                writeFastaContent(writer, repeat("N",
-                                                                 seq.left.length));
+                                sequence.append(repeat("N",
+                                                       seq.left.length));
                                 gapLength = gapLength.add(seq.left.length);
                             }
                             lastBlockWasGap = false;
                         } else {
                             // if this is gap (unknown reference?) fill with Ns
-                            writeFastaContent(writer, repeat("N", seq.size));
+                            sequence.append(repeat("N", seq.size));
                             gapLength = gapLength.add(seq.size);
                             lastBlockWasGap = true;
                         }
                         numBlock++;
                     }
+                    // TODO we have the assembled sequence including Ns and -
+                    //  at this point
+                    writeOutputContent(writer, sequence.toString());
                     writer.write("\n");
                     // write the sequence length vs gap percentage
                     // (one point per species-sequence)
@@ -600,21 +641,24 @@ public class BlockMerger {
     }
 
     /**
-     * Writes a line to the given writer starting with ">" followed by the
-     * given header, then a newline.
+     * Writes metadata about the sequence itself, as appropriate.
      *
      * @param writer Writer to use.
      * @param header Content of the header to write.
      * @throws IOException if something goes wrong with using writer
      */
-    private static void writeFastaHeader(BufferedWriter writer, String header)
+    private static void writeOutputHeader(BufferedWriter writer, String header)
             throws IOException {
         if (writer == null) {
             throw new IllegalArgumentException("null writer passed");
         } else if (header == null) {
             throw new IllegalArgumentException("null header passed");
         }
-        writer.write(">" + header + "\n");
+        if (BlockMerger.outType == FileType.FASTA) {
+            writer.write(">" + header + "\n");
+        } else if (BlockMerger.outType == FileType.MAF) {
+            // TODO
+        }
     }
 
     /**
@@ -626,19 +670,23 @@ public class BlockMerger {
      * @param content Content of the sequence to write.
      * @throws IOException if something goes wrong with using writer
      */
-    private static void writeFastaContent(BufferedWriter writer,
-                                          String content) throws IOException {
+    private static void writeOutputContent(BufferedWriter writer,
+                                           String content) throws IOException {
         if (writer == null) {
             throw new IllegalArgumentException("null writer passed");
         } else if (content == null) {
             throw new IllegalArgumentException("null header passed");
         }
-        if (REMOVE_GAPS) {
-            content = content.replace("-", "");
-        }
-        writer.write(content);
-        if (!REMOVE_NEWLINES) {
-            writer.write("\n");
+        if (BlockMerger.outType == FileType.FASTA) {
+            if (REMOVE_GAPS) {
+                content = content.replace("-", "");
+            }
+            writer.write(content);
+            if (!REMOVE_NEWLINES) {
+                writer.write("\n");
+            }
+        } else if (BlockMerger.outType == FileType.MAF) {
+            // TODO
         }
     }
 
@@ -730,4 +778,5 @@ public class BlockMerger {
     public enum MergeType {
         BASES, BLOCKS, FILLBLOCKS
     }
+
 }

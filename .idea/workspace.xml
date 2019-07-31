@@ -1,7 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="3da6e499-81fb-4a08-856f-3dc0c5fe102e" name="Default Changelist" comment="" />
+    <list default="true" id="3da6e499-81fb-4a08-856f-3dc0c5fe102e" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/util/FileType.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/notes/meeting-notes.txt" beforeDir="false" afterPath="$PROJECT_DIR$/notes/meeting-notes.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/blockmerge/BlockMerger.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/blockmerge/BlockMerger.java" afterDir="false" />
+    </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -17,8 +22,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/crosscompare/ConsensusOverlap.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="188">
-              <caret line="230" column="28" lean-forward="true" selection-start-line="230" selection-start-column="28" selection-end-line="230" selection-end-column="28" />
+            <state>
+              <caret line="230" column="28" selection-start-line="230" selection-start-column="28" selection-end-line="230" selection-end-column="28" />
             </state>
           </provider>
         </entry>
@@ -26,14 +31,25 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/blockmerge/BlockMerger.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-148">
-              <caret line="663" column="25" lean-forward="true" selection-start-line="663" selection-start-column="25" selection-end-line="663" selection-end-column="25" />
+            <state relative-caret-position="544">
+              <caret line="579" column="34" selection-start-line="579" selection-start-column="34" selection-end-line="579" selection-end-column="34" />
               <folding>
                 <element signature="imports" expanded="true" />
+                <element signature="e#3557#9893#1" />
+                <element signature="e#10005#13726#0" />
+                <element signature="e#11854#11992#1" />
+                <element signature="e#13754#14097#0" />
                 <element signature="method#repeat#0;class#BlockMerger#0" />
-                <element signature="method#writeFastaHeader#0;class#BlockMerger#0" />
-                <element signature="method#writeFastaContent#0;class#BlockMerger#0" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/util/FileType.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="63">
+              <caret line="3" column="14" lean-forward="true" selection-start-line="3" selection-start-column="14" selection-end-line="3" selection-end-column="14" />
             </state>
           </provider>
         </entry>
@@ -56,15 +72,12 @@
         <option value="JUnit5 Test Class" />
         <option value="Interface" />
         <option value="Class" />
+        <option value="Enum" />
       </list>
     </option>
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>class adja`</find>
-      <find>read input</find>
-      <find>Pair&lt;</find>
-      <find>filePrefix</find>
       <find>in</find>
       <find>num</find>
       <find>simplescatter</find>
@@ -91,6 +104,10 @@
       <find>TrackGenerator</find>
       <find>intervals</find>
       <find>invalid</find>
+      <find>FASTA</find>
+      <find>-</find>
+      <find>writeFas</find>
+      <find>writeOutput</find>
     </findStrings>
     <replaceStrings>
       <replace>assertEquals\((\2), (\1)\);</replace>
@@ -140,7 +157,6 @@
         <option value="$PROJECT_DIR$/src/util/SimpleNumberHistogram.java" />
         <option value="$PROJECT_DIR$/src/util/SimpleStringBinHistogram.java" />
         <option value="$PROJECT_DIR$/src/util/SimpleBarChart.java" />
-        <option value="$PROJECT_DIR$/src/blockmerge/BlockMerger.java" />
         <option value="$PROJECT_DIR$/src/util/StockholmAlignmentBlock.java" />
         <option value="$APPLICATION_CONFIG_DIR$/scratches/scratch.java" />
         <option value="$PROJECT_DIR$/src/trackgenerate/TrackGenerator.java" />
@@ -148,6 +164,8 @@
         <option value="$PROJECT_DIR$/src/trackgenerate/PageGenerator.java" />
         <option value="$PROJECT_DIR$/src/crosscompare/ConsensusOverlapCompare.java" />
         <option value="$PROJECT_DIR$/src/crosscompare/ConsensusOverlap.java" />
+        <option value="$PROJECT_DIR$/src/util/FileType.java" />
+        <option value="$PROJECT_DIR$/src/blockmerge/BlockMerger.java" />
       </list>
     </option>
   </component>
@@ -166,6 +184,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
@@ -197,11 +216,16 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="trackgenerate" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="jcmf" type="b2602c69:ProjectViewProjectNode" />
+              <item name="jcmf" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="util" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -395,6 +419,7 @@
       <workItem from="1563163198758" duration="5003000" />
       <workItem from="1563241455352" duration="13305000" />
       <workItem from="1564532014895" duration="329000" />
+      <workItem from="1564547929106" duration="1383000" />
     </task>
     <servers />
   </component>
@@ -431,13 +456,14 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="211631000" />
+    <option name="totallyTimeSpent" value="213014000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-9" y="-9" width="1698" height="1020" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.46900585" visible="true" weight="0.25647348" />
-      <window_info id="Structure" order="1" sideWeight="0.5309942" side_tool="true" visible="true" weight="0.25647348" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.46783626" visible="true" weight="0.26078916" />
+      <window_info id="Structure" order="1" sideWeight="0.53216374" side_tool="true" visible="true" weight="0.26078916" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
       <window_info id="UI Designer" order="4" />
@@ -783,8 +809,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/crosscompare/ConsensusOverlap.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="188">
-          <caret line="230" column="28" lean-forward="true" selection-start-line="230" selection-start-column="28" selection-end-line="230" selection-end-column="28" />
+        <state>
+          <caret line="230" column="28" selection-start-line="230" selection-start-column="28" selection-end-line="230" selection-end-column="28" />
         </state>
       </provider>
     </entry>
@@ -795,15 +821,24 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/util/FileType.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="63">
+          <caret line="3" column="14" lean-forward="true" selection-start-line="3" selection-start-column="14" selection-end-line="3" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/blockmerge/BlockMerger.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-148">
-          <caret line="663" column="25" lean-forward="true" selection-start-line="663" selection-start-column="25" selection-end-line="663" selection-end-column="25" />
+        <state relative-caret-position="544">
+          <caret line="579" column="34" selection-start-line="579" selection-start-column="34" selection-end-line="579" selection-end-column="34" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="e#3557#9893#1" />
+            <element signature="e#10005#13726#0" />
+            <element signature="e#11854#11992#1" />
+            <element signature="e#13754#14097#0" />
             <element signature="method#repeat#0;class#BlockMerger#0" />
-            <element signature="method#writeFastaHeader#0;class#BlockMerger#0" />
-            <element signature="method#writeFastaContent#0;class#BlockMerger#0" />
           </folding>
         </state>
       </provider>
