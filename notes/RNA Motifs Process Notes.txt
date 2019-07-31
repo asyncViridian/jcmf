@@ -66,10 +66,10 @@ For all information about arguments or example usage for each of the scripts, yo
 
 My typical practical workflow: (see also the "To run the entire pipeline" sample code below)
 01. Download the MAF file
-02. Create the working directory (i.e. a directory named "q_chr01_emuBigscan_5block-10to3000-allspecies")
+02. Create the working directory (i.e. a directory named "q_chr01_emuBigscan_5block-10to3000-all")
     Note that the format matters. Check the contents of rerunMergeForDirs and rerunTracksForDirs to see what substrings they expect in a working directory name (typically some variant of chrXX at least)
 03. To get CMfinder's result motifs and scores for each result from RNAphylo, run the runAll.sh script, like so (change out the parameters as appropriate, obviously):
-    ./runAll.sh q_chr01_5block-10to3000-allspecies/ source_mafs/chr5.maf settings/emuBigscan_5block
+    ./runAll.sh q_chr01_5block-10to3000-all/ source_mafs/chr5.maf settings/emuBigscan_5block
 04. To aggregate these analyses and generate a trackhub-usable format, run rerunTracksForDirs.sh, like so (change params as appropriate):
     ./rerunTracksForDirs.sh q*emuBigscan_5block*
     If you don't want to manually enter the prefix argument once the script starts, you can run it less-interactively like so:
@@ -103,38 +103,40 @@ Generating the UCSC browser format track hub (this is already handled by rerunTr
 
 To run the entire pipeline on all of the configurations:
 
-./runAll.sh q_chr01_emuBigscan_fblock-75to400-allspecies/ source_mafs/m100_chr1_149844498-149849024.maf settings/emuBigscan_fblock-75to400 &
+./runAll.sh q_chr01_emuBigscan_fblock-75to400-all/ source_mafs/m100_chr1_149844498-149849024.maf settings/emuBigscan_fblock-75to400 &
 disown
-./runAll.sh q_chr02_emuBigscan_fblock-75to400-allspecies/ source_mafs/m100_chr2_218255319-218257366.maf settings/emuBigscan_fblock-75to400 &
+./runAll.sh q_chr02_emuBigscan_fblock-75to400-all/ source_mafs/m100_chr2_218255319-218257366.maf settings/emuBigscan_fblock-75to400 &
 disown
-./runAll.sh q_chr05_emuBigscan_fblock-75to400-allspecies/ source_mafs/m100_chr5_140072857-140108630.maf settings/emuBigscan_fblock-75to400 &
+./runAll.sh q_chr05_emuBigscan_fblock-75to400-all/ source_mafs/m100_chr5_140072857-140108630.maf settings/emuBigscan_fblock-75to400 &
 disown
-./runAll.sh q_chr12_emuBigscan_fblock-75to400-allspecies/ source_mafs/m100_chr12_62602752-62622213.maf settings/emuBigscan_fblock-75to400 &
+./runAll.sh q_chr12_emuBigscan_fblock-75to400-all/ source_mafs/m100_chr12_62602752-62622213.maf settings/emuBigscan_fblock-75to400 &
 disown
-./runAll.sh q_chr01_emuBigscan_10block-10to3000-allspecies/ source_mafs/m100_chr1_149844498-149849024.maf settings/emuBigscan_10block-10to3000 &
+./runAll.sh q_chr01_emuBigscan_10block-10to3000-all/ source_mafs/m100_chr1_149844498-149849024.maf settings/emuBigscan_10block-10to3000 &
 disown
-./runAll.sh q_chr02_emuBigscan_10block-10to3000-allspecies/ source_mafs/m100_chr2_218255319-218257366.maf settings/emuBigscan_10block-10to3000 &
+./runAll.sh q_chr02_emuBigscan_10block-10to3000-all/ source_mafs/m100_chr2_218255319-218257366.maf settings/emuBigscan_10block-10to3000 &
 disown
-./runAll.sh q_chr05_emuBigscan_10block-10to3000-allspecies/ source_mafs/m100_chr5_140072857-140108630.maf settings/emuBigscan_10block-10to3000 &
+./runAll.sh q_chr05_emuBigscan_10block-10to3000-all/ source_mafs/m100_chr5_140072857-140108630.maf settings/emuBigscan_10block-10to3000 &
 disown
-./runAll.sh q_chr12_emuBigscan_10block-10to3000-allspecies/ source_mafs/m100_chr12_62602752-62622213.maf settings/emuBigscan_10block-10to3000 &
+./runAll.sh q_chr12_emuBigscan_10block-10to3000-all/ source_mafs/m100_chr12_62602752-62622213.maf settings/emuBigscan_10block-10to3000 &
 disown
-./runAll.sh q_chr01_emuBigscan_5block-10to3000-allspecies/ source_mafs/m100_chr1_149844498-149849024.maf settings/emuBigscan_5block-10to3000 &
+./runAll.sh q_chr01_emuBigscan_5block-10to3000-all/ source_mafs/m100_chr1_149844498-149849024.maf settings/emuBigscan_5block-10to3000 &
 disown
-./runAll.sh q_chr02_emuBigscan_5block-10to3000-allspecies/ source_mafs/m100_chr2_218255319-218257366.maf settings/emuBigscan_5block-10to3000 &
+./runAll.sh q_chr02_emuBigscan_5block-10to3000-all/ source_mafs/m100_chr2_218255319-218257366.maf settings/emuBigscan_5block-10to3000 &
 disown
-./runAll.sh q_chr05_emuBigscan_5block-10to3000-allspecies/ source_mafs/m100_chr5_140072857-140108630.maf settings/emuBigscan_5block-10to3000 &
+./runAll.sh q_chr05_emuBigscan_5block-10to3000-all/ source_mafs/m100_chr5_140072857-140108630.maf settings/emuBigscan_5block-10to3000 &
 disown
-./runAll.sh q_chr12_emuBigscan_5block-10to3000-allspecies/ source_mafs/m100_chr12_62602752-62622213.maf settings/emuBigscan_5block-10to3000 &
+./runAll.sh q_chr12_emuBigscan_5block-10to3000-all/ source_mafs/m100_chr12_62602752-62622213.maf settings/emuBigscan_5block-10to3000 &
 disown
-./runAll.sh q_chr01_newParams_5block-10to3000-allspecies/ source_mafs/m100_chr1_149844498-149849024.maf settings/newParams_5block-10to3000 &
+./runAll.sh q_chr01_newParams_5block-10to3000-all/ source_mafs/m100_chr1_149844498-149849024.maf settings/newParams_5block-10to3000 &
 disown
-./runAll.sh q_chr02_newParams_5block-10to3000-allspecies/ source_mafs/m100_chr2_218255319-218257366.maf settings/newParams_5block-10to3000 &
+./runAll.sh q_chr02_newParams_5block-10to3000-all/ source_mafs/m100_chr2_218255319-218257366.maf settings/newParams_5block-10to3000 &
 disown
-./runAll.sh q_chr05_newParams_5block-10to3000-allspecies/ source_mafs/m100_chr5_140072857-140108630.maf settings/newParams_5block-10to3000 &
+./runAll.sh q_chr05_newParams_5block-10to3000-all/ source_mafs/m100_chr5_140072857-140108630.maf settings/newParams_5block-10to3000 &
 disown
-./runAll.sh q_chr12_newParams_5block-10to3000-allspecies/ source_mafs/m100_chr12_62602752-62622213.maf settings/newParams_5block-10to3000 &
+./runAll.sh q_chr12_newParams_5block-10to3000-all/ source_mafs/m100_chr12_62602752-62622213.maf settings/newParams_5block-10to3000 &
 disown
+
+To collect results (wait until all the runAlls are done):
 
 echo "-t blocks --numBlocksPerOutput 10" | ./rerunMergeForDirs.sh q*5block* &
 echo "-t blocks --numBlocksPerOutput 10" | ./rerunMergeForDirs.sh q*10block* &
