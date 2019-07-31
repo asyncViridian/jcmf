@@ -576,14 +576,10 @@ public class BlockMerger {
                     if (blockNum != 0) {
                         // collect the list of intervals need to be written
                         Set<String> areGaps = new HashSet<>();
-                        Set<String> areNotGaps = new HashSet<>();
                         for (String species : speciesToMerge) {
                             if (!lastBlockWasGap.get(species)) {
                                 // we will need to write some Ns
                                 areGaps.add(species);
-                            } else {
-                                // we will need to write some -s
-                                areNotGaps.add(species);
                             }
                         }
                         // write the intervals
@@ -664,49 +660,6 @@ public class BlockMerger {
                         }
                     }
                 }
-                // TODO below for-each loop saved for posterity, delete l8r
-//                for (String species : speciesToMerge) {
-//                    // track info for gapStats later
-//                    BigInteger gapLength = BigInteger.ZERO;
-//
-//                    // build the contents of each block for each species
-//                    int numBlock = 1;
-//                    boolean lastBlockWasGap = false;
-//                    StringBuilder sequence = new StringBuilder();
-//                    for (MAFAlignmentBlock block : toMerge) {
-//                        // get the raw sequence and fill it up with N as
-//                        needed
-//                        MAFAlignmentBlock.Sequence seq = block.sequences.get(
-//                                species);
-//                        if (!seq.isGap) {
-//                            // if we have contents write the contents directly
-//                            sequence.append(seq.contents);
-//                            if (!seq.left.length.equals(
-//                                    BigInteger.ZERO) && numBlock != 1 &&
-//                                    !lastBlockWasGap) {
-//                                // if there is nonzero amount of context
-//                                // bases (to the right)
-//                                // But we do not want to include gaps that are
-//                                // not in the "internals" of the merged area
-//                                sequence.append(repeat("N",
-//                                                       seq.left.length));
-//                                gapLength = gapLength.add(seq.left.length);
-//                            }
-//                            lastBlockWasGap = false;
-//                        } else {
-//                            // if this is gap (unknown reference?) fill
-//                            with Ns
-//                            sequence.append(repeat("N", seq.size));
-//                            gapLength = gapLength.add(seq.size);
-//                            lastBlockWasGap = true;
-//                        }
-//                        numBlock++;
-//                    }
-//
-//                    // save our results
-//                    gapLengths.put(species, gapLength);
-//                    sequences.put(species, sequence);
-//                }
 
                 // Now write the data!!!
                 // write an overall file header if necessary
