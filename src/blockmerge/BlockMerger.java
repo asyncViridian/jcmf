@@ -516,7 +516,6 @@ public class BlockMerger {
                     // if the merged sequence has a size of 0
                     if (seqLength.equals(BigInteger.ZERO)) {
                         headers.put(species, null);
-                        sequences.put(species, null);
                         seqLengths.put(species, seqLength);
                         continue;
                     }
@@ -556,7 +555,33 @@ public class BlockMerger {
                     headers.put(species, speciesHeader);
                     seqLengths.put(species, seqLength);
                 }
+
                 // build the individual (aligned) full sequences
+                // temporary variable to keep track of how merging is going
+                Map<String, Boolean> lastBlockGapStatus = new HashMap<>();
+                for (String species : speciesToMerge) {
+                    // initialize the sequence-related maps
+                    sequences.put(species, new StringBuilder());
+                    lastBlockGapStatus.put(species, Boolean.FALSE);
+                }
+                for (int blockNum = 0; blockNum < toMerge.size(); blockNum++) {
+                    // iterate through each block
+                    MAFAlignmentBlock block = toMerge.get(blockNum);
+                    // check for the longest gappy section first!
+                    BigInteger maxLength = BigInteger.ZERO;
+                    for (String species : speciesToMerge) {
+                        MAFAlignmentBlock.Sequence seq =
+                                block.sequences.get(species);
+                        if (seq.isGap
+                                && (seq.size.compareTo(maxLength) > 0)) {
+                            // if the gap block size beats max, then use max
+                            maxLength = seq.size;
+                        }
+                    }
+                    // Now we have the maximum gap size for the current block.
+                    // TODO write the writing code
+                }
+                // TODO below for-each loop saved for posterity, delete l8r
                 for (String species : speciesToMerge) {
                     // track info for gapStats later
                     BigInteger gapLength = BigInteger.ZERO;
@@ -593,12 +618,11 @@ public class BlockMerger {
                     }
 
                     // save our results
-                    gapLengths.put(species,gapLength);
+                    gapLengths.put(species, gapLength);
                     sequences.put(species, sequence);
                 }
-                // TODO : move the assembly section up here so I can format the
-                //        MAF file properly later.
 
+                // Now write the data!!!
                 // write an overall file header if necessary
                 if (BlockMerger.outType == FileType.MAF) {
                     // MAF header

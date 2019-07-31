@@ -28,8 +28,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/blockmerge/BlockMerger.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="605">
-              <caret line="589" column="44" lean-forward="true" selection-start-line="589" selection-start-column="44" selection-end-line="589" selection-end-column="44" />
+            <state relative-caret-position="548">
+              <caret line="583" column="75" selection-start-line="583" selection-start-column="75" selection-end-line="583" selection-end-column="75" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#3557#9893#1" />
@@ -419,7 +419,7 @@
       <workItem from="1563163198758" duration="5003000" />
       <workItem from="1563241455352" duration="13305000" />
       <workItem from="1564532014895" duration="329000" />
-      <workItem from="1564547929106" duration="7359000" />
+      <workItem from="1564547929106" duration="8349000" />
     </task>
     <servers />
   </component>
@@ -456,7 +456,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="218990000" />
+    <option name="totallyTimeSpent" value="219980000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-9" y="-9" width="1698" height="1020" extended-state="6" />
@@ -830,8 +830,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/blockmerge/BlockMerger.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="605">
-          <caret line="589" column="44" lean-forward="true" selection-start-line="589" selection-start-column="44" selection-end-line="589" selection-end-column="44" />
+        <state relative-caret-position="548">
+          <caret line="583" column="75" selection-start-line="583" selection-start-column="75" selection-end-line="583" selection-end-column="75" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#3557#9893#1" />
