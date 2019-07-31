@@ -2,9 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3da6e499-81fb-4a08-856f-3dc0c5fe102e" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/notes/RNA Motifs Process Notes.txt" beforeDir="false" afterPath="$PROJECT_DIR$/notes/RNA Motifs Process Notes.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/blockmerge/BlockMerger.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/blockmerge/BlockMerger.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/blockmerge/BlockMergerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/blockmerge/BlockMergerTest.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -30,8 +28,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/blockmerge/BlockMerger.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="138">
-              <caret line="469" column="40" selection-start-line="469" selection-start-column="40" selection-end-line="469" selection-end-column="40" />
+            <state relative-caret-position="252">
+              <caret line="33" column="52" selection-start-line="33" selection-start-column="52" selection-end-line="33" selection-end-column="52" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#3557#9893#1" />
@@ -98,7 +96,6 @@
       <find>minOutput</find>
       <find>maxOut</find>
       <find>Source</find>
-      <find>TODO</find>
       <find>Alignment:</find>
       <find>gapStats</find>
       <find>writer.</find>
@@ -113,6 +110,7 @@
       <find>print =</find>
       <find>hg38</find>
       <find>&quot;hg38</find>
+      <find>TODO</find>
     </findStrings>
     <replaceStrings>
       <replace>assertEquals\((\2), (\1)\);</replace>
@@ -450,7 +448,7 @@
       <workItem from="1563163198758" duration="5003000" />
       <workItem from="1563241455352" duration="13305000" />
       <workItem from="1564532014895" duration="329000" />
-      <workItem from="1564547929106" duration="13589000" />
+      <workItem from="1564547929106" duration="13638000" />
     </task>
     <servers />
   </component>
@@ -487,7 +485,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="225220000" />
+    <option name="totallyTimeSpent" value="225269000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-9" y="-9" width="1698" height="1020" extended-state="6" />
@@ -532,13 +530,13 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/blockmerge/BlockMerger.java</url>
-          <line>572</line>
+          <line>571</line>
           <properties />
           <option name="timeStamp" value="10" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/blockmerge/BlockMerger.java</url>
-          <line>632</line>
+          <line>631</line>
           <properties />
           <option name="timeStamp" value="11" />
         </line-breakpoint>
@@ -880,8 +878,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/blockmerge/BlockMerger.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="138">
-          <caret line="469" column="40" selection-start-line="469" selection-start-column="40" selection-end-line="469" selection-end-column="40" />
+        <state relative-caret-position="252">
+          <caret line="33" column="52" selection-start-line="33" selection-start-column="52" selection-end-line="33" selection-end-column="52" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#3557#9893#1" />

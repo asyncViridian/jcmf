@@ -31,7 +31,7 @@ public class BlockMerger {
     /**
      * The reference sequence to use.
      */
-    private static final String REF_SPECIES = "hg38";
+    private static final String REF_SPECIES = "SPECA";
 
     /**
      * The type of block-merging to do.
@@ -466,7 +466,6 @@ public class BlockMerger {
 
                 // Standard Filter:
                 // check output against sequence length bounds
-                // TODO: perhaps generalize to allow other human assemblies???
                 MAFAlignmentBlock.Sequence firstCheckSeqLen =
                         toMerge.getFirst().sequences.get(
                                 REF_SPECIES);
