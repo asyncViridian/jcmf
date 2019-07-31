@@ -27,8 +27,7 @@ class BlockMergerTest {
     @Test
     void main() {
         try {
-            Files.list(
-                    Paths.get("test/blockmerge/data"))
+            Files.list(Paths.get("test/blockmerge/data"))
                     .map(p -> p.getFileName().toString())
                     .map(s -> s.substring(0, s.indexOf(".maf")))
                     .forEach(filename -> {
