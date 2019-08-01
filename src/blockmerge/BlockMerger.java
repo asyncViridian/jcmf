@@ -740,6 +740,10 @@ public class BlockMerger {
                         writer.write("\n");
                     }
                 }
+                // Add a closing newline
+                if (BlockMerger.outType == FileType.MAF) {
+                    writer.write("\n");
+                }
                 // Plot to gapStats
                 for (String species : speciesToMerge) {
                     // write the sequence length vs gap percentage
