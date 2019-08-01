@@ -3,6 +3,7 @@ package crosscompare;
 import org.apache.commons.cli.*;
 import org.apache.commons.lang3.tuple.ImmutablePair;
 import org.apache.commons.lang3.tuple.Pair;
+import util.PhyloComparator;
 import util.ScoredStockholmAlignmentBlock;
 
 import java.io.BufferedWriter;
@@ -208,9 +209,14 @@ public class ConsensusOverlap {
 
         // Start writing the actual file
         writer.write("<html><body style=\"font-family:monospace;\">");
-        writer.write("<p style=\"text-align:center;\">" +
+        writer.write("<div style=\"text-align:center;\">");
+        writer.write("<p>" +
                              ConsensusOverlap.chr + " motif clusters" +
                              "</p>");
+        writer.write("<a href=\"https://i.imgur.com/89KIjJN.png\" " +
+                             "phylogenetic tree used" +
+                             "</a>");
+        writer.write("</div>");
         int cluster = 0;
         for (Pair<List<File>, BigInteger> currentlyPrinting : motifGroupings) {
             cluster++;
@@ -330,6 +336,7 @@ public class ConsensusOverlap {
                 // TODO order the species display a more reasonable way
                 List<String> lspecies = new ArrayList<>();
                 lspecies.addAll(species);
+                lspecies.sort(new PhyloComparator());
                 writer.write("<td><div id=\"score" + cluster + "\" " +
                                      "style=\"overflow-x:scroll;width:0vw;" +
                                      "white-space:nowrap;\">");

@@ -10,8 +10,8 @@ Things done:
     - Rerun results because something went wrong with settings earlier /)_-
     - Got Multiperm to work!!!
     - Create randomized-input results (using Multiperm)
-Things IP (in order of priority, top->down):
     - Score against sequences in phylogeny
+Things IP (in order of priority, top->down):
     - Check boundaries where blocks cannot be merged & calculate statistics on that
     - Check against Rfam
     - Evaluate randomized-input results (significance threshold)
@@ -21,7 +21,7 @@ Things IP (in order of priority, top->down):
         - Find p(emitting some given seq from some given CM)?
 Things undone:
     - A prettier fix for motif cluster display
-        - is probably not worth it...
+        - is probably not worth
 Things to ask about:
     - Ask about the "TODO" phrases scattered across my thesis draft document - these denote questions
     - I don't understand why SISSIz refuses to compile, is it worth trying at this point?
