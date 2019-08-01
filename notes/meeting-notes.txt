@@ -11,14 +11,15 @@ Things done:
     - Got Multiperm to work!!!
     - Create randomized-input results (using Multiperm)
     - Score against sequences in phylogeny
+        - A nice pretty color visualization on that too.
 Things IP (in order of priority, top->down):
     - Check boundaries where blocks cannot be merged & calculate statistics on that
-    - Check against Rfam
-    - Evaluate randomized-input results (significance threshold)
     - Write a first-draft of the methods section for pipeline
     - Write a first-draft of the results section for blockmerging
     - Figure out how to find relative entropy between two CMs
         - Find p(emitting some given seq from some given CM)?
+    - Evaluate randomized-input results (significance threshold)
+    - Check against Rfam?
 Things undone:
     - A prettier fix for motif cluster display
         - is probably not worth
