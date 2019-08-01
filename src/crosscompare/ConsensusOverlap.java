@@ -211,10 +211,28 @@ public class ConsensusOverlap {
         writer.write("<p style=\"text-align:center;\">" +
                              ConsensusOverlap.chr + " motif clusters" +
                              "</p>");
+        int cluster = 0;
         for (Pair<List<File>, BigInteger> currentlyPrinting : motifGroupings) {
+            cluster++;
             writer.write("<hr>");
             writer.write("<p>Motif cluster starting at "
                                  + currentlyPrinting.getRight() + "</p>");
+            writer.write("<button " +
+                                 "type=\"button\" " +
+                                 "onClick=\"" +
+                                 "document.getElementById('align" + cluster + "')" +
+                                 ".style.width='85vw';" +
+                                 "document.getElementById('score" + cluster + "')" +
+                                 ".style.width='0vw';" +
+                                 "\">Alignment</button>");
+            writer.write("<button " +
+                                 "type=\"button\" " +
+                                 "onClick=\"" +
+                                 "document.getElementById('align" + cluster + "')" +
+                                 ".style.width='0vw';" +
+                                 "document.getElementById('score" + cluster + "')" +
+                                 ".style.width='85vw';" +
+                                 "\">Score</button>");
 
             // one table for each motif grouping
             writer.write("<table><tr>");
@@ -254,7 +272,8 @@ public class ConsensusOverlap {
             }
             // Write the right column: consensus structure aligned
             {
-                writer.write("<td><div style=\"overflow-x:scroll;width:85vw;" +
+                writer.write("<td><div id=\"align" + cluster + "\" " +
+                                     "style=\"overflow-x:scroll;width:85vw;" +
                                      "white-space:nowrap;\">");
                 writer.write("<table style=\"" +
                                      "border-collapse: collapse;" +
@@ -311,7 +330,8 @@ public class ConsensusOverlap {
                 // TODO order the species display a more reasonable way
                 List<String> lspecies = new ArrayList<>();
                 lspecies.addAll(species);
-                writer.write("<td><div style=\"overflow-x:scroll;width:85vw;" +
+                writer.write("<td><div id=\"score" + cluster + "\" " +
+                                     "style=\"overflow-x:scroll;width:0vw;" +
                                      "white-space:nowrap;\">");
                 writer.write("<table style=\"" +
                                      "border-collapse: collapse;" +

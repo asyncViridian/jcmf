@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3da6e499-81fb-4a08-856f-3dc0c5fe102e" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/notes/meeting-notes.txt" beforeDir="false" afterPath="$PROJECT_DIR$/notes/meeting-notes.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/crosscompare/ConsensusOverlap.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/crosscompare/ConsensusOverlap.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -20,8 +19,13 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/crosscompare/ConsensusOverlap.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="302">
-              <caret line="229" column="72" selection-start-line="229" selection-start-column="72" selection-end-line="229" selection-end-column="72" />
+            <state relative-caret-position="320">
+              <caret line="234" column="54" selection-start-line="234" selection-start-column="54" selection-end-line="234" selection-end-column="54" />
+              <folding>
+                <element signature="e#9771#11265#1" />
+                <element signature="e#11368#13851#1" />
+                <element signature="e#13304#14773#1" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -412,7 +416,7 @@
       <workItem from="1564532014895" duration="329000" />
       <workItem from="1564547929106" duration="16521000" />
       <workItem from="1564619936370" duration="683000" />
-      <workItem from="1564630173392" duration="4164000" />
+      <workItem from="1564630173392" duration="4734000" />
     </task>
     <servers />
   </component>
@@ -449,7 +453,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="232999000" />
+    <option name="totallyTimeSpent" value="233569000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-9" y="-9" width="1698" height="1020" extended-state="6" />
@@ -837,8 +841,13 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/crosscompare/ConsensusOverlap.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="302">
-          <caret line="229" column="72" selection-start-line="229" selection-start-column="72" selection-end-line="229" selection-end-column="72" />
+        <state relative-caret-position="320">
+          <caret line="234" column="54" selection-start-line="234" selection-start-column="54" selection-end-line="234" selection-end-column="54" />
+          <folding>
+            <element signature="e#9771#11265#1" />
+            <element signature="e#11368#13851#1" />
+            <element signature="e#13304#14773#1" />
+          </folding>
         </state>
       </provider>
     </entry>
