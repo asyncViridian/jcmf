@@ -148,6 +148,9 @@ public class ConsensusOverlap {
                     }
                 });
 
+        // Collect all the species involved
+        Set<String> species = new HashSet<>();
+
         // Group the files by overlapping motif structure
         BigInteger groupStartPos = BigInteger.valueOf(0);
         BigInteger groupEndPos = BigInteger.valueOf(0);
@@ -162,6 +165,9 @@ public class ConsensusOverlap {
             } catch (FileNotFoundException e) {
                 throw new RuntimeException("file is now missing?");
             }
+            // save the species that this block supports
+            species.addAll(block.scores.keySet());
+            // get the specific human block now
             ScoredStockholmAlignmentBlock.Source src =
                     block.sources.get("hg38");
 
@@ -206,81 +212,146 @@ public class ConsensusOverlap {
                              ConsensusOverlap.chr + " motif clusters" +
                              "</p>");
         for (Pair<List<File>, BigInteger> currentlyPrinting : motifGroupings) {
-            // one table for each motif grouping
             writer.write("<hr>");
             writer.write("<p>Motif cluster starting at "
                                  + currentlyPrinting.getRight() + "</p>");
 
+            // one table for each motif grouping
             writer.write("<table><tr>");
             // Write the left column: filenames with links
-            writer.write("<td><div style=\"overflow-x:scroll;width:10vw;" +
-                                 "white-space:nowrap;\">");
-            for (File f : currentlyPrinting.getLeft()) {
-                ScoredStockholmAlignmentBlock block =
-                        ScoredStockholmAlignmentBlock.constructFromScore(f);
-                ScoredStockholmAlignmentBlock.Source hgsrc = block.sources.get(
-                        "hg38");
+            {
+                writer.write("<td><div style=\"overflow-x:scroll;width:10vw;" +
+                                     "white-space:nowrap;\">");
+                writer.write("<table style=\"" +
+                                     "border-collapse: collapse;" +
+                                     "border-spacing: 0;\">");
+                for (File f : currentlyPrinting.getLeft()) {
+                    writer.write("<tr><td>&nbsp;</td></tr>");
+                    writer.write("<tr><td style=\"white-space: nowrap;\">");
+                    ScoredStockholmAlignmentBlock block =
+                            ScoredStockholmAlignmentBlock.constructFromScore(f);
+                    ScoredStockholmAlignmentBlock.Source hgsrc =
+                            block.sources.get(
+                                    "hg38");
 
-                // skip nonmatching chr
-                if (!hgsrc.chr.equals(ConsensusOverlap.chr)) {
-                    continue;
-                }
+                    // skip nonmatching chr
+                    if (!hgsrc.chr.equals(ConsensusOverlap.chr)) {
+                        continue;
+                    }
 
-                writer.write("<br/>");
-                if (ConsensusOverlap.link) {
-                    writer.write("<a href=\""
-                                         + ConsensusOverlap.relativeLinkPrefix + f.getName() + ".html\">");
+                    if (ConsensusOverlap.link) {
+                        writer.write("<a href=\""
+                                             + ConsensusOverlap.relativeLinkPrefix + f.getName() + ".html\">");
+                    }
+                    writer.write(f.getName());
+                    if (ConsensusOverlap.link) {
+                        writer.write("</a>");
+                    }
+                    writer.write("</td></tr>");
                 }
-                writer.write(f.getName());
-                if (ConsensusOverlap.link) {
-                    writer.write("</a>");
-                }
-                writer.write("<br/>");
+                writer.write("</table>");
+                writer.write("</div></td>");
             }
-            writer.write("</div></td>");
             // Write the right column: consensus structure aligned
-            writer.write("<td><div style=\"overflow-x:scroll;width:85vw;" +
-                                 "white-space:nowrap;\">");
-            for (File f : currentlyPrinting.getLeft()) {
-                ScoredStockholmAlignmentBlock block =
-                        ScoredStockholmAlignmentBlock.constructFromScore(f);
-                ScoredStockholmAlignmentBlock.Source hgsrc = block.sources.get(
-                        "hg38");
+            {
+                writer.write("<td><div style=\"overflow-x:scroll;width:85vw;" +
+                                     "white-space:nowrap;\">");
+                writer.write("<table style=\"" +
+                                     "border-collapse: collapse;" +
+                                     "border-spacing: 0;\">");
+                for (File f : currentlyPrinting.getLeft()) {
+                    ScoredStockholmAlignmentBlock block =
+                            ScoredStockholmAlignmentBlock.constructFromScore(f);
+                    ScoredStockholmAlignmentBlock.Source hgsrc =
+                            block.sources.get(
+                                    "hg38");
 
-                // skip nonmatching chr
-                if (!hgsrc.chr.equals(ConsensusOverlap.chr)) {
-                    continue;
-                }
+                    // skip nonmatching chr
+                    if (!hgsrc.chr.equals(ConsensusOverlap.chr)) {
+                        continue;
+                    }
 
-                // insert spaces corresponding to the actual position where it
-                // starts
-                for (int i = 0;
-                     hgsrc.totalSpan.getLeft()
-                             .add(block.intervals.get("hg38").getLeft())
-                             .subtract(currentlyPrinting.getRight())
-                             .compareTo(
-                                     BigInteger.valueOf(i)) > 0;
-                     i++) {
-                    writer.write("&nbsp;");
-                }
-                writer.write(block.sources.get("hg38").sequence);
-                writer.write("</br>");
+                    // write the sequence itself
+                    writer.write("<tr><td style=\"white-space: nowrap;\">");
+                    // insert spaces corresponding to the actual position
+                    // where it starts
+                    for (int i = 0;
+                         hgsrc.totalSpan.getLeft()
+                                 .add(block.intervals.get("hg38").getLeft())
+                                 .subtract(currentlyPrinting.getRight())
+                                 .compareTo(
+                                         BigInteger.valueOf(i)) > 0;
+                         i++) {
+                        writer.write("&nbsp;");
+                    }
+                    writer.write(block.sources.get("hg38").sequence);
+                    writer.write("</td></tr>");
 
-                // insert spaces corresponding to the actual position where it
-                // starts
-                for (int i = 0;
-                     hgsrc.totalSpan.getLeft()
-                             .add(block.intervals.get("hg38").getLeft())
-                             .subtract(currentlyPrinting.getRight())
-                             .compareTo(
-                                     BigInteger.valueOf(i)) > 0;
-                     i++) {
-                    writer.write("&nbsp;");
+                    // write the folding structure
+                    writer.write("<tr><td style=\"white-space: nowrap;\">");
+                    // insert spaces corresponding to the actual position
+                    // where it starts
+                    for (int i = 0;
+                         hgsrc.totalSpan.getLeft()
+                                 .add(block.intervals.get("hg38").getLeft())
+                                 .subtract(currentlyPrinting.getRight())
+                                 .compareTo(
+                                         BigInteger.valueOf(i)) > 0;
+                         i++) {
+                        writer.write("&nbsp;");
+                    }
+                    writer.write(block.SS_cons);
+                    writer.write("</td></tr>");
                 }
-                writer.write(block.SS_cons);
-                writer.write("<br/>");
+                writer.write("</table>");
+                writer.write("</div></td>");
             }
-            writer.write("</div></td>");
+            // Write the scoretable: relative quality scores for all species
+            {
+                // TODO order the species display a more reasonable way
+                List<String> lspecies = new ArrayList<>();
+                lspecies.addAll(species);
+                writer.write("<td><div style=\"overflow-x:scroll;width:85vw;" +
+                                     "white-space:nowrap;\">");
+                writer.write("<table style=\"" +
+                                     "border-collapse: collapse;" +
+                                     "border-spacing: 0;\">" +
+                                     "<tr>");
+                for (String s : lspecies) {
+                    writer.write("<th style=\"white-space: nowrap;\">");
+                    writer.write(s);
+                    writer.write("</th>");
+                }
+                writer.write("</tr>");
+                boolean first = true;
+                for (File f : currentlyPrinting.getLeft()) {
+                    ScoredStockholmAlignmentBlock block =
+                            ScoredStockholmAlignmentBlock.constructFromScore(f);
+
+                    if (!first) {
+                        writer.write("<tr>" +
+                                             "<td colspan=\""
+                                             + lspecies.size() + "\">" +
+                                             "&nbsp;</td>" +
+                                             "</tr>");
+                    }
+                    writer.write("<tr>");
+                    for (String s : lspecies) {
+                        writer.write("<td>");
+                        if (block.scores.containsKey(s)) {
+                            writer.write("" + block.scores.get(s));
+                        } else {
+                            // there is no score
+                            writer.write("&nbsp;");
+                        }
+                        writer.write("</td>");
+                    }
+                    writer.write("</tr>");
+                    first = false;
+                }
+                writer.write("</table>");
+                writer.write("</div></td>");
+            }
             writer.write("</tr></table>");
         }
         writer.write("</body></html>");

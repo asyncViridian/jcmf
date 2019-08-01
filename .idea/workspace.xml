@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3da6e499-81fb-4a08-856f-3dc0c5fe102e" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/blockmerge/BlockMerger.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/blockmerge/BlockMerger.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/notes/meeting-notes.txt" beforeDir="false" afterPath="$PROJECT_DIR$/notes/meeting-notes.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/crosscompare/ConsensusOverlap.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/crosscompare/ConsensusOverlap.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -17,35 +17,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/crosscompare/ConsensusOverlap.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="4557">
-              <caret line="230" column="28" selection-start-line="230" selection-start-column="28" selection-end-line="230" selection-end-column="28" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/blockmerge/BlockMerger.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="479">
-              <caret line="742" column="40" selection-start-line="742" selection-start-column="40" selection-end-line="742" selection-end-column="40" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/test/blockmerge/BlockMergerTest.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="609">
-              <caret line="41" column="38" selection-start-line="41" selection-start-column="38" selection-end-line="41" selection-end-column="38" />
-              <folding>
-                <element signature="method#testRepeat#0;class#BlockMergerTest#0" />
-              </folding>
+            <state relative-caret-position="302">
+              <caret line="229" column="72" selection-start-line="229" selection-start-column="72" selection-end-line="229" selection-end-column="72" />
             </state>
           </provider>
         </entry>
@@ -53,8 +29,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/trackgenerate/PageGenerator.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1365">
-              <caret line="74" column="46" selection-start-line="74" selection-start-column="38" selection-end-line="74" selection-end-column="46" />
+            <state relative-caret-position="313">
+              <caret line="129" column="43" selection-start-line="129" selection-start-column="43" selection-end-line="129" selection-end-column="43" />
             </state>
           </provider>
         </entry>
@@ -74,7 +50,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>blockl</find>
       <find>mergedblocksi</find>
       <find>TODOrepla</find>
       <find>todore</find>
@@ -104,6 +79,7 @@
       <find>hg38</find>
       <find>&quot;hg38</find>
       <find>TODO</find>
+      <find>sequence segments</find>
     </findStrings>
     <replaceStrings>
       <replace>assertEquals\((\2), (\1)\);</replace>
@@ -158,10 +134,10 @@
         <option value="$PROJECT_DIR$/src/util/ScoredStockholmAlignmentBlock.java" />
         <option value="$PROJECT_DIR$/src/trackgenerate/PageGenerator.java" />
         <option value="$PROJECT_DIR$/src/crosscompare/ConsensusOverlapCompare.java" />
-        <option value="$PROJECT_DIR$/src/crosscompare/ConsensusOverlap.java" />
         <option value="$PROJECT_DIR$/src/util/FileType.java" />
         <option value="$PROJECT_DIR$/test/blockmerge/BlockMergerTest.java" />
         <option value="$PROJECT_DIR$/src/blockmerge/BlockMerger.java" />
+        <option value="$PROJECT_DIR$/src/crosscompare/ConsensusOverlap.java" />
       </list>
     </option>
   </component>
@@ -171,7 +147,7 @@
       <select />
     </treeState>
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="width" value="1196" />
     <option name="height" value="1007" />
   </component>
@@ -181,6 +157,7 @@
     </navigator>
     <panes>
       <pane id="PackagesPane" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -239,7 +216,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -288,7 +264,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.BlockMerger">
+  <component name="RunManager" selected="Application.ConsensusOverlap">
     <configuration name="BlockMerger" type="Application" factoryName="Application" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="blockmerge.BlockMerger" />
       <module name="jcmf" />
@@ -305,7 +281,7 @@
     <configuration name="ConsensusOverlap" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="crosscompare.ConsensusOverlap" />
       <module name="jcmf" />
-      <option name="PROGRAM_PARAMETERS" value="-c chr12 -o output/sorted_consensus_compare.html -s notes/trackHub/hg38/bigscanf_src -l -pre bigscanf_src/" />
+      <option name="PROGRAM_PARAMETERS" value="-c chr12 -o output/overlap.html -s notes/trackHub/hg38/bigscanf_src -l -pre bigscanf_src/" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="crosscompare.*" />
@@ -376,8 +352,8 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.BlockMergerTest.main" />
         <item itemvalue="Application.ConsensusOverlap" />
+        <item itemvalue="JUnit.BlockMergerTest.main" />
         <item itemvalue="Application.PageGenerator" />
         <item itemvalue="Application.ScoredStockholmAlignmentBlock" />
         <item itemvalue="Java Scratch.Scratch" />
@@ -436,6 +412,7 @@
       <workItem from="1564532014895" duration="329000" />
       <workItem from="1564547929106" duration="16521000" />
       <workItem from="1564619936370" duration="683000" />
+      <workItem from="1564630173392" duration="4164000" />
     </task>
     <servers />
   </component>
@@ -472,14 +449,14 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="228835000" />
+    <option name="totallyTimeSpent" value="232999000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-9" y="-9" width="1698" height="1020" extended-state="7" />
+    <frame x="-9" y="-9" width="1698" height="1020" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.46666667" visible="true" weight="0.19975339" />
-      <window_info id="Structure" order="1" sideWeight="0.53333336" side_tool="true" visible="true" weight="0.19975339" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.4648318" visible="true" weight="0.202836" />
+      <window_info id="Structure" order="1" sideWeight="0.5351682" side_tool="true" visible="true" weight="0.202836" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
       <window_info id="UI Designer" order="4" />
@@ -487,7 +464,7 @@
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.3295325" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49938875" weight="0.10409357" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.49938875" visible="true" weight="0.23508772" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.32865497" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -831,10 +808,13 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/test/blockmerge/output/test-gaps_1.fasta" />
-    <entry file="file://$PROJECT_DIR$/src/crosscompare/ConsensusOverlap.java">
+    <entry file="file://$PROJECT_DIR$/src/blockmerge/BlockMerger.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4557">
-          <caret line="230" column="28" selection-start-line="230" selection-start-column="28" selection-end-line="230" selection-end-column="28" />
+        <state relative-caret-position="248">
+          <caret line="731" column="58" lean-forward="true" selection-start-line="731" selection-start-column="58" selection-end-line="731" selection-end-column="58" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -850,18 +830,15 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/trackgenerate/PageGenerator.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1365">
-          <caret line="74" column="46" selection-start-line="74" selection-start-column="38" selection-end-line="74" selection-end-column="46" />
+        <state relative-caret-position="313">
+          <caret line="129" column="43" selection-start-line="129" selection-start-column="43" selection-end-line="129" selection-end-column="43" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/blockmerge/BlockMerger.java">
+    <entry file="file://$PROJECT_DIR$/src/crosscompare/ConsensusOverlap.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="479">
-          <caret line="742" column="40" selection-start-line="742" selection-start-column="40" selection-end-line="742" selection-end-column="40" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state relative-caret-position="302">
+          <caret line="229" column="72" selection-start-line="229" selection-start-column="72" selection-end-line="229" selection-end-column="72" />
         </state>
       </provider>
     </entry>
