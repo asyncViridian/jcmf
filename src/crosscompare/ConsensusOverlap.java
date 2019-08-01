@@ -213,7 +213,7 @@ public class ConsensusOverlap {
         writer.write("<p>" +
                              ConsensusOverlap.chr + " motif clusters" +
                              "</p>");
-        writer.write("<a href=\"https://i.imgur.com/89KIjJN.png\" " +
+        writer.write("<a href=\"https://i.imgur.com/89KIjJN.png\">" +
                              "phylogenetic tree used" +
                              "</a>");
         writer.write("</div>");
@@ -363,13 +363,32 @@ public class ConsensusOverlap {
                                              "</tr>");
                     }
                     writer.write("<tr>");
+                    double maximum = 0;
                     for (String s : lspecies) {
-                        writer.write("<td>");
                         if (block.scores.containsKey(s)) {
-                            writer.write("" + block.scores.get(s));
+                            double currScore = block.scores
+                                    .get(s).doubleValue();
+                            if (currScore > maximum) {
+                                maximum = currScore;
+                            }
+                        }
+                    }
+                    for (String s : lspecies) {
+                        writer.write("<td");
+                        if (block.scores.containsKey(s)) {
+                            double currScore = block.scores
+                                    .get(s).doubleValue();
+                            double scaling = Math.pow(currScore / maximum, 3);
+                            scaling = 100 - (30.0 * scaling);
+                            writer.write(" style=\"" +
+                                                 "background-color:" +
+                                                 "hsl(200,100%,"
+                                                 + scaling
+                                                 + "%);\">"
+                                                 + currScore);
                         } else {
                             // there is no score
-                            writer.write("&nbsp;");
+                            writer.write(">&nbsp;");
                         }
                         writer.write("</td>");
                     }
