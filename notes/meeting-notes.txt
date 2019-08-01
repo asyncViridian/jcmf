@@ -9,8 +9,8 @@ Things done:
         - Confirmed that this does not affect the FASTA functionality - in fact, this fixes an earlier bug.
     - Rerun results because something went wrong with settings earlier ... /)_-
     - Got Multiperm to work!!!
+    - Create randomized-input results (using Multiperm)
 Things IP (in order of priority, top->down):
-    - Create randomized-input results
     - Fix motif cluster display
     - Evaluate randomized-input results (significance threshold)
     - Write a first-draft of the methods section for pipeline
@@ -20,6 +20,7 @@ Things IP (in order of priority, top->down):
 Things undone:
 Things to ask about:
     - Ask about the "TODO" phrases scattered across my thesis draft document - these denote questions
+    - I don't understand why SISSIz refuses to compile, is it worth trying at this point?
 Other notes:
     - Plan to present by the 7th. (Yes that leaves me with a week to work aaaaaaaaaaaaaaaaaaaaaaaaaaaaa)
         - i schedule bad

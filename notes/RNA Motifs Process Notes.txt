@@ -138,7 +138,38 @@ disown
 
 To run the entire null-model pipeline:
 
-TODO
+./runAllShuffleMultiperm.sh q_chs01_emuBigscan_fblock-74to400-all/ source_mafs/m100_chr1_149844498-149849024.maf settings/emuBigscan_fblock-74to400 &
+disown
+./runAllShuffleMultiperm.sh q_chs02_emuBigscan_fblock-74to400-all/ source_mafs/m100_chr2_218255319-218257366.maf settings/emuBigscan_fblock-74to400 &
+disown
+./runAllShuffleMultiperm.sh q_chs05_emuBigscan_fblock-74to400-all/ source_mafs/m100_chr5_140072857-140108630.maf settings/emuBigscan_fblock-74to400 &
+disown
+./runAllShuffleMultiperm.sh q_chs12_emuBigscan_fblock-74to400-all/ source_mafs/m100_chr12_62602752-62622213.maf settings/emuBigscan_fblock-74to400 &
+disown
+./runAllShuffleMultiperm.sh q_chs01_emuBigscan_10block-10to3000-all/ source_mafs/m100_chr1_149844498-149849024.maf settings/emuBigscan_10block-10to3000 &
+disown
+./runAllShuffleMultiperm.sh q_chs02_emuBigscan_10block-10to3000-all/ source_mafs/m100_chr2_218255319-218257366.maf settings/emuBigscan_10block-10to3000 &
+disown
+./runAllShuffleMultiperm.sh q_chs05_emuBigscan_10block-10to3000-all/ source_mafs/m100_chr5_140072857-140108630.maf settings/emuBigscan_10block-10to3000 &
+disown
+./runAllShuffleMultiperm.sh q_chs12_emuBigscan_10block-10to3000-all/ source_mafs/m100_chr12_62602752-62622213.maf settings/emuBigscan_10block-10to3000 &
+disown
+./runAllShuffleMultiperm.sh q_chs01_emuBigscan_5block-10to3000-all/ source_mafs/m100_chr1_149844498-149849024.maf settings/emuBigscan_5block-10to3000 &
+disown
+./runAllShuffleMultiperm.sh q_chs02_emuBigscan_5block-10to3000-all/ source_mafs/m100_chr2_218255319-218257366.maf settings/emuBigscan_5block-10to3000 &
+disown
+./runAllShuffleMultiperm.sh q_chs05_emuBigscan_5block-10to3000-all/ source_mafs/m100_chr5_140072857-140108630.maf settings/emuBigscan_5block-10to3000 &
+disown
+./runAllShuffleMultiperm.sh q_chs12_emuBigscan_5block-10to3000-all/ source_mafs/m100_chr12_62602752-62622213.maf settings/emuBigscan_5block-10to3000 &
+disown
+./runAllShuffleMultiperm.sh q_chs01_newParams_5block-10to3000-all/ source_mafs/m100_chr1_149844498-149849024.maf settings/newParams_5block-10to3000 &
+disown
+./runAllShuffleMultiperm.sh q_chs02_newParams_5block-10to3000-all/ source_mafs/m100_chr2_218255319-218257366.maf settings/newParams_5block-10to3000 &
+disown
+./runAllShuffleMultiperm.sh q_chs05_newParams_5block-10to3000-all/ source_mafs/m100_chr5_140072857-140108630.maf settings/newParams_5block-10to3000 &
+disown
+./runAllShuffleMultiperm.sh q_chs12_newParams_5block-10to3000-all/ source_mafs/m100_chr12_62602752-62622213.maf settings/newParams_5block-10to3000 &
+disown
 
 To collect results (wait until all the runAlls are done):
 
