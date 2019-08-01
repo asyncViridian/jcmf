@@ -171,7 +171,7 @@ disown
 ./runAllShuffleMultiperm.sh q_chs12_newParams_5block-10to3000-all/ source_mafs/m100_chr12_62602752-62622213.maf settings/newParams_5block-10to3000 &
 disown
 
-To collect results (wait until all the runAlls are done):
+To collect regular-model results (wait until all the runAlls are done):
 
 echo "-t blocks --numBlocksPerOutput 10" | ./rerunMergeForDirs.sh q*5block* &
 echo "-t blocks --numBlocksPerOutput 10" | ./rerunMergeForDirs.sh q*10block* &
