@@ -1,11 +1,7 @@
 package blockmerge;
 
-import util.MAFAlignmentBlock;
-import util.MAFReader;
+import util.*;
 import org.apache.commons.cli.*;
-import util.SimpleNumberHistogram;
-import util.SimpleScatterPlot;
-import util.FileType;
 
 import java.io.BufferedWriter;
 import java.io.IOException;
@@ -109,6 +105,13 @@ public class BlockMerger {
      */
     private static FileType outType;
     private static final FileType outType_DEFAULT = FileType.FASTA;
+
+    /**
+     * Exists to track the output of isMergeable over the course of a program
+     * run.
+     */
+    private static SimpleBarChart disjointReasonsStats;
+    private static SimpleBarChart disjointSpeciesStats;
 
     public static void main(String[] args) throws IOException {
         // handle command-line argument processing :)
@@ -379,6 +382,22 @@ public class BlockMerger {
                     "Number of blocks in mergeblock",
                     "% of mergeblocks",
                     20);
+            // Track causes of disjoint
+            Path disjointReasonsFile = Paths.get(BlockMerger.outDir,
+                                                 "graph_merge_disjointReasons" +
+                                                         ".png");
+            disjointReasonsStats = new SimpleBarChart(
+                    disjointReasonsFile,
+                    "",
+                    "# Incidences");
+            // Track species that are disjoint
+            Path disjointSpeciesFile = Paths.get(BlockMerger.outDir,
+                                                 "graph_merge_disjointSpecies" +
+                                                         ".png");
+            disjointSpeciesStats = new SimpleBarChart(
+                    disjointSpeciesFile,
+                    "",
+                    "# Incidences");
 
             LinkedList<MAFAlignmentBlock> toMerge = new LinkedList<>();
             BigInteger i = BigInteger.ONE;
@@ -787,6 +806,8 @@ public class BlockMerger {
             // Output overall statistics graphics
             gapStats.write();
             numBlocksStats.write();
+            disjointReasonsStats.write();
+            disjointSpeciesStats.write();
             System.out.println("Wrote statistics information");
 
         }
@@ -827,6 +848,8 @@ public class BlockMerger {
 
         // test if the species is actually in both blocks
         if (firstSeq == null || secondSeq == null) {
+            disjointReasonsStats.addValue("missing_from_block");
+            disjointSpeciesStats.addValue(species);
             return false;
         }
 
@@ -837,6 +860,8 @@ public class BlockMerger {
             if (!firstSec.equals(secondSec)) {
                 // If neither chromosome is a scaffold and they are in
                 // different chromosomes, then they are not mergeable
+                disjointReasonsStats.addValue("diff_chromosome");
+                disjointSpeciesStats.addValue(species);
                 return false;
             }
         }
@@ -844,6 +869,8 @@ public class BlockMerger {
         // test if they are on different strands:
         if (firstSeq.strand != secondSeq.strand) {
             // If they are on different strands, they are not mergeable
+            disjointReasonsStats.addValue("diff_strand");
+            disjointSpeciesStats.addValue(species);
             return false;
         }
 
@@ -853,6 +880,8 @@ public class BlockMerger {
             // the beginning of the second block
             // Note that this works for reverse strand too,
             // by convention of the alignment
+            disjointReasonsStats.addValue("reversed_order");
+            disjointSpeciesStats.addValue(species);
             return false;
             // NOTE I don't think this will happen with my input MAFS
             // but it is probably still good to check for
@@ -863,6 +892,8 @@ public class BlockMerger {
                 MAFAlignmentBlock.Sequence.GapType.C)) {
             // if first is a gap sequence (with no bases in the section)
             // and it is too long to be included
+            disjointReasonsStats.addValue("large_gap");
+            disjointSpeciesStats.addValue(species);
             if (firstSeq.size.compareTo(
                     BigInteger.valueOf(GAP_THRESHOLD)) > 0) {
                 return false;
@@ -870,6 +901,8 @@ public class BlockMerger {
         }
         if (secondSeq.isGap) {
             // if second is a gap sequence and it is too long to be included
+            disjointReasonsStats.addValue("large_gap");
+            disjointSpeciesStats.addValue(species);
             if (secondSeq.size.compareTo(
                     BigInteger.valueOf(GAP_THRESHOLD)) > 0) {
                 return false;
@@ -877,6 +910,8 @@ public class BlockMerger {
         }
         if (!firstSeq.isGap && !secondSeq.isGap) {
             // if neither is a gap, but the intervening "gap" is too long
+            disjointReasonsStats.addValue("large_gap");
+            disjointSpeciesStats.addValue(species);
             if (firstSeq.right.length.compareTo(
                     BigInteger.valueOf(GAP_THRESHOLD)) > 0) {
                 // the context "after" the first block

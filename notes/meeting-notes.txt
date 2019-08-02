@@ -9,10 +9,11 @@ Things IP (in order of priority):
         - Find p(emitting some given seq from some given CM)
     - Perform clustering on CMs
     - update the hub with new results
+    - Evaluate randomized-input results (significance threshold)
+    - Write a presentation outline
     - Check boundaries where blocks cannot be merged & calculate statistics on that
     - Write a first-draft of the methods section for pipeline
     - Write a first-draft of the results section for blockmerging
-    - Evaluate randomized-input results (significance threshold)
     - Check against Rfam???
 Things not-done:
 Things to ask about:
@@ -32,6 +33,8 @@ CM divergence score:
 null model:
     - .20 shufflability is pretty bad (0.2/1 columns got shuffled)
     - try emailing sissz authors to get sissz compiling and see if that works better
+        - Actually version 0.1.1 on GitHub fixes the compilation error .... Whew
+        - https://github.com/ViennaRNA/SISSIz
 check statistics on blockmerge / both block and fblock success rates
 update the hub with new results (fix the bug in blockmerge ...)
 
