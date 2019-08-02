@@ -370,7 +370,7 @@ public class BlockMerger {
             SimpleScatterPlot gapStats = new SimpleScatterPlot(
                     gapStatsFile,
                     null,
-                    "Merged sequence length",
+                    "Merged sequence length (all species)",
                     "% gap length");
             // Track # of blocks used in each merge
             Path numBlocksFile = Paths.get(BlockMerger.outDir,
@@ -382,6 +382,16 @@ public class BlockMerger {
                     "Number of blocks in mergeblock",
                     "% of mergeblocks",
                     20);
+            // Track length of ref sequence involved
+            Path refLengthFile = Paths.get(BlockMerger.outDir,
+                                           "graph_merge_refLength" +
+                                                   ".png");
+            SimpleNumberHistogram refLengthStats = new SimpleNumberHistogram(
+                    refLengthFile,
+                    "",
+                    "Length of reference sequence",
+                    "% of merged results",
+                    50);
             // Track causes of disjoint
             Path disjointReasonsFile = Paths.get(BlockMerger.outDir,
                                                  "graph_merge_disjointReasons" +
@@ -396,6 +406,14 @@ public class BlockMerger {
                                                          ".png");
             disjointSpeciesStats = new SimpleBarChart(
                     disjointSpeciesFile,
+                    "",
+                    "# Incidences");
+            // Track block-combination limits
+            Path mergeFailsFile = Paths.get(BlockMerger.outDir,
+                                            "graph_merge_mergefails" +
+                                                    ".png");
+            SimpleBarChart mergeFailsStats = new SimpleBarChart(
+                    mergeFailsFile,
                     "",
                     "# Incidences");
 
@@ -421,7 +439,7 @@ public class BlockMerger {
                     toMerge.remove();
                 }
                 // FILLBLOCKS-based merging rules:
-                BigInteger blockLength =
+                BigInteger refSeqLength =
                         (toMerge.size() == 0) ? BigInteger.ZERO :
                                 toMerge.getLast().sequences.get(REF_SPECIES)
                                         .start
@@ -430,22 +448,28 @@ public class BlockMerger {
                                                         REF_SPECIES).size)
                                         .subtract(
                                                 toMerge.getFirst().sequences.get(
-                                                        REF_SPECIES).start
-                                        );
+                                                        REF_SPECIES).start);
                 // check upper bound
                 if ((MERGE_TYPE == MergeType.FILLBLOCKS) &&
-                        blockLength.compareTo(
+                        refSeqLength.compareTo(
                                 BigInteger.valueOf(MAX_OUTPUT_LENGTH)) > 0) {
                     // need fewer blocks to reduce to maximum
+                    mergeFailsStats.addValue("fblocks_above_maxlength");
                     toMerge.removeFirst();
                     continue;
                 }
                 // check lower bound
                 if ((MERGE_TYPE == MergeType.FILLBLOCKS) &&
-                        blockLength.compareTo(
+                        refSeqLength.compareTo(
                                 BigInteger.valueOf(MIN_OUTPUT_LENGTH)) < 0) {
                     // need more blocks to hit minimum
-                    toMerge.add(reader.next());
+                    mergeFailsStats.addValue("fblocks_below_minlength");
+                    if (reader.hasNext()) {
+                        toMerge.add(reader.next());
+                    } else {
+                        // there are no more blocks to add and no point removing
+                        break;
+                    }
                     continue;
                 }
 
@@ -474,12 +498,14 @@ public class BlockMerger {
                 // Standard Filter:
                 // checks the # of merged species threshold
                 if (speciesToMerge.size() < MIN_NUM_SPECIES) {
+                    mergeFailsStats.addValue("too_few_species_mergeable");
                     continue;
                 }
 
                 // Standard Filter:
-                // require that the merged species includes human
+                // require that the merged species includes the stated reference
                 if (!speciesToMerge.contains(REF_SPECIES)) {
+                    mergeFailsStats.addValue("ref_species_not_mergeable");
                     continue;
                 }
 
@@ -496,13 +522,17 @@ public class BlockMerger {
                 // check lower bound
                 if (humanSeqLen.compareTo(
                         BigInteger.valueOf(MIN_OUTPUT_LENGTH)) < 0) {
+                    mergeFailsStats.addValue("merged_below_minlength");
                     continue;
                 }
                 // check upper bound
                 if (humanSeqLen.compareTo(
                         BigInteger.valueOf(MAX_OUTPUT_LENGTH)) > 0) {
+                    mergeFailsStats.addValue("merged_above_maxlength");
                     continue;
                 }
+
+                refLengthStats.addValue(new BigDecimal(refSeqLength));
 
                 // Write to disk!:
                 // create output file
@@ -808,6 +838,8 @@ public class BlockMerger {
             numBlocksStats.write();
             disjointReasonsStats.write();
             disjointSpeciesStats.write();
+            mergeFailsStats.write();
+            refLengthStats.write();
             System.out.println("Wrote statistics information");
 
         }
