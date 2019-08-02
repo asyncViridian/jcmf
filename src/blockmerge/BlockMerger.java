@@ -848,12 +848,20 @@ public class BlockMerger {
         }
 
         // test if they are at incomparable locations / overlapping:
-        if (firstSeq.start.add(firstSeq.size).compareTo(secondSeq.start) > 0) {
+        if (firstSeq.strand) { // if a + strand
             // if the ending of the first block is after
             // the beginning of the second block
-            return false;
-            // NOTE I don't think this will happen with my input MAFS
-            // but it is probably still good to check for
+            if (firstSeq.start.add(firstSeq.size).compareTo(secondSeq.start) > 0) {
+                return false;
+                // NOTE I don't think this will happen with my input MAFS
+                // but it is probably still good to check for
+            }
+        } else { // if a - strand
+            // if the ending of the first block is before
+            // the beginning of the second block (because reverse strand)
+            if (firstSeq.start.add(firstSeq.size).compareTo(secondSeq.start) < 0) {
+                return false;
+            }
         }
 
         // test if the gap between them is too long:
