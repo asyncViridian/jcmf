@@ -51,7 +51,7 @@ mkdir $1/splitshuffle
 cd $1/splitshuffle
 for file in ../split/*.maf
 do
-    ./../../utilities/multiperm --num=10 ${file}
+    ./../../utilities/SISSIz -s --maf ${file} > shf_$(basename ${file})
 done
 for file in ../split/*.png
 do
