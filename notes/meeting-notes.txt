@@ -1,3 +1,36 @@
+===============================================================================
+2019-08-01
+Things done:
+Things IP (in order of priority):
+    - Figure out how to find relative entropy between two CMs
+        - Find p(emitting some given seq from some given CM)?
+    - Check boundaries where blocks cannot be merged & calculate statistics on that
+    - Write a first-draft of the methods section for pipeline
+    - Write a first-draft of the results section for blockmerging
+    - Evaluate randomized-input results (significance threshold)
+    - Check against Rfam?
+Things not-done:
+Things to ask about:
+
+Monday 1:30PM next meeting
+Presentation
+    - on Wed 8/7 at 3:30PM 
+    - in CSE 624 (meeting room closest to EE elevator)
+    - plan for 45min of talk (1hr incl. questions)
+CM divergence score:
+    - cmalign actually provides a log-odds stat (search "bit score")
+    - for clustering: google-fu for programs that can do this (there should be some)
+thesis/writeup:
+    - clarify behavior for "disordered on reverse strand"
+    - clarify behavior of fblock
+    - essentially, write some manual for the programs, describe what they are actually doing in detail
+null model:
+    - .20 shufflability is pretty bad (0.2/1 columns got shuffled)
+    - try emailing sissz authors to get sissz compiling and see if that works better
+check statistics on blockmerge / both block and fblock success rates
+update the hub with new results (fix the bug in blockmerge ...)
+
+===============================================================================
 2019-07-25
 Things done:
     - Cursory fix of the motif cluster display
@@ -12,6 +45,7 @@ Things done:
     - Create randomized-input results (using Multiperm)
     - Score against sequences in phylogeny
         - A nice pretty color visualization on that too.
+        - Updated the current online trackhub with that information
 Things IP (in order of priority, top->down):
     - Check boundaries where blocks cannot be merged & calculate statistics on that
     - Write a first-draft of the methods section for pipeline

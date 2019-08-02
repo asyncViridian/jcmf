@@ -1,4 +1,4 @@
-out/*
-output/*
+out
+output
 notes/data/q_*
 .idea
