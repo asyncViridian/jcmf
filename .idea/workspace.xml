@@ -20,8 +20,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/crosscompare/ConsensusOverlap.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="355">
-              <caret line="395" column="34" lean-forward="true" selection-start-line="395" selection-start-column="34" selection-end-line="395" selection-end-column="34" />
+            <state relative-caret-position="395">
+              <caret line="395" column="34" selection-start-line="395" selection-start-column="34" selection-end-line="395" selection-end-column="34" />
             </state>
           </provider>
         </entry>
@@ -828,8 +828,8 @@
     <entry file="file://$PROJECT_DIR$/src/util/PhyloComparator.java" />
     <entry file="file://$PROJECT_DIR$/src/crosscompare/ConsensusOverlap.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="355">
-          <caret line="395" column="34" lean-forward="true" selection-start-line="395" selection-start-column="34" selection-end-line="395" selection-end-column="34" />
+        <state relative-caret-position="395">
+          <caret line="395" column="34" selection-start-line="395" selection-start-column="34" selection-end-line="395" selection-end-column="34" />
         </state>
       </provider>
     </entry>
