@@ -1,14 +1,19 @@
 ===============================================================================
 2019-08-01
 Things done:
+    - verified the behavior of blockmerge on negative strand
+        - For posterity: in UCSC's standard, the negative = direct complement, not reverse complement
 Things IP (in order of priority):
-    - Figure out how to find relative entropy between two CMs
-        - Find p(emitting some given seq from some given CM)?
+    - check statistics on blockmerge / both block and fblock success rates
+    - Find relative entropy between two CMs
+        - Find p(emitting some given seq from some given CM)
+    - Perform clustering on CMs
+    - update the hub with new results
     - Check boundaries where blocks cannot be merged & calculate statistics on that
     - Write a first-draft of the methods section for pipeline
     - Write a first-draft of the results section for blockmerging
     - Evaluate randomized-input results (significance threshold)
-    - Check against Rfam?
+    - Check against Rfam???
 Things not-done:
 Things to ask about:
 
@@ -17,13 +22,13 @@ Presentation
     - on Wed 8/7 at 3:30PM 
     - in CSE 624 (meeting room closest to EE elevator)
     - plan for 45min of talk (1hr incl. questions)
-CM divergence score:
-    - cmalign actually provides a log-odds stat (search "bit score")
-    - for clustering: google-fu for programs that can do this (there should be some)
 thesis/writeup:
     - clarify behavior for "disordered on reverse strand"
     - clarify behavior of fblock
     - essentially, write some manual for the programs, describe what they are actually doing in detail
+CM divergence score:
+    - cmalign actually provides a log-odds stat (search "bit score")
+    - for clustering: google-fu for programs that can do this (there should be some)
 null model:
     - .20 shufflability is pretty bad (0.2/1 columns got shuffled)
     - try emailing sissz authors to get sissz compiling and see if that works better
