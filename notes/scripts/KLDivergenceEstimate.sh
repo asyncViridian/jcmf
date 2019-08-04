@@ -9,9 +9,9 @@
 # $4 = Number of samples to use
 
 # Setup our working environment
-mkdir $1/CMs
-mkdir $1/emit
-mkdir $1/align
+mkdir -p $1/CMs
+mkdir -p $1/emit
+mkdir -p $1/align
 cp $2 $1/CMs/
 cp $3 $1/CMs/
 P=$(basename $2)
