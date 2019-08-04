@@ -5,9 +5,21 @@ Things done:
         - For posterity: in UCSC's standard, the negative = direct complement, not reverse complement
     - check statistics on blockmerge / both block and fblock success rates
     - run null-model with SISSIz
-Things IP (in order of priority):
     - Find relative entropy between two CMs
         - Find p(emitting some given seq from some given CM)
+        - The process ("Monte Carlo" method????):
+            - We take 100 sample emits from cm A.
+            - We align each of those sample emits to both cms A, B
+            - cmalign outputs a bitscore for each of those alignments.
+                I verified that the bit score is particular to the sequence itself, and is independent from other sequences input to the same run of cmalign.
+            - We can calculate log2(pA(x)/pB(x)) using those bit scores (= bitscoreA - bitscoreB)
+                - as bitscoreA = log2(pA(x)/pNull(x)) according to the Rfam documentation FAQ page.
+            - Note that sum_x(pA(x) * log2(pA(x)/pNull(x))) = E_A[log2(pA(x)/pNull(x))]
+            - So we can average out all of the individual sample points to get an estimate of the K-L divergence Dkl(A || B)
+                - Upon reruns, this value seems to be pretty stable.
+                - Math seems to say that the mean square error (MSE) of the value we find is (stdev)^2/N but I'm not sure what stdev means in this scenario...
+            - We can find a symmetrical K-L divergence by adding Dkl(A || B) + Dkl(B || A)
+Things IP (in order of priority):
     - Perform clustering on CMs
     - update the hub with new results
     - Evaluate randomized-input results (significance threshold)
