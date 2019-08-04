@@ -32,13 +32,24 @@ PemitaligntoQdata="${Pemit}.alignto.${Q}.sto.data"
 ./utilities/cmalign -o ${workingDir}/align/${PemitaligntoQ} ${workingDir}/CMs/${Q} ${workingDir}/emit/${Pemit} > ${workingDir}/align/${PemitaligntoQdata}
 
 # Read the bitscores of all alignments and calculate score
+scoresum=0
 # read a file line by line:
 while IFS= read -r -u3 line; do
     if [[ ${line} != \#* ]]; then
         # Ignore the comment lines in data output
-        echo "File: ${line}"
+        Plinearr=(${line})
+        Qlinearr=($(grep ${Plinearr[1]} ${workingDir}/align/${PemitaligntoQdata}))
+        # Bit score is arr[6] in the whitespace-sv
+        #echo "P ${Plinearr[6]} Q ${Qlinearr[6]}"
+        PQ=$(echo "(${Plinearr[6]})-(${Qlinearr[6]})" | bc)
+        #echo "Elem score: ${PQ}"
+        scoresum=$(echo "${scoresum}+${PQ}" | bc)
     fi
 done 3< "${workingDir}/align/${PemitaligntoPdata}"
 
-echo "TODO"
+# Average scores (using sum and sample count)
+estimatedKLDivergence=$(echo "${scoresum}/${numSamples}" | bc -l)
+#echo "sum ${scoresum} num ${numSamples}"
+echo ${estimatedKLDivergence}
+
 
