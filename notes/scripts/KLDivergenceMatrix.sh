@@ -42,3 +42,4 @@ do
     printf "\n"
 done
 
+rm -r ${tempDir}
