@@ -11,6 +11,7 @@ Things IP (in order of priority):
     - Perform clustering on CMs
     - update the hub with new results
     - Evaluate randomized-input results (significance threshold)
+        - Interestingly, SISSIz seems unable to handle very long blocks (hangs for over 1000min)
     - Write a presentation outline
     - Check boundaries where blocks cannot be merged & calculate statistics on that
     - Write a first-draft of the methods section for pipeline
