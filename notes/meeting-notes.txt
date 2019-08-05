@@ -22,7 +22,7 @@ Things done:
     - Check boundaries where blocks cannot be merged & calculate statistics on that
     - Wrote script to collect K-L distance matrix
         - ... and then I wrote it again, in Java, because Bash just wasn't cutting it speedwise and also controlwise...
-        - TODO... How fast does this go really?
+        - Seems to process about 950 comparisons per hour...
 Things IP (in order of priority):
     - Perform clustering on CMs
         - I can try this with toy data rn, actually
