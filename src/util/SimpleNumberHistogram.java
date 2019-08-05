@@ -49,6 +49,7 @@ public class SimpleNumberHistogram implements StatsGraph {
             temp[i] = it.next().doubleValue();
             i++;
         }
+        // TODO: This will throw an exception if there are 0 values.
         dataset.addSeries(key, temp, numBins);
 
         JFreeChart chart = ChartFactory.createHistogram(
