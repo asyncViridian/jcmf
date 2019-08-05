@@ -2,3 +2,4 @@ out
 output
 notes/data/q_*
 .idea
+.idea/*
