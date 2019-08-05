@@ -1,5 +1,9 @@
 #!/bin/bash
 
+# Arguments:
+# $1 = dir where all the CMs are (with file extension .cm)
+# $2 = Number of samples to use for divergence calculation
+
 # Generates a whitespace-delimited matrix of K-L divergences
 # D_KL(P || Q)
 # for all CMs within a given directory. Outputs to stdout.
@@ -10,10 +14,6 @@
 # cm2  2||1 2||2 ...  2||N
 # ...  ...  ...  ...  ... 
 # cmN  N||1 N||2 ...  N||N
-
-# Arguments:
-# $1 = dir where all the CMs are (with file extension .cm)
-# $2 = Number of samples to use for divergence calculation
 
 CMs=$1/*.cm
 tempDir=crossscore$$

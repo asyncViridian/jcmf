@@ -11,6 +11,6 @@ mkdir -p $2/info
 for file in $1/*
 do
     cmfile=$(basename ${file}).cm
-    ./utilities/cmbuild -F $2/${cmfile} ${file} > $2/${cmfile}.info
+    ./utilities/cmbuild -F $2/${cmfile} ${file} > $2/info/${cmfile}.info
 done
 
