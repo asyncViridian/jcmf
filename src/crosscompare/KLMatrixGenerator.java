@@ -135,6 +135,10 @@ public class KLMatrixGenerator {
                         // is a clear sign of Bad Things Happened(tm)
                         return BigDecimal.valueOf(-1);
                     }
+//                    finally {
+//                         TODO delete the tempDir???
+//                         Files.deleteIfExists(tempDir);
+//                    }
                 });
             }
         }

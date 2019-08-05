@@ -20,8 +20,12 @@ Things done:
                 - Math seems to say that the mean square error (MSE) of the value we find is (stdev)^2/N but I'm not sure what stdev means in this scenario...
             - We can find a symmetrical K-L divergence by adding Dkl(A || B) + Dkl(B || A)
     - Check boundaries where blocks cannot be merged & calculate statistics on that
+    - Wrote script to collect K-L distance matrix
+        - ... and then I wrote it again, in Java, because Bash just wasn't cutting it speedwise and also controlwise...
+        - TODO... How fast does this go really?
 Things IP (in order of priority):
     - Perform clustering on CMs
+        - I can try this with toy data rn, actually
     - update the hub with new results
     - Evaluate randomized-input results (significance threshold)
         - Interestingly, SISSIz seems unable to handle very long blocks (hangs for over 1000min)
