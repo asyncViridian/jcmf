@@ -47,8 +47,8 @@ public class KLMatrixGenerator {
                     Option.builder("n")
                             .hasArg()
                             .desc("The number of samples to use for " +
-                                          "divergence calculation. " +
-                                          "Required.")
+                                    "divergence calculation. " +
+                                    "Required.")
                             .required()
                             .build());
         }
@@ -163,6 +163,7 @@ public class KLMatrixGenerator {
                     }
                 }
             }
+            System.out.print(System.nanoTime() / 1000000 + " " + done);
         }
         executor.shutdown();
 
@@ -170,26 +171,26 @@ public class KLMatrixGenerator {
         // write the header line
         String corner = "#header ";
         writer.write(corner + StringUtils.repeat(" ",
-                                                 maxFilenameLength -
-                                                         corner.length()));
+                maxFilenameLength -
+                        corner.length()));
         for (Object file : files) {
             File f = (File) file;
             writer.write(f.getName() + StringUtils.repeat(" ",
-                                                          maxFilenameLength -
-                                                                  f.getName().length()));
+                    maxFilenameLength -
+                            f.getName().length()));
         }
         writer.write("\n");
         // write the contents
         for (int i = 0; i < files.length; i++) {
             File P = (File) files[i];
             writer.write(P.getName() + StringUtils.repeat(" ",
-                                                          maxFilenameLength -
-                                                                  P.getName().length()));
+                    maxFilenameLength -
+                            P.getName().length()));
             for (int j = 0; j < files.length; j++) {
                 String score = scores[i][j].toString();
                 writer.write(score + StringUtils.repeat(" ",
-                                                        maxFilenameLength -
-                                                                score.length()));
+                        maxFilenameLength -
+                                score.length()));
             }
             writer.write("\n");
         }
