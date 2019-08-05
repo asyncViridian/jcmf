@@ -1,14 +1,20 @@
 package crosscompare;
 
 import org.apache.commons.cli.*;
+import org.apache.commons.lang3.StringUtils;
+import util.StringManip;
 
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.IOException;
+import java.io.*;
+import java.math.BigDecimal;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Arrays;
+import java.util.UUID;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
 
 public class KLMatrixGenerator {
 
@@ -88,8 +94,102 @@ public class KLMatrixGenerator {
             }
         }
 
-        String[] cmd = {"/bin/sh", "-c", "ls > hello"};
-        Runtime.getRuntime().exec(cmd);
+        // Start constructing our matrix
+        Future[][] scoreFutures = new Future[files.length][files.length];
+        ExecutorService executor = Executors.newFixedThreadPool(8);
+        for (int i = 0; i < files.length; i++) {
+            String pathP = ((File) files[i]).getPath();
+            for (int j = 0; j < files.length; j++) {
+                String pathQ = ((File) files[j]).getPath();
+                scoreFutures[i][j] = executor.submit(() -> {
+                    // Create temp working directory for the estimate script
+                    Path tempDir = Paths
+                            .get("klmatrixtemp-" + UUID.randomUUID().toString());
+                    Files.deleteIfExists(tempDir);
+                    Files.createDirectory(tempDir);
+
+                    // Run the K-L divergence score estimator script
+                    // TODO make it possible to parameterize the script???
+                    String[] cmd = {"./KLDivergenceEstimate.sh",
+                            tempDir.toString(),
+                            pathP,
+                            pathQ,
+                            "" + numSamples};
+                    try {
+                        // execute script and collect the output from it
+                        Process p = Runtime.getRuntime().exec(cmd);
+                        BufferedReader reader = new BufferedReader(
+                                new InputStreamReader(p.getInputStream()));
+                        StringBuilder pOutput = new StringBuilder();
+                        String line;
+                        while ((line = reader.readLine()) != null) {
+                            pOutput.append(line);
+                        }
+                        reader.close();
+                        return BigDecimal.valueOf(
+                                Double.valueOf(pOutput.toString()));
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                        // something went wrong!!!
+                        // note that K-L divergence is never negative so this
+                        // is a clear sign of Bad Things Happened(tm)
+                        return BigDecimal.valueOf(-1);
+                    }
+                });
+            }
+        }
+        // Collect the results of our matrix
+        BigDecimal[][] scores = new BigDecimal[files.length][files.length];
+        int done = 0;
+        while (done != (files.length * files.length)) {
+            for (int i = 0; i < files.length; i++) {
+                for (int j = 0; j < files.length; j++) {
+                    if (scoreFutures[i][j].isDone()) {
+                        try {
+                            scores[i][j] =
+                                    (BigDecimal) scoreFutures[i][j].get();
+                        } catch (InterruptedException | ExecutionException e) {
+                            // this shouldn't happen if its done
+                            // but we will mark it with a neat -1 anyway
+                            scores[i][j] = BigDecimal.valueOf(-1);
+                            e.printStackTrace();
+                        } finally {
+                            done++;
+                        }
+                    }
+                }
+            }
+        }
+        executor.shutdown();
+
+        // Write to the output file!!!
+        // write the header line
+        String corner = "#header ";
+        writer.write(corner + StringUtils.repeat(" ",
+                                                 maxFilenameLength -
+                                                         corner.length()));
+        for (Object file : files) {
+            File f = (File) file;
+            writer.write(f.getName() + StringUtils.repeat(" ",
+                                                          maxFilenameLength -
+                                                                  f.getName().length()));
+        }
+        writer.write("\n");
+        // write the contents
+        for (int i = 0; i < files.length; i++) {
+            File P = (File) files[i];
+            writer.write(P.getName() + StringUtils.repeat(" ",
+                                                          maxFilenameLength -
+                                                                  P.getName().length()));
+            for (int j = 0; j < files.length; j++) {
+                String score = scores[i][j].toString();
+                writer.write(score + StringUtils.repeat(" ",
+                                                        maxFilenameLength -
+                                                                score.length()));
+            }
+            writer.write("\n");
+        }
+        writer.close();
 
         System.out.println(
                 "KLMatrixGenerator finished running in "

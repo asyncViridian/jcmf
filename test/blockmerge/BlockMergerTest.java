@@ -1,16 +1,13 @@
 package blockmerge;
 
-import org.apache.commons.cli.ParseException;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import util.StringManip;
 
-import java.io.IOException;
 import java.math.BigInteger;
 import java.nio.file.Files;
-import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -59,18 +56,18 @@ class BlockMergerTest {
 
         // Test repeating zero times
         for (int i = 0; i < s.length; i++) {
-            assertEquals("", BlockMerger.repeat(s[i], BigInteger.ZERO));
+            assertEquals("", StringManip.repeat(s[i], BigInteger.ZERO));
         }
 
         // Test repeating one time
         for (int i = 0; i < s.length; i++) {
-            assertEquals(s[i], BlockMerger.repeat(s[i], BigInteger.ONE));
+            assertEquals(s[i], StringManip.repeat(s[i], BigInteger.ONE));
         }
 
         // Test repeating two times
         for (int i = 0; i < s.length; i++) {
             assertEquals(s[i] + s[i],
-                         BlockMerger.repeat(s[i], BigInteger.valueOf(2)));
+                         StringManip.repeat(s[i], BigInteger.valueOf(2)));
         }
     }
 }

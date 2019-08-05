@@ -639,8 +639,8 @@ public class BlockMerger {
                                 if (species.equals(currentlyWriting)) {
                                     // write the Ns
                                     sequences.get(currentlyWriting)
-                                            .append(repeat("N",
-                                                           seq.left.length));
+                                            .append(StringManip.repeat("N",
+                                                                       seq.left.length));
                                     gapLengths.put(
                                             currentlyWriting,
                                             gapLengths.get(currentlyWriting)
@@ -648,8 +648,8 @@ public class BlockMerger {
                                 } else {
                                     // write the -s
                                     sequences.get(currentlyWriting)
-                                            .append(repeat("-",
-                                                           seq.left.length));
+                                            .append(StringManip.repeat("-",
+                                                                       seq.left.length));
                                 }
                             }
                         }
@@ -681,7 +681,8 @@ public class BlockMerger {
                             if (species.equals(currentlyWriting)) {
                                 // Write the Ns for the given sequence
                                 sequences.get(currentlyWriting)
-                                        .append(repeat("N", seq.size));
+                                        .append(StringManip.repeat("N",
+                                                                   seq.size));
                                 // and increment the gap length for seq
                                 gapLengths.put(
                                         currentlyWriting,
@@ -690,7 +691,8 @@ public class BlockMerger {
                             } else {
                                 // Write a series of unaligned section (-)
                                 sequences.get(currentlyWriting)
-                                        .append(repeat("-", seq.size));
+                                        .append(StringManip.repeat("-",
+                                                                   seq.size));
                                 // we don't need to increment the gap length lol
                             }
                         }
@@ -700,7 +702,8 @@ public class BlockMerger {
                         if (areGaps.contains(species)) {
                             // write a series of unaligned section (-)
                             sequences.get(species)
-                                    .append(repeat("-", alignmentLength));
+                                    .append(StringManip.repeat("-",
+                                                               alignmentLength));
                         } else {
                             // write the actual alignment contents
                             sequences.get(species)
@@ -757,32 +760,32 @@ public class BlockMerger {
                         // For MAF we ignore potential scaffold merges...
                         // Species and chromosome
                         String print = species + "." + first.section;
-                        writer.write(print + repeat(" ",
-                                                    BigInteger.valueOf(
-                                                            24 - print.length()))
+                        writer.write(print + StringManip.repeat(" ",
+                                                                BigInteger.valueOf(
+                                                                        24 - print.length()))
                                              + " ");
                         // start position
                         print = "" + first.start;
-                        writer.write(print + repeat(" ",
-                                                    BigInteger.valueOf(
-                                                            12 - print.length()))
+                        writer.write(print + StringManip.repeat(" ",
+                                                                BigInteger.valueOf(
+                                                                        12 - print.length()))
                                              + " ");
                         // number of actual bases used (excluding dash)
                         String degapped = sequence.toString()
                                 .replace("-", "");
                         print = "" + degapped.length();
-                        writer.write(print + repeat(" ",
-                                                    BigInteger.valueOf(
-                                                            6 - print.length()))
+                        writer.write(print + StringManip.repeat(" ",
+                                                                BigInteger.valueOf(
+                                                                        6 - print.length()))
                                              + " ");
                         // strand used
                         writer.write((first.strand ? "+" : "-") + " ");
                         // Still ignore scaffold merges
                         // Total length of source sequence
                         print = "" + first.srcSize;
-                        writer.write(print + repeat(" ",
-                                                    BigInteger.valueOf(
-                                                            14 - print.length()))
+                        writer.write(print + StringManip.repeat(" ",
+                                                                BigInteger.valueOf(
+                                                                        14 - print.length()))
                                              + " ");
                         // The alignment sequence itself
                         writer.write(sequence.toString());
@@ -843,22 +846,6 @@ public class BlockMerger {
             System.out.println("Wrote statistics information");
 
         }
-    }
-
-    /**
-     * Return a string consisting of src repeated num times
-     *
-     * @param src String to repeat
-     * @param num number of times to repeat this string
-     * @return src repeated num times
-     */
-    public static String repeat(String src, BigInteger num) {
-        StringBuilder builder = new StringBuilder();
-        for (BigInteger i = BigInteger.ZERO; i.compareTo(num) < 0; i = i.add(
-                BigInteger.ONE)) {
-            builder.append(src);
-        }
-        return builder.toString();
     }
 
     /**
