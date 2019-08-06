@@ -5,6 +5,7 @@ import org.apache.commons.lang3.StringUtils;
 
 import java.io.*;
 import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -26,6 +27,11 @@ public class KLMatrixGenerator {
      * between two CMs.
      */
     private static String scoreCalcCmd = "./KLDivergenceEstimate.sh";
+    /**
+     * The number of output scores expected from the calc cmd (separated by
+     * newlines)
+     */
+    private static int expectedOutputs = 1;
 
     public static void main(String[] args)
             throws IOException, InterruptedException {
@@ -72,6 +78,14 @@ public class KLMatrixGenerator {
                                           " a number of samples to use. " +
                                           "Defaults to '" + scoreCalcCmd + "'")
                             .build());
+            KLMatrixGenerator.options.addOption(
+                    Option.builder("es")
+                            .hasArg()
+                            .desc("The expected number of output floats from " +
+                                          "the command/executable used for " +
+                                          "scoring. One output file will be " +
+                                          "produced per score. Defaults to " + expectedOutputs)
+                            .build());
         }
         // Parse the commandline arguments
         CommandLineParser parser = new DefaultParser();
@@ -88,6 +102,8 @@ public class KLMatrixGenerator {
             if (line.hasOption("e")) {
                 KLMatrixGenerator.scoreCalcCmd =
                         line.getOptionValue("e");
+                KLMatrixGenerator.expectedOutputs =
+                        Integer.valueOf(line.getOptionValue("es"));
             }
         } catch (ParseException exp) {
             // something went wrong
@@ -112,9 +128,24 @@ public class KLMatrixGenerator {
         // Get the input & output files set up
         Path source = Paths.get(KLMatrixGenerator.srcDir);
         Path output = Paths.get(KLMatrixGenerator.outputFile);
-        Files.deleteIfExists(output);
-        Files.createFile(output);
-        BufferedWriter writer = Files.newBufferedWriter(output);
+        Path[] outputs = new Path[expectedOutputs];
+        outputs[0] = output;
+        if (expectedOutputs > 1) {
+            for (int i = 1; i < expectedOutputs; i++) {
+                outputs[i] = Paths
+                        .get(outputFile
+                                     .substring(0,
+                                                outputFile.lastIndexOf('.'))
+                                     + "_" + i
+                                     + outputFile
+                                .substring(
+                                        outputFile.lastIndexOf('.')));
+            }
+        }
+        for (Path o : outputs) {
+            Files.deleteIfExists(o);
+            Files.createFile(o);
+        }
 
         // Read all the input files into list
         Object[] files = Arrays.stream(source.toFile().listFiles())
@@ -131,7 +162,8 @@ public class KLMatrixGenerator {
         maxFilenameLength += 2;
 
         // Start constructing our matrix
-        Future[][] scoreFutures = new Future[files.length][files.length];
+        Future<BigDecimal[]>[][] scoreFutures =
+                new Future[files.length][files.length];
         ExecutorService executor = Executors.newFixedThreadPool(8);
         for (int i = 0; i < files.length; i++) {
             String pathP = ((File) files[i]).getPath();
@@ -162,43 +194,56 @@ public class KLMatrixGenerator {
                             pOutput.append(line);
                         }
                         reader.close();
-                        return BigDecimal.valueOf(
-                                Double.valueOf(pOutput.toString()));
+                        String[] pOutLines = pOutput.toString().split("\n");
+                        BigDecimal[] result = new BigDecimal[pOutLines.length];
+                        for (int res = 0; res < result.length; res++) {
+                            result[res] = BigDecimal.valueOf(
+                                    Double.valueOf(pOutLines[res])
+                            );
+                        }
+                        return result;
                     } catch (IOException e) {
                         e.printStackTrace();
                         // something went wrong!!!
                         // note that K-L divergence is never negative so this
                         // is a clear sign of Bad Things Happened(tm)
-                        return BigDecimal.valueOf(-1);
+                        return new BigDecimal[]{BigDecimal.valueOf(-1)};
+                    } finally {
+                        // Files.deleteIfExists(tempDir);
                     }
-//                    finally {
-//                         TODO delete the tempDir???
-//                         Files.deleteIfExists(tempDir);
-//                    }
                 });
             }
         }
         // Collect the results of our matrix
-        BigDecimal[][] scores = new BigDecimal[files.length][files.length];
-        for (BigDecimal[] a : scores) {
-            for (int i = 0; i < a.length; i++) {
-                a[i] = null;
+        BigDecimal[][][] scores = new BigDecimal
+                [expectedOutputs]
+                [files.length]
+                [files.length];
+        // set them all to null for now
+        for (BigDecimal[][] a : scores) {
+            for (BigDecimal[] b : a) {
+                for (int i = 0; i < b.length; i++) {
+                    b[i] = null;
+                }
             }
         }
         int done = 0;
         while (done != (files.length * files.length)) {
-            TimeUnit.SECONDS.sleep(1);
             for (int i = 0; i < files.length; i++) {
                 for (int j = 0; j < files.length; j++) {
-                    if (scores[i][j] == null) {
+                    if (scores[0][i][j] == null) {
                         if (scoreFutures[i][j].isDone()) {
                             try {
-                                scores[i][j] =
-                                        (BigDecimal) scoreFutures[i][j].get();
+                                BigDecimal[] results = scoreFutures[i][j].get();
+                                for (int o = 0; o < expectedOutputs; o++) {
+                                    scores[o][i][j] = results[o];
+                                }
                             } catch (InterruptedException | ExecutionException e) {
                                 // this shouldn't happen if its done
-                                // but we will mark it with a neat -1 anyway
-                                scores[i][j] = BigDecimal.valueOf(-1);
+                                // but we will mark results with a -1 anyway
+                                for (int o = 0; o < expectedOutputs; o++) {
+                                    scores[o][i][j] = BigDecimal.valueOf(-1);
+                                }
                                 e.printStackTrace();
                             } finally {
                                 done++;
@@ -213,34 +258,38 @@ public class KLMatrixGenerator {
         }
         executor.shutdown();
 
-        // Write to the output file!!!
-        // write the header line
-        String corner = "#header ";
-        writer.write(corner + StringUtils.repeat(" ",
-                                                 maxFilenameLength -
-                                                         corner.length()));
-        for (Object file : files) {
-            File f = (File) file;
-            writer.write(f.getName() + StringUtils.repeat(" ",
-                                                          maxFilenameLength -
-                                                                  f.getName().length()));
-        }
-        writer.write("\n");
-        // write the contents
-        for (int i = 0; i < files.length; i++) {
-            File P = (File) files[i];
-            writer.write(P.getName() + StringUtils.repeat(" ",
-                                                          maxFilenameLength -
-                                                                  P.getName().length()));
-            for (int j = 0; j < files.length; j++) {
-                String score = scores[i][j].toString();
-                writer.write(score + StringUtils.repeat(" ",
-                                                        maxFilenameLength -
-                                                                score.length()));
+        // Write to the output file(s)!!!
+        for (int fnum = 0; fnum < expectedOutputs; fnum++) {
+            BufferedWriter writer = Files.newBufferedWriter(outputs[fnum]);
+            // write the header line
+            String corner = "#header" + fnum + " ";
+            writer.write(corner + StringUtils.repeat(" ",
+                                                     maxFilenameLength -
+                                                             corner.length()));
+            for (Object file : files) {
+                File f = (File) file;
+                writer.write(f.getName() + StringUtils.repeat(" ",
+                                                              maxFilenameLength -
+                                                                      f.getName().length()));
             }
             writer.write("\n");
+
+            // write the contents
+            for (int i = 0; i < files.length; i++) {
+                File P = (File) files[i];
+                writer.write(P.getName() + StringUtils.repeat(" ",
+                                                              maxFilenameLength -
+                                                                      P.getName().length()));
+                for (int j = 0; j < files.length; j++) {
+                    String score = scores[j][j].toString();
+                    writer.write(score + StringUtils.repeat(" ",
+                                                            maxFilenameLength -
+                                                                    score.length()));
+                }
+                writer.write("\n");
+            }
+            writer.close();
         }
-        writer.close();
 
         System.out.println(
                 "KLMatrixGenerator finished running in "

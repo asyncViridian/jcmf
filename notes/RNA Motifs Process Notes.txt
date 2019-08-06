@@ -305,6 +305,29 @@ usage: BlockMerger [options] -s <filename> -o <fileprefix>
                                  to determine the type of merge used (by
                                  default BlockMerger uses block-based
                                  merging).
+                                 
+===============================================================================
+
+KLMATRIXGENERATOR.JAR
+
+> java -jar klmatrixgenerator.jar
+usage: KLMatrixGenerator -s <dirname> -o <filename> -n <numsamples>
+ -e <arg>                The command/executable to use for finding
+                         divergence score. Must take in 4 args in the
+                         given order: a 'temp' working directory name, a
+                         CM filepath, another CM filepath, and a number of
+                         samples to use. Defaults to
+                         './KLDivergenceEstimate.sh'
+ -es <arg>               The expected number of output floats from the
+                         command/executable used for scoring. One output
+                         file will be produced per score. Defaults to 1
+ -n <arg>                The number of samples to use for divergence
+                         calculation. Required.
+ -o,--outputFile <arg>   Output filename. Required.
+ -s,--srcDir <arg>       Input CM files directory. Note that this program
+                         will do a matrix comparison on ALL CM files
+                         within this directory. It will ONLY include files
+                         that have a file extension of '.cm'. Required.\
 
 ===============================================================================
 

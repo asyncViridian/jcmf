@@ -1,8 +1,10 @@
 2019-08-05
 Things done:
-Things IP:
     - Pick a good scoring model
         - Ideally: good spread between ~1-100, low variation across runs
+        - PoAV still seems like it has the least variation...
+        - I should be able to repurpose my clustering code for all of these. See if they turn up similar results.
+Things IP:
     - Figure out how to cluster
     - Write presentation outline & presentation!!!
     - Update track hubs
@@ -20,17 +22,17 @@ thesis/writeup:
     - essentially, write some manual for the programs, describe what they are actually doing in detail
 Find relative entropy between two CMs
     - Find p(emitting some given seq from some given CM)
-    - Original direct averaging process:
+    - Original direct averaging process: (PoAV)
         - Calculate: Given N samples, cm A,B, sequence Si out of N total emitted from A
             sum_Si(Abitscore_Si - Bbitscore_Si)/N
         - This method tends to overexaggerate differences, since we are drawing a very small sample from A itself
-    - Combine Correction process:
+    - Combine Correction process: (PQAV)
         - Calculate: Given N samples, cm A,B, sequence Si out of N/2 total emitted from A + N/2 total emitted from B
             sum_Si(Abitscore_Si - Bbitscore_Si)/(N)
-    - 2^a Correction process: suggested by Pf Ruzzo
+    - 2^a Correction process: suggested by Pf Ruzzo (Po2P, has PQ2P variant)
         - Calculate: Given N samples, cm A,B, sequence Si out of N total emitted from A
             sum_Si((2^Abitscore_Si)*(Abitscore_Si - Bbitscore_Si))/sum_Si(2^Abitscore_Si)
-    - 2^a/N Correction process: suggested by Pf Ruzzo
+    - 2^a/N Correction process: suggested by Pf Ruzzo (PoPN, has PQPN variant)
         - Calculate: Given N samples, cm A,B, sequence Si out of N total emitted from A
             N_si = (1/4)^(si_length - A_avglength)*e^(-si_length/A_avglength)
             sum_Si((2^Abitscore_Si)*(N_si)*(Abitscore_Si - Bbitscore_Si))/sum_Si((2^Abitscore_Si)*(N_si))
