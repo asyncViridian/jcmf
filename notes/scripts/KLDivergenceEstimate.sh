@@ -127,12 +127,12 @@ done 3< "${workingDir}/align/${QemitaligntoPdata}"
 # uncombined (P-only) direct avg
 echo "$(echo "${pAlignSum}/${numSamples}" | bc -l)"
 # combined (P+Q) direct avg
-echo "$(echo "${pqAlignSum}/(${numSamples}*2)" | bc -l)"
+#echo "$(echo "${pqAlignSum}/(${numSamples}*2)" | bc -l)"
 # uncombined (P-only) corrected with 2^Pi
-echo "$(echo "${aAdjustPAlignNum}/${aAdjustPAlignDen}" | bc -l)"
+#echo "$(echo "${aAdjustPAlignNum}/${aAdjustPAlignDen}" | bc -l)"
 # combined (P+Q) corrected with 2^Pi
-echo "$(echo "${aAdjustPQAlignNum}/(${aAdjustPQAlignDen})" | bc -l)"
+#echo "$(echo "${aAdjustPQAlignNum}/(${aAdjustPQAlignDen})" | bc -l)"
 # uncombined (P-only) corrected with 2^Pi/N
-echo "$(echo "${nAdjustPAlignNum}/${nAdjustPAlignDen}" | bc -l)"
+#echo "$(echo "${nAdjustPAlignNum}/${nAdjustPAlignDen}" | bc -l)"
 # combined (P+Q) corrected with 2^Pi/N
-echo "$(echo "${nAdjustPQAlignNum}/(${nAdjustPQAlignDen})" | bc -l)"
+#echo "$(echo "${nAdjustPQAlignNum}/(${nAdjustPQAlignDen})" | bc -l)"
