@@ -4,8 +4,10 @@ Things done:
         - Ideally: good spread between ~1-100, low variation across runs
         - PoAV still seems like it has the least variation...
         - I should be able to repurpose my clustering code for all of these. See if they turn up similar results.
-Things IP:
+        - I'm currently able to run all 6 in parallel. Perhaps visually it will make more sense -_-
     - Figure out how to cluster
+        - Gephi visualization tool is a good starting point, considering I basically have graph-edges.
+Things IP:
     - Write presentation outline & presentation!!!
     - Update track hubs
         - pick an interesting example
