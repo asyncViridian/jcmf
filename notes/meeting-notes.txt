@@ -1,3 +1,34 @@
+2019-08-05
+Things done:
+Things IP:
+    - Write presentation outline & presentation!!!
+Things not-done:
+
+Presentation
+    - on Wed 8/7 at 3:30PM 
+    - in CSE 624 (meeting room closest to EE elevator)
+    - plan for 45min of talk (1hr incl. questions)
+thesis/writeup:
+    - clarify behavior for "disordered on reverse strand"
+    - clarify behavior of fblock
+    - essentially, write some manual for the programs, describe what they are actually doing in detail
+Find relative entropy between two CMs
+    - Find p(emitting some given seq from some given CM)
+    - Original direct averaging process:
+        - Calculate: Given N samples, cm A,B, sequence Si out of N total emitted from A
+            sum_Si(Abitscore_Si - Bbitscore_Si)/N
+        - This method tends to overexaggerate differences, since we are drawing a very small sample from A itself
+    - Combine Correction process:
+        - Calculate: Given N samples, cm A,B, sequence Si out of N/2 total emitted from A + N/2 total emitted from B
+            sum_Si(Abitscore_Si - Bbitscore_Si)/(N)
+    - 2^a Correction process: suggested by Pf Ruzzo
+        - Calculate: Given N samples, cm A,B, sequence Si out of N total emitted from A
+            sum_Si((2^Abitscore_Si)*(Abitscore_Si - Bbitscore_Si))/sum_Si(2^Abitscore_Si)
+    - 2^a/N Correction process: suggested by Pf Ruzzo
+        - Calculate: Given N samples, cm A,B, sequence Si out of N total emitted from A
+            N_si = (1/4)^(si_length - A_avglength)*e^(-si_length/A_avglength)
+            sum_Si((2^Abitscore_Si)*(N_si)*(Abitscore_Si - Bbitscore_Si))/sum_Si((2^Abitscore_Si)*(N_si))
+
 ===============================================================================
 2019-08-01
 Things done:
