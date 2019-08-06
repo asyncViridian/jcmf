@@ -11,10 +11,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.UUID;
-import java.util.concurrent.ExecutionException;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.Future;
+import java.util.concurrent.*;
 
 public class KLMatrixGenerator {
 
@@ -23,7 +20,7 @@ public class KLMatrixGenerator {
     private static String outputFile;
     private static int numSamples;
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws IOException, InterruptedException {
         long startTime = System.nanoTime();
         // handle command-line argument processing :)
         // add all the arguments we need
@@ -93,6 +90,7 @@ public class KLMatrixGenerator {
                 maxFilenameLength = currFilenameLength;
             }
         }
+        maxFilenameLength += 2;
 
         // Start constructing our matrix
         Future[][] scoreFutures = new Future[files.length][files.length];
@@ -144,26 +142,34 @@ public class KLMatrixGenerator {
         }
         // Collect the results of our matrix
         BigDecimal[][] scores = new BigDecimal[files.length][files.length];
+        for (BigDecimal[] a : scores) {
+            for (int i = 0; i < a.length; i++) {
+                a[i] = null;
+            }
+        }
         int done = 0;
         while (done != (files.length * files.length)) {
+            TimeUnit.SECONDS.sleep(1);
             for (int i = 0; i < files.length; i++) {
                 for (int j = 0; j < files.length; j++) {
-                    if (scoreFutures[i][j].isDone()) {
-                        try {
-                            scores[i][j] =
-                                    (BigDecimal) scoreFutures[i][j].get();
-                        } catch (InterruptedException | ExecutionException e) {
-                            // this shouldn't happen if its done
-                            // but we will mark it with a neat -1 anyway
-                            scores[i][j] = BigDecimal.valueOf(-1);
-                            e.printStackTrace();
-                        } finally {
-                            done++;
+                    if (scores[i][j] == null) {
+                        if (scoreFutures[i][j].isDone()) {
+                            try {
+                                scores[i][j] =
+                                        (BigDecimal) scoreFutures[i][j].get();
+                            } catch (InterruptedException | ExecutionException e) {
+                                // this shouldn't happen if its done
+                                // but we will mark it with a neat -1 anyway
+                                scores[i][j] = BigDecimal.valueOf(-1);
+                                e.printStackTrace();
+                            } finally {
+                                done++;
+                            }
                         }
                     }
                 }
             }
-            System.out.print(System.nanoTime() / 1000000 + " " + done);
+            System.out.println(System.currentTimeMillis() / 1000 + " " + done);
         }
         executor.shutdown();
 
