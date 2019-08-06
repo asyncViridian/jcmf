@@ -2,7 +2,6 @@ package crosscompare;
 
 import org.apache.commons.cli.*;
 import org.apache.commons.lang3.StringUtils;
-import util.StringManip;
 
 import java.io.*;
 import java.math.BigDecimal;
@@ -26,8 +25,7 @@ public class KLMatrixGenerator {
      * The command that this program will run to get a K-L divergence score
      * between two CMs.
      */
-    private static final String SCORE_CALCULATE_CMD =
-            "./KLDivergenceEstimate.sh";
+    private static String scoreCalcCmd = "./KLDivergenceEstimate.sh";
 
     public static void main(String[] args)
             throws IOException, InterruptedException {
@@ -63,6 +61,17 @@ public class KLMatrixGenerator {
                                           "Required.")
                             .required()
                             .build());
+            KLMatrixGenerator.options.addOption(
+                    Option.builder("e")
+                            .hasArg()
+                            .desc("The command/executable to use for finding " +
+                                          "divergence score. Must take in 4 " +
+                                          "args in the given order: a 'temp' " +
+                                          "working directory name, a CM " +
+                                          "filepath, another CM filepath, and" +
+                                          " a number of samples to use. " +
+                                          "Defaults to '" + scoreCalcCmd + "'")
+                            .build());
         }
         // Parse the commandline arguments
         CommandLineParser parser = new DefaultParser();
@@ -75,6 +84,11 @@ public class KLMatrixGenerator {
             // set the number of samples to use
             KLMatrixGenerator.numSamples
                     = Integer.valueOf(line.getOptionValue("n"));
+            // set the executable
+            if (line.hasOption("e")) {
+                KLMatrixGenerator.scoreCalcCmd =
+                        line.getOptionValue("e");
+            }
         } catch (ParseException exp) {
             // something went wrong
             System.err.println("Parsing failed. Reason: " + exp.getMessage());
@@ -87,9 +101,9 @@ public class KLMatrixGenerator {
         }
 
         // Check that the script being used exists in the same directory
-        if (Files.notExists(Paths.get(SCORE_CALCULATE_CMD))) {
+        if (Files.notExists(Paths.get(scoreCalcCmd))) {
             System.err.println("Please ensure that the command " +
-                                       "'" + SCORE_CALCULATE_CMD + "' " +
+                                       "'" + scoreCalcCmd + "' " +
                                        "can be executed from the working " +
                                        "directory.");
             return;
@@ -132,7 +146,7 @@ public class KLMatrixGenerator {
 
                     // Run the K-L divergence score estimator script
                     // TODO make it more possible to parameterize the script???
-                    String[] cmd = {SCORE_CALCULATE_CMD,
+                    String[] cmd = {scoreCalcCmd,
                             tempDir.toString(),
                             pathP,
                             pathQ,
