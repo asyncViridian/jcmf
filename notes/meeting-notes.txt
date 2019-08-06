@@ -1,13 +1,13 @@
 2019-08-05
 Things done:
-    - Pick a good scoring model
-        - use PQ/PN combination as it tends to not go negative but also brings out differences
 Things IP:
+    - Pick a good scoring model
+        - Ideally: good spread between ~1-100, low variation across runs
     - Figure out how to cluster
     - Write presentation outline & presentation!!!
-    - Evaluate randomized-input results (significance threshold) ???
     - Update track hubs
         - pick an interesting example
+    - Evaluate randomized-input results (significance threshold) ??? might have to future-work this
 Things not-done:
 
 Presentation
