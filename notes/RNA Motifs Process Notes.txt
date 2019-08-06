@@ -71,9 +71,9 @@ My typical practical workflow: (see also the "To run the entire pipeline" sample
 03. To get CMfinder's result motifs and scores for each result from RNAphylo, run the runAll.sh script, like so (change out the parameters as appropriate, obviously):
     ./runAll.sh q_chr01_5block-10to3000-all/ source_mafs/chr5.maf settings/emuBigscan_5block
 04. To aggregate these analyses and generate a trackhub-usable format, run rerunTracksForDirs.sh, like so (change params as appropriate):
-    ./rerunTracksForDirs.sh q*emuBigscan_5block*
+    ./rerunTracksForDirs.sh q_chr*emuBigscan_5block*
     If you don't want to manually enter the prefix argument once the script starts, you can run it less-interactively like so:
-    echo "bigscan5" | ./rerunTracksForDirs.sh q*emuBigscan_5block*
+    echo "bigscan5" | ./rerunTracksForDirs.sh q_chr*emuBigscan_5block*
 
 ===============================================================================
 
@@ -173,15 +173,15 @@ disown
 
 To collect regular-model results (wait until all the runAlls are done):
 
-echo "-t blocks --numBlocksPerOutput 5" | ./rerunMergeForDirs.sh q*5block* &
-echo "-t blocks --numBlocksPerOutput 10" | ./rerunMergeForDirs.sh q*10block* &
-echo "-t fillblocks --minOutputLength 75 --maxOutputLength 400" | ./rerunMergeForDirs.sh q*fblock-75to400*&
+echo "-t blocks --numBlocksPerOutput 5" | ./rerunMergeForDirs.sh q_chr*5block* &
+echo "-t blocks --numBlocksPerOutput 10" | ./rerunMergeForDirs.sh q_chr*10block* &
+echo "-t fillblocks --minOutputLength 75 --maxOutputLength 400" | ./rerunMergeForDirs.sh q_chr*fblock-75to400*&
 wait
 echo "Merge done"
-echo bigscan10 | ./rerunTracksForDirs.sh q*emuBigscan_10block* &
-echo bigscan5 | ./rerunTracksForDirs.sh q*emuBigscan_5block* &
-echo bigscanf | ./rerunTracksForDirs.sh q*emuBigscan_fblock* &
-echo newparam | ./rerunTracksForDirs.sh q*newParams* &
+echo bigscan10 | ./rerunTracksForDirs.sh q_chr*emuBigscan_10block* &
+echo bigscan5 | ./rerunTracksForDirs.sh q_chr*emuBigscan_5block* &
+echo bigscanf | ./rerunTracksForDirs.sh q_chr*emuBigscan_fblock* &
+echo newparam | ./rerunTracksForDirs.sh q_chr*newParams* &
 wait
 echo "Trackgen done"
 java -jar consensusoverlap.jar -s temp_bigscanf/bigscanf_src -c chr1 -o temp_bigscanf/bigscanf_chr1.html -l -pre bigscanf_src/ &

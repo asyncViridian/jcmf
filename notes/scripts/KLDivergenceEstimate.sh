@@ -6,7 +6,8 @@
 # $1 = dir to work in
 # $2 = CM "P"
 # $3 = CM "Q"
-# $4 = Number of samples to use
+# $4 = Number of samples to use emitted from each of P, Q
+#      (So if using a combined method, the actual number of samples is 2x)
 
 # Setup our working environment
 mkdir -p $1/CMs
@@ -62,16 +63,18 @@ while IFS= read -r -u3 line; do
         Plinearr=(${line})
         Qlinearr=($(grep ${Plinearr[1]} ${workingDir}/align/${PemitaligntoQdata}))
         # Bit score is arr[6] in the whitespace-sv
-        echo "P ${Plinearr[6]} Q ${Qlinearr[6]}"
-        # To take the power of x^n : e($n*l($x))
-        PQ=$(echo "(${Plinearr[6]})-(${Qlinearr[6]})" | bc -l)
+        Pbitsc=${Plinearr[6]}
+        Qbitsc=${Qlinearr[6]}
+        echo "P ${Pbitsc} Q ${Qbitsc}"
+        PQ=$(echo "(${Pbitsc})-(${Qbitsc})" | bc -l)
         #echo "Elem score: ${PQ}"
         pAlignSum=$(echo "(${pAlignSum})+(${PQ})" | bc -l)
         pqAlignSum=$(echo "(${pqAlignSum})+(${PQ})" | bc -l)
-        aAdjustPAlignNum=$(echo "${aAdjustPAlignNum}+((e((${Plinearr[6]})*l(2)))*(${PQ}))" | bc -l)
-        aAdjustPAlignDen=$(echo "${aAdjustPAlignDen}+((e((${Plinearr[6]})*l(2))))" | bc -l)
-        aAdjustPQAlignNum=$(echo "${aAdjustPQAlignNum}+((e((${Plinearr[6]})*l(2)))*(${PQ}))" | bc -l)
-        aAdjustPQAlignDen=$(echo "${aAdjustPQAlignDen}+((e((${Plinearr[6]})*l(2))))" | bc -l)
+        aAdjustPAlignNum=$(echo "${aAdjustPAlignNum}+((e((${Pbitsc})*l(2)))*(${PQ}))" | bc -l)
+        aAdjustPAlignDen=$(echo "${aAdjustPAlignDen}+((e((${Pbitsc})*l(2))))" | bc -l)
+        aAdjustPQAlignNum=$(echo "${aAdjustPQAlignNum}+((e((${Pbitsc})*l(2)))*(${PQ}))" | bc -l)
+        aAdjustPQAlignDen=$(echo "${aAdjustPQAlignDen}+((e((${Pbitsc})*l(2))))" | bc -l)
+        # To take the power of x^n : e($n*l($x))
     fi
 done 3< "${workingDir}/align/${PemitaligntoPdata}"
 while IFS= read -r -u3 line; do
@@ -80,21 +83,24 @@ while IFS= read -r -u3 line; do
         Plinearr=(${line})
         Qlinearr=($(grep ${Plinearr[1]} ${workingDir}/align/${QemitaligntoQdata}))
         # Bit score is arr[6] in the whitespace-sv
-        echo "P ${Plinearr[6]} Q ${Qlinearr[6]}"
-        # To take the power of x^n : e($n*l($x))
-        PQ=$(echo "(${Plinearr[6]})-(${Qlinearr[6]})" | bc -l)
+        Pbitsc=${Plinearr[6]}
+        Qbitsc=${Qlinearr[6]}
+        echo "P ${Pbitsc} Q ${Qbitsc}"
+        PQ=$(echo "(${Pbitsc})-(${Qbitsc})" | bc -l)
         #echo "Elem score: ${PQ}"
         pqAlignSum=$(echo "(${pqAlignSum})+(${PQ})" | bc -l)
-        aAdjustPQAlignNum=$(echo "${aAdjustPQAlignNum}+((e((${Plinearr[6]})*l(2)))*(${PQ}))" | bc -l)
-        aAdjustPQAlignDen=$(echo "${aAdjustPQAlignDen}+((e((${Plinearr[6]})*l(2))))" | bc -l)
+        aAdjustPQAlignNum=$(echo "${aAdjustPQAlignNum}+((e((${Pbitsc})*l(2)))*(${PQ}))" | bc -l)
+        aAdjustPQAlignDen=$(echo "${aAdjustPQAlignDen}+((e((${Pbitsc})*l(2))))" | bc -l)
     fi
 done 3< "${workingDir}/align/${QemitaligntoPdata}"
 
 
 # Average scores (using sum and sample count)
-#echo "sum ${pAlignSum} num ${numSamples}"
-echo "uncombine reg $(echo "${pAlignSum}/${numSamples}" | bc -l)"
-echo "uncombine cor $(echo "${aAdjustPAlignNum}/${aAdjustPAlignDen}" | bc -l)"
-echo "  combine reg $(echo "${pqAlignSum}/(${numSamples}*2)" | bc -l)"
-echo "  combine cor $(echo "${aAdjustPQAlignNum}/(${aAdjustPQAlignDen})" | bc -l)"
-
+# uncombined (P-only) direct avg
+echo "$(echo "${pAlignSum}/${numSamples}" | bc -l)"
+# uncombined (P-only) corrected with 2^Pi
+echo "$(echo "${aAdjustPAlignNum}/${aAdjustPAlignDen}" | bc -l)"
+# combined (P+Q) direct avg
+echo "$(echo "${pqAlignSum}/(${numSamples}*2)" | bc -l)"
+# combined (P+Q) corrected with 2^Pi
+echo "$(echo "${aAdjustPQAlignNum}/(${aAdjustPQAlignDen})" | bc -l)"

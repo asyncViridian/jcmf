@@ -40,6 +40,13 @@ public class SimpleNumberHistogram implements StatsGraph {
 
     @Override
     public void write() throws IOException {
+        // prevent an exception if there are no values to be written
+        if (values.size() == 0) {
+            System.err.println(
+                    "0 values in graph: [" + this.output.getFileName() + "]");
+            return;
+        }
+
         HistogramDataset dataset = new HistogramDataset();
         dataset.setType(HistogramType.RELATIVE_FREQUENCY);
         double[] temp = new double[values.size()];
@@ -49,7 +56,7 @@ public class SimpleNumberHistogram implements StatsGraph {
             temp[i] = it.next().doubleValue();
             i++;
         }
-        // TODO: This will throw an exception if there are 0 values.
+
         dataset.addSeries(key, temp, numBins);
 
         JFreeChart chart = ChartFactory.createHistogram(

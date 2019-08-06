@@ -100,6 +100,7 @@ done
 
 # Grabbing only the source files that we actually want
 mkdir temp_$prefix/${prefix}_src
+mkdir temp_$prefix/${prefix}_src_unscored
 cd temp_$prefix
 for file in *.bed
 do
@@ -111,7 +112,7 @@ do
       resultfilename="${lineArray[3]%.score}_${lineArray[0]}.sto"
       scorefilename="${lineArray[3]}_${lineArray[0]}.txt"
       echo "Saving to src: $scorefilename"
-      cp tempsrc/$resultfilename ${prefix}_src/$resultfilename
+      cp tempsrc/$resultfilename ${prefix}_src_unscored/$resultfilename
       cp tempsrc/$scorefilename ${prefix}_src/$scorefilename
     done < $file
   fi
