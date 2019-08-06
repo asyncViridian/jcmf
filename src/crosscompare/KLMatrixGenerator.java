@@ -16,9 +16,18 @@ import java.util.concurrent.*;
 public class KLMatrixGenerator {
 
     private static Options options;
+    /**
+     * The directory that this program reads input CM files from.
+     */
     private static String srcDir;
     private static String outputFile;
     private static int numSamples;
+    /**
+     * The command that this program will run to get a K-L divergence score
+     * between two CMs.
+     */
+    private static final String SCORE_CALCULATE_CMD =
+            "./KLDivergenceEstimate.sh";
 
     public static void main(String[] args)
             throws IOException, InterruptedException {
@@ -31,7 +40,12 @@ public class KLMatrixGenerator {
                     Option.builder("s")
                             .longOpt("srcDir")
                             .hasArg()
-                            .desc("Input CM files directory. Required.")
+                            .desc("Input CM files directory. " +
+                                          "Note that this program will do a " +
+                                          "matrix comparison on ALL CM files " +
+                                          "within this directory. It will " +
+                                          "ONLY include files that have a " +
+                                          "file extension of '.cm'. Required.")
                             .required()
                             .build());
             KLMatrixGenerator.options.addOption(
@@ -72,6 +86,15 @@ public class KLMatrixGenerator {
             return;
         }
 
+        // Check that the script being used exists in the same directory
+        if (Files.notExists(Paths.get(SCORE_CALCULATE_CMD))) {
+            System.err.println("Please ensure that the command " +
+                                       "'" + SCORE_CALCULATE_CMD + "' " +
+                                       "can be executed from the working " +
+                                       "directory.");
+            return;
+        }
+
         // Get the input & output files set up
         Path source = Paths.get(KLMatrixGenerator.srcDir);
         Path output = Paths.get(KLMatrixGenerator.outputFile);
@@ -108,8 +131,8 @@ public class KLMatrixGenerator {
                     Files.createDirectory(tempDir);
 
                     // Run the K-L divergence score estimator script
-                    // TODO make it possible to parameterize the script???
-                    String[] cmd = {"./KLDivergenceEstimate.sh",
+                    // TODO make it more possible to parameterize the script???
+                    String[] cmd = {SCORE_CALCULATE_CMD,
                             tempDir.toString(),
                             pathP,
                             pathQ,

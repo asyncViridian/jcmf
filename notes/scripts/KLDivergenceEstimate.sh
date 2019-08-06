@@ -125,9 +125,9 @@ done 3< "${workingDir}/align/${QemitaligntoPdata}"
 
 # Average scores (using sum and sample count)
 # uncombined (P-only) direct avg
-echo "$(echo "${pAlignSum}/${numSamples}" | bc -l)"
+#echo "$(echo "${pAlignSum}/${numSamples}" | bc -l)"
 # combined (P+Q) direct avg
-#echo "$(echo "${pqAlignSum}/(${numSamples}*2)" | bc -l)"
+echo "$(echo "${pqAlignSum}/(${numSamples}*2)" | bc -l)"
 # uncombined (P-only) corrected with 2^Pi
 #echo "$(echo "${aAdjustPAlignNum}/${aAdjustPAlignDen}" | bc -l)"
 # combined (P+Q) corrected with 2^Pi
