@@ -1,7 +1,12 @@
 2019-08-05
 Things done:
 Things IP:
+    - Pick a good scoring model
+    - Figure out how to cluster
     - Write presentation outline & presentation!!!
+    - Evaluate randomized-input results (significance threshold) ???
+    - Update track hubs
+        - pick an interesting example
 Things not-done:
 
 Presentation
