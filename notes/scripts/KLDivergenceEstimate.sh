@@ -20,6 +20,12 @@ Q=$(basename $3)
 numSamples=$4
 workingDir=$1
 
+# Get stats about the CMs
+tmp=($(cat ${workingDir}/CMs/${P} | grep "CLEN"))
+Plen=${tmp[1]}
+tmp=($(cat ${workingDir}/CMs/${Q} | grep "CLEN"))
+Qlen=${tmp[1]}
+
 # Emit samples
 Pemit="${P}.emit.fasta"
 Qemit="${Q}.emit.fasta"
@@ -42,13 +48,13 @@ QemitaligntoQdata="${Qemit}.alignto.${Q}.sto.data"
 
 # Read the bitscores of all alignments and calculate score
 
-# Variables for the simple average method:
+# Variables for the simple average method (exaggerates differences)
 # using only emits from P
 pAlignSum=0
 # using emits from both P and Q
 pqAlignSum=0
 
-# Variables for the 2^Pi (2^a) adjusted method:
+# Variables for the 2^Pi (2^a) adjusted method (should correct somewhat for emit distribution)
 # using only emits from P
 aAdjustPAlignNum=0
 aAdjustPAlignDen=0
@@ -56,24 +62,40 @@ aAdjustPAlignDen=0
 aAdjustPQAlignNum=0
 aAdjustPQAlignDen=0
 
+# Variables for the 2^Pi/N (2^a/N) adjusted method (should be more stable over nulls)
+# using only emits from P
+nAdjustPAlignNum=0
+nAdjustPAlignDen=0
+# using emits from both P and Q
+nAdjustPQAlignNum=0
+nAdjustPQAlignDen=0
+
 # read a file line by line:
 while IFS= read -r -u3 line; do
     if [[ ${line} != \#* ]]; then
         # Ignore the comment lines in data output
         Plinearr=(${line})
         Qlinearr=($(grep ${Plinearr[1]} ${workingDir}/align/${PemitaligntoQdata}))
+        # Emit seq length is arr[2] in the whitespace-sv
+        emitLen=${Plinearr[2]}
         # Bit score is arr[6] in the whitespace-sv
         Pbitsc=${Plinearr[6]}
         Qbitsc=${Qlinearr[6]}
-        echo "P ${Pbitsc} Q ${Qbitsc}"
+        #echo "P ${Pbitsc} Q ${Qbitsc}"
         PQ=$(echo "(${Pbitsc})-(${Qbitsc})" | bc -l)
         #echo "Elem score: ${PQ}"
         pAlignSum=$(echo "(${pAlignSum})+(${PQ})" | bc -l)
         pqAlignSum=$(echo "(${pqAlignSum})+(${PQ})" | bc -l)
-        aAdjustPAlignNum=$(echo "${aAdjustPAlignNum}+((e((${Pbitsc})*l(2)))*(${PQ}))" | bc -l)
-        aAdjustPAlignDen=$(echo "${aAdjustPAlignDen}+((e((${Pbitsc})*l(2))))" | bc -l)
-        aAdjustPQAlignNum=$(echo "${aAdjustPQAlignNum}+((e((${Pbitsc})*l(2)))*(${PQ}))" | bc -l)
-        aAdjustPQAlignDen=$(echo "${aAdjustPQAlignDen}+((e((${Pbitsc})*l(2))))" | bc -l)
+        aterm=$(echo "e((${Pbitsc})*l(2))" | bc -l)
+        aAdjustPAlignNum=$(echo "${aAdjustPAlignNum}+((${aterm})*(${PQ}))" | bc -l)
+        aAdjustPAlignDen=$(echo "${aAdjustPAlignDen}+((${aterm}))" | bc -l)
+        aAdjustPQAlignNum=$(echo "${aAdjustPQAlignNum}+((${aterm})*(${PQ}))" | bc -l)
+        aAdjustPQAlignDen=$(echo "${aAdjustPQAlignDen}+((${aterm}))" | bc -l)
+        nterm=$(echo "((1/4)^(${emitLen}-${Plen}))*(e(-1*(${emitLen}/${Plen})))" | bc -l)
+        nAdjustPAlignNum=$(echo "${nAdjustPAlignNum}+((${aterm})*(${nterm})*(${PQ}))" | bc -l)
+        nAdjustPAlignDen=$(echo "${nAdjustPAlignDen}+((${aterm})*(${nterm}))" | bc -l)
+        nAdjustPQAlignNum=$(echo "${nAdjustPQAlignNum}+((${aterm})*(${nterm})*(${PQ}))" | bc -l)
+        nAdjustPQAlignDen=$(echo "${nAdjustPQAlignDen}+((${aterm})*(${nterm}))" | bc -l)
         # To take the power of x^n : e($n*l($x))
     fi
 done 3< "${workingDir}/align/${PemitaligntoPdata}"
@@ -82,15 +104,21 @@ while IFS= read -r -u3 line; do
         # Ignore the comment lines in data output
         Plinearr=(${line})
         Qlinearr=($(grep ${Plinearr[1]} ${workingDir}/align/${QemitaligntoQdata}))
+        # Emit seq length is arr[2] in the whitespace-sv
+        emitLen=${Qlinearr[2]}
         # Bit score is arr[6] in the whitespace-sv
         Pbitsc=${Plinearr[6]}
         Qbitsc=${Qlinearr[6]}
-        echo "P ${Pbitsc} Q ${Qbitsc}"
+        #echo "P ${Pbitsc} Q ${Qbitsc}"
         PQ=$(echo "(${Pbitsc})-(${Qbitsc})" | bc -l)
         #echo "Elem score: ${PQ}"
         pqAlignSum=$(echo "(${pqAlignSum})+(${PQ})" | bc -l)
-        aAdjustPQAlignNum=$(echo "${aAdjustPQAlignNum}+((e((${Pbitsc})*l(2)))*(${PQ}))" | bc -l)
-        aAdjustPQAlignDen=$(echo "${aAdjustPQAlignDen}+((e((${Pbitsc})*l(2))))" | bc -l)
+        aterm=$(echo "e((${Pbitsc})*l(2))" | bc -l)
+        aAdjustPQAlignNum=$(echo "${aAdjustPQAlignNum}+((${aterm})*(${PQ}))" | bc -l)
+        aAdjustPQAlignDen=$(echo "${aAdjustPQAlignDen}+((${aterm}))" | bc -l)
+        nterm=$(echo "((1/4)^(${emitLen}-${Qlen}))*(e(-1*(${emitLen}/${Qlen})))" | bc -l)
+        nAdjustPQAlignNum=$(echo "${nAdjustPQAlignNum}+((${aterm})*(${nterm})*(${PQ}))" | bc -l)
+        nAdjustPQAlignDen=$(echo "${nAdjustPQAlignDen}+((${aterm})*(${nterm}))" | bc -l)
     fi
 done 3< "${workingDir}/align/${QemitaligntoPdata}"
 
@@ -98,9 +126,13 @@ done 3< "${workingDir}/align/${QemitaligntoPdata}"
 # Average scores (using sum and sample count)
 # uncombined (P-only) direct avg
 echo "$(echo "${pAlignSum}/${numSamples}" | bc -l)"
-# uncombined (P-only) corrected with 2^Pi
-echo "$(echo "${aAdjustPAlignNum}/${aAdjustPAlignDen}" | bc -l)"
 # combined (P+Q) direct avg
 echo "$(echo "${pqAlignSum}/(${numSamples}*2)" | bc -l)"
+# uncombined (P-only) corrected with 2^Pi
+echo "$(echo "${aAdjustPAlignNum}/${aAdjustPAlignDen}" | bc -l)"
 # combined (P+Q) corrected with 2^Pi
 echo "$(echo "${aAdjustPQAlignNum}/(${aAdjustPQAlignDen})" | bc -l)"
+# uncombined (P-only) corrected with 2^Pi/N
+echo "$(echo "${nAdjustPAlignNum}/${nAdjustPAlignDen}" | bc -l)"
+# combined (P+Q) corrected with 2^Pi/N
+echo "$(echo "${nAdjustPQAlignNum}/(${nAdjustPQAlignDen})" | bc -l)"
