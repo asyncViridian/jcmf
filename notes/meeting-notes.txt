@@ -12,8 +12,9 @@ Things IP:
     - Write presentation outline & presentation!!!
     - Update track hubs
         - pick an interesting example
-    - Evaluate randomized-input results (significance threshold) ??? might have to future-work this
 Things not-done:
+    - Evaluate randomized-input results (significance threshold)
+        - probably going to have to future-work this, or at least not present it
 
 Presentation
     - on Wed 8/7 at 3:30PM 
