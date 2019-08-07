@@ -1,0 +1,72 @@
+<?xml version='1.0' encoding='utf-8'?>
+<gexf version="1.2" xmlns="http://www.gexf.net/1.2draft" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.w3.org/2001/XMLSchema-instance">
+  <graph defaultedgetype="undirected" mode="static" name="">
+    <attributes class="node" mode="static">
+      <attribute id="0" title="group" type="string" />
+    </attributes>
+    <meta>
+      <creator>NetworkX 2.1</creator>
+      <lastmodified>06/08/2019</lastmodified>
+    </meta>
+    <nodes>
+      <node id="m_753.fasta.motif.h1_3.h2_3.h1_1.h1_4.h1_2_chr5.sto.cm" label="0">
+        <attvalues>
+          <attvalue for="0" value="2" />
+        </attvalues>
+      </node>
+      <node id="m_9.fasta.motif.h1_4.h2_1.h1_3_chr5.sto.cm" label="1">
+        <attvalues>
+          <attvalue for="0" value="2" />
+        </attvalues>
+      </node>
+      <node id="m_1540.fasta.motif.h1_2.h1_4.h1_3_chr5.sto.cm" label="2">
+        <attvalues>
+          <attvalue for="0" value="1" />
+        </attvalues>
+      </node>
+      <node id="m_1539.fasta.motif.h2_2.h2_3_chr5.sto.cm" label="3">
+        <attvalues>
+          <attvalue for="0" value="1" />
+        </attvalues>
+      </node>
+      <node id="m_1720.fasta.motif.h2_2.h2_5_chr5.sto.cm" label="4">
+        <attvalues>
+          <attvalue for="0" value="0" />
+        </attvalues>
+      </node>
+      <node id="m_391.fasta.motif.h2_3.h2_4_chr5.sto.cm" label="5">
+        <attvalues>
+          <attvalue for="0" value="0" />
+        </attvalues>
+      </node>
+      <node id="m_417.fasta.motif.h1_5_chr5.sto.cm" label="6">
+        <attvalues>
+          <attvalue for="0" value="1" />
+        </attvalues>
+      </node>
+    </nodes>
+    <edges>
+      <edge id="0" source="m_753.fasta.motif.h1_3.h2_3.h1_1.h1_4.h1_2_chr5.sto.cm" target="m_9.fasta.motif.h1_4.h2_1.h1_3_chr5.sto.cm" weight="153.18449870436535" />
+      <edge id="1" source="m_753.fasta.motif.h1_3.h2_3.h1_1.h1_4.h1_2_chr5.sto.cm" target="m_1540.fasta.motif.h1_2.h1_4.h1_3_chr5.sto.cm" weight="164.868379847149" />
+      <edge id="2" source="m_753.fasta.motif.h1_3.h2_3.h1_1.h1_4.h1_2_chr5.sto.cm" target="m_1539.fasta.motif.h2_2.h2_3_chr5.sto.cm" weight="135.4817492734589" />
+      <edge id="3" source="m_753.fasta.motif.h1_3.h2_3.h1_1.h1_4.h1_2_chr5.sto.cm" target="m_1720.fasta.motif.h2_2.h2_5_chr5.sto.cm" weight="179.08713730074516" />
+      <edge id="4" source="m_753.fasta.motif.h1_3.h2_3.h1_1.h1_4.h1_2_chr5.sto.cm" target="m_391.fasta.motif.h2_3.h2_4_chr5.sto.cm" weight="212.18338141838763" />
+      <edge id="5" source="m_753.fasta.motif.h1_3.h2_3.h1_1.h1_4.h1_2_chr5.sto.cm" target="m_417.fasta.motif.h1_5_chr5.sto.cm" weight="141.49834658598473" />
+      <edge id="6" source="m_9.fasta.motif.h1_4.h2_1.h1_3_chr5.sto.cm" target="m_1540.fasta.motif.h1_2.h1_4.h1_3_chr5.sto.cm" weight="114.36764361824122" />
+      <edge id="7" source="m_9.fasta.motif.h1_4.h2_1.h1_3_chr5.sto.cm" target="m_1539.fasta.motif.h2_2.h2_3_chr5.sto.cm" weight="118.54967079820545" />
+      <edge id="8" source="m_9.fasta.motif.h1_4.h2_1.h1_3_chr5.sto.cm" target="m_1720.fasta.motif.h2_2.h2_5_chr5.sto.cm" weight="180.50849166302663" />
+      <edge id="9" source="m_9.fasta.motif.h1_4.h2_1.h1_3_chr5.sto.cm" target="m_391.fasta.motif.h2_3.h2_4_chr5.sto.cm" weight="143.2607154848219" />
+      <edge id="10" source="m_9.fasta.motif.h1_4.h2_1.h1_3_chr5.sto.cm" target="m_417.fasta.motif.h1_5_chr5.sto.cm" weight="82.56076282611433" />
+      <edge id="11" source="m_1540.fasta.motif.h1_2.h1_4.h1_3_chr5.sto.cm" target="m_1539.fasta.motif.h2_2.h2_3_chr5.sto.cm" weight="12.885250568837396" />
+      <edge id="12" source="m_1540.fasta.motif.h1_2.h1_4.h1_3_chr5.sto.cm" target="m_1720.fasta.motif.h2_2.h2_5_chr5.sto.cm" weight="185.35940025252125" />
+      <edge id="13" source="m_1540.fasta.motif.h1_2.h1_4.h1_3_chr5.sto.cm" target="m_391.fasta.motif.h2_3.h2_4_chr5.sto.cm" weight="162.70393263755835" />
+      <edge id="14" source="m_1540.fasta.motif.h1_2.h1_4.h1_3_chr5.sto.cm" target="m_417.fasta.motif.h1_5_chr5.sto.cm" weight="20.7400000211519" />
+      <edge id="15" source="m_1539.fasta.motif.h2_2.h2_3_chr5.sto.cm" target="m_1720.fasta.motif.h2_2.h2_5_chr5.sto.cm" weight="161.7584182542518" />
+      <edge id="16" source="m_1539.fasta.motif.h2_2.h2_3_chr5.sto.cm" target="m_391.fasta.motif.h2_3.h2_4_chr5.sto.cm" weight="167.3746685046708" />
+      <edge id="17" source="m_1539.fasta.motif.h2_2.h2_3_chr5.sto.cm" target="m_417.fasta.motif.h1_5_chr5.sto.cm" weight="34.35831038025236" />
+      <edge id="18" source="m_1720.fasta.motif.h2_2.h2_5_chr5.sto.cm" target="m_391.fasta.motif.h2_3.h2_4_chr5.sto.cm" weight="147.1254392191869" />
+      <edge id="19" source="m_1720.fasta.motif.h2_2.h2_5_chr5.sto.cm" target="m_417.fasta.motif.h1_5_chr5.sto.cm" weight="142.1459952261008" />
+      <edge id="20" source="m_391.fasta.motif.h2_3.h2_4_chr5.sto.cm" target="m_417.fasta.motif.h1_5_chr5.sto.cm" weight="121.3553585822672" />
+    </edges>
+  </graph>
+</gexf>
