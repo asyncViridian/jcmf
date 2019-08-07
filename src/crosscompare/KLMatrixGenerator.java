@@ -195,6 +195,7 @@ public class KLMatrixGenerator {
                         }
                         reader.close();
                         String[] pOutLines = pOutput.toString().split("\n");
+                        System.out.println("pOut "+Arrays.toString(pOutLines));
                         BigDecimal[] result = new BigDecimal[pOutLines.length];
                         for (int res = 0; res < result.length; res++) {
                             result[res] = BigDecimal.valueOf(
@@ -281,7 +282,7 @@ public class KLMatrixGenerator {
                                                               maxFilenameLength -
                                                                       P.getName().length()));
                 for (int j = 0; j < files.length; j++) {
-                    String score = scores[j][j].toString();
+                    String score = scores[fnum][j][j].toString();
                     writer.write(score + StringUtils.repeat(" ",
                                                             maxFilenameLength -
                                                                     score.length()));
