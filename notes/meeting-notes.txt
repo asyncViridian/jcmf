@@ -5,6 +5,7 @@ Things done:
         - PoAV still seems like it has the least variation...
         - I should be able to repurpose my clustering code for all of these. See if they turn up similar results.
         - I'm currently able to run all 6 in parallel. Perhaps visually it will make more sense -_-
+        - Use PQ2P as the main one
     - Figure out how to cluster
         - Gephi visualization tool is a good starting point, considering I basically have graph-edges.
 Things IP:
