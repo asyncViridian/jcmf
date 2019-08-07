@@ -126,20 +126,13 @@ done 3< "${workingDir}/align/${QemitaligntoPdata}"
 # Average scores (using sum and sample count)
 # uncombined (P-only) direct avg
 printf "$(printf "${pAlignSum}/${numSamples}\n" | bc -l)\n"
-printf "\n\n"
 # combined (P+Q) direct avg
 printf "$(printf "${pqAlignSum}/(${numSamples}*2)\n" | bc -l)\n"
-printf "\n\n"
 # uncombined (P-only) corrected with 2^Pi
 printf "$(printf "${aAdjustPAlignNum}/${aAdjustPAlignDen}\n" | bc -l)\n"
-printf "\n\n"
 # combined (P+Q) corrected with 2^Pi
 printf "$(printf "${aAdjustPQAlignNum}/(${aAdjustPQAlignDen})\n" | bc -l)\n"
-printf "\n\n"
 # uncombined (P-only) corrected with 2^Pi/N
 printf "$(printf "${nAdjustPAlignNum}/${nAdjustPAlignDen}\n" | bc -l)\n"
-printf "\n\n"
 # combined (P+Q) corrected with 2^Pi/N
 printf "$(printf "${nAdjustPQAlignNum}/(${nAdjustPQAlignDen})\n" | bc -l)\n"
-printf "\n\n"
-

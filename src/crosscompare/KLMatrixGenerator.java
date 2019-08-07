@@ -192,11 +192,14 @@ public class KLMatrixGenerator {
                         String line;
                         while ((line = reader.readLine()) != null) {
                             pOutput.append(line);
+                            pOutput.append("\n");
                         }
                         reader.close();
                         String[] pOutLines = pOutput.toString().split("\n");
+                        System.out.println("line "+pOutput);
                         System.out.println("pOut "+Arrays.toString(pOutLines));
-                        BigDecimal[] result = new BigDecimal[pOutLines.length];
+                        BigDecimal[] result = new BigDecimal[expectedOutputs];
+                        System.out.println("bDec "+Arrays.toString(result));
                         for (int res = 0; res < result.length; res++) {
                             result[res] = BigDecimal.valueOf(
                                     Double.valueOf(pOutLines[res])
