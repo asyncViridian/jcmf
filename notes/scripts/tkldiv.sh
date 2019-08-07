@@ -81,21 +81,21 @@ while IFS= read -r -u3 line; do
         # Bit score is arr[6] in the whitespace-sv
         Pbitsc=${Plinearr[6]}
         Qbitsc=${Qlinearr[6]}
-        #printf "P ${Pbitsc} Q ${Qbitsc}\n"
-        PQ=$(printf "(${Pbitsc})-(${Qbitsc})\n" | bc -l)
-        #printf "Elem score: ${PQ}\n"
-        pAlignSum=$(printf "(${pAlignSum})+(${PQ})\n" | bc -l)
-        pqAlignSum=$(printf "(${pqAlignSum})+(${PQ})\n" | bc -l)
-        aterm=$(printf "e((${Pbitsc})*l(2))\n" | bc -l)
-        aAdjustPAlignNum=$(printf "${aAdjustPAlignNum}+((${aterm})*(${PQ}))\n" | bc -l)
-        aAdjustPAlignDen=$(printf "${aAdjustPAlignDen}+((${aterm}))\n" | bc -l)
-        aAdjustPQAlignNum=$(printf "${aAdjustPQAlignNum}+((${aterm})*(${PQ}))\n" | bc -l)
-        aAdjustPQAlignDen=$(printf "${aAdjustPQAlignDen}+((${aterm}))\n" | bc -l)
-        nterm=$(printf "((1/4)^(${emitLen}-${Plen}))*(e(-1*(${emitLen}/${Plen})))\n" | bc -l)
-        nAdjustPAlignNum=$(printf "${nAdjustPAlignNum}+((${aterm})*(${nterm})*(${PQ}))\n" | bc -l)
-        nAdjustPAlignDen=$(printf "${nAdjustPAlignDen}+((${aterm})*(${nterm}))\n" | bc -l)
-        nAdjustPQAlignNum=$(printf "${nAdjustPQAlignNum}+((${aterm})*(${nterm})*(${PQ}))\n" | bc -l)
-        nAdjustPQAlignDen=$(printf "${nAdjustPQAlignDen}+((${aterm})*(${nterm}))\n" | bc -l)
+        #printf -- "P ${Pbitsc} Q ${Qbitsc}\n"
+        PQ=$(printf -- "(${Pbitsc})-(${Qbitsc})\n" | bc -l)
+        #printf -- "Elem score: ${PQ}\n"
+        pAlignSum=$(printf -- "(${pAlignSum})+(${PQ})\n" | bc -l)
+        pqAlignSum=$(printf -- "(${pqAlignSum})+(${PQ})\n" | bc -l)
+        aterm=$(printf -- "e((${Pbitsc})*l(2))\n" | bc -l)
+        aAdjustPAlignNum=$(printf -- "${aAdjustPAlignNum}+((${aterm})*(${PQ}))\n" | bc -l)
+        aAdjustPAlignDen=$(printf -- "${aAdjustPAlignDen}+((${aterm}))\n" | bc -l)
+        aAdjustPQAlignNum=$(printf -- "${aAdjustPQAlignNum}+((${aterm})*(${PQ}))\n" | bc -l)
+        aAdjustPQAlignDen=$(printf -- "${aAdjustPQAlignDen}+((${aterm}))\n" | bc -l)
+        nterm=$(printf -- "((1/4)^(${emitLen}-${Plen}))*(e(-1*(${emitLen}/${Plen})))\n" | bc -l)
+        nAdjustPAlignNum=$(printf -- "${nAdjustPAlignNum}+((${aterm})*(${nterm})*(${PQ}))\n" | bc -l)
+        nAdjustPAlignDen=$(printf -- "${nAdjustPAlignDen}+((${aterm})*(${nterm}))\n" | bc -l)
+        nAdjustPQAlignNum=$(printf -- "${nAdjustPQAlignNum}+((${aterm})*(${nterm})*(${PQ}))\n" | bc -l)
+        nAdjustPQAlignDen=$(printf -- "${nAdjustPQAlignDen}+((${aterm})*(${nterm}))\n" | bc -l)
         # To take the power of x^n : e($n*l($x))
     fi
 done 3< "${workingDir}/align/${PemitaligntoPdata}"
@@ -109,30 +109,30 @@ while IFS= read -r -u3 line; do
         # Bit score is arr[6] in the whitespace-sv
         Pbitsc=${Plinearr[6]}
         Qbitsc=${Qlinearr[6]}
-        #printf "P ${Pbitsc} Q ${Qbitsc}\n"
-        PQ=$(printf "(${Pbitsc})-(${Qbitsc})\n" | bc -l)
-        #printf "Elem score: ${PQ}\n"
-        pqAlignSum=$(printf "(${pqAlignSum})+(${PQ})\n" | bc -l)
-        aterm=$(printf "e((${Pbitsc})*l(2))\n" | bc -l)
-        aAdjustPQAlignNum=$(printf "${aAdjustPQAlignNum}+((${aterm})*(${PQ}))\n" | bc -l)
-        aAdjustPQAlignDen=$(printf "${aAdjustPQAlignDen}+((${aterm}))\n" | bc -l)
-        nterm=$(printf "((1/4)^(${emitLen}-${Qlen}))*(e(-1*(${emitLen}/${Qlen})))\n" | bc -l)
-        nAdjustPQAlignNum=$(printf "${nAdjustPQAlignNum}+((${aterm})*(${nterm})*(${PQ}))\n" | bc -l)
-        nAdjustPQAlignDen=$(printf "${nAdjustPQAlignDen}+((${aterm})*(${nterm}))\n" | bc -l)
+        #printf -- "P ${Pbitsc} Q ${Qbitsc}\n"
+        PQ=$(printf -- "(${Pbitsc})-(${Qbitsc})\n" | bc -l)
+        #printf -- "Elem score: ${PQ}\n"
+        pqAlignSum=$(printf -- "(${pqAlignSum})+(${PQ})\n" | bc -l)
+        aterm=$(printf -- "e((${Pbitsc})*l(2))\n" | bc -l)
+        aAdjustPQAlignNum=$(printf -- "${aAdjustPQAlignNum}+((${aterm})*(${PQ}))\n" | bc -l)
+        aAdjustPQAlignDen=$(printf -- "${aAdjustPQAlignDen}+((${aterm}))\n" | bc -l)
+        nterm=$(printf -- "((1/4)^(${emitLen}-${Qlen}))*(e(-1*(${emitLen}/${Qlen})))\n" | bc -l)
+        nAdjustPQAlignNum=$(printf -- "${nAdjustPQAlignNum}+((${aterm})*(${nterm})*(${PQ}))\n" | bc -l)
+        nAdjustPQAlignDen=$(printf -- "${nAdjustPQAlignDen}+((${aterm})*(${nterm}))\n" | bc -l)
     fi
 done 3< "${workingDir}/align/${QemitaligntoPdata}"
 
 
 # Average scores (using sum and sample count)
 # uncombined (P-only) direct avg
-printf "$(printf "${pAlignSum}/${numSamples}\n" | bc -l)\n"
+printf -- "$(printf -- "${pAlignSum}/${numSamples}\n" | bc -l)\n"
 # combined (P+Q) direct avg
-printf "$(printf "${pqAlignSum}/(${numSamples}*2)\n" | bc -l)\n"
+printf -- "$(printf -- "${pqAlignSum}/(${numSamples}*2)\n" | bc -l)\n"
 # uncombined (P-only) corrected with 2^Pi
-printf "$(printf "${aAdjustPAlignNum}/${aAdjustPAlignDen}\n" | bc -l)\n"
+printf -- "$(printf -- "${aAdjustPAlignNum}/${aAdjustPAlignDen}\n" | bc -l)\n"
 # combined (P+Q) corrected with 2^Pi
-printf "$(printf "${aAdjustPQAlignNum}/(${aAdjustPQAlignDen})\n" | bc -l)\n"
+printf -- "$(printf -- "${aAdjustPQAlignNum}/(${aAdjustPQAlignDen})\n" | bc -l)\n"
 # uncombined (P-only) corrected with 2^Pi/N
-printf "$(printf "${nAdjustPAlignNum}/${nAdjustPAlignDen}\n" | bc -l)\n"
+printf -- "$(printf -- "${nAdjustPAlignNum}/${nAdjustPAlignDen}\n" | bc -l)\n"
 # combined (P+Q) corrected with 2^Pi/N
-printf "$(printf "${nAdjustPQAlignNum}/(${nAdjustPQAlignDen})\n" | bc -l)\n"
+printf -- "$(printf -- "${nAdjustPQAlignNum}/(${nAdjustPQAlignDen})\n" | bc -l)\n"

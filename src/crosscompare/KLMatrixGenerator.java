@@ -196,22 +196,36 @@ public class KLMatrixGenerator {
                         }
                         reader.close();
                         String[] pOutLines = pOutput.toString().split("\n");
-                        System.out.println("line "+pOutput);
-                        System.out.println("pOut "+Arrays.toString(pOutLines));
+                        System.out.println("line " + pOutput);
+                        System.out.println(
+                                "pOut " + Arrays.toString(pOutLines));
                         BigDecimal[] result = new BigDecimal[expectedOutputs];
-                        System.out.println("bDec "+Arrays.toString(result));
                         for (int res = 0; res < result.length; res++) {
-                            result[res] = BigDecimal.valueOf(
-                                    Double.valueOf(pOutLines[res])
-                            );
+                            try {
+                                result[res] = BigDecimal.valueOf(
+                                        Double.valueOf(pOutLines[res])
+                                );
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                                System.err.println(
+                                        "unable to read output score from cmd" +
+                                                " at i=" + pathP + ",j=" + pathQ);
+                                result[res] = null;
+                            }
                         }
+                        System.out.println("bDec " + Arrays.toString(result));
                         return result;
                     } catch (IOException e) {
                         e.printStackTrace();
                         // something went wrong!!!
-                        // note that K-L divergence is never negative so this
-                        // is a clear sign of Bad Things Happened(tm)
-                        return new BigDecimal[]{BigDecimal.valueOf(-1)};
+                        System.err.println(
+                                "IOException associated with files" +
+                                        " at i=" + pathP + ",j=" + pathQ);
+                        BigDecimal[] result = new BigDecimal[expectedOutputs];
+                        for (int res = 0; res < result.length; res++) {
+                            result[res] = null;
+                        }
+                        return result;
                     } finally {
                         // Files.deleteIfExists(tempDir);
                     }
@@ -243,10 +257,13 @@ public class KLMatrixGenerator {
                                     scores[o][i][j] = results[o];
                                 }
                             } catch (InterruptedException | ExecutionException e) {
-                                // this shouldn't happen if its done
-                                // but we will mark results with a -1 anyway
+                                e.printStackTrace();
+                                // this shouldn't happen if its done ...
+                                System.err.println(
+                                        "interrupted while recording scores " +
+                                                "at i=" + i + ",j=" + j);
                                 for (int o = 0; o < expectedOutputs; o++) {
-                                    scores[o][i][j] = BigDecimal.valueOf(-1);
+                                    scores[o][i][j] = null;
                                 }
                                 e.printStackTrace();
                             } finally {
@@ -285,7 +302,10 @@ public class KLMatrixGenerator {
                                                               maxFilenameLength -
                                                                       P.getName().length()));
                 for (int j = 0; j < files.length; j++) {
-                    String score = scores[fnum][j][j].toString();
+                    String score = "null";
+                    if (scores[fnum][i][j] != null) {
+                        score = scores[fnum][i][j].toString();
+                    }
                     writer.write(score + StringUtils.repeat(" ",
                                                             maxFilenameLength -
                                                                     score.length()));
