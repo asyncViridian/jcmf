@@ -1,3 +1,8 @@
+Post-Presentation
+... my presentation ppt will forever be lost, since I forgot to commit it before returning the laptop
+but I can remake it since I remember what I had
+
+===============================================================================
 2019-08-05
 Things done:
     - Pick a good scoring model
