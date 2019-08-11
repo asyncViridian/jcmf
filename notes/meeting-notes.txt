@@ -1,6 +1,10 @@
 Post-Presentation
-... my presentation ppt will forever be lost, since I forgot to commit it before returning the laptop
-but I can remake it since I remember what I had
+
+Thesis writing:
+    - Evaluate null model results???
+    - clarify behavior for "disordered on reverse strand"
+    - clarify behavior of fblock
+    - essentially, write some manual for the programs, describe what they are actually doing in detail
 
 ===============================================================================
 2019-08-05
