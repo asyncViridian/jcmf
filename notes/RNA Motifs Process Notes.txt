@@ -215,7 +215,7 @@ for file in temp_*/*.bb
 do
     mv ${file} trackHubUpdate/ &
 done
-for dir in temp_*/*_src
+for dir in temp_*/*_src_*
 do
     mkdir trackHubUpdate/$(basename ${dir})
     mv ${dir}/* trackHubUpdate/$(basename ${dir})/
