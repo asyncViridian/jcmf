@@ -164,8 +164,8 @@ public class ScoredStockholmAlignmentBlock {
         Pair<BigInteger, BigInteger> within = this.intervals.get(s);
         Pair<BigInteger, BigInteger> outside = this.sources.get(s).totalSpan;
         return new ImmutablePair<>(
-                within.getKey().add(outside.getKey()),
-                within.getValue().add(outside.getKey())
+                within.getKey().add(outside.getKey()).subtract(BigInteger.ONE),
+                within.getValue().add(outside.getKey()).subtract(BigInteger.ONE)
         );
     }
 
