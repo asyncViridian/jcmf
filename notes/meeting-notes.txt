@@ -1,5 +1,7 @@
 Post-Presentation
 
+Why is the data still messed up? :\
+
 Thesis writing:
     - Evaluate null model results???
     - clarify behavior for "disordered on reverse strand"
