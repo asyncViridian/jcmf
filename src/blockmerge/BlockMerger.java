@@ -911,32 +911,34 @@ public class BlockMerger {
                 MAFAlignmentBlock.Sequence.GapType.C)) {
             // if first is a gap sequence (with no bases in the section)
             // and it is too long to be included
-            disjointReasonsStats.addValue("large_gap");
-            disjointSpeciesStats.addValue(species);
             if (firstSeq.size.compareTo(
                     BigInteger.valueOf(GAP_THRESHOLD)) > 0) {
+                disjointReasonsStats.addValue("large_gap");
+                disjointSpeciesStats.addValue(species);
                 return false;
             }
         }
         if (secondSeq.isGap) {
             // if second is a gap sequence and it is too long to be included
-            disjointReasonsStats.addValue("large_gap");
-            disjointSpeciesStats.addValue(species);
             if (secondSeq.size.compareTo(
                     BigInteger.valueOf(GAP_THRESHOLD)) > 0) {
+                disjointReasonsStats.addValue("large_gap");
+                disjointSpeciesStats.addValue(species);
                 return false;
             }
         }
         if (!firstSeq.isGap && !secondSeq.isGap) {
             // if neither is a gap, but the intervening "gap" is too long
-            disjointReasonsStats.addValue("large_gap");
-            disjointSpeciesStats.addValue(species);
             if (firstSeq.right.length.compareTo(
                     BigInteger.valueOf(GAP_THRESHOLD)) > 0) {
+                disjointReasonsStats.addValue("large_gap");
+                disjointSpeciesStats.addValue(species);
                 // the context "after" the first block
                 return false;
             } else if (secondSeq.left.length.compareTo(
                     BigInteger.valueOf(GAP_THRESHOLD)) > 0) {
+                disjointReasonsStats.addValue("large_gap");
+                disjointSpeciesStats.addValue(species);
                 // the context "before" the second block
                 // should be the same as thing above???
                 return false;
