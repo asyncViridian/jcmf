@@ -181,7 +181,7 @@ echo "Merge done"
 echo bigscan10 | ./rerunTracksForDirs.sh q_chr*emuBigscan_10block* &
 echo bigscan5 | ./rerunTracksForDirs.sh q_chr*emuBigscan_5block* &
 echo bigscanf | ./rerunTracksForDirs.sh q_chr*emuBigscan_fblock* &
-echo newparam | ./rerunTracksForDirs.sh q_chr*newParams* &
+echo newparam | ./rerunTracksForDirs.sh q_chr*newParams_5block* &
 wait
 echo "Trackgen done"
 java -jar consensusoverlap.jar -s temp_bigscanf/bigscanf_src -c chr1 -o temp_bigscanf/bigscanf_chr1.html -l -pre bigscanf_src/ &
