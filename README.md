@@ -1,2 +1,5 @@
 # jcmf
-Java port of cmfinder files, plus some new programs for alignment block manipulation
+
+Alignment block merging, CM K-L divergence scoring.
+
+(How can I put this under gnu gpl?)
