@@ -6,17 +6,17 @@
     </attributes>
     <meta>
       <creator>NetworkX 2.1</creator>
-      <lastmodified>06/08/2019</lastmodified>
+      <lastmodified>13/08/2019</lastmodified>
     </meta>
     <nodes>
       <node id="m_753.fasta.motif.h1_3.h2_3.h1_1.h1_4.h1_2_chr5.sto.cm" label="0">
         <attvalues>
-          <attvalue for="0" value="2" />
+          <attvalue for="0" value="0" />
         </attvalues>
       </node>
       <node id="m_9.fasta.motif.h1_4.h2_1.h1_3_chr5.sto.cm" label="1">
         <attvalues>
-          <attvalue for="0" value="0" />
+          <attvalue for="0" value="2" />
         </attvalues>
       </node>
       <node id="m_1540.fasta.motif.h1_2.h1_4.h1_3_chr5.sto.cm" label="2">
@@ -31,17 +31,17 @@
       </node>
       <node id="m_1720.fasta.motif.h2_2.h2_5_chr5.sto.cm" label="4">
         <attvalues>
-          <attvalue for="0" value="2" />
+          <attvalue for="0" value="0" />
         </attvalues>
       </node>
       <node id="m_391.fasta.motif.h2_3.h2_4_chr5.sto.cm" label="5">
         <attvalues>
-          <attvalue for="0" value="0" />
+          <attvalue for="0" value="2" />
         </attvalues>
       </node>
       <node id="m_417.fasta.motif.h1_5_chr5.sto.cm" label="6">
         <attvalues>
-          <attvalue for="0" value="0" />
+          <attvalue for="0" value="2" />
         </attvalues>
       </node>
     </nodes>
