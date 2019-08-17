@@ -1,0 +1,16 @@
+# cmbuild :: covariance model construction from multiple sequence alignments
+# INFERNAL 1.1.2 (July 2016)
+# Copyright (C) 2016 Howard Hughes Medical Institute.
+# Freely distributed under a BSD open source license.
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+# CM file:                                            cmGrouping_bigscanfchr5//m_627.fasta.motif.h2_1.h2_2.h1_3_chr5.sto.cm
+# alignment file:                                     cm//m_627.fasta.motif.h2_1.h2_2.h1_3_chr5.sto
+# overwrite CM file if necessary:                     yes
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+#                                                                      rel entropy
+#                                                                      -----------
+# idx    name                     nseq eff_nseq   alen  clen  bps bifs    CM   HMM description
+# ------ -------------------- -------- -------- ------ ----- ---- ---- ----- ----- -----------
+       1 m_627.fasta.motif.h2_1.h2_2.h1_3_chr5       36     3.78    283   236   11    1 0.590 0.559 
+#
+# CPU time: 0.79u 0.00s 00:00:00.79 Elapsed: 00:00:00.80

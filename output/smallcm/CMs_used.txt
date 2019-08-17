@@ -1,0 +1,23 @@
+> m.290.fasta.motif.h2.3.h2.4.score.chr5.txt
+AUGGCUCUUUAAAAUGUCAUCCCGUGGUGGCUCAUGCCUGUAAUCCCAGCACUUUGGGAGGCCAGGAG
+..(((..........)))..........................(((((....)))))..........
+
+> m.288.fasta.motif.h2.1.h2.5.h2.4.score.chr5.txt
+AUGGCUCUUUAAAAUGUCAUCCCUUGGUGGCUCAUGCCUGUAAUCCCAGCACUUUGGGAGGCCAGGA
+.((((..........)))).........................(((((....))))).........
+
+> m.511.fasta.motif.h1.2.h1.5.score.chr5.txt
+UUGGGGGUAUGUGCACAACAUAGUCACAAUUCUCUUUUUAUCUUUUCCUGUAAGAAGAGAA
+.........((((...........))))..((((((..................)))))).
+
+> m.516.fasta.motif.h1.4.score.chr5.txt
+UGGUUAAGGGCGGAAAGAAGAUUAUUUCCUAUUAACA
+.(.((((....((((((.......)))))).))))).
+
+> m.544.fasta.motif.h2.1.h2.2.h2.5.score.chr5.txt
+CAUUAUUAUGGAAAAAACUCAUAACAAACUGGAAUUACAUGCUACUAGAUAUCUGUUAGAAAGAAGCCUGACUGUUUGGACCUUACCAUCAUAGCCCAGGAUCACUAUUUGUAGUGGCAAGUUCUCAAACUGCAGAUUUGCCAUGCAGCAGGCAACCCCAGACCUAAUAUAAUAACAGCUAAUAUUUAUUGAAUACUUACUAAACAUGAGGCACUGGCUAAGUACAUCACAUGUAUUAUUUCACUUAAUC
+......(((((.......))))).......(((..................((((................(((..(((......)))...)))......(((((((....)))))))..............)))).......................................................................................................)))........
+
+> m.278.fasta.motif.h2.1.h2.3.score.chr5.txt
+GCCUGGCCAACAUGGCAAAACUCCAACUCUACUAAAAAUACAAAAAUUAGCCGAGCAUGGUGGCACACACCUGUAGUCCCAGCUACUCAGGAGGCUGAGGCCCGAGAAUUACAUGAACCCAGGCAGUGGAGGUUUCAGUGAGCCAAGAUUGUGCCACUGCACUUCACCCUGGGC
+.......((((..........))))........................((((((((((......)))))))....((((((....)))))))))...............................................................................
