@@ -28,12 +28,29 @@ Downloading the MAF files for alignment blocks using the UCSC browser:
 
 ===============================================================================
 
-A brief description of all of the executables in the scripts directory.
+A brief description of all of the files in the scripts directory.
 For all information about arguments or example usage for each of the scripts, you can look in the "Usage" section of this document, run the script without any arguments, or check the beginning of the script file itself.
+    settings/*
+        Files used to determine settings for each run (bigscan5, bigscan10, newparams, bigscan-fillblock)
+    source_mafs/*
+        MAF files for the regions of interest.
+    utilities/infernal*
+        Infernal package, compiled.
+    utilities/multiperm*
+        Multiperm multiple-alignment shuffling utility. Ultimately unused by any of the other code.
+    utilities/SISSIz*
+        SISSIz multiple-alignment "shuffling" (really random-regeneration?) utility.
+        As the directory is managed with Git and submodules are complicated (I am not a Git expert), this link might actually be broken... Just download and make SISSIz (not install!), fix the symlinks, and everything should work. Alternatively, install SISSIz and grep for any calls to utilities/SISSIz and change those.
+    utilities/bedSort; utilities/bedToBigBed; utilities/hubCheck
+        Executables that handle track hub processing, written by UCSC team
+    utilities/cmalign; utilities/cmbuild; utilities/cmemit
+        Symlinks to the respective individual executables in the Infernal package
+    utilities/index.php
+        A PHP file that generates a nice readable webpage for the contents of the directory, used for the track hub.
     blockmerger.jar
         This jar executable generates the set of FASTA files and information graphs representing all the "merged blocks" originally from the given MAF file.
         It has a relatively complex set of arguments to specify source, destination, and various parameters (see usage section)
-    refgenerator.jar
+    reflinegenerator.jar
         This jar executable generates a BED track based on the MAF blocks in the input.
         The resulting track contains light/dark alternating blocks to represent each input MAF block. It does not contain any scoring or other processing. It is used as a reference line in the track hub.
     align.sh
@@ -61,6 +78,17 @@ For all information about arguments or example usage for each of the scripts, yo
         This script performs the work of trackgenerator.jar, generateBigBed.sh, pagegenerator.jar, and collectPNGs.sh all at once. It creates a temp_(prefix) folder that contains several files and directories that can easily be assembled into a track hub directory. 
     runAll.sh
         This script runs all of the previous executables in order (for a single working directory at a time, NOT batch), so that I don't have to do it manually. Requires a source MAF file and a directory to dump all of the split, results, score, etc. directories inside, as well as a settings file to specify the variables to run each script with (i.e. use 5-block blockmerge, or 75-400 base fillblocks merge)
+    runAllShuffleSISSIz.sh
+        Does the same thing as runAll.sh except adapted for/uses shuffled alignments...
+    klmatrixgenerator.jar
+        This jar executable writes a table of KL "estimate" divergence scores of a directory of CM files to an output file. The output file entries are delimited by whitespace. This executable depends on KLDivergenceEstimate.sh, but arguments can be passed in for it to handle any other executable for generation of scores. It expects the executable to output each individual score on a newline. (So really it is a generic table-scoring program...)
+        This executable runs multithreaded; the default thread pool count is 10. To change it you can recompile the source.
+    KLDivergenceEstimate.sh
+        Script that calculates and outputs the PQ2P score for a given pair of CM files.
+    tkldiv.sh
+        Script that calculates and outputs ALL 6 score estimates for a given pair of CM files (in order: PoAV, PQAV, Po2P, PQ2P, PoNP, PQNP)
+    massCMBuild.sh
+        Script that compiles CM files out of all CMfinder-result (multiple alignment with consensus structure STO files) in a directory.
 
 ===============================================================================
 
@@ -74,6 +102,7 @@ My typical practical workflow: (see also the "To run the entire pipeline" sample
     ./rerunTracksForDirs.sh q_chr*emuBigscan_5block*
     If you don't want to manually enter the prefix argument once the script starts, you can run it less-interactively like so:
     echo "bigscan5" | ./rerunTracksForDirs.sh q_chr*emuBigscan_5block*
+PS. A list of specific commands used was below; often I just copy-pasted those commands whenever the track hub needed updating.
 
 ===============================================================================
 
@@ -82,8 +111,6 @@ Run blockmerge, and pass the MAF file as "input filename".
     run blockmerge without arguments to get a description of the usage.
     This process creates a set of FASTA files, each of which is a set of input sequences consisting of multiple alignment blocks merged together. The sequences have their gap characters removed, and Ns are inserted for actual gaps between alignment blocks that must be bridged.
 Alternatively, you can run ./rerunMergeForDirs to do this in batches.
-
-TODO: explanation of the functionality blockmerge provides
 
 ===============================================================================
 
@@ -101,7 +128,7 @@ Generating the UCSC browser format track hub (this is already handled by rerunTr
 
 ===============================================================================
 
-To run the entire pipeline on all of the configurations:
+To run the entire pipeline on all of the configurations (assume the scripts dir is the working dir):
 
 ./runAll.sh q_chr01_emuBigscan_fblock-75to400-all/ source_mafs/m100_chr1_149844498-149849024.maf settings/emuBigscan_fblock-75to400 &
 disown

@@ -53,6 +53,7 @@ done
 
 echo "Creating source direct-result ref files"
 # Copying source result files to a temp dir
+rm -r temp_$prefix/tempsrc
 mkdir temp_$prefix/tempsrc
 for dir in "$@"
 do
@@ -99,7 +100,9 @@ do
 done
 
 # Grabbing only the source files that we actually want
+rm -r temp_$prefix/${prefix}_src
 mkdir temp_$prefix/${prefix}_src
+rm -r temp_$prefix/${prefix}_src_unscored
 mkdir temp_$prefix/${prefix}_src_unscored
 cd temp_$prefix
 for file in *.bed
@@ -121,16 +124,20 @@ cd ..
 rm -r temp_$prefix/tempsrc
 
 # Getting the PNG files for each source dir
+rm -r temp_$prefix/graphics
 mkdir temp_$prefix/graphics
 for dir in "$@"
 do
   echo "Copying PNGs out of $dir"
+  rm -r temp_$prefix/graphics/$dir
   mkdir temp_$prefix/graphics/$dir
   ./collectPNGs.sh $dir temp_$prefix/graphics/$dir
+  # Readable index page
+  cp utilities/index.php temp_$prefix/graphics/$dir/index.php
 done
 
 # Create a more readable index for all the graphics directories
-cp utilities/index.php temp_$prefix/graphics/$dir/index.php
+cp utilities/index.php temp_$prefix/graphics/index.php
 
 # Generate the HTML for each source scorefile
 for file in temp_${prefix}/${prefix}_src/*.txt
